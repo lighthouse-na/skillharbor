@@ -5,3 +5,10 @@
 [x-cloak] {
     display: none;
 }
+
+@font-face {
+    font-family: "Rubik";
+    src: url("~font/Rubik-VariableFont_wght.ttf");
+    font-weight: 100;
+    font-style: normal;
+  }
