@@ -53,7 +53,6 @@
                             </div>
                         </x-slot>
                         <x-slot name="content">
-
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
