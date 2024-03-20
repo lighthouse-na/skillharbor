@@ -1,11 +1,11 @@
-<div class="bg-white sticky top-0 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<div class="bg-white sticky top-0 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="bg-gradient-to-tr from-fuchsia-900 to-pink-700 bg-clip-text text-transparent dark:text-gray-200">
+                    <a href="{{ route('dashboard') }}" class="text-black dark:text-gray-200">
                         <h1 class="block text-3xl w-auto">skillHarbor</h1>
                     </a>
                 </div>
