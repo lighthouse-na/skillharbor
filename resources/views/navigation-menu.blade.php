@@ -1,18 +1,18 @@
 <div class="bg-white sticky top-0 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-24">
+        <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                        <x-application-mark class="block h-9 w-auto" />
+                    <a href="{{ route('dashboard') }}" class="bg-gradient-to-tr from-fuchsia-900 to-pink-700 bg-clip-text text-transparent dark:text-gray-200">
+                        <h1 class="block text-3xl w-auto">skillHarbor</h1>
                     </a>
                 </div>
                 <!-- Navigation Links -->
 
             </div>
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            {{-- <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Settings Dropdown -->
                 <div class="ms-3 mx-auto absolute right-6">
                     <x-dropdown align="right" width="48">
@@ -53,7 +53,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-            </div>
+            </div> --}}
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
