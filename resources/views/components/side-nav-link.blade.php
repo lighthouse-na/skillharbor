@@ -1,13 +1,13 @@
 @props(['active', 'icon'])
 
 @php
-    $classes = $active ?? false ? 'bg-gray-500/50 text-white font-semibold' : 'hover:bg-gray-500/50 text-white';
+    $classes = $active ?? false ? 'bg-gray-500/50 text-white ' : 'hover:bg-gray-500/50 hover:text-white text-violet-200/75';
 @endphp
 
 <a
-    {{ $attributes->class(['block py-2 px-4 font-xs rounded-lg flex flex-row items-center h-6 my-2'])->merge(['class' => $classes]) }}>
+    {{ $attributes->class(['flex items-center px-2 py-1 m-1 text-sm text-gray-900 rounded-lg rounded-md transition duration-150 ease-in-out'])->merge(['class' => $classes]) }}>
     @if ($icon)
-        <i class="mr-2 fas fa-{{ $icon }}"></i>
+    {{ svg($icon) }}
     @endif
-    {{ $slot }}
+    <span class="ml-3">{{ $slot }}</span>
 </a>
