@@ -18,6 +18,6 @@ class enrollment extends Model
 
     public function assessment()
     {
-        return $this->belongsTo(assessments::class);
+        return $this->belongsTo(assessment::class);
     }
 }

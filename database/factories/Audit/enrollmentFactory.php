@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Audit;
 
-use App\Models\Audit\assessments;
+use App\Models\Audit\assessment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +21,7 @@ class enrollmentFactory extends Factory
         return [
             //
             'user_id' => User::all()->random()->id,
-            'assessment_id' => assessments::all()->random()->id,
+            'assessment_id' => assessment::all()->random()->id,
         ];
     }
 }

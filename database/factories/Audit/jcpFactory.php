@@ -16,7 +16,7 @@ class jcpFactory extends Factory
      */
     public function definition(): array
     {
-        $assessment_ids = \App\Models\Audit\assessments::select('id')->get();
+        $assessment_ids = \App\Models\Audit\assessment::select('id')->get();
         $user_ids = \App\Models\User::select('id')->get();
 
 
