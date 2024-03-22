@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Models\Audit\assessments;
+use App\Models\Audit\assessment;
 use App\Models\Audit\jcp;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function assessments()
     {
-        return $this->belongsToMany(assessments::class, 'enrolls');
+        return $this->belongsToMany(assessment::class, 'enrollments');
     }
 
     public function skills()

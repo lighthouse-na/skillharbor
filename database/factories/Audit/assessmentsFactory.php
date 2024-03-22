@@ -5,9 +5,9 @@ namespace Database\Factories\Audit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Audit\assessments>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Audit\assessment>
  */
-class assessmentsFactory extends Factory
+class assessmentFactory extends Factory
 {
     /**
      * Define the model's default state.
