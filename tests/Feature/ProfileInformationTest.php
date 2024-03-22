@@ -19,6 +19,7 @@ test('profile information can be updated', function () {
 
     Livewire::test(UpdateProfileInformationForm::class)
         ->set('state', ['first_name' => 'Test','last_name' => 'Name' ,'email' => 'test@example.com'])
+
         ->call('updateProfileInformation');
 
     expect($user->fresh())
