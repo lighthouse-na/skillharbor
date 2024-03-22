@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Audit\assessments;
+use App\Models\Audit\assessment;
 use App\Models\Audit\category;
 use App\Models\Audit\enrollment;
 use App\Models\Audit\jcp;
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressStart(6);
 
         $this->command->info(' Creating Audit Assessments...');
-        assessments::factory(3)->create();
+        assessment::factory(3)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');

@@ -20,7 +20,7 @@ class jcp extends Model
 
     public function assessment()
     {
-        return $this->belongsTo(assessments::class, 'assessment_id');
+        return $this->belongsTo(assessment::class, 'assessment_id');
     }
     public function skills()
     {

@@ -35,9 +35,9 @@
         <aside :class="{ '-translate-x-full': !open }"
             class="z-10 bg-gradient-to-br from-fuchsia-950 to-slate-800 lg:fixed sm:fixed text-gray-900 w-56 px-2 py-4  absolute inset-y-0 left-0 top-20 bottom-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
             <!--logo-->
-            <div class="flex items-center justify-between px-2 self-center mx-3" >
+            <div class="flex items-center mx-auto justify-between px-2" >
                     <!-- Settings Dropdown -->
-                    <x-dropdown align="right" width="82">
+                    <x-dropdown align="right" width="32">
                         <x-slot name="trigger">
 
                             <div class="container mb-6 rounded-lg hover:bg-gray-900/50 ">
@@ -46,8 +46,9 @@
                                         <img class="h-8 w-8 rounded-lg object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
                                     </div>
 
-                                    <div class="overflow-hidden text-clip">
-                                        <h1 class="text-white pl-3">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
+                                    <div class="overflow-hidden ">
+                                        <h1 class="text-white pl-3 truncate ...">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
+                                        <p class="text-white text-xs pl-3 truncate ...">{{Auth()->user()->email}}</p>
                                     </div>
                                 </div>
 
@@ -78,7 +79,7 @@
                 <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" icon='iconoir-dashboard-dots'>
                     Dashboard
                 </x-side-nav-link>
-                <x-side-nav-link href="{{ route('dashboard') }}" :active="false" icon='iconoir-stackoverflow'>
+                <x-side-nav-link href="{{ route('assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('assessment')" icon='iconoir-stackoverflow'>
 
                     My Assessments
                 </x-side-nav-link>
@@ -88,11 +89,22 @@
         </aside>
 
 
+
+
         <!-- Page Content -->
-        <main class="flex-1 bg-gradient-to-r from-gray-100 to-stone-200 min-h-screen">
+        <main class="flex-1 bg-white min-h-screen">
+
             @livewire('navigation-menu')
-            <div class="mx-auto ml-44">
-                <div class="w-5/6">
+            <div class="px-0 sm:ml-52">
+                 <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="">
+                        <div class="font-medium py-6 bg-gray-50 border text-3xl text-gray-800 leading-tight sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
+                <div class="px-0">
                     {{ $slot }}
                 </div>
                 {{-- {{ $slot }} --}}
