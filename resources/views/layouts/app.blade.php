@@ -35,18 +35,18 @@
         <aside :class="{ '-translate-x-full': !open }"
             class="z-10 bg-gradient-to-br from-fuchsia-950 to-slate-800 lg:fixed sm:fixed text-gray-900 w-56 px-2 py-4  absolute inset-y-0 left-0 top-20 bottom-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
             <!--logo-->
-            <div class="flex items-center justify-between px-2">
+            <div class="flex items-center justify-between px-2 self-center mx-3" >
                     <!-- Settings Dropdown -->
-                    <x-dropdown align="right" width="48">
+                    <x-dropdown align="right" width="82">
                         <x-slot name="trigger">
 
-                            <div class="container mb-6 rounded-lg hover:bg-gray-900/50">
+                            <div class="container mb-6 rounded-lg hover:bg-gray-900/50 ">
                                 <div class="flex justify-between items-center px-3 py-2 cursor-pointer">
                                     <div class="icon">
-                                        <img class="h-8 w-8 rounded-lg object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                        <img class="h-8 w-8 rounded-lg object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
                                     </div>
-                                    <div class="place-content-center ">
-                                        <h1 class="text-white pl-3">{{Auth()->user()->name}}</h1>
+                                    <div class="overflow-hidden text-clip">
+                                        <h1 class="text-white pl-3">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
                                     </div>
                                 </div>
 
