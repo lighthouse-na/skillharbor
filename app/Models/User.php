@@ -72,7 +72,7 @@ class User extends Authenticatable
 
     public function assessments()
     {
-        return $this->belongsToMany(assessments::class, 'enrolls');
+        return $this->belongsToMany(assessments::class, 'enrollments');
     }
 
     public function skills()

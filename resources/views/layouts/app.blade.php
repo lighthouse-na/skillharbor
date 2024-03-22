@@ -87,11 +87,22 @@
         </aside>
 
 
+
+
         <!-- Page Content -->
-        <main class="flex-1 bg-gradient-to-r from-gray-100 to-stone-200 min-h-screen">
+        <main class="flex-1 bg-white min-h-screen">
+
             @livewire('navigation-menu')
-            <div class="mx-auto ml-44">
-                <div class="w-5/6">
+            <div class="px-0 sm:ml-52">
+                 <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="">
+                        <div class="font-medium py-6 bg-gray-50 border text-3xl text-gray-800 leading-tight sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
+                <div class="px-0">
                     {{ $slot }}
                 </div>
                 {{-- {{ $slot }} --}}
