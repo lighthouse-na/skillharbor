@@ -45,6 +45,7 @@
                                     <div class="icon">
                                         <img class="h-8 w-8 rounded-lg object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
                                     </div>
+
                                     <div class="overflow-hidden text-clip">
                                         <h1 class="text-white pl-3">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
                                     </div>
