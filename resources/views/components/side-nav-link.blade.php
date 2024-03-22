@@ -5,7 +5,7 @@
 @endphp
 
 <a
-    {{ $attributes->class(['flex items-center px-2 py-1 m-1 text-sm text-gray-900 rounded-lg rounded-md transition duration-150 ease-in-out'])->merge(['class' => $classes]) }}>
+    {{ $attributes->class(['flex items-center align-center px-2 py-1 m-1 text-sm text-gray-900 rounded-lg rounded-md transition duration-150 ease-in-out'])->merge(['class' => $classes]) }}>
     @if ($icon)
     {{ svg($icon) }}
     @endif
