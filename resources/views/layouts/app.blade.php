@@ -46,7 +46,7 @@
                                         <img class="h-8 w-8 rounded-lg object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </div>
                                     <div class="place-content-center ">
-                                        <h1 class="text-white pl-3">{{Auth()->user()->name}}</h1>
+                                        <h1 class="text-white pl-3">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
                                     </div>
                                 </div>
 

@@ -3,6 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Audit\assessments;
+use App\Models\Audit\jcp;
+use App\Models\Audit\qualification;
+use App\Models\Audit\skill;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -58,5 +63,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function jcp()
+    {
+        return $this->hasMany(jcp::class, 'user_id');
+    }
+
+    public function assessments()
+    {
+        return $this->belongsToMany(assessments::class, 'enrolls');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(skill::class, 'jcp_skill')->withPivot('user_rating', 'supervisor_rating');
+    }
+
+    public function qualifications()
+    {
+        return $this->belongsToMany(qualification::class, 'qualification_user');
+    }
+
+    // Search Scope Function
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('first_name', 'like', '%' . $val . '%')
+            ->orWhere('email', 'like', '%' . $val . '%')
+            ->orWhere('last_name', 'like', '%' . $val . '%');
+
     }
 }
