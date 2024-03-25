@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" class="!scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -177,6 +177,7 @@
 <?php $component = $__componentOriginal2e340925a8bf40d3894bf118093fdd54; ?>
 <?php unset($__componentOriginal2e340925a8bf40d3894bf118093fdd54); ?>
 <?php endif; ?>
+
 
 
             </nav>
