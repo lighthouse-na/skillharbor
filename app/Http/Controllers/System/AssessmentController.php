@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Models\Audit\assessment;
 use Illuminate\Http\Request;
 
 class AssessmentController extends Controller
@@ -12,7 +13,8 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        //
+        $assesment = assessment::all();
+        return view('directories.assesment.index', compact('assesment'));
     }
 
     /**
@@ -20,7 +22,7 @@ class AssessmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('directories.assesment.create');
     }
 
     /**
@@ -28,15 +30,16 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $assesment = assessment::create($request->all());
+        return redirect()->route('directories.assesment.index');    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $assesment = assessment::findOrFail($id);
+        return view('summaries.assesment.show', compact('assesment'));
     }
 
     /**
@@ -44,7 +47,8 @@ class AssessmentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $assesment = assessment::findOrFail($id);
+        return view('directories.assessment.edit', compact('assesment'));
     }
 
     /**
@@ -52,7 +56,9 @@ class AssessmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $assessment = assessment::findOrFail($id);
+        $assessment->update($request->all());
+        return redirect()->route('directories.assessment.index');
     }
 
     /**
@@ -60,6 +66,9 @@ class AssessmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $assessment = assessment::findOrFail($id);
+        $assessment->delete();
+        return redirect()->route('directories.assesment.index');
     }
 }
+// watch out for the spelling of assesment in other files
