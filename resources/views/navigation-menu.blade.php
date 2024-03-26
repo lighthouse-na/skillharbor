@@ -35,7 +35,7 @@
                             <x-dropdown-link href="#">
                                 JCPs
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="{{route('skills.index')}}">
                                 Skills
                             </x-dropdown-link>
                             <x-dropdown-link href="#">

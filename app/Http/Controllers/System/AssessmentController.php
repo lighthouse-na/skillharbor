@@ -4,7 +4,6 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\assessment;
 
 class AssessmentController extends Controller
 {
@@ -13,8 +12,7 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        $assessments = Assessment::all();
-        return view('assessments.index', compact('assessments'));
+        //
     }
 
     /**
@@ -22,7 +20,7 @@ class AssessmentController extends Controller
      */
     public function create()
     {
-        return view('assessments.create');
+        //
     }
 
     /**
@@ -30,8 +28,7 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
-        $assessment = assessment::create($request->all());
-        return redirect()->route('assessments.index');
+        //
     }
 
     /**
@@ -39,8 +36,7 @@ class AssessmentController extends Controller
      */
     public function show(string $id)
     {
-        $assessment = assessment::findOrFail($id);
-        return view('assessments.show', compact('assessment'));
+        //
     }
 
     /**
@@ -48,8 +44,7 @@ class AssessmentController extends Controller
      */
     public function edit(string $id)
     {
-        $assessment = assessment::findOrFail($id);
-        return view('assessments.edit', compact('assessment'));
+        //
     }
 
     /**
@@ -57,9 +52,7 @@ class AssessmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $assessment = assessment::findOrFail($id);
-        $assessment->update($request->all());
-        return redirect()->route('assessments.index');
+        //
     }
 
     /**
@@ -67,8 +60,6 @@ class AssessmentController extends Controller
      */
     public function destroy(string $id)
     {
-        $assessment = assessment::findOrFail($id);
-        $assessment->delete();
-        return redirect()->route('assessments.index');
+        //
     }
 }
