@@ -1,7 +1,7 @@
 @props(['active', 'icon'])
 
 @php
-    $classes = $active ?? false ? 'bg-gray-500/50 text-white ' : 'hover:bg-gray-500/50 hover:text-white text-violet-200/75';
+    $classes = $active ?? false ? ' bg-gray-500/50 text-white ' : 'hover:bg-gray-500/50 hover:text-white text-violet-200/75';
 @endphp
 
 <a
