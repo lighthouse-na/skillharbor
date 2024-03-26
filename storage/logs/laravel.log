@@ -662,3 +662,18 @@
 #68 /home/hubert/Desktop/lighthouse/projects/skillharbor-open/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('...')
 #69 {main}
 "} 
+[2024-03-26 06:26:56] local.ERROR: Too many arguments to "make:controller" command, expected arguments "name". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Too many arguments to \"make:controller\" command, expected arguments \"name\". at /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Input/ArgvInput.php:190)
+[stacktrace]
+#0 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Input/ArgvInput.php(83): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument()
+#1 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Input/ArgvInput.php(68): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#2 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Input/Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Command/Command.php(238): Symfony\\Component\\Console\\Input\\Input->bind()
+#4 /home/wings/Telecom/skillharbor-open/vendor/laravel/framework/src/Illuminate/Console/Command.php(181): Symfony\\Component\\Console\\Command\\Command->run()
+#5 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Application.php(1049): Illuminate\\Console\\Command->run()
+#6 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Application.php(318): Symfony\\Component\\Console\\Application->doRunCommand()
+#7 /home/wings/Telecom/skillharbor-open/vendor/symfony/console/Application.php(169): Symfony\\Component\\Console\\Application->doRun()
+#8 /home/wings/Telecom/skillharbor-open/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Symfony\\Component\\Console\\Application->run()
+#9 /home/wings/Telecom/skillharbor-open/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1183): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 /home/wings/Telecom/skillharbor-open/artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#11 {main}
+"} 
