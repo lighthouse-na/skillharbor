@@ -5,6 +5,7 @@ namespace App\Http\Controllers\System;
 use App\Http\Controllers\Controller;
 use App\Models\Audit\skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class SkillController extends Controller
 {
@@ -103,6 +104,6 @@ class SkillController extends Controller
         $skill = skill::findOrFail($id);
         $skill->delete();
 
-        return redirect()->route('skills.index')->with('success', 'Skill deleted successfully.');
+        return redirect()->route('directories.skills.index')->with('success', 'Skill deleted successfully.');
     }
 }

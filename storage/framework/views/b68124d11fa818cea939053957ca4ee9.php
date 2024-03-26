@@ -17,6 +17,26 @@
      <?php $__env->endSlot(); ?>
     <div class="py-6 px-6">
         <div class="">
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('system.skills.skill-table');
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-3991697289-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+
+        </div>
+        <div>
+
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>
