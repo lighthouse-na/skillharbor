@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Assessment\AssessmentController;
+use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\System\SkillController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +26,5 @@ Route::middleware([
 
     //Skill Internal API Routes
     Route::resource('/skills', SkillController::class);
+    Route::resource('/qualifications', QualificationController::class);
 });
