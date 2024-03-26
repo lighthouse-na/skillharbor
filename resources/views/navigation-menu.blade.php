@@ -32,13 +32,13 @@
                             <x-dropdown-link href="{{route('assessments.index')}}">
                                 Assessments
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="{{route('jcp.index')}}">
                                 JCPs
                             </x-dropdown-link>
                             <x-dropdown-link href="{{route('skills.index')}}">
                                 Skills
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="{{route('qualifications.index')}}">
                                 Qualifications
                             </x-dropdown-link>
                             <x-dropdown-link href="#">
