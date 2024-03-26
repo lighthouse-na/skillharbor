@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Assessment\AssessmentController;
+use App\Http\Controllers\System\JCPController;
 use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\System\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware([
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
 
     //Skill Internal API Routes
+    Route::resource('/jcp', JCPController::class);
     Route::resource('/skills', SkillController::class);
     Route::resource('/qualifications', QualificationController::class);
 });
