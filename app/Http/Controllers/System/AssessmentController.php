@@ -14,7 +14,7 @@ class AssessmentController extends Controller
     public function index()
     {
         $assesment = assessment::all();
-        return view('directories.assesment.index', compact('assesment'));
+        return view('directories.assessments.index', compact('assesment'));
     }
 
     /**
