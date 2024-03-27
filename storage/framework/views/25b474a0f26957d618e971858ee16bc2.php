@@ -11,7 +11,12 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="">
+
+            <?php echo e(__('Assesments')); ?>
+
+
             <?php echo e(__('Qualifications Directory')); ?>
+
 
         </h2>
      <?php $__env->endSlot(); ?>
