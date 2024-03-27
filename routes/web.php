@@ -4,6 +4,7 @@ use App\Http\Controllers\Assessment\AssessmentController;
 use App\Http\Controllers\System\JCPController;
 use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\System\SkillController;
+use App\Livewire\System\Org\OrgTable;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -29,4 +30,5 @@ Route::middleware([
     Route::resource('/jcp', JCPController::class);
     Route::resource('/skills', SkillController::class);
     Route::resource('/qualifications', QualificationController::class);
+    Route::get('/org', [OrgTable::class, 'index'])->name('org.index');
 });
