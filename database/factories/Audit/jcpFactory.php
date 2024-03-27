@@ -23,12 +23,12 @@ class jcpFactory extends Factory
         return [
             //This populates the jcp model fields
             'assessment_id' => $this->faker->randomElement($assessment_ids),
-            'user_id' => $this->faker->randomElement($user_ids),
+            'user_id' => $this->faker->unique()->randomElement($user_ids),
             'position_title' => $this->faker->jobTitle(),
             'job_grade' => $this->faker->numerify('B-#'),
             'duty_station' => $this->faker->city(),
             'job_purpose' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
-            'is_active' => $this->faker->randomElement([0, 1]),
+            'is_active' => 1,
         ];
     }
 }

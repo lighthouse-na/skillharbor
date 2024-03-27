@@ -20,4 +20,5 @@ yarn-error.log
 /storage/framework/views/*.php
 ```
 /storage/*
+/storage/*/*/*
 !/storage/.gitkeep
