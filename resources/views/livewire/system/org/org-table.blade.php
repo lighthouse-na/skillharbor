@@ -10,9 +10,9 @@
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <button class="flex flex-row p-2 px-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
                     <x-gmdi-add-o class="w-6 h-6" />
-                    user
+                    Employee
                 </button>
 
             </div>
@@ -46,9 +46,13 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $user->first_name }} {{$user->last_name}}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">@foreach($user->jcp as $jcp)
-                        {{ $jcp->position_title }}
-                    @endforeach</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        @forelse($user->jcp as $jcp)
+                            {{ $jcp->position_title }}
+                        @empty
+                            <h1 class="text-red-500 flex flex-row "><x-iconoir-warning-triangle class="mr-3"/> No active JCP...</h1>
+                        @endforelse
+                    </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap">{{ $user->competency_rating }}</td>
                     <td class="w-9 text-center">
                         <div class="ms-3 mx-auto">
