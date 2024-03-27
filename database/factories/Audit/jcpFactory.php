@@ -28,6 +28,7 @@ class jcpFactory extends Factory
             'job_grade' => $this->faker->numerify('B-#'),
             'duty_station' => $this->faker->city(),
             'job_purpose' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
+            'is_active' => $this->faker->randomElement([0, 1]),
         ];
     }
 }
