@@ -2,7 +2,6 @@
 
 namespace App\Livewire\System\Org;
 
-use App\Models\Audit\jcp;
 use App\Models\User;
 use Livewire\Component;
 

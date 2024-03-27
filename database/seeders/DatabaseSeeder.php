@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
         jcp::All()->each(function ($jcp) use ($skills) {
-            $jcp->skills()->saveMany($skills);
+            $jcp->skills()->saveMany($skills->random(rand(1, $skills->count()))->all());
         });
         $this->command->getOutput()->progressAdvance();
 

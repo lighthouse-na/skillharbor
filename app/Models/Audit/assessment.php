@@ -16,4 +16,6 @@ class assessment extends Model
         return $this->hasMany(jcp::class, 'assessment_id');
 
     }
+
+
 }

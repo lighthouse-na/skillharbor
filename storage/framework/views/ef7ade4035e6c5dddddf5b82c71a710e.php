@@ -164,7 +164,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\SideNavLink::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)])).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('user-assessment')),'icon' => 'iconoir-stackoverflow']); ?>
+<?php $component->withAttributes(['href' => ''.e(route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)])).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('user-assessment')),'icon' => 'iconoir-post']); ?>
                     My Assessments
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

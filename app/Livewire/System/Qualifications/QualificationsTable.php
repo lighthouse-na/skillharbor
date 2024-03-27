@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class QualificationsTable extends Component
 {
+
     public $search = '';
     public function render()
     {
