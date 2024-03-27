@@ -10,7 +10,7 @@
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <button class="flex flex-row p-2 px-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
                     <?php if (isset($component)) { $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c = $attributes; } ?>
 <?php $component = BladeUI\Icons\Components\Svg::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -31,7 +31,7 @@
 <?php $component = $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c; ?>
 <?php unset($__componentOriginal643fe1b47aec0b76658e1a0200b34b2c); ?>
 <?php endif; ?>
-                    user
+                    Employee
                 </button>
 
             </div>
@@ -66,10 +66,33 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->email); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap"><!--[if BLOCK]><![endif]--><?php $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php echo e($jcp->position_title); ?>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php echo e($jcp->position_title); ?>
 
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]--></td>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <h1 class="text-red-500 flex flex-row "><?php if (isset($component)) { $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c = $attributes; } ?>
+<?php $component = BladeUI\Icons\Components\Svg::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('iconoir-warning-triangle'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(BladeUI\Icons\Components\Svg::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'mr-3']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c)): ?>
+<?php $attributes = $__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c; ?>
+<?php unset($__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal643fe1b47aec0b76658e1a0200b34b2c)): ?>
+<?php $component = $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c; ?>
+<?php unset($__componentOriginal643fe1b47aec0b76658e1a0200b34b2c); ?>
+<?php endif; ?> No active JCP...</h1>
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap"><?php echo e($user->competency_rating); ?></td>
                     <td class="w-9 text-center">
                         <div class="ms-3 mx-auto">
