@@ -14,7 +14,7 @@ class AssessmentController extends Controller
     public function index()
     {
         $assesment = assessment::all();
-        return view('directories.assesment.index', compact('assesment'));
+        return view('directories.assessments.index', compact('assesment'));
     }
 
     /**
@@ -30,7 +30,7 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
-        $assesment = assessment::create($request->all());
+        assessment::create($request->all());
         return redirect()->route('directories.assesment.index');    }
 
     /**
