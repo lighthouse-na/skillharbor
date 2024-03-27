@@ -25,7 +25,9 @@ class AssessmentController extends Controller
     {
         $jcp = $user->jcp()
             ->with('skills.category') // Eager load skills and their categories
-            ->where('assessment_id', $assessment->id)->get();
+            ->where('assessment_id', $assessment->id)
+            ->where('is_active', 1) // Only load jcp where is_active is 1
+            ->get();
 
         return view('assessments.show', compact('jcp', 'user', 'assessment'));
     }
