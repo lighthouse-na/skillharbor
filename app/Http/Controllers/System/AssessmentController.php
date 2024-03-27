@@ -30,7 +30,7 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
-        $assesment = assessment::create($request->all());
+        assessment::create($request->all());
         return redirect()->route('directories.assesment.index');    }
 
     /**
