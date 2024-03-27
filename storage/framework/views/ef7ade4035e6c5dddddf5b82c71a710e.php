@@ -35,7 +35,7 @@
     <div class="relative min-h-screen md:flex " x-data="{ open: false }">
         <!--Sidebar -->
         <aside :class="{ '-translate-x-full': !open }"
-            class="z-10 bg-gradient-to-br from-fuchsia-950 to-slate-800 lg:fixed sm:fixed text-gray-900 w-56 px-2 py-4  absolute inset-y-0 left-0 top-20 bottom-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
+            class="z-100 bg-gradient-to-br from-fuchsia-950 to-slate-800 lg:fixed sm:fixed text-gray-900 w-56 px-2 py-4  absolute inset-y-0 left-0 top-20 bottom-0 transform md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
             <!--logo-->
             <div class="flex items-center mx-auto justify-between px-2" >
                     <!-- Settings Dropdown -->

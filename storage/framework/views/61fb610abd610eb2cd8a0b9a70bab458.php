@@ -129,7 +129,6 @@
                 <th class="px-6 py-3 text-center uppercase ">Actions</th>
 
 
-
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
@@ -140,7 +139,7 @@
                             <?php echo e($skill->skill_title); ?>
 
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap"><?php echo e($skill->skill_description); ?></td>
+                    <td class="px-6 py-4 whitespace-nowrap truncate"><?php echo e(Str::limit($skill->skill_description, 50, $end='...')); ?></td>
                     <td class="w-9 text-center">
                         <div class="ms-3 mx-auto">
                             <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
