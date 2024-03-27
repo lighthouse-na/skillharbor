@@ -7,6 +7,11 @@
     </x-slot>
     <div class="py-6 px-6">
         <div class="">
+            @livewire('system.skills.skill-table')
+
+        </div>
+        <div>
+
         </div>
     </div>
 </x-app-layout>
