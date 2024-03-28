@@ -17,5 +17,10 @@ class assessment extends Model
 
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('assessment_title', 'like', '%' . $search . '%');
+    }
+
 
 }

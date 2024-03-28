@@ -17,6 +17,7 @@
      <?php $__env->endSlot(); ?>
     <div class="py-6 px-6">
         <div class="">
+
             <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
@@ -33,6 +34,7 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
+
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>
