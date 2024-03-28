@@ -29,6 +29,8 @@ class AssessmentController extends Controller
             ->where('is_active', 1) // Only load jcp where is_active is 1
             ->get();
 
+
+
         return view('assessments.show', compact('jcp', 'user', 'assessment'));
     }
 
@@ -48,7 +50,7 @@ class AssessmentController extends Controller
         $mean = (array_sum($data['questions']) / $maxScore) * 100;
 
         //Update enroll status
-        $user->assessments()->updateExistingPivot($assessment->id, ['status' => 1]);
+        // $user->assessments()->updateExistingPivot($assessment->id, ['status' => 1]);
 
         $user->update(['competency_rating' => $mean]);
 
