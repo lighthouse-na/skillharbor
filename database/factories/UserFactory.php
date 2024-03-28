@@ -27,6 +27,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'salary_ref_number' => $this->faker->unique()->randomNumber(8),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),

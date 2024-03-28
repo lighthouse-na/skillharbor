@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('job_grade');
             $table->string('duty_station');
             $table->string('job_purpose');
+            $table->integer('is_active')->default(1);
 
             // Add a unique constraint
             $table->unique(['user_id', 'assessment_id']);

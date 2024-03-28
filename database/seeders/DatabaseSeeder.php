@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->command->getOutput()->progressStart(6);
+        $this->command->getOutput()->progressStart(8);
 
         $this->command->info(' Creating Audit Assessments...');
         assessment::factory(3)->create();
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit jcp...');
-        jcp::factory(5)->create();
+        jcp::factory(8)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');
@@ -44,12 +44,42 @@ class DatabaseSeeder extends Seeder
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
         jcp::All()->each(function ($jcp) use ($skills) {
-            $jcp->skills()->saveMany($skills);
+            $jcp->skills()->saveMany($skills->random(rand(1, $skills->count()))->all());
         });
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Enrolling Users to Assessments...');
-        enrollment::factory(10)->create();
+        $users = User::all();
+        $assessments = assessment::all();
+
+        foreach ($users as $index => $user) {
+            enrollment::factory()->create([
+                'user_id' => $user->id,
+                'assessment_id' => $assessments[$index % $assessments->count()]->id,
+            ]);
+        }
+        $this->command->getOutput()->progressAdvance();
+
+
+        $this->command->info(' Assigning Qualifications to Users...');
+        $qualifications = qualification::all();
+
+        foreach ($users as $user) {
+            $user->qualifications()->saveMany($qualifications);
+        }
+
+        $this->command->getOutput()->progressAdvance();
+
+        $this->command->info(' Assigning Qualifications to jcps...');
+        $jcps = jcp::all();
+
+        foreach ($jcps as $jcp) {
+            $jcp->qualifications()->saveMany($qualifications);
+        }
+
+        $this->command->getOutput()->progressAdvance();
+
+
 
         $this->command->getOutput()->progressFinish();
 
