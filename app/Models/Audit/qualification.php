@@ -21,4 +21,9 @@ class qualification extends Model
     {
         return $this->belongsToMany(User::class, 'qualification_user');
     }
+
+    public function scopeSearch($query, $val)
+    {
+        $query->where('qualification_title', 'like', '%'.$val.'%');
+    }
 }

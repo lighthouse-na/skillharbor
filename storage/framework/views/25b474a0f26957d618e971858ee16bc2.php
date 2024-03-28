@@ -11,12 +11,40 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="">
+
             <?php echo e(__('Qualifications Directory')); ?>
+
+
+
+            <?php echo e(__('Assesments')); ?>
+
+
+            <?php echo e(__('Qualifications Directory')); ?>
+
+
 
         </h2>
      <?php $__env->endSlot(); ?>
     <div class="py-6 px-6">
         <div class="">
+
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('system.qualifications.qualifications-table');
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-1448711404-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>

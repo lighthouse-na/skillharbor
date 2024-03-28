@@ -11,6 +11,7 @@
     </x-slot>
     <div class="py-6 px-6">
         <div class="">
+            @livewire('system.qualifications.qualifications-table')
         </div>
     </div>
 </x-app-layout>
