@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressStart(8);
 
         $this->command->info(' Creating Audit Assessments...');
-        assessment::factory(3)->create();
+        assessment::factory(1)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');
@@ -53,10 +53,20 @@ class DatabaseSeeder extends Seeder
         $assessments = assessment::all();
 
         foreach ($users as $index => $user) {
-            enrollment::factory()->create([
-                'user_id' => $user->id,
-                'assessment_id' => $assessments[$index % $assessments->count()]->id,
-            ]);
+            $assessment_id = $assessments[$index % $assessments->count()]->id;
+
+            // Check if the user is already enrolled in the assessment
+            $existingEnrollment = enrollment::where('user_id', $user->id)
+                                            ->where('assessment_id', $assessment_id)
+                                            ->first();
+
+            // If the user is not already enrolled, create the enrollment
+            if (!$existingEnrollment) {
+                enrollment::factory()->create([
+                    'user_id' => $user->id,
+                    'assessment_id' => $assessment_id,
+                ]);
+            }
         }
         $this->command->getOutput()->progressAdvance();
 

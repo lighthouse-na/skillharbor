@@ -79,7 +79,7 @@
                     </h1>
 
                 </div>
-                <form action="<?php echo e(route('assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp[0]->id])); ?>" method="POST">
+                <form action="<?php echo e(route('user-assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp[0]->id])); ?>" method="POST">
                     <!-- Add the form element with action and method -->
                     <?php echo csrf_field(); ?>
                     <!-- Add the CSRF token for form submission -->
