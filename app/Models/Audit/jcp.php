@@ -27,8 +27,14 @@ class jcp extends Model
         return $this->belongsToMany(skill::class)->withPivot('user_rating', 'supervisor_rating');
     }
 
-public function qualifications(){
-    return $this->belongsToMany(qualification::class, 'jcp_qualification');
+    public function qualifications(){
+        return $this->belongsToMany(qualification::class, 'jcp_qualification');
 
-}
+    }
+
+    public function scopeSearch($query, $val)
+    {
+        return $query->where('position_title', 'like', '%'.$val.'%')
+            ->orWhere('job_description', 'like', '%'.$val.'%');
+    }
 }

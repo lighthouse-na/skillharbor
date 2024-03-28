@@ -19,3 +19,6 @@ yarn-error.log
 /.vscode
 /storage/framework/views/*.php
 ```
+/storage/*
+/storage/*/*/*
+!/storage/.gitkeep

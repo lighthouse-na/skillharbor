@@ -41,7 +41,7 @@
                             <x-dropdown-link href="{{route('qualifications.index')}}">
                                 Qualifications
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="{{route('org.index')}}">
                                 Organisation
                             </x-dropdown-link>
 

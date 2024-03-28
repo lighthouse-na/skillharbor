@@ -20,7 +20,7 @@ class qualificationFactory extends Factory
 
         return [
             //
-            'qualification_title' => $this->faker->randomElement($qualifications),
+            'qualification_title' => $this->faker->unique()->randomElement($qualifications),
         ];
     }
 }
