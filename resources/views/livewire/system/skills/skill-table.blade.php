@@ -42,7 +42,7 @@
                 <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
 
             </div>
-            <div class="flex-initial w-auto ml-3 mb-4">
+           <div class="flex-initial w-auto ml-3 mb-4">
 
                 <button class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
                     <x-gmdi-add-o class="w-6 h-6" />
@@ -50,6 +50,7 @@
                 </button>
 
             </div>
+
 
           </div>
 
