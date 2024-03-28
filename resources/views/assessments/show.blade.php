@@ -65,7 +65,7 @@
                     </h1>
 
                 </div>
-                <form action="{{route('assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp[0]->id])}}" method="POST">
+                <form action="{{route('user-assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp[0]->id])}}" method="POST">
                     <!-- Add the form element with action and method -->
                     @csrf
                     <!-- Add the CSRF token for form submission -->
