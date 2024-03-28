@@ -16,4 +16,8 @@ class assessment extends Model
         return $this->hasMany(jcp::class, 'assessment_id');
 
     }
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('assessment_title', 'like', '%' . $search . '%');
+    }
 }
