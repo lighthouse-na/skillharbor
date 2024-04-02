@@ -12,22 +12,14 @@
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="">
 
-            <?php echo e(__('Qualifications Directory')); ?>
-
-
-
-            <?php echo e(__('Assesments')); ?>
-
 
             <?php echo e(__('Qualifications Directory')); ?>
-
 
 
         </h2>
      <?php $__env->endSlot(); ?>
     <div class="py-6 px-6">
         <div class="">
-
             <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
@@ -44,7 +36,6 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
-
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>
