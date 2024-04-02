@@ -15,7 +15,7 @@
             </thead>
             @forelse ($assessments as $assessment)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_title }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->updated_at }}</td>
                     <td class="w-9 text-center">
