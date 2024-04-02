@@ -47,7 +47,7 @@ class AssessmentController extends Controller
         //competency score
         $maxScore = count($data['questions']) * 5;
 
-        $mean = (array_sum($data['questions']) / $maxScore) * 100;
+        $mean = round((array_sum($data['questions']) / $maxScore) * 100);
 
         //Update enroll status
         // $user->assessments()->updateExistingPivot($assessment->id, ['status' => 1]);
