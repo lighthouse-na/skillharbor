@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBiginteger('jcp_id');
             $table->unsignedBiginteger('skill_id');
+            $table->integer('required_level')->default(random_int(1, 5));
             $table->integer('user_rating')->default(0);
             $table->integer('supervisor_rating')->default(0);
 
