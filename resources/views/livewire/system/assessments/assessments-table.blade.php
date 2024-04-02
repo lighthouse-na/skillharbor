@@ -9,13 +9,13 @@
                 <tr>
                     <th class="px-6 py-3 uppercase">Assessment Name</th>
                     <th class="px-6 py-3 uppercase">Date Created</th>
-                    <th class="px-6 py-3 text-center uppercase">Date Modified</th>
+                    <th class="px-6 py-3 text-center uppercase text-justify">Date Modified</th>
                     <th class="px-6 py-3 text-center uppercase">Actions</th>
                 </tr>
             </thead>
             @forelse ($assessments as $assessment)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_title }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->updated_at }}</td>
                     <td class="w-9 text-center">
