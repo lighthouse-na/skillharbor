@@ -3,7 +3,6 @@
     <x-slot name="header">
         <h2 class="">
 
-            {{ __('Assesments') }}
 
             {{ __('Qualifications Directory') }}
 
