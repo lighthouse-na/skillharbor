@@ -31,7 +31,7 @@
                                     <x-dropdown-link href="#">
                                         Edit
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})">
+                                    <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})" class="text-red-500">
                                         Delete
                                     </x-dropdown-link>
                                 </x-slot>
