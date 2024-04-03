@@ -58,7 +58,7 @@
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
 
-            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             <?php echo e($user->salary_ref_number); ?>
@@ -67,7 +67,7 @@
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->email); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__empty_1 = true; $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <?php echo e($jcp->position_title); ?>
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -91,7 +91,7 @@
 <?php $component = $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c; ?>
 <?php unset($__componentOriginal643fe1b47aec0b76658e1a0200b34b2c); ?>
 <?php endif; ?> No active JCP...</h1>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap"><?php echo e($user->competency_rating); ?></td>
                     <td class="w-9 text-center">
@@ -183,7 +183,7 @@
 
                     <!-- Add more table cells as needed -->
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 
