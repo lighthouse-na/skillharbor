@@ -1,18 +1,13 @@
 <div class="p-4">
     <div class="p-4 rounded-lg dark:border-gray-700">
        <div class="grid grid-cols-3 gap-4 mb-4">
-          <div class="flex flex-col h-auto">
-
-             <div class="flex flex-col grow  border rounded-lg dark:bg-gray-800 px-6 pt-3 ">
-                <div class="header">
-                    <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
-                </div>
-                <div class="m-auto w-90" >
-                    <canvas id="SkillGapChart"></canvas>
-                </div>
-             </div>
-
-          </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+               </svg>
+            </p>
+         </div>
           <div class="border h-auto rounded-lg dark:bg-gray-800">
             <div class="flex flex-row justify-between items-center px-6 pt-3">
               <div class="title">
@@ -147,9 +142,11 @@
 
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-            <tr>
-                <td>No assessments completed</td>
-            </tr>
+            <div class="container flex-auto justify-center text-center">
+                <p class="text-gray-400 text-base m-4">
+                    You have not completed any assessment.
+                </p>
+            </div>
 
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
@@ -162,15 +159,25 @@
           </div>
        </div>
 
-       <div class="grid grid-cols-2 gap-4 mb-4">
-          <div class="flex items-center justify-center rounded bg-gray-50 border h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-             </p>
+       <div class="grid grid-cols-3 gap-4 mb-4">
+          <div class="flex items-center justify-center rounded border h-auto dark:bg-gray-800">
+            <div class="flex flex-col grow rounded-lg dark:bg-gray-800 px-6 pt-3 ">
+                <div class="header mb-3">
+                    <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
+                </div>
+                <div class="m-auto" >
+                    <canvas id="SkillGapChart"></canvas>
+                </div>
+             </div>
           </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 border h-28 dark:bg-gray-800">
+          <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+               </svg>
+            </p>
+         </div>
+          <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
@@ -181,5 +188,96 @@
 
        </div>
     </div>
+    <div>
+        <?php if (isset($component)) { $__componentOriginal49bd1c1dd878e22e0fb84faabf295a3f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal49bd1c1dd878e22e0fb84faabf295a3f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dialog-modal','data' => ['wire:model.live' => 'confirmingAddQualification']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('dialog-modal'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:model.live' => 'confirmingAddQualification']); ?>
+             <?php $__env->slot('title', null, []); ?> 
+                <?php echo e(__('New Qualification')); ?>
+
+             <?php $__env->endSlot(); ?>
+
+             <?php $__env->slot('content', null, []); ?> 
+                <div class="mt-4" x-data="{}" x-on:confirming-add-qualification.window="setTimeout(() => $refs.qualification_title.focus(), 250)">
+                    <select class="appearance-none rounded-lg shadow w-full" type="text" class="mt-1 block w-3/4"
+                                placeholder="<?php echo e(__('Qualification Title')); ?>"
+                                x-ref="qualification_title"
+                                wire:model="qualification_title"
+                                wire:keydown.enter="addQualificationToUser"
+                                >
+                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $qualification; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $q): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($q->id); ?>"><?php echo e($q->qualification_title); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                    </select>
+                    
+                </div>
+             <?php $__env->endSlot(); ?>
+
+             <?php $__env->slot('footer', null, []); ?> 
+                <?php if (isset($component)) { $__componentOriginal3b0e04e43cf890250cc4d85cff4d94af = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3b0e04e43cf890250cc4d85cff4d94af = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.secondary-button','data' => ['wire:click' => '$toggle(\'confirmingAddQualification\')','wire:loading.attr' => 'disabled']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('secondary-button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:click' => '$toggle(\'confirmingAddQualification\')','wire:loading.attr' => 'disabled']); ?>
+                    <?php echo e(__('Cancel')); ?>
+
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3b0e04e43cf890250cc4d85cff4d94af)): ?>
+<?php $attributes = $__attributesOriginal3b0e04e43cf890250cc4d85cff4d94af; ?>
+<?php unset($__attributesOriginal3b0e04e43cf890250cc4d85cff4d94af); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3b0e04e43cf890250cc4d85cff4d94af)): ?>
+<?php $component = $__componentOriginal3b0e04e43cf890250cc4d85cff4d94af; ?>
+<?php unset($__componentOriginal3b0e04e43cf890250cc4d85cff4d94af); ?>
+<?php endif; ?>
+
+                <?php if (isset($component)) { $__componentOriginal656e8c5ea4d9a4fa173298297bfe3f11 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal656e8c5ea4d9a4fa173298297bfe3f11 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.danger-button','data' => ['class' => 'ms-3','wire:click' => 'addQualificationToUser','wire:loading.attr' => 'disabled']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('danger-button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'ms-3','wire:click' => 'addQualificationToUser','wire:loading.attr' => 'disabled']); ?>
+                    <?php echo e(__('Submit')); ?>
+
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal656e8c5ea4d9a4fa173298297bfe3f11)): ?>
+<?php $attributes = $__attributesOriginal656e8c5ea4d9a4fa173298297bfe3f11; ?>
+<?php unset($__attributesOriginal656e8c5ea4d9a4fa173298297bfe3f11); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal656e8c5ea4d9a4fa173298297bfe3f11)): ?>
+<?php $component = $__componentOriginal656e8c5ea4d9a4fa173298297bfe3f11; ?>
+<?php unset($__componentOriginal656e8c5ea4d9a4fa173298297bfe3f11); ?>
+<?php endif; ?>
+             <?php $__env->endSlot(); ?>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal49bd1c1dd878e22e0fb84faabf295a3f)): ?>
+<?php $attributes = $__attributesOriginal49bd1c1dd878e22e0fb84faabf295a3f; ?>
+<?php unset($__attributesOriginal49bd1c1dd878e22e0fb84faabf295a3f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal49bd1c1dd878e22e0fb84faabf295a3f)): ?>
+<?php $component = $__componentOriginal49bd1c1dd878e22e0fb84faabf295a3f; ?>
+<?php unset($__componentOriginal49bd1c1dd878e22e0fb84faabf295a3f); ?>
+<?php endif; ?>
+
+        </div>
 </div>
 <?php /**PATH /home/hubert/Desktop/lighthouse/projects/skillharbor-open/resources/views/livewire/dashboard/dash-info.blade.php ENDPATH**/ ?>
