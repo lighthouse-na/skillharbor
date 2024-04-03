@@ -66,8 +66,9 @@ class DashInfo extends Component
     {
         $user = auth()->user();
         $skills = $user->jcp()->with(['skills' => function ($query) {
-            $query->orderByDesc('user_rating');
+            $query->where('user_rating', '>', 1)->orderByDesc('user_rating');
         }])->get()->pluck('skills')->flatten()->take(5);
+
         $qualification = qualification::all();
 
         return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualification'));
