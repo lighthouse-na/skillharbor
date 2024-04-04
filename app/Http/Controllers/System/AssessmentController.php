@@ -45,10 +45,13 @@ class AssessmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $assesment = assessment::findOrFail($id);
-        return view('directories.assessment.edit', compact('assesment'));
+        // Retrieve the assessment based on the ID
+        $assessment = Assessment::findOrFail($id);
+
+        // Pass the $assessment variable to the view
+        return view('directories.assessments.edit', compact('assessment'));
     }
 
     /**
@@ -58,7 +61,7 @@ class AssessmentController extends Controller
     {
         $assessment = assessment::findOrFail($id);
         $assessment->update($request->all());
-        return redirect()->route('directories.assessment.index');
+        return redirect()->route('directories.assessments.index');
     }
 
     /**
