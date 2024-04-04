@@ -1,18 +1,13 @@
 <div class="p-4">
     <div class="p-4 rounded-lg dark:border-gray-700">
        <div class="grid grid-cols-3 gap-4 mb-4">
-          <div class="flex flex-col h-auto">
-
-             <div class="flex flex-col grow  border rounded-lg dark:bg-gray-800 px-6 pt-3 ">
-                <div class="header">
-                    <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
-                </div>
-                <div class="m-auto w-90" >
-                    <canvas id="SkillGapChart"></canvas>
-                </div>
-             </div>
-
-          </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+               </svg>
+            </p>
+         </div>
           <div class="border h-auto rounded-lg dark:bg-gray-800">
             <div class="flex flex-row justify-between items-center px-6 pt-3">
               <div class="title">
@@ -107,9 +102,11 @@
 
             </tr>
             @empty
-            <tr>
-                <td>No assessments completed</td>
-            </tr>
+            <div class="container flex-auto justify-center text-center">
+                <p class="text-gray-400 text-base m-4">
+                    You have not completed any assessment.
+                </p>
+            </div>
 
             @endforelse
 
@@ -122,15 +119,25 @@
           </div>
        </div>
 
-       <div class="grid grid-cols-2 gap-4 mb-4">
-          <div class="flex items-center justify-center rounded bg-gray-50 border h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-             </p>
+       <div class="grid grid-cols-3 gap-4 mb-4">
+          <div class="flex items-center justify-center rounded border h-auto dark:bg-gray-800">
+            <div class="flex flex-col grow rounded-lg dark:bg-gray-800 px-6 pt-3 ">
+                <div class="header mb-3">
+                    <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
+                </div>
+                <div class="m-auto" >
+                    <canvas id="SkillGapChart"></canvas>
+                </div>
+             </div>
           </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 border h-28 dark:bg-gray-800">
+          <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+               </svg>
+            </p>
+         </div>
+          <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
@@ -141,4 +148,38 @@
 
        </div>
     </div>
+    <div>
+        <x-dialog-modal wire:model.live="confirmingAddQualification">
+            <x-slot name="title">
+                {{ __('New Qualification') }}
+            </x-slot>
+
+            <x-slot name="content">
+                <div class="mt-4" x-data="{}" x-on:confirming-add-qualification.window="setTimeout(() => $refs.qualification_title.focus(), 250)">
+                    <select class="appearance-none rounded-lg shadow w-full" type="text" class="mt-1 block w-3/4"
+                                placeholder="{{ __('Qualification Title') }}"
+                                x-ref="qualification_title"
+                                wire:model="qualification_title"
+                                wire:keydown.enter="addQualificationToUser"
+                                >
+                                @foreach ($qualification as $q)
+                                <option value="{{$q->id}}">{{$q->qualification_title}}</option>
+                                @endforeach
+                    </select>
+                    {{-- <x-input-error for="role_title" class="mt-2" /> --}}
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-secondary-button wire:click="$toggle('confirmingAddQualification')" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-secondary-button>
+
+                <x-danger-button class="ms-3" wire:click="addQualificationToUser" wire:loading.attr="disabled">
+                    {{ __('Submit') }}
+                </x-danger-button>
+            </x-slot>
+        </x-dialog-modal>
+
+        </div>
 </div>

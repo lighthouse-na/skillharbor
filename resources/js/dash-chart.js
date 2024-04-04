@@ -42,7 +42,18 @@ const config = {
         line: {
           borderWidth: 3
         }
-      }
+      },
+        plugins: {
+            legend: {
+                position: 'bottom',
+                },
+                labels: {
+                    usePointStyle: false,
+                  },
+        }
+
+
+
     },
 };
 new Chart(
