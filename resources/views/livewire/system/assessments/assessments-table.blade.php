@@ -28,7 +28,7 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="#">
+                                    <x-dropdown-link href="{{ route('assessments.edit', ['assessment' => $assessment->id]) }}">
                                         Edit
                                     </x-dropdown-link>
                                     <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})" class="text-red-500">
