@@ -28,6 +28,7 @@ Route::middleware([
     Route::get('/user-assessment/{user}/{assessment}', [AssessmentController::class, 'show'])->name('user-assessment.show');
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
 
+
     //Skill Internal API Routes
 
     Route::resource('/assessments', SystemAssessmentController::class);

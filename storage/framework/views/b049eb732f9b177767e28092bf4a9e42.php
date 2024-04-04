@@ -52,7 +52,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $qualifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qualification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $qualifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qualification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             <?php echo e($qualification->qualification_title); ?>
@@ -148,7 +148,7 @@
 
                     <!-- Add more table cells as needed -->
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 

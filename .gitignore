@@ -22,3 +22,6 @@ yarn-error.log
 /storage/*
 /storage/*/*/*
 !/storage/.gitkeep
+/storage/logs/
+/storage/logs/*
+storage/logs/
