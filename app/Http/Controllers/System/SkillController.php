@@ -84,6 +84,7 @@ class SkillController extends Controller
             'skill_title' => 'required',
             'skill_description' => 'required',
         ]);
+        
 
         $skill = skill::findOrFail($id);
 
@@ -93,6 +94,7 @@ class SkillController extends Controller
 
         $skill->save();
 
+        return redirect()->route('skills.index')->with('success', 'Skill updated successfully.');
     }
 
     /**

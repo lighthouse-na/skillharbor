@@ -35,4 +35,10 @@ Route::middleware([
     Route::resource('/skills', SkillController::class);
     Route::resource('/qualifications', QualificationController::class);
     Route::get('/org', [OrgTable::class, 'index'])->name('org.index');
+
+    //Skill Edit Route
+
+    Route::get('/skills/{id}/edit', [SkillController::class, 'edit'])->name('skills.edit');
+    Route::put('/skills/{id}', [SkillController::class, 'update'])->name('skills.update');
+
 });
