@@ -48,7 +48,7 @@
                      <?php $__env->endSlot(); ?>
                      <?php $__env->slot('content', null, []); ?> 
                         <!-- Category dropdown  -->
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => '#']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -96,7 +96,7 @@
 <?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
 <?php endif; ?>
 
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
 
 
 
@@ -116,8 +116,7 @@
                 <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
 
             </div>
-
-            <div class="flex-initial w-auto ml-3 mb-4">
+           <div class="flex-initial w-auto ml-3 mb-4">
 
                 <button class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
                     <?php if (isset($component)) { $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c = $component; } ?>
@@ -158,22 +157,17 @@
                 <th class="px-6 py-3 text-center uppercase ">Actions</th>
 
 
-
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             <?php echo e($skill->skill_title); ?>
 
                     </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap"><?php echo e($skill->skill_description); ?></td>
-
                     <td class="px-6 py-4 whitespace-nowrap truncate"><?php echo e(Str::limit($skill->skill_description, 50, $end='...')); ?></td>
-
                     <td class="w-9 text-center">
                         <div class="ms-3 mx-auto">
                             <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
@@ -263,7 +257,7 @@
 
                     <!-- Add more table cells as needed -->
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 
