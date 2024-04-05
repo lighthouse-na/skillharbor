@@ -1,13 +1,15 @@
 <x-form-section submit="createJCPInformation">
     <x-slot name="title">
-        {{ __('Job Competency Profile Information') }}
+        {{ $pages[$currentPage]['title'] }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Make sure the information you enter coresponds to the Job Description.') }}
+        {{$pages[$currentPage]['description']}}
     </x-slot>
 
     <x-slot name="form">
+        @if ($currentPage === 1)
+
         <!-- Profile Photo -->
 
 
@@ -62,16 +64,28 @@
 
 
         </div>
+        @endif
 
     </x-slot>
 
     <x-slot name="actions">
-        <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
-        </x-action-message>
+        @if ($currentPage === 1)
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+        @else
+        <x-secondary-button wire:click='previousPage'>
+            {{ __('Previous') }}
         </x-button>
+        @endif
+
+        @if($currentPage === count($pages))
+        <x-button wire:click='submit'>
+            {{ __('Register JCP') }}
+        </x-button>
+        @else
+        <x-secondary-button wire:click='nextPage'>
+            {{ __('Next') }}
+        </x-button>
+
+        @endif
     </x-slot>
 </x-form-section>
