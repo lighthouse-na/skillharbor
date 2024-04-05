@@ -9,7 +9,7 @@
                 <tr>
                     <th class="px-6 py-3 uppercase">Assessment Name</th>
                     <th class="px-6 py-3 uppercase">Date Created</th>
-                    <th class="px-6 py-3 text-center uppercase">Date Modified</th>
+                    <th class="px-6 py-3 text-center uppercase text-justify">Date Modified</th>
                     <th class="px-6 py-3 text-center uppercase">Actions</th>
                 </tr>
             </thead>
@@ -28,10 +28,10 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="#">
+                                    <x-dropdown-link href="{{ route('assessments.edit', ['assessment' => $assessment->id]) }}">
                                         Edit
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})">
+                                    <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})" class="text-red-500">
                                         Delete
                                     </x-dropdown-link>
                                 </x-slot>
