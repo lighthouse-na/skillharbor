@@ -31,6 +31,12 @@
               <option value="b2">B2</option>
               <option value="b3">B3</option>
               <option value="b4">B4</option>
+              <option value="bu">BU</option>
+              <option value="c1">C1</option>
+              <option value="c2">C2</option>
+              <option value="c3">C3</option>
+              <option value="c4">C4</option>
+              <option value="cu">CU</option>
             </select>
         </div>
 
