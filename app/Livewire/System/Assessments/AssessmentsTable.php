@@ -12,5 +12,11 @@ class AssessmentsTable extends Component
     {
         return view('livewire.system.assessments.assessments-table', ['assessments' => assessment::search($this->search)->paginate(10), ]);
     }
+    public function deleteAssessment($assessmentId)
+    {
+
+        $assessment = Assessment::findOrFail($assessmentId);
+        $assessment->delete();
+    }
 }
 
