@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="{{ asset('images/logos/telecom_namibia_logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/logoo/logo_sharp.png') }}">
 
     <style>
         [x-cloak] {

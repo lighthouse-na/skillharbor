@@ -46,6 +46,11 @@
               <option value="c3">C3</option>
               <option value="c4">C4</option>
               <option value="cu">CU</option>
+              <option value="d1">D1</option>
+              <option value="d2">D2</option>
+              <option value="d3">D3</option>
+              <option value="d4">D4</option>
+              <option value="du">DU</option>
             </select>
         </div>
 
@@ -72,7 +77,7 @@
         @if ($currentPage === 1)
 
         @else
-        <x-secondary-button wire:click='previousPage'>
+        <x-secondary-button wire:click='previousPage' class="mr-2">
             {{ __('Previous') }}
         </x-button>
         @endif
