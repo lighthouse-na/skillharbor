@@ -46,6 +46,11 @@
               <option value="c3">C3</option>
               <option value="c4">C4</option>
               <option value="cu">CU</option>
+              <option value="d1">D1</option>
+              <option value="d2">D2</option>
+              <option value="d3">D3</option>
+              <option value="d4">D4</option>
+              <option value="du">DU</option>
             </select>
         </div>
 
@@ -64,6 +69,46 @@
 
 
         </div>
+        {{-- Prerequisite Information --}}
+        @elseif ($currentPage === 2 )
+        <div class="col-span-full sm:col-span-4">
+                <x-label for="qualifications" value="{{ __('Qualifications') }}" />
+
+                <select id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Choose Qualifications</option>
+                @forelse ($qualifications as $qualification)
+                    <option value="{{ $qualification->id }}">{{ $qualification->qualification_title }}</option>
+                @empty
+                    <option value="">No Qualifications Found</option>
+                @endforelse
+
+
+                </select>
+
+        </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="licenses" value="{{ __('Licenses') }}" />
+
+            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
+                <input checked id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No Drivers License Required</label>
+            </div>
+            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
+                <input id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Code B: Drivers License</label>
+            </div>
+            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
+                <input id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Code C: Drivers License</label>
+            </div>
+            <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
+                <input id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Forklift License</label>
+            </div>
+        </div>
+        {{-- Skills Information --}}
+        @elseif ($currentPage === 3 )
+
         @endif
 
     </x-slot>
@@ -72,7 +117,7 @@
         @if ($currentPage === 1)
 
         @else
-        <x-secondary-button wire:click='previousPage'>
+        <x-secondary-button wire:click='previousPage' class="mr-2">
             {{ __('Previous') }}
         </x-button>
         @endif
