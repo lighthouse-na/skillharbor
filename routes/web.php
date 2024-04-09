@@ -44,4 +44,13 @@ Route::middleware([
     Route::get('/directories/qualifications/{id}', [QualificationController::class, 'show'])->name('directories.qualifications.show');
     Route::put('/directories/qualifications/{id}', [QualificationController::class, 'update'])->name('directories.qualifications.update');
     Route::delete('/directories/qualifications/{id}', [QualificationController::class, 'destroy'])->name('directories.qualifications.destroy');
+
+    // skills Routes
+    Route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
+    Route::get('/directories/skills/create', [SkillController::class, 'create'])->name('directories.skills.create');
+    Route::post('/directories/skills', [SkillController::class, 'store'])->name('directories.skills.store');
+    Route::get('/directories/skills/{id}', [SkillController::class, 'show'])->name('directories.skills.show');
+    Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
+    Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+
 });

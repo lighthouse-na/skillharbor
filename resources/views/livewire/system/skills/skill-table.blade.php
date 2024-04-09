@@ -85,12 +85,12 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="#">
+                                    <x-dropdown-link href="{{route('skills.edit', ['skill'=> $skill->id])}}">
                                         Edit
                                     </x-dropdown-link>
 
 
-                                    <x-dropdown-link class="text-red-900 hover:bg-red-200/50">
+                                    <x-dropdown-link href="#" wire:click.prevent="destroy({{ $skill->id }})" onclick="return confirm('Are you sure you want to delete this skill?')" class="text-red-500 ">
                                             Delete
                                     </x-dropdown-link>
 
