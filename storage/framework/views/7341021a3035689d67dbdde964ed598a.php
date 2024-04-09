@@ -6,7 +6,13 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="<?php echo e(route('dashboard')); ?>" class="text-black dark:text-gray-200">
-                        <h1 class="block text-3xl w-auto">skillHarbor</h1>
+                        <div class="flex flex-row items-center justify-center">
+                            <div><img src="<?php echo e(asset('assets/logo/logo_sharp.png')); ?>" alt="" class="rounded-full w-12 mr-2 hover:shadow-md"></div>
+                            <div>
+                                <h1 class="block text-3xl w-auto">skillHarbor</h1>
+                            </div>
+                        </div>
+
                     </a>
                 </div>
                 <!-- Navigation Links -->
