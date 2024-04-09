@@ -36,4 +36,12 @@ Route::middleware([
     Route::resource('/skills', SkillController::class);
     Route::resource('/qualifications', QualificationController::class);
     Route::get('/org', [OrgTable::class, 'index'])->name('org.index');
+
+        // Qualifications Routes
+    Route::get('/directories/qualifications', [QualificationController::class, 'index'])->name('directories.qualifications.index');
+    Route::get('/directories/qualifications/create', [QualificationController::class, 'create'])->name('directories.qualifications.create');
+    Route::post('/directories/qualifications', [QualificationController::class, 'store'])->name('directories.qualifications.store');
+    Route::get('/directories/qualifications/{id}', [QualificationController::class, 'show'])->name('directories.qualifications.show');
+    Route::put('/directories/qualifications/{id}', [QualificationController::class, 'update'])->name('directories.qualifications.update');
+    Route::delete('/directories/qualifications/{id}', [QualificationController::class, 'destroy'])->name('directories.qualifications.destroy');
 });
