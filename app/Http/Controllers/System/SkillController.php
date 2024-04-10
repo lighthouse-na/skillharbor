@@ -93,6 +93,7 @@ class SkillController extends Controller
 
         $skill->save();
 
+        return redirect()->route('directories.skills.index')->with('success', 'Skill updated successfully.');
     }
 
     /**
