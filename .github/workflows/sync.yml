@@ -1,8 +1,7 @@
 name: Sync Fork
 
-on:
-  schedule: # Run every 30 minutes (optional)
-    - cron: '*/30 * * * *'
+on
+
   workflow_dispatch: # Allow manual triggering (optional)
 
 jobs:
