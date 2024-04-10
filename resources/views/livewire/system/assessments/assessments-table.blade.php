@@ -31,10 +31,10 @@
                                     <x-dropdown-link href="{{ route('assessments.edit', ['assessment' => $assessment->id]) }}">
                                         Edit
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="#" wire:click="deleteAssessment({{ $assessment->id }})" class="text-red-500">
-                                        Delete
-                                    </x-dropdown-link>
-                                </x-slot>
+                                        <x-dropdown-link href="#" wire:click.prevent="deleteAssessment({{ $assessment->id }})" class="text-red-500" onclick="return confirm('Are you sure you want to delete this assessment?')">
+                                            Delete
+                                        </x-dropdown-link>
+                                    </x-slot>
                             </x-dropdown>
                         </div>
                     </td>

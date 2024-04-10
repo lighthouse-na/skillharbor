@@ -13,4 +13,9 @@ class QualificationsTable extends Component
     {
         return view('livewire.system.qualifications.qualifications-table',['qualifications' => qualification::search($this->search)->paginate(10)]);
     }
+    public function deleteQualification($qualificationId)
+    {
+        $qualification = Qualification::findOrFail($qualificationId);
+        $qualification->delete();
+    }
 }
