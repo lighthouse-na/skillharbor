@@ -37,8 +37,9 @@ Route::middleware([
     Route::get('/org', [OrgTable::class, 'index'])->name('org.index');
 
     //Skill Edit Route
-
-    Route::get('/skills/{id}/edit', [SkillController::class, 'edit'])->name('skills.edit');
-    Route::put('/skills/{id}', [SkillController::class, 'update'])->name('skills.update');
+    Route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
+    Route::get('/directories/skills/{id}/edit', [SkillController::class, 'edit'])->name('directories.skills.edit');
+    Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
+    Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
 
 });

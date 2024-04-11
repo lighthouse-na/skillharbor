@@ -8,7 +8,7 @@
     <div class="py-6 px-6">
         <div class="">
             <!-- Form to edit the skill -->
-            <form action="{{ route('skills.update', $skill->id) }}" method="POST">
+            <form action="{{ route('directories.skills.update', $skill->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">
