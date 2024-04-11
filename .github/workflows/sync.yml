@@ -1,8 +1,7 @@
 name: Sync Fork
 
-on:
-  schedule: # Run every 30 minutes (optional)
-    - cron: '*/30 * * * *'
+on
+
   workflow_dispatch: # Allow manual triggering (optional)
 
 jobs:
@@ -12,6 +11,6 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.9
         with:
-          owner: hpmouton  
+          owner: hpmouton
           base: main
-          head: main 
+          head: main
