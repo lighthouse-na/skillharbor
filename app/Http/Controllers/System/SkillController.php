@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Models\Audit\category;
 use App\Models\Audit\skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -69,8 +70,11 @@ class SkillController extends Controller
     {
         //
         $skill = skill::findOrFail($id);
+        $categories = category::all();
 
-        return view('directories.skills.edit', compact('skill'));
+        return view('directories.skills.edit', compact('skill', 'categories'));
+
+
     }
 
     /**
