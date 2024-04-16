@@ -10,8 +10,9 @@ use Illuminate\Http\Client\Request;
 
 class JCPCreateForm extends Component
 {
-    public $currentPage = 1;
+    public $currentPage = 3;
     public $position_title = '';
+    public $duty_station = '';
     public $job_grade = '';
     public $job_purpose = '';
     public $is_active = '';
@@ -20,6 +21,7 @@ class JCPCreateForm extends Component
 
     public function mount(){
         $this->jcp_skills = [
+            []
         ];
     }
 
