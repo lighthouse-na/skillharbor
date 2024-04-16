@@ -16,7 +16,7 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="position_title" value="{{ __('Position Title') }}" />
-            <x-input id="position_title" type="text" class="mt-1 block w-full" wire:model="state.position_title" required autocomplete="position_title" />
+            <x-input id="position_title" type="text"  class="mt-1 block w-full" wire:model="state.position_title" required autocomplete="position_title" />
             <x-input-error for="position_title" class="mt-2" />
 
 
@@ -74,7 +74,7 @@
         <div class="col-span-full sm:col-span-4">
                 <x-label for="qualifications" value="{{ __('Qualifications') }}" />
 
-                <select id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select id="jcp_qualifications.qualification_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Choose Qualifications</option>
                 @forelse ($qualifications as $qualification)
                     <option value="{{ $qualification->id }}">{{ $qualification->qualification_title }}</option>
@@ -108,6 +108,54 @@
         </div>
         {{-- Skills Information --}}
         @elseif ($currentPage === 3 )
+        <div>
+        <table>
+
+            <thead>
+                <th>Skill Title</th>
+                <th>Required Rating</th>
+            </thead>
+            <tbody>
+            @foreach ($jcp_skills as $index => $jcp_skills)
+            <tr>
+                <td>
+                    <select name="skills" wire:model="jcp_skills.{{$index}}.skill_id" class="w-full form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @foreach ($skills as $skill)
+                            <option value={{$skill->id}}>
+                                {{$skill->skill_title}}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                    <select id="countries" name="jcp_skills.{{$index}}.required_rating" wire:model="jcp_skills.{{$index}}.required_rating" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Choose a required rating</option>
+                      <option value="1">United States</option>
+                      <option value="2">Canada</option>
+                      <option value="3">France</option>
+                      <option value="4">Germany</option>
+                      <option value="5">Germany</option>
+                    </select>
+                </td>
+                <td>
+                    <a href='#' wire:click.prevent="removeSkill({{$index}})">Delete</a>
+                </td>
+            </tr>
+
+
+            @endforeach
+
+            </tbody>
+        </table>
+        <div class="">
+            <div class="">
+                <x-button class="" wire:click.prevent="addSkill">+ Add Skill</x-button>
+            </div>
+        </div>
+        </div>
+
+
 
         @endif
 
@@ -117,17 +165,17 @@
         @if ($currentPage === 1)
 
         @else
-        <x-secondary-button wire:click='previousPage' class="mr-2">
+        <x-secondary-button wire:click.prevent='previousPage' class="mr-2">
             {{ __('Previous') }}
         </x-button>
         @endif
 
         @if($currentPage === count($pages))
-        <x-button wire:click='submit'>
+        <x-button wire:click='save'>
             {{ __('Register JCP') }}
         </x-button>
         @else
-        <x-secondary-button wire:click='nextPage'>
+        <x-secondary-button wire:click.prevent='nextPage'>
             {{ __('Next') }}
         </x-button>
 
