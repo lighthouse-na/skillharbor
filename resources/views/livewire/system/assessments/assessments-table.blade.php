@@ -13,13 +13,14 @@
                     <th class="px-6 py-3 text-center uppercase">Actions</th>
                 </tr>
             </thead>
+            <tbody>
+
             @forelse ($assessments as $assessment)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_title }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->updated_at }}</td>
                     <td class="w-9 text-center">
-                        <div class="ms-3 mx-auto">
                             <x-dropdown align="center" width="48">
                                 <x-slot name="trigger">
                                     <button type="button" class="inline-flex px-3 py-1 border text-sm font-medium rounded-md text-gray-900 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
@@ -36,7 +37,6 @@
                                         </x-dropdown-link>
                                     </x-slot>
                             </x-dropdown>
-                        </div>
                     </td>
                 </tr>
             @empty
@@ -46,6 +46,7 @@
                 </tr>
 
             @endforelse
+            </tbody>
         </table>
     </div>
 </div>
