@@ -79,6 +79,14 @@ class JCPCreateForm extends Component
         return $this->redirect('/jcp');
     }
 
+    public function ValidateForm(){
+        if($this->currentPage === 1){
+
+        }elseif($this->currentPage === 2){
+
+        }
+    }
+
     public function render()
     {
         return view('livewire.system.jcps.j-c-p-create-form',['qualifications' => qualification::all(), 'skills' => skill::all(),]);
