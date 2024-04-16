@@ -44,6 +44,7 @@ class JCPCreateForm extends Component
 
     public function nextPage()
     {
+        $this->ValidateForm();
         $this->currentPage++;
     }
 
@@ -67,16 +68,27 @@ class JCPCreateForm extends Component
 
         );
 
-        foreach ($this->only['qualifications'] as $qualId) {
+        foreach ($this->only['jcp_qualifications'] as $qualId) {
             // Attach the qualification to the jcp-qualifications pivot table
-            $jcp->skills()->updateExistingPivot($qualId);
+            $jcp->qualifications()->attach($qualId);
         }
-
-
+        foreach ($this->only['jcp_skills'] as $skill_id => $required_rating) {
+            // Attach the qualification to the jcp-qualifications pivot table
+            $jcp->skills()->attach($skill_id, ['required_rating' => $required_rating]);
+        }
 
         session()->flash('status', 'JCP successfully created.');
 
         return $this->redirect('/jcp');
+    }
+
+    public function ValidateForm(){
+        if($this->currentPage === 1){
+
+
+        }elseif($this->currentPage === 2){
+
+        }
     }
 
     public function render()
