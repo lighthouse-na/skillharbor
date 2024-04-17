@@ -10,7 +10,7 @@ use Illuminate\Http\Client\Request;
 
 class JCPCreateForm extends Component
 {
-    public $currentPage = 3;
+    public $currentPage = 1;
     public $position_title = '';
     public $duty_station = '';
     public $job_grade = '';
@@ -63,16 +63,22 @@ class JCPCreateForm extends Component
 
     public function save()
     {
-        dd($this);
-        $jcp = jcp::create(
+        $jcp = jcp::create([
+            'position_title' => $this->position_title,
+            'duty_station' => $this->duty_station,
+            'job_grade' => $this->job_grade,
+            'job_purpose' => $this->job_purpose,
+            'is_active' => $this->is_active,
+            //Add Frontend for these elements
+            'user_id' => 1,
+            'assessment_id' => 1
+        ]);
 
-        );
-
-        foreach ($this->only['jcp_qualifications'] as $qualId) {
+        foreach ($this->jcp_qualifications as $qualId) {
             // Attach the qualification to the jcp-qualifications pivot table
             $jcp->qualifications()->attach($qualId);
         }
-        foreach ($this->only['jcp_skills'] as $skill_id => $required_rating) {
+        foreach ($this->jcp_skills as $skill_id => $required_rating) {
             // Attach the qualification to the jcp-qualifications pivot table
             $jcp->skills()->attach($skill_id, ['required_rating' => $required_rating]);
         }
@@ -90,6 +96,8 @@ class JCPCreateForm extends Component
 
         }
     }
+
+
 
     public function render()
     {
