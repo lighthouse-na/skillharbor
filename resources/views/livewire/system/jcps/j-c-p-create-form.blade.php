@@ -130,11 +130,11 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                     <select id="countries" name="jcp_skills.{{$index}}.required_rating" wire:model="jcp_skills.{{$index}}.required_rating" class="rounded-lg">
                       <option selected>Choose a required rating</option>
-                      <option value="1">United States</option>
-                      <option value="2">Canada</option>
-                      <option value="3">France</option>
-                      <option value="4">Germany</option>
-                      <option value="5">Germany</option>
+                      <option value="1">Not Competent</option>
+                      <option value="2">Basic Skills</option>
+                      <option value="3">Competent</option>
+                      <option value="4">Developed Skills</option>
+                      <option value="5">Expert</option>
                     </select>
                 </td>
                 <td class="px-3">
