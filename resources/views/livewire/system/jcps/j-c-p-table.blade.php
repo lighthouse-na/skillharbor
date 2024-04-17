@@ -20,7 +20,7 @@
 
 
 <div class="rounded-lg border ">
-    <table class="table-auto min-w-full divide-y divide-gray-200 overflow-hidden">
+    <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
             <tr>
                 <th class="px-6 py-3  uppercase ">jcp Title</th>
@@ -69,7 +69,7 @@
                                     </x-dropdown-link>
 
 
-                                    <x-dropdown-link class="text-red-900 hover:bg-red-200/50">
+                                    <x-dropdown-link href="#" wire:click.prevent="deleteJCP({{ $jcp->id }})" onclick="return confirm('Are you sure you want to delete this jcp?')" class="text-red-900 hover:bg-red-200/50">
                                             Delete
                                     </x-dropdown-link>
 

@@ -4,7 +4,7 @@
         <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
     </div>
     <div class="rounded-lg border">
-        <table class="table-auto min-w-full divide-y divide-gray-200 overflow-hidden">
+        <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
             <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
                 <tr>
                     <th class="px-6 py-3 uppercase">Assessment Name</th>
