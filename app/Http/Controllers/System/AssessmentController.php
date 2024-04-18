@@ -70,6 +70,9 @@ class AssessmentController extends Controller
     public function destroy(string $id)
     {
         $assessment = assessment::findOrFail($id);
+        $assessment -> jcp()->detach();
+        $assessment -> user()->detach();
+
         $assessment->delete();
         return redirect()->route('directories.assesment.index');
     }
