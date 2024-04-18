@@ -6,6 +6,7 @@ use App\Models\Audit\assessment;
 use App\Models\Audit\category;
 use App\Models\Audit\enrollment;
 use App\Models\Audit\jcp;
+use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
 use App\Models\User;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->command->getOutput()->progressStart(8);
+        $this->command->getOutput()->progressStart(10);
 
         $this->command->info(' Creating Audit Assessments...');
         assessment::factory(10)->create();
@@ -27,6 +28,10 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info(' Adding System Qualifications...');
         qualification::factory(10)->create();
+        $this->command->getOutput()->progressAdvance();
+
+        $this->command->info(' Creating Audit Prerequisites...');
+        prerequisite::factory(19)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Users...');
@@ -38,14 +43,22 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');
-        category::factory(4)->create();
+        category::factory(5)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
-        jcp::All()->each(function ($jcp) use ($skills) {
+        $jcps = jcp::All()->each(function ($jcp) use ($skills) {
             $jcp->skills()->saveMany($skills->random(rand(1, $skills->count()))->all());
         });
+        $this->command->getOutput()->progressAdvance();
+
+
+        $this->command->info(' Assigning Prerequisites to jcps...');
+        $prerequisites = prerequisite::all();
+        foreach ($jcps as $jcp) {
+            $jcp->prerequisites()->saveMany($prerequisites);
+        }
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Enrolling Users to Assessments...');

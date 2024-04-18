@@ -4,13 +4,16 @@ namespace App\Livewire\System\Jcps;
 
 use Livewire\Component;
 use App\Models\Audit\jcp;
+use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
+use App\Models\User;
 use Illuminate\Http\Client\Request;
 
 class JCPCreateForm extends Component
 {
     public $currentPage = 1;
+    public $user_id = '';
     public $position_title = '';
     public $duty_station = '';
     public $job_grade = '';
@@ -18,6 +21,7 @@ class JCPCreateForm extends Component
     public $is_active = '';
     public $jcp_qualifications = [];
     public $jcp_skills = [];
+    public $jcp_prerequisites = [];
 
     public function mount(){
         $this->jcp_skills = [
@@ -63,6 +67,7 @@ class JCPCreateForm extends Component
 
     public function save()
     {
+        dd($this);
         $jcp = jcp::create([
             'position_title' => $this->position_title,
             'duty_station' => $this->duty_station,
@@ -78,9 +83,12 @@ class JCPCreateForm extends Component
             // Attach the qualification to the jcp-qualifications pivot table
             $jcp->qualifications()->attach($qualId);
         }
+        foreach($this->jcp_prerequisites as $prerequisite_id){
+            $jcp->prerequisites()->attach($prerequisite_id);
+        }
         foreach ($this->jcp_skills as $skill_id => $required_rating) {
             // Attach the qualification to the jcp-qualifications pivot table
-            $jcp->skills()->attach($skill_id, ['required_rating' => $required_rating]);
+            $jcp->skills()->attach($skill_id, ['required_level' => $required_rating]);
         }
 
         session()->flash('status', 'JCP successfully created.');
@@ -101,6 +109,6 @@ class JCPCreateForm extends Component
 
     public function render()
     {
-        return view('livewire.system.jcps.j-c-p-create-form',['qualifications' => qualification::all(), 'skills' => skill::all(),]);
+        return view('livewire.system.jcps.j-c-p-create-form',['qualifications' => qualification::all(), 'skills' => skill::all(),'users' => User::get(['id', 'first_name','last_name']), 'prerequisites' => prerequisite::all()]);
     }
 }
