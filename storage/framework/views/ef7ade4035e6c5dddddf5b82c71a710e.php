@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="<?php echo e(asset('assets/logoo/logo_sharp.png')); ?>">
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/logo/logo.png')); ?>">
 
     <style>
         [x-cloak] {
