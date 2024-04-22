@@ -14,8 +14,8 @@ return new class extends Migration
         //
         Schema::create('jcp_prerequisites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jcp_id')->constrained()->onDelete('cascade');
-            $table->foreignId('prerequisite_id')->constrained()->onDelete('cascade');
+            $table->foreignId('jcp_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('prerequisite_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

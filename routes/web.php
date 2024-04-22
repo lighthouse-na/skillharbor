@@ -29,6 +29,7 @@ Route::middleware([
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
+    Route ::delete('/directories/assessments/{id}', [AssessmentController::class, 'destroy'])-> name('directories.assessments.destroy');
     //Skill Internal API Routes
 
     Route::resource('/assessments', SystemAssessmentController::class);
