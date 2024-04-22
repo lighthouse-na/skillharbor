@@ -21,6 +21,7 @@ class categoryFactory extends Factory
             "Knowledge",
             "Basic Digital",
             "Advanced Digital",
+            "Soft Skills"
         ];
         return [
             //
