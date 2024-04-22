@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('jcp_qualification', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jcp_id')->constrained();
-            $table->foreignId('qualification_id')->constrained();
+            $table->foreignId('jcp_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('qualification_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
