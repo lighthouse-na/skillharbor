@@ -70,8 +70,9 @@ class AssessmentController extends Controller
     public function destroy(string $id)
     {
         $assessment = assessment::findOrFail($id);
+
         $assessment->delete();
-        return redirect()->route('directories.assesment.index');
+        return redirect()->route('assessments.index');
     }
 }
 // watch out for the spelling of assesment in other files

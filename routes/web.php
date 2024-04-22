@@ -32,6 +32,9 @@ Route::middleware([
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
 
+    Route ::delete('/directories/assessments/{id}', [AssessmentController::class, 'destroy'])-> name('directories.assessments.destroy');
+
+
     //Audit Routes
     Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
 
