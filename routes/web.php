@@ -54,4 +54,10 @@ Route::middleware([
     Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
     Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
 
+    // Organisatios routes
+
+    Route::get('directories/Org', [OrgTable::class, 'index'])->name('directories.org.index');
+    Route::get('directories/Org/create', [OrgTable::class, 'create'])->name('directories.org.create');
+    Route::post('directories/Org', [OrgTable::class, 'store'])->name('directories.org.store');
+
 });

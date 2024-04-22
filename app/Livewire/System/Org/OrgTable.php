@@ -21,4 +21,8 @@ class OrgTable extends Component
         }])->search($this->search)->paginate(10);
         return view('livewire.system.org.org-table', ['users' => $users]);
     }
+
+    public function create () {
+        return view('directories.org.create');
+    }
 }
