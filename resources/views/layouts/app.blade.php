@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="{{ asset('assets/logoo/logo_sharp.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}">
 
     <style>
         [x-cloak] {
@@ -80,6 +80,9 @@
                 </x-side-nav-link>
                 <x-side-nav-link href="{{ route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user-assessment')" icon='iconoir-post'>
                     My Assessments
+                </x-side-nav-link>
+                <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')" icon='iconoir-user-badge-check'>
+                    Supervise
                 </x-side-nav-link>
 
 
