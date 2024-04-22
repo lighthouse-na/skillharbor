@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Assessment\AssessmentController;
+use App\Http\Controllers\Audit\SuperviseController;
 use App\Http\Controllers\System\AssessmentController as SystemAssessmentController;
 use App\Http\Controllers\System\JCPController;
 use App\Http\Controllers\System\QualificationController;
@@ -22,6 +23,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
     //Completing an Assessment Routes
 
     Route::get('/user-assessment/{user}', [AssessmentController::class, 'index'])->name('user-assessment');
@@ -29,6 +31,10 @@ Route::middleware([
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
+
+    //Audit Routes
+    Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
+
     //Skill Internal API Routes
 
     Route::resource('/assessments', SystemAssessmentController::class);
