@@ -7,7 +7,7 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="text-black dark:text-gray-200">
                         <div class="flex flex-row items-center justify-center">
-                            <div><img src="{{asset('assets/logo/logo_sharp.png')}}" alt="" class="rounded-full w-12 mr-2 hover:shadow-md"></div>
+                            <div><img src="{{asset('assets/logo/logo.png')}}" alt="" class="rounded-full w-12 mr-2 hover:shadow-md"></div>
                             <div>
                                 <h1 class="block text-3xl w-auto">skillHarbor</h1>
                             </div>
