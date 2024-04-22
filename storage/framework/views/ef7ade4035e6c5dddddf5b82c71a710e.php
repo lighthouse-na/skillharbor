@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="<?php echo e(asset('assets/logoo/logo_sharp.png')); ?>">
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/logo/logo.png')); ?>">
 
     <style>
         [x-cloak] {
@@ -165,6 +165,27 @@
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)])).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('user-assessment')),'icon' => 'iconoir-post']); ?>
                     My Assessments
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal2e340925a8bf40d3894bf118093fdd54)): ?>
+<?php $attributes = $__attributesOriginal2e340925a8bf40d3894bf118093fdd54; ?>
+<?php unset($__attributesOriginal2e340925a8bf40d3894bf118093fdd54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal2e340925a8bf40d3894bf118093fdd54)): ?>
+<?php $component = $__componentOriginal2e340925a8bf40d3894bf118093fdd54; ?>
+<?php unset($__componentOriginal2e340925a8bf40d3894bf118093fdd54); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginal2e340925a8bf40d3894bf118093fdd54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal2e340925a8bf40d3894bf118093fdd54 = $attributes; } ?>
+<?php $component = App\View\Components\SideNavLink::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('side-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\SideNavLink::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => ''.e(route('supervise.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('supervise.index')),'icon' => 'iconoir-user-badge-check']); ?>
+                    Supervise
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal2e340925a8bf40d3894bf118093fdd54)): ?>
