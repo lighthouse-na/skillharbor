@@ -72,6 +72,16 @@ class DashInfo extends Component
         $qualification = qualification::all();
 
 
+        $categories = $skills->map(function ($skill) {
+            return $skill->categories;
+        })->flatten()->unique('id');
+
+        $data = [];
+        foreach ($categories as $category) {
+            $data[$category->id] = $skills->where('category_id', $category->id)->sum('required_level');
+        }
+
+
 
         return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualification'));
     }
