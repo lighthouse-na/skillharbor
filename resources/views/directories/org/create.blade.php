@@ -7,7 +7,7 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8"> <!-- Add container with max width -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"> <!-- Add background, shadow, and rounded corners -->
             <div class="p-6 bg-white border-b border-gray-200"> <!-- Add padding and border -->
-                <form action="{{ route('directories.org.create') }}" method="POST"> <!-- Add method to create a user -->
+                <form action="{{ route('directories.org.store') }}" method="POST"> <!-- Change action to store route -->
                     @csrf
 
                     <!-- Form fields -->
@@ -27,7 +27,7 @@
                         <!-- Salary Ref Number -->
                         <div>
                             <label for="salary_ref_number" class="block text-sm font-medium text-gray-700">Salary Ref Number</label>
-                            <input type="number" name="salary_ref_number" id="salary_ref_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" requiered>
+                            <input type="number" name="salary_ref_number" id="salary_ref_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
 
                         <!-- Gender -->

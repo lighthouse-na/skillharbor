@@ -64,8 +64,11 @@ Route::middleware([
 
     // Organisatios routes
 
-    Route::get('directories/Org', [OrgTable::class, 'index'])->name('directories.org.index');
-    Route::get('directories/Org/create', [OrgTable::class, 'create'])->name('directories.org.create');
-    Route::post('directories/Org', [OrgTable::class, 'store'])->name('directories.org.store');
+Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
+Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
+Route::post('/directories/org', [OrgTable::class, 'store'])->name('directories.org.store');
+
+
+
 
 });
