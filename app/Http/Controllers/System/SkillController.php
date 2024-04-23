@@ -80,6 +80,7 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, $id)
     {
         // Validate the request data here if needed
@@ -100,6 +101,12 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+
     public function destroy($id)
     {
         //
