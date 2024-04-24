@@ -42,7 +42,7 @@
             </div>
             <div class="flex flow-root mt-3">
               <ul role="list" class="divide-y divide-gray-200 overflow-auto">
-                <?php $__empty_1 = true; $__currentLoopData = $user->qualifications->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $q): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $qualifications->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $q): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <li class="p-3 sm:py-4  dark:hover:bg-gray-700">
                                   <div class="flex items-center space-x-4">
 
@@ -92,7 +92,7 @@
                         </div>
 
 
-                         <?php endif; ?>
+                         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
               </ul>
             </div>
           </div>
@@ -123,7 +123,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php $__empty_1 = true; $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <tr class="border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white text-left">
                     <?php echo e(Str::limit($skill->skill_title, 30)); ?>
@@ -148,7 +148,7 @@
                 </p>
             </div>
 
-            <?php endif; ?>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 
         </tbody>
@@ -212,9 +212,9 @@
                                 wire:model="qualification_title"
                                 wire:keydown.enter="addQualificationToUser"
                                 >
-                                <?php $__currentLoopData = $qualification; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $q): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $dbQual; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $q): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($q->id); ?>"><?php echo e($q->qualification_title); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                     </select>
                     
                 </div>

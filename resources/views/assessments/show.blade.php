@@ -30,7 +30,6 @@
                     </div>
 
 
-                    @if ($jcp->isNotEmpty())
                     <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-6">
                         <div class="grow-0 shrink-0 basis-auto w-10/12 pl-4 md:pl-6 mt-6">
                             <h4 class="text-dark mb-2 text-lg text-orange-500 font-semibold">Job Competency Profile
@@ -41,14 +40,14 @@
                                 </strong>{{ $user->first_name . ' ' . $user->last_name }}
                             </p>
                             <p>
-                                <strong class="text-orange-500">Job title: </strong>{{ $jcp[0]->position_title }}
+                                <strong class="text-orange-500">Job title: </strong>{{ $jcp->position_title }}
                             </p>
                             <p>
-                                <strong class="text-orange-500">Job Grade: </strong>{{ $jcp[0]->job_grade }}
+                                <strong class="text-orange-500">Job Grade: </strong>{{ $jcp->job_grade }}
                             </p>
 
                             <p>
-                                <strong class="text-orange-500">Job Purpose: </strong>{{ $jcp[0]->job_purpose }}
+                                <strong class="text-orange-500">Job Purpose: </strong>{{ $jcp->job_purpose }}
                             </p>
 
 
@@ -66,7 +65,7 @@
                         </h1>
 
                     </div>
-                    <form action="{{route('user-assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp[0]->id])}}" method="POST">
+                    <form action="{{route('user-assessment.storeEmployee', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp->id])}}" method="POST">
                         <!-- Add the form element with action and method -->
                         @csrf
                         <!-- Add the CSRF token for form submission -->
@@ -77,7 +76,7 @@
 
 
                         <div class=" justify-items-start mt-6 overflow-y-auto scrollbar-hide scrollable-container" >
-                            @forelse ($jcp[0]->skills->groupBy('category.category_title') as $category => $skills)
+                            @forelse ($jcp->skills->groupBy('category.category_title') as $category => $skills)
                                 <div class="p-3">
                                     <h2
                                         class="my-3 text-1xl bg-orange-500 rounded-2xl w-full p-3 text-center text-white font-medium">
@@ -132,6 +131,14 @@
                                         @endforeach --}}
                                         </div>
                                     @endforeach
+                                    <div class="mt-2">
+                                        <div class="control-group col-12 text-right">
+                                            <div class="flex space-x-2 justify-end px-2">
+                                                <button type="submit"
+                                                    class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-sky-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-900 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             @empty
                                 <div class="container flex-auto justify-center text-center">
@@ -139,14 +146,7 @@
                                 </div>
                             @endforelse
 
-                            <div class="mt-2">
-                                <div class="control-group col-12 text-right">
-                                    <div class="flex space-x-2 justify-end px-2">
-                                        <button type="submit"
-                                            class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-sky-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-900 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </form>
@@ -161,12 +161,7 @@
 
     </div>
 
-                    @else
-                    <div class="container flex-auto justify-center text-center">
-                        <p class="text-red-700 text-base mb-4">Your Job Competency Profile is not complete. Please talk to your supervisor.</p>
-                    </div>
 
-                    @endif
 
 
 
