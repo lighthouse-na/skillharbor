@@ -23,7 +23,7 @@
             </div>
             <div class="flex flow-root mt-3">
               <ul role="list" class="divide-y divide-gray-200 overflow-auto">
-                @forelse ($user->qualifications->take(5) as $q)
+                @forelse ($qualifications->take(5) as $q)
                             <li class="p-3 sm:py-4  dark:hover:bg-gray-700">
                                   <div class="flex items-center space-x-4">
 
@@ -162,7 +162,7 @@
                                 wire:model="qualification_title"
                                 wire:keydown.enter="addQualificationToUser"
                                 >
-                                @foreach ($qualification as $q)
+                                @foreach ($dbQual as $q)
                                 <option value="{{$q->id}}">{{$q->qualification_title}}</option>
                                 @endforeach
                     </select>
