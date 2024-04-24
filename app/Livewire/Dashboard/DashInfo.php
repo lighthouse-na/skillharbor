@@ -65,24 +65,20 @@ class DashInfo extends Component
     public function render()
     {
         $user = auth()->user();
-        $skills = $user->jcp()->with(['skills' => function ($query) {
-            $query->where('user_rating', '>', 1)->orderByDesc('user_rating');
-        }])->get()->pluck('skills')->flatten()->take(5);
+        $jcp = $user
+            ->jcp()
+            ->where('is_active',1)
+            ->first();
+        $skills = $jcp->skills()
+            ->where('user_rating', '>', 1)
+            ->orderByDesc('user_rating')
+            ->take(5)
+            ->get();
 
-        $qualification = qualification::all();
-
-
-        $categories = $skills->map(function ($skill) {
-            return $skill->categories;
-        })->flatten()->unique('id');
-
-        $data = [];
-        foreach ($categories as $category) {
-            $data[$category->id] = $skills->where('category_id', $category->id)->sum('required_level');
-        }
+        $qualifications = $user->qualifications()->get();
+        $dbQual = qualification::all();
 
 
-
-        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualification'));
+        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual'));
     }
 }
