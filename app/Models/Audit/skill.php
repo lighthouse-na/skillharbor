@@ -18,7 +18,7 @@ class skill extends Model
 
     public function jcps()
     {
-        return $this->belongsToMany(jcp::class)->withPivot('user_rating', 'supervisor_rating');
+        return $this->belongsToMany(jcp::class)->withPivot('user_rating', 'supervisor_rating','required_level');
     }
 
     public function scopeSearch($query, $val){
