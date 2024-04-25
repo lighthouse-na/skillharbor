@@ -191,9 +191,11 @@
             const ctx = document.getElementById('myChart');
 
             const jcpRating = $wire.jcpRating;
+            const myRating = $wire.myRating;
 
             const labels = jcpRating.map(item => item.category);
             const values = jcpRating.map(item => item.value);
+            const values2 = myRating.map(item => item.value);
 
             console.log(labels, values);
             new Chart(ctx, {
@@ -214,7 +216,7 @@
                 },
                 {
             label: 'My Skill Level',
-            data: [1, 4, 3, 5, 2],
+            data: values2,
             fill: true,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgb(54, 162, 235)',
