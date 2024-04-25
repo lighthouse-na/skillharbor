@@ -89,16 +89,22 @@
                                         Edit
                                     </x-dropdown-link>
 
+                                       <!-- Delete Form -->
+                                       <form action="{{ route('skills.destroy', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
 
-                                    <x-dropdown-link href="#" wire:click.prevent="destroy({{ $skill->id }})" onclick="return confirm('Are you sure you want to delete this skill?')" class="text-red-500 ">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-dropdown-link href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this skill?')) { this.closest('form').submit(); }" class="text-red-500">
                                             Delete
-                                    </x-dropdown-link>
+                                        </x-dropdown-link>
+                                    </form>
 
-
-
-
-
-                                    {{-- <div class="border-t border-gray-200 dark:border-gray-800"></div> --}}
+                                       @csrf
+                                       @method('DELETE')
+                                       <x-dropdown-link href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this skill?')) { this.closest('form').submit(); }" class="text-red-500">
+                                           Delete
+                                       </x-dropdown-link>
+                                   </form>
 
                                 </x-slot>
                             </x-dropdown>

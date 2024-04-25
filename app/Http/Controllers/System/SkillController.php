@@ -80,30 +80,34 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, $id)
     {
-        //
-        $request->validate([
-            'skill_category_id' => 'required',
-            'skill_title' => 'required',
-            'skill_description' => 'required',
+        // Validate the request data here if needed
+
+        $skill = Skill::findOrFail($id);
+
+        // Update the skill with the new data from the request
+        $skill->update([
+            'skill_title' => $request->input('skill_title'),
+            'skill_description' => $request->input('skill_description'),
+            // Add more fields as needed
         ]);
 
-        $skill = skill::findOrFail($id);
-
-        $skill->skill_category_id = $request->get('skill_category_id');
-        $skill->skill_title = $request->get('skill_title');
-        $skill->skill_description = $request->get('skill_description');
-
-        $skill->save();
-
-        return redirect()->route('directories.skills.index')->with('success', 'Skill updated successfully.');
+        // Redirect the user to the skills.index route after successful update
+        return redirect()->route('directories.skills.index')->with('success', 'Skill updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+
+    public function destroy($id)
     {
         //
         $skill = skill::findOrFail($id);
