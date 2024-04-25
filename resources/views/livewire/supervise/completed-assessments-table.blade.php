@@ -20,8 +20,8 @@
                 <th class="px-6 py-3  uppercase ">Salary Ref:</th>
                 <th class="px-6 py-3 uppercase ">Name</th>
                 <th class="px-6 py-3  uppercase ">Email</th>
-                <th class="px-6 py-3 uppercase ">Job Title</th>
-                <th class="px-6 py-3 text-center uppercase ">Skill Points</th>
+                <th class="px-6 py-3 uppercase ">User Status</th>
+                <th class="px-6 py-3 text-center uppercase ">Supervisor Status</th>
                 <th class="px-6 py-3 text-center uppercase ">Actions</th>
 
 
@@ -30,6 +30,39 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
+        <tbody>
+            @forelse ($completedAssessments as $assessment)
+            <tr class="text-xs text-purple-950/50">
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$assessment->salary_ref}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$assessment->name}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$assessment->email}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$assessment->user_status}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$assessment->supervisor_status}}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                    <a href="{{route('supervise.assessment', $assessment->id)}}" class="text-indigo-600 hover:text-indigo-900">View</a>
+                </td>
+            </tr>
+
+            @empty
+            <tr class="text-xs text-purple-950/50">
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">No completed assessments found</div>
+                </td>
+            </tr>
+
+            @endforelse
+
+        </tbody>
     </table>
 </div>
 </div>
