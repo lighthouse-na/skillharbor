@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Models\Audit\jcp_skill;
 use App\Models\Audit\qualification;
 use Livewire\Component;
 
@@ -12,9 +13,17 @@ class DashInfo extends Component
     public $search = '';
     public $qualification_title = '';
     public $qualification_id = '';
+    public $jcp = '';
+    public $jcpRating = [];
+    public $myRating = [];
+
+
 
     public function mount()
     {
+        $this->jcp = auth()->user()->jcp()->where('is_active',1)->first();
+        $this->myRating = $this->jcp->sumMyLevels();
+        $this->jcpRating = $this->jcp->sumRequiredLevelsByCategory();
         $this->confirmingAddQualification  = false;
         $this->confirmingQualificationRemoval = false;
         $this->search = '';
@@ -65,11 +74,7 @@ class DashInfo extends Component
     public function render()
     {
         $user = auth()->user();
-        $jcp = $user
-            ->jcp()
-            ->where('is_active',1)
-            ->first();
-        $skills = $jcp->skills()
+        $skills = $this->jcp->skills()
             ->where('user_rating', '>', 1)
             ->orderByDesc('user_rating')
             ->take(5)
@@ -79,6 +84,6 @@ class DashInfo extends Component
         $dbQual = qualification::all();
 
 
-        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual'));
+        return view('livewire.dashboard.dash-info', compact( 'skills', 'qualifications', 'dbQual'));
     }
 }

@@ -166,7 +166,7 @@
                     <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
                 </div>
                 <div class="m-auto" >
-                    <canvas id="SkillGapChart"></canvas>
+                    <canvas id="myChart"></canvas>
                 </div>
              </div>
           </div>
@@ -279,5 +279,83 @@
 <?php endif; ?>
 
         </div>
+
+            <?php
+        $__assetKey = '2066328497-0';
+
+        ob_start();
+    ?>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <?php
+        $__output = ob_get_clean();
+
+        // If the asset has already been loaded anywhere during this request, skip it...
+        if (in_array($__assetKey, \Livewire\Features\SupportScriptsAndAssets\SupportScriptsAndAssets::$alreadyRunAssetKeys)) {
+            // Skip it...
+        } else {
+            \Livewire\Features\SupportScriptsAndAssets\SupportScriptsAndAssets::$alreadyRunAssetKeys[] = $__assetKey;
+            \Livewire\store($this)->push('assets', $__output, $__assetKey);
+        }
+    ?>
+            <?php
+        $__scriptKey = '2066328497-1';
+        ob_start();
+    ?>
+          <script>
+            const ctx = document.getElementById('myChart');
+
+            const jcpRating = $wire.jcpRating;
+            const myRating = $wire.myRating;
+
+            const labels = jcpRating.map(item => item.category);
+            const values = jcpRating.map(item => item.value);
+            const values2 = myRating.map(item => item.value);
+
+            console.log(labels, values);
+            new Chart(ctx, {
+              type: 'radar',
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: 'JCP Requirement',
+                  data: values,
+                  borderWidth: 3,
+                  fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                },
+                {
+            label: 'My Skill Level',
+            data: values2,
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }
+
+            ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+              <?php
+        $__output = ob_get_clean();
+
+        \Livewire\store($this)->push('scripts', $__output, $__scriptKey)
+    ?>
+
 </div>
 <?php /**PATH /home/hubert/Desktop/lighthouse/projects/skillharbor-open/resources/views/livewire/dashboard/dash-info.blade.php ENDPATH**/ ?>
