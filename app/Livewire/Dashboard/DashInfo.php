@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Models\Audit\jcp_skill;
 use App\Models\Audit\qualification;
 use Livewire\Component;
 
@@ -75,10 +76,14 @@ class DashInfo extends Component
             ->take(5)
             ->get();
 
+        $labels = $jcp->skill_category();
+        $data = $jcp->sumRequiredLevelsByCategory();
+
+
         $qualifications = $user->qualifications()->get();
         $dbQual = qualification::all();
 
 
-        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual'));
+        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual','labels','data'));
     }
 }
