@@ -10,7 +10,7 @@
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 px-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <button class="flex flex-row p-2 px-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md" onclick="window.location.href = '<?php echo e(route('directories.org.create')); ?>'">
                     <?php if (isset($component)) { $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal643fe1b47aec0b76658e1a0200b34b2c = $attributes; } ?>
 <?php $component = BladeUI\Icons\Components\Svg::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -40,7 +40,7 @@
 
 
 <div class="rounded-lg border ">
-    <table class="table-auto min-w-full divide-y divide-gray-200 overflow-hidden">
+    <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
             <tr>
                 <th class="px-6 py-3  uppercase ">Salary Ref:</th>
@@ -58,7 +58,7 @@
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
 
-            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             <?php echo e($user->salary_ref_number); ?>
@@ -67,7 +67,7 @@
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap"><?php echo e($user->email); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <?php $__empty_1 = true; $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $user->jcp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jcp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <?php echo e($jcp->position_title); ?>
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -91,7 +91,7 @@
 <?php $component = $__componentOriginal643fe1b47aec0b76658e1a0200b34b2c; ?>
 <?php unset($__componentOriginal643fe1b47aec0b76658e1a0200b34b2c); ?>
 <?php endif; ?> No active JCP...</h1>
-                        <?php endif; ?>
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap"><?php echo e($user->competency_rating); ?></td>
                     <td class="w-9 text-center">
@@ -183,7 +183,7 @@
 
                     <!-- Add more table cells as needed -->
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
         </tbody>
     </table>
 
