@@ -38,6 +38,7 @@
                         </div>
                     </div>
 
+                    <?php if($jcp !== null): ?>
 
                     <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-6">
                         <div class="grow-0 shrink-0 basis-auto w-10/12 pl-4 md:pl-6 mt-6">
@@ -162,6 +163,13 @@
                         </div>
                     </div>
                 </form>
+                <?php else: ?>
+
+                <div class="container flex-auto justify-center text-center">
+                    <p class="text-gray-700 text-base mb-4">Your JCP Is not complete. Please Consult your Supevisor.</p>
+                </div>
+
+                <?php endif; ?>
 
 
 
