@@ -15,12 +15,14 @@ class DashInfo extends Component
     public $qualification_id = '';
     public $jcp = '';
     public $jcpRating = [];
+    public $myRating = [];
 
 
 
     public function mount()
     {
         $this->jcp = auth()->user()->jcp()->where('is_active',1)->first();
+        $this->myRating = $this->jcp->sumMyLevels();
         $this->jcpRating = $this->jcp->sumRequiredLevelsByCategory();
         $this->confirmingAddQualification  = false;
         $this->confirmingQualificationRemoval = false;
@@ -77,9 +79,6 @@ class DashInfo extends Component
             ->orderByDesc('user_rating')
             ->take(5)
             ->get();
-
-
-
 
         $qualifications = $user->qualifications()->get();
         $dbQual = qualification::all();
