@@ -31,9 +31,6 @@ class AssessmentController extends Controller
             ->where('is_active', 1) // Only load jcp where is_active is 1
             ->first();
 
-
-
-
         return view('assessments.show', compact('jcp', 'user', 'assessment'));
     }
 
