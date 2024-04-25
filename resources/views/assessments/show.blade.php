@@ -30,6 +30,7 @@
                     </div>
 
 
+
                     <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-6">
                         <div class="grow-0 shrink-0 basis-auto w-10/12 pl-4 md:pl-6 mt-6">
                             <h4 class="text-dark mb-2 text-lg text-orange-500 font-semibold">Job Competency Profile
