@@ -32,6 +32,9 @@ Route::middleware([
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
 
+    Route ::delete('/directories/assessments/{id}', [AssessmentController::class, 'destroy'])-> name('directories.assessments.destroy');
+
+
     //Audit Routes
     Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
 
@@ -58,5 +61,14 @@ Route::middleware([
     Route::get('/directories/skills/{id}', [SkillController::class, 'show'])->name('directories.skills.show');
     Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
     Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+
+    // Organisatios routes
+
+Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
+Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
+Route::post('/directories/org', [OrgTable::class, 'store'])->name('directories.org.store');
+
+
+
 
 });
