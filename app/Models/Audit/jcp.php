@@ -61,7 +61,7 @@ class jcp extends Model
                         $sum += $pivot->required_level;
                     }
                 }
-                $sums[] = $sum;
+                $sums[] = ['category' => $categoryTitle, 'value' => $sum];
             }
         }
 

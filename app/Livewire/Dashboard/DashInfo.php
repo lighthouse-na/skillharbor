@@ -13,9 +13,15 @@ class DashInfo extends Component
     public $search = '';
     public $qualification_title = '';
     public $qualification_id = '';
+    public $jcp = '';
+    public $jcpRating = [];
+
+
 
     public function mount()
     {
+        $this->jcp = auth()->user()->jcp()->where('is_active',1)->first();
+        $this->jcpRating = $this->jcp->sumRequiredLevelsByCategory();
         $this->confirmingAddQualification  = false;
         $this->confirmingQualificationRemoval = false;
         $this->search = '';
@@ -66,24 +72,19 @@ class DashInfo extends Component
     public function render()
     {
         $user = auth()->user();
-        $jcp = $user
-            ->jcp()
-            ->where('is_active',1)
-            ->first();
-        $skills = $jcp->skills()
+        $skills = $this->jcp->skills()
             ->where('user_rating', '>', 1)
             ->orderByDesc('user_rating')
             ->take(5)
             ->get();
 
-        $labels = $jcp->skill_category();
-        $data = $jcp->sumRequiredLevelsByCategory();
+
 
 
         $qualifications = $user->qualifications()->get();
         $dbQual = qualification::all();
 
 
-        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual','labels','data'));
+        return view('livewire.dashboard.dash-info', compact( 'skills', 'qualifications', 'dbQual'));
     }
 }
