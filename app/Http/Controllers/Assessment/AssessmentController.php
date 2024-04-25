@@ -23,8 +23,10 @@ class AssessmentController extends Controller
         return view('assessments.index', compact('assessments', 'user'));
     }
 
-    public function show(User $user, assessment $assessment)
+    public function show($user, $assessment)
     {
+        $user = User::find(decrypt($user));
+        $assessment = assessment::find(decrypt($assessment));
         $jcp = $user->jcp()
             ->with('skills.category') // Eager load skills and their categories
             ->where('assessment_id', $assessment->id)
