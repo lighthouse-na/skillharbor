@@ -40,7 +40,7 @@
         </li>
     </ul>
     <div class="p-4 border-t mx-8 mt-2">
-        <button class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Profile</button>
+        <button class="w-1/2 block mx-auto rounded-full bg-fuchsia-900 hover:bg-fuchsia-950 font-semibold text-white px-6 py-2  transition ease-in-out duration-150">Profile</button>
     </div>
 </div>
          </div>
@@ -123,7 +123,7 @@
                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                          <div class="container flex-auto justify-center text-center">
                             <p class="text-gray-400 text-base m-4">
-                                You have no qualifications.
+                                You have no qualifications loaded.
                             </p>
                         </div>
 
@@ -202,7 +202,7 @@
                     <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
                 </div>
                 <div class="m-auto" >
-                    <canvas id="myChart"></canvas>
+                    <canvas id="skillGapChart"></canvas>
                 </div>
              </div>
           </div>
@@ -338,7 +338,7 @@
         ob_start();
     ?>
           <script>
-            const ctx = document.getElementById('myChart');
+            const ctx = document.getElementById('skillGapChart');
 
             const jcpRating = $wire.jcpRating;
             const myRating = $wire.myRating;
