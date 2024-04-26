@@ -3,6 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Audit\assessment;
+use App\Models\Audit\jcp;
+use App\Models\Audit\qualification;
+use App\Models\Audit\skill;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,13 +28,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [
 
+
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -62,5 +64,40 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function jcp()
+    {
+        return $this->hasMany(jcp::class, 'user_id');
+    }
+
+    public function assessments()
+    {
+        return $this->belongsToMany(assessment::class, 'enrollments');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(skill::class, 'jcp_skill')->withPivot('user_rating', 'supervisor_rating');
+    }
+
+    public function qualifications()
+    {
+        return $this->belongsToMany(qualification::class, 'qualification_user');
+    }
+
+    public function enrolled()
+    {
+        return $this->belongsToMany(assessment::class, 'enrollments')->withPivot('user_status','supervisor_status');
+    }
+
+    // Search Scope Function
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('first_name', 'like', '%' . $val . '%')
+            ->orWhere('email', 'like', '%' . $val . '%')
+            ->orWhere('last_name', 'like', '%' . $val . '%');
+
     }
 }

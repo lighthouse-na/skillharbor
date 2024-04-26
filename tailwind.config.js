@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
+import tailwindScrollbar from 'tailwind-scrollbar'; // Import the plugin directly
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -16,11 +17,13 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 rubik : ['Rubik'],
-
             },
-
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms,
+        typography,
+        tailwindScrollbar({ nocompatible: true }), // Initialize the plugin directly
+    ],
 };
