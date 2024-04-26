@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressStart(10);
 
         $this->command->info(' Creating Audit Assessments...');
-        assessment::factory(10)->create();
+        assessment::factory(1)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit jcp...');
-        jcp::factory(8)->create();
+        jcp::factory(10)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
         $jcps = jcp::All()->each(function ($jcp) use ($skills) {
-            $jcp->skills()->saveMany($skills->random(rand(1, $skills->count()))->all());
+            $jcp->skills()->saveMany($skills);
         });
         $this->command->getOutput()->progressAdvance();
 
@@ -100,7 +100,6 @@ class DatabaseSeeder extends Seeder
             $jcp->qualifications()->saveMany($qualifications);
         }
 
-        $this->command->getOutput()->progressAdvance();
 
 
 
