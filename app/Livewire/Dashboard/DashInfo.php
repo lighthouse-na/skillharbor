@@ -84,6 +84,6 @@ class DashInfo extends Component
         $dbQual = qualification::all();
 
 
-        return view('livewire.dashboard.dash-info', compact( 'skills', 'qualifications', 'dbQual'));
+        return view('livewire.dashboard.dash-info', compact( 'user','skills', 'qualifications', 'dbQual'));
     }
 }
