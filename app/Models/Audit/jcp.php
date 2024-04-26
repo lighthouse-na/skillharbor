@@ -24,7 +24,7 @@ class jcp extends Model
     }
     public function skills()
     {
-        return $this->belongsToMany(skill::class)->withPivot('user_rating', 'supervisor_rating');
+        return $this->belongsToMany(skill::class)->withPivot('user_rating', 'supervisor_rating','required_level');
     }
 
     public function qualifications(){
@@ -40,5 +40,52 @@ class jcp extends Model
     public function prerequisites()
     {
         return $this->belongsToMany(prerequisite::class, 'jcp_prerequisites');
+    }
+
+    public function skill_category(){
+        return $this->skills()->with('category')->get()->pluck('category')->flatten()->pluck('category_title')->unique()->values()->toArray();
+    }
+    public function sumRequiredLevelsByCategory()
+    {
+        $categoryTitles = $this->skill_category();
+        $sums = [];
+
+        foreach($categoryTitles as $categoryTitle) {
+            $category = Category::where('category_title', $categoryTitle)->first();
+            if($category) {
+                $sum = 0;
+                foreach($category->skills as $skill) {
+                    // Check if the skill belongs to the jcp
+                    if($this->skills->contains($skill)) {
+                        $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
+                        $sum += $pivot->required_level;
+                    }
+                }
+                $sums[] = ['category' => $categoryTitle, 'value' => $sum];
+            }
+        }
+
+        return $sums;
+    }
+
+    public function sumMyLevels(){
+        $categoryTitles = $this->skill_category();
+
+        $sums = [];
+        foreach($categoryTitles as $categoryTitle) {
+            $category = Category::where('category_title', $categoryTitle)->first();
+            if($category) {
+                $sum = 0;
+                foreach($category->skills as $skill) {
+                    // Check if the skill belongs to the jcp
+                    if($this->skills->contains($skill)) {
+                        $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
+                        $sum += $pivot->user_rating;
+                    }
+                }
+                $sums[] = ['category' => $categoryTitle, 'value' => $sum];
+            }
+        }
+        return $sums;
     }
 }

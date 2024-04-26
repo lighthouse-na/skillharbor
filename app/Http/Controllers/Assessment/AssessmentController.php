@@ -16,20 +16,22 @@ class AssessmentController extends Controller
         $id = decrypt($u);
         $user = User::find($id);
 
-        $assessments = $user->assessments()->get();
+        $assessments = $user
+            ->assessments()
+            ->get();
 
         return view('assessments.index', compact('assessments', 'user'));
     }
 
-    public function show(User $user, assessment $assessment)
+    public function show($user, $assessment)
     {
+        $user = User::find(decrypt($user));
+        $assessment = assessment::find(decrypt($assessment));
         $jcp = $user->jcp()
             ->with('skills.category') // Eager load skills and their categories
             ->where('assessment_id', $assessment->id)
             ->where('is_active', 1) // Only load jcp where is_active is 1
-            ->get();
-
-
+            ->first();
 
         return view('assessments.show', compact('jcp', 'user', 'assessment'));
     }
@@ -50,7 +52,7 @@ class AssessmentController extends Controller
         $mean = round((array_sum($data['questions']) / $maxScore) * 100);
 
         //Update enroll status
-        // $user->assessments()->updateExistingPivot($assessment->id, ['status' => 1]);
+        $user->enrolled()->updateExistingPivot($assessment->id, ['user_status' => 1]);
 
         $user->update(['competency_rating' => $mean]);
 

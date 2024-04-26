@@ -23,7 +23,7 @@
             </div>
             <div class="flex flow-root mt-3">
               <ul role="list" class="divide-y divide-gray-200 overflow-auto">
-                @forelse ($user->qualifications->take(5) as $q)
+                @forelse ($qualifications->take(5) as $q)
                             <li class="p-3 sm:py-4  dark:hover:bg-gray-700">
                                   <div class="flex items-center space-x-4">
 
@@ -126,7 +126,7 @@
                     <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
                 </div>
                 <div class="m-auto" >
-                    <canvas id="SkillGapChart"></canvas>
+                    <canvas id="myChart"></canvas>
                 </div>
              </div>
           </div>
@@ -162,7 +162,7 @@
                                 wire:model="qualification_title"
                                 wire:keydown.enter="addQualificationToUser"
                                 >
-                                @foreach ($qualification as $q)
+                                @foreach ($dbQual as $q)
                                 <option value="{{$q->id}}">{{$q->qualification_title}}</option>
                                 @endforeach
                     </select>
@@ -182,4 +182,61 @@
         </x-dialog-modal>
 
         </div>
+
+        @assets
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        @endassets
+        @script
+          <script>
+            const ctx = document.getElementById('myChart');
+
+            const jcpRating = $wire.jcpRating;
+            const myRating = $wire.myRating;
+
+            const labels = jcpRating.map(item => item.category);
+            const values = jcpRating.map(item => item.value);
+            const values2 = myRating.map(item => item.value);
+
+            console.log(labels, values);
+            new Chart(ctx, {
+              type: 'radar',
+              data: {
+                labels: labels,
+                datasets: [{
+                  label: 'JCP Requirement',
+                  data: values,
+                  borderWidth: 3,
+                  fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                },
+                {
+            label: 'My Skill Level',
+            data: values2,
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }
+
+            ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+          @endscript
+
 </div>

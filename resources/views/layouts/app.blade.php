@@ -16,6 +16,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}">
 
+
     <style>
         [x-cloak] {
             display: none !important;
