@@ -91,6 +91,8 @@ class User extends Authenticatable
         return $this->belongsToMany(assessment::class, 'enrollments')->withPivot('user_status','supervisor_status');
     }
 
+
+
     // Search Scope Function
     public function scopeSearch($query, $val)
     {
