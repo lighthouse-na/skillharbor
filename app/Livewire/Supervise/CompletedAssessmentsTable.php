@@ -9,6 +9,7 @@ class CompletedAssessmentsTable extends Component
 {
 
 
+
     public function render()
     {
         $completedAssessments = User::whereHas('enrolled', function ($query) {
