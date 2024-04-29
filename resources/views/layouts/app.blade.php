@@ -76,15 +76,29 @@
 
             <!--Nav Links-->
             <nav>
-                <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" icon='iconoir-dashboard-dots'>
-                    Dashboard
-                </x-side-nav-link>
-                <x-side-nav-link href="{{ route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user-assessment')" icon='iconoir-post'>
-                    My Assessments
-                </x-side-nav-link>
-                <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')" icon='iconoir-user-badge-check'>
-                    Supervise
-                </x-side-nav-link>
+                <div class="mb-6">
+                    <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" icon='iconoir-dashboard-dots'>
+                        Dashboard
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('user-assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user-assessment')" icon='iconoir-post'>
+                        My Assessments
+                    </x-side-nav-link>
+                </div>
+                <div class="mb-3">
+                    <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')" icon='iconoir-user-badge-check'>
+                        Supervise
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" icon='iconoir-planet-alt'>
+                        Discover
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')" icon='iconoir-reports'>
+                        Reports
+                    </x-side-nav-link>
+
+                </div>
+
+
+
 
 
 
