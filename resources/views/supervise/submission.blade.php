@@ -127,7 +127,7 @@
                     </h1>
 
                 </div>
-                <form action="#" method="POST">
+                <form action="{{route('supervise.store', ['user' =>$user->id, 'assessment' => $assessment->id, 'jcp'=>$jcp->id])}}" method="POST">
                     <!-- Add the form element with action and method -->
                     @csrf
                     <!-- Add the CSRF token for form submission -->
@@ -157,7 +157,7 @@
                                         </div>
 
                                         <div class="container mb-2 px-5">
-                                            <label for="supervisor_score_{{ $question->id }}"
+                                            <label for="supervisor_rating_{{ $question->id }}"
                                                 class="block mt-5 lg:mt-0 mb-2 text-sm font-medium border-b pb-3 text-orange-500">Choose
                                                 a competency rating</label>
                                             <div class="flex items-center">
