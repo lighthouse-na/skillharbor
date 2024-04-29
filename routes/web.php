@@ -6,6 +6,7 @@ use App\Http\Controllers\System\AssessmentController as SystemAssessmentControll
 use App\Http\Controllers\System\JCPController;
 use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\System\SkillController;
+use App\Livewire\Supervise\CompletedAssessmentsTable;
 use App\Livewire\System\Org\OrgTable;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
@@ -37,6 +38,8 @@ Route::middleware([
 
     //Audit Routes
     Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
+    Route::get('supervise/{id}', [CompletedAssessmentsTable::class, 'show'])->name('supervise.show');
+
 
     //Skill Internal API Routes
 
@@ -62,11 +65,12 @@ Route::middleware([
     Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
     Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
 
-    // Organisatios routes
+    // Organisations routes
 
 Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
 Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
 Route::post('/directories/org', [OrgTable::class, 'store'])->name('directories.org.store');
+
 
 
 
