@@ -31,11 +31,11 @@ class CompletedAssessmentsTable extends Component
 
              foreach ($jcp->qualifications()->get() as $qualification) {
                  // Check if the qualification exists in the user's acquired qualifications
-                 $isAcquired = $userQualifications->contains('qualification_name', $qualification->qualification_name);
+                 $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
 
                  // Add qualification name and attained status to the data array
                  $qualificationsData[] = [
-                     'name' => $qualification->qualification_name,
+                     'name' => $qualification->qualification_title,
                      'attained' => $isAcquired,
                  ];
 
@@ -47,6 +47,7 @@ class CompletedAssessmentsTable extends Component
 
              // Calculate the percentage score
              $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
+
 
 
          return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage'));
