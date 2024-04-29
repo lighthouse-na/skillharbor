@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Supervise;
 
+use App\Models\Audit\assessment;
+use App\Models\Audit\jcp;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
@@ -10,9 +12,11 @@ class CompletedAssessmentsTable extends Component
 {
 
      //Show assessment filled in by user to be assessed
-     public function show($id)
+     public function show($id, $assessment_id)
      {
+
          $user = User::find(Crypt::decrypt($id));
+        $assessment = assessment::find(Crypt::decrypt($assessment_id));
          $jcp = $user->jcp()
              ->with('skills.category') // Eager load skills and their categories
              ->where('is_active', 1) // Only load jcp where is_active is 1
@@ -50,7 +54,31 @@ class CompletedAssessmentsTable extends Component
 
 
 
-         return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage'));
+         return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage', 'assessment'));
+     }
+
+     public function store(User $user, assessment $assessment,jcp $jcp){
+
+        $data = request()->validate([
+            'supervisor_score.*' => 'required', // Add any validation rules as needed
+        ]);
+        foreach ($data['supervisor_score'] as $skillId => $supervisorRating) {
+            // Attach the answer to the assessment-question pivot table
+            $jcp->skills()->updateExistingPivot($skillId, ['supervisor_rating' => $supervisorRating]);
+        }
+
+        //competency score
+        $maxScore = count($data['supervisor_score']) * 5;
+
+        $mean = round((array_sum($data['supervisor_score']) / $maxScore) * 100);
+
+        //Update enroll status
+        $user->enrolled()->updateExistingPivot($assessment->id, ['supervisor_status' => 1]);
+
+        $user->update(['competency_rating' => $mean]);
+
+        return redirect()->route('supervise.index')
+            ->with('success', 'Answers submitted successfully!');
      }
 
 
@@ -62,13 +90,7 @@ class CompletedAssessmentsTable extends Component
             $query->select();
         }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->get();
 
-        $completedAssessments->transform(function ($user) {
-            $user->enrolled->transform(function ($enrollment) {
-                $enrollment->supervisor_status = $enrollment->supervisor_status ? '1' : '0';
-                return $enrollment;
-            });
-            return $user;
-        });
+
 
 
 
