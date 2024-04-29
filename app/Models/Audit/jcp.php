@@ -80,7 +80,7 @@ class jcp extends Model
                     // Check if the skill belongs to the jcp
                     if($this->skills->contains($skill)) {
                         $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
-                        $sum += $pivot->user_rating;
+                        $sum += $pivot->supervisor_rating;
                     }
                 }
                 $sums[] = ['category' => $categoryTitle, 'value' => $sum];
