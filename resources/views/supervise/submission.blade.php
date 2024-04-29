@@ -30,7 +30,7 @@
 
                 </ol>
             </nav>
-            <div class="container text-white pastel-navy-gradient mx-auto px-6 py-3 rounded-3xl">
+            <div class="container text-gray-950 pastel-navy-gradient mx-auto px-6 py-3 rounded-3xl">
                 <div class="container w-full">
                     <div class="flex-inline">
                         <div class="overview pb-3 border-b">
@@ -79,25 +79,27 @@
                         </div>
                     </div>
 
-                    <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
+                    <div class="w-full px-4 mt-3">
                         <div class="mb-10 w-full">
                             <h4 class="text-dark mb-2 text-lg text-orange-500 font-semibold">Required Qualifications
                             </h4>
 
                             <div class="flex justify-center">
 
-                                <div class="h-48 overflow-y-auto scrollbar-hide scrollable-container">
+                                <div class="h-48 overflow-x-auto">
 
 
 
                                     @foreach ($qualificationsData as $qualificationData)
-                                        <div class="flex border-b my-3 items-center p-2">
+                                        <div class="flex border-b my-3 mx-auto items-center p-2">
                                             <h3>{{ $qualificationData['name'] }}</h3>
                                             @if ($qualificationData['attained'])
-                                                <i class="fas fa-check text-green-500 ml-3"></i>
+                                                <x-iconoir-check class="text-green-500 ml-3" />
                                                 <!-- Green tick icon for attained -->
                                             @else
-                                                <i class="fas fa-times text-red-500 ml-3"></i>
+                                                <x-iconoir-xmark  class="text-red-500 ml-3"/>
+
+
                                                 <!-- Red X icon for not attained -->
                                             @endif
                                         </div>
