@@ -60,11 +60,10 @@
                         <h1 class="text-red-500">Incomplete</h1>
                         @endif</div>
                 </td>
-                </td>
-                </td>
-                </td>
+
                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <a href="{{route('supervise.show', ['id' => Crypt::encrypt($assessment->id)])}}" class="text-indigo-800 hover:text-indigo-900">Assess</a>
+
+                    <a href="{{ route('supervise.show', ['id' => Crypt::encrypt($assessment->id), 'assessment_id' => Crypt::encrypt($assessment->enrolled[0]['assessment_id'])]) }}" class="text-indigo-800 hover:text-indigo-900">Assess</a>
                 </td>
             </tr>
 
