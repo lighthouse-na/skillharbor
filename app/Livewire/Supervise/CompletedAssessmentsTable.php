@@ -3,10 +3,55 @@
 namespace App\Livewire\Supervise;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
 class CompletedAssessmentsTable extends Component
 {
+
+     //Show assessment filled in by user to be assessed
+     public function show($id)
+     {
+         $user = User::find(Crypt::decrypt($id));
+         $jcp = $user->jcp()
+             ->with('skills.category') // Eager load skills and their categories
+             ->where('is_active', 1) // Only load jcp where is_active is 1
+             ->first();
+             $skills = $jcp->skills()->with('category')->get();
+
+
+
+             /**
+              * Loads Qualification data to assessment
+              */
+             $userQualifications = $user->qualifications()->get();
+
+             $qualificationsData = [];
+             $qualificationScore = 0;
+
+             foreach ($jcp->qualifications()->get() as $qualification) {
+                 // Check if the qualification exists in the user's acquired qualifications
+                 $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
+
+                 // Add qualification name and attained status to the data array
+                 $qualificationsData[] = [
+                     'name' => $qualification->qualification_title,
+                     'attained' => $isAcquired,
+                 ];
+
+                 // Calculate qualification score
+                 $qualificationScore += $isAcquired ? 10 : 0;
+             }
+             // Calculate the maximum possible score
+             $maxQualificationScore = $jcp->qualifications()->count() * 10;
+
+             // Calculate the percentage score
+             $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
+
+
+
+         return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage'));
+     }
 
 
     public function render()

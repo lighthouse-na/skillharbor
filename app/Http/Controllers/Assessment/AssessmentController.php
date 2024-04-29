@@ -59,6 +59,7 @@ class AssessmentController extends Controller
         return redirect()->route('dashboard', ['user' => $user, 'assessment' => $assessment, 'jcp' => $jcp])
             ->with('success', 'Answers submitted successfully!');
     }
+
     public function update(Request $request, $id)
 {
     $assessment = Assessment::find($id);
