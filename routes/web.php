@@ -27,10 +27,15 @@ Route::middleware([
 
 
     //Completing an Assessment Routes
-
+    Route::get('/user-assessment/submission/{user}/{assessment}', [AssessmentController::class, 'submission'])->name('user-assessment.submission');
+    Route::get('/user-assessment/results/{user}/{assessment}', [AssessmentController::class, 'results'])->name('user-assessment.results');
     Route::get('/user-assessment/{user}', [AssessmentController::class, 'index'])->name('user-assessment');
     Route::get('/user-assessment/{user}/{assessment}', [AssessmentController::class, 'show'])->name('user-assessment.show');
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
+
+
+
+    //Assessment Routes
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
 
