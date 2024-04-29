@@ -64,7 +64,7 @@
                 </td>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <a href="{{route('supervise.show', ['id' => $assessment->id])}}" class="text-indigo-800 hover:text-indigo-900">Assess</a>
+                    <a href="{{route('supervise.show', ['id' => Crypt::encrypt($assessment->id)])}}" class="text-indigo-800 hover:text-indigo-900">Assess</a>
                 </td>
             </tr>
 
