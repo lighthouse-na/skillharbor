@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Assessment\AssessmentController;
+use App\Http\Controllers\Audit\DiscoverController;
+use App\Http\Controllers\Audit\ReportController;
 use App\Http\Controllers\Audit\SuperviseController;
 use App\Http\Controllers\System\AssessmentController as SystemAssessmentController;
 use App\Http\Controllers\System\JCPController;
@@ -9,7 +11,6 @@ use App\Http\Controllers\System\SkillController;
 use App\Livewire\Supervise\CompletedAssessmentsTable;
 use App\Livewire\System\Org\OrgTable;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Rules\Role;
 
 Route::get('/', function () {
     return view('welcome');
@@ -68,9 +69,15 @@ Route::middleware([
 
     // Organisations routes
 
-Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
-Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
-Route::post('/directories/org', [OrgTable::class, 'store'])->name('directories.org.store');
+    Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
+    Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
+    Route::post('/directories/org', [OrgTable::class, 'store'])->name('directories.org.store');
+
+    // Discover Routes
+    Route::get('/discover', [DiscoverController::class, 'index'])->name('discover.index');
+
+    // Reports Routes
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
 
 
