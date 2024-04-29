@@ -3,6 +3,7 @@
 namespace App\Livewire\Supervise;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
 class CompletedAssessmentsTable extends Component
@@ -11,7 +12,7 @@ class CompletedAssessmentsTable extends Component
      //Show assessment filled in by user to be assessed
      public function show($id)
      {
-         $user = User::find($id);
+         $user = User::find(Crypt::decrypt($id));
          $jcp = $user->jcp()
              ->with('skills.category') // Eager load skills and their categories
              ->where('is_active', 1) // Only load jcp where is_active is 1
