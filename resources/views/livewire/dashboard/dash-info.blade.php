@@ -161,19 +161,22 @@
                 <div class="header mb-3">
                     <h3 class="leading-none text-gray-900 dark:text-white">My Skill Gap</h3>
                 </div>
-                <div class="m-auto" >
+                <div class="my-3 w-full" >
                     <canvas id="skillGapChart"></canvas>
                 </div>
              </div>
           </div>
-          <div class="flex items-center justify-center rounded border h-auto dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-             </p>
-         </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 border h-auto dark:bg-gray-800">
+          <div class="flex items-center justify-center rounded-lg border h-auto dark:bg-gray-800">
+            <div class="flex flex-col grow rounded-lg dark:bg-gray-800 px-6 pt-3 ">
+                <div class="title mb-3">
+                    <h3 class="leading-none text-gray-900 dark:text-white ml-3 mt-0">ECP</h3>
+                </div>
+                <div class="mx-3 my-auto w-full" >
+                    <canvas id="myChart"></canvas>
+                </div>
+             </div>
+          </div>
+          <div class="flex items-center justify-center rounded-lg bg-gray-50 border h-auto dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
@@ -272,6 +275,44 @@
                 }
               }
             });
+            const cty = document.getElementById('myChart');
+
+new Chart(cty, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Skill Level',
+      data: values2,
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
 
           </script>
 
