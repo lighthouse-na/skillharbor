@@ -1,4 +1,4 @@
-<div class="bg-white sticky shadow-md top-0 dark:bg-gray-800  dark:border-gray-700 ">
+<div class="bg-white sticky shadow-md top-0 dark:bg-gray-800  dark:border-gray-700 relative z-10 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
