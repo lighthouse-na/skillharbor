@@ -13,7 +13,7 @@
 <?php unset($__defined_vars); ?>
 
 <?php
-    $classes = $active ?? false ? ' bg-gray-500/50 text-white ' : 'hover:bg-gray-500/50 hover:text-white text-violet-200/75';
+    $classes = $active ?? false ? ' bg-fuchsia-500/20 text-white ' : 'hover:bg-fuchsia-500/10 hover:text-white text-violet-200/75';
 ?>
 
 <a
@@ -22,6 +22,6 @@
     <?php echo e(svg($icon)); ?>
 
     <?php endif; ?>
-    <span class="ml-3"><?php echo e($slot); ?></span>
+    <span class="ml-4"><?php echo e($slot); ?></span>
 </a>
 <?php /**PATH /home/hubert/Desktop/lighthouse/projects/skillharbor-open/resources/views/components/side-nav-link.blade.php ENDPATH**/ ?>
