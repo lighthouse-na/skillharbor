@@ -8,6 +8,7 @@
     <div class="pt-6">
         <div class="">
             <div class="bg-white dark:bg-gray-800 overflow-hidden">
+                @livewire('discover.home')
 
             </div>
         </div>
