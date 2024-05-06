@@ -7,7 +7,7 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8"> <!-- Add container with max width -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"> <!-- Add background, shadow, and rounded corners -->
             <div class="p-6 bg-white border-b border-gray-200"> <!-- Add padding and border -->
-                <form action="{{ route('directories.org.store') }}" method="POST"> <!-- Change action to store route -->
+               <form action="{{ route('users.store') }}" method="POST">
                     @csrf
 
                     <!-- Form fields -->
@@ -33,7 +33,11 @@
                         <!-- Gender -->
                         <div>
                             <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-                            <input type="text" name="gender" id="gender" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <select name="gender" id="gender" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <option value="other" disabled selected>Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                         </div>
 
                         <!-- Date of Birth -->
@@ -78,5 +82,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </d
 </x-app-layout>
