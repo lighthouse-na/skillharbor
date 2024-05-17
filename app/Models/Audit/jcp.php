@@ -80,6 +80,27 @@ class jcp extends Model
                     // Check if the skill belongs to the jcp
                     if($this->skills->contains($skill)) {
                         $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
+                        $sum += $pivot->user_rating;
+                    }
+                }
+                $sums[] = ['category' => $categoryTitle, 'value' => $sum];
+            }
+        }
+        return $sums;
+    }
+
+    public function sumSupervisorLevels(){
+        $categoryTitles = $this->skill_category();
+
+        $sums = [];
+        foreach($categoryTitles as $categoryTitle) {
+            $category = Category::where('category_title', $categoryTitle)->first();
+            if($category) {
+                $sum = 0;
+                foreach($category->skills as $skill) {
+                    // Check if the skill belongs to the jcp
+                    if($this->skills->contains($skill)) {
+                        $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
                         $sum += $pivot->supervisor_rating;
                     }
                 }
