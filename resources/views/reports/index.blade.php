@@ -8,7 +8,7 @@
     <div class="">
         <div class="ml-4">
             <div class="bg-white dark:bg-gray-800 overflow-hidden">
-                @livewire('reports.system-reports')
+                @livewire('reports.select-reports')
             </div>
         </div>
     </div>

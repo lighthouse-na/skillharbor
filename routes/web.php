@@ -12,6 +12,7 @@ use App\Livewire\Supervise\CompletedAssessmentsTable;
 use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\Assessment\AssessmentController;
 use App\Http\Controllers\System\AssessmentController as SystemAssessmentController;
+use App\Livewire\Reports\SystemReports;
 
 Route::get('/', function () {
     return view('welcome');
@@ -85,6 +86,7 @@ Route::middleware([
 
     // Reports Routes
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/{id}', [SystemReports::class, 'show'])->name('reports.show');
 
 
 
