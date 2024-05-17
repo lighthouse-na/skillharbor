@@ -3,7 +3,7 @@
 
     @forelse ($assessments as $assessment)
 
-    <a href="{{route('reports.show', ['id' => $assessment->id])}}" class="group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-gradient-to-b from-fuchsia-900 to-fuchsia-600  transition hover:duration-700 ease-in-out">
+    <a href="{{route('reports.show', ['id' => Crypt::encrypt($assessment->id)])}}" class="group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-gradient-to-b from-fuchsia-900 to-fuchsia-600  transition hover:duration-700 ease-in-out">
         <div class="flex items-center space-x-3">
          <x-iconoir-doc-star class="h-6 w-6 text-fuchsia-500 group-hover:text-white" />
 
