@@ -80,6 +80,13 @@
                     </div>
 
                     <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-base font-medium text-fuchsia-700 dark:text-white">750/1500</span>
+                            <span class="text-sm font-medium text-fuchsia-700 dark:text-white">50%</span>
+                          </div>
+                          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div class="bg-fuchsia-600 h-2.5 rounded-full" style="width: 50%"></div>
+                          </div>
                         <div class="relative w-full">
                             <div class="border bg-white rounded-md p-3 w-auto inline-flex items-center absolute top-3 right-3">
                                 <a href="#" class="inline-flex ">
@@ -89,7 +96,7 @@
                             </div>
                         </div>
 
-                        <div class="div">
+                        <div class="mt-6">
                             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Report for {{$assessment->assessment_title}}</h3>
                             <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
                             <p>The tab JavaScript swaps classes to control the content visibility and styling.</p>
