@@ -12,9 +12,9 @@ class SystemReports extends Component
 
     protected $organisation;
 
-    public function __construct(Organisation $organisation)
+    public function __construct()
     {
-        $this->organisation = $organisation;
+        $this->organisation = new Organisation;
     }
 
     public function show($id){
