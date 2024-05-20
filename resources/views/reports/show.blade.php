@@ -44,8 +44,8 @@
                         </div>
                     </header>
 
-                <div class="md:flex">
-                    <div class="container h-screen w-1/6 border pt-6">
+                <div class="md:flex" x-data="{tab: 0}">
+                    <div class="container h-screen w-1/6 border pt-6" >
                         <ul class="flex-column text-sm font-normal text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
                             <li class="inline-flex items-center">
 
@@ -53,33 +53,33 @@
 
                               </li>
                             <li>
-                                <a href="#" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg bg-gray-100 text-gray-900 active w-full dark:bg-fuchsia-600" aria-current="page">
+                                <button  x-on:click.prevent="tab = 0" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg bg-gray-100 text-gray-900 active w-full dark:bg-fuchsia-600" aria-current="page">
 
                                     Organisational Report
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="inline-flex items-center px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <button  x-on:click.prevent="tab = 1" class="inline-flex items-center px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                                     Departmental Report
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="inline-flex items-center  px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <button  x-on:click.prevent="tab = 2"  class="inline-flex items-center  px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
 
                                     Individual Report
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a href="#" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <button  x-on:click.prevent="tab = 3"  class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
 
                                     My Report
-                                </a>
+                                </button>
                             </li>
 
                         </ul>
                     </div>
 
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full">
+                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 0">
                         <div class="flex justify-between mb-1">
                             <span class="text-base font-medium text-fuchsia-700 dark:text-white">750/1500</span>
                             <span class="text-sm font-medium text-fuchsia-700 dark:text-white">50%</span>
@@ -101,6 +101,10 @@
                             <p class="mb-2">This is some placeholder content the Profile tab's associated content, clicking another tab will toggle the visibility of this one for the next.</p>
                             <p>The tab JavaScript swaps classes to control the content visibility and styling.</p>
                         </div>
+
+                    </div>
+                    <div class="flex" x-show="tab === 1">
+                        Dep
 
                     </div>
                 </div>
