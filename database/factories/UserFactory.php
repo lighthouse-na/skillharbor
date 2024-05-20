@@ -30,6 +30,8 @@ class UserFactory extends Factory
             'salary_ref_number' => $this->faker->unique()->randomNumber(8),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
+            'gender' => fake()->randomElement(['male', 'female']),
+            'role' => fake()->randomElement(['supevisor','admin','employee']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
