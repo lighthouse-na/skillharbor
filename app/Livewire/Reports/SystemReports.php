@@ -23,8 +23,9 @@ class SystemReports extends Component
         $genderSplit = $this->organisation->getGenderSplit();
         $employeeTypeSplit = $this->organisation->getEmployeeTypeSplit();
         $ageDistribution = $this->organisation->getAgeDistribution();
+        $assessmentProgress = $this->organisation->getCompletedAssessments(Crypt::decrypt($id));
+        $skillGap = $this->organisation->getCompanySkillGap();
 
-        dd($employeeCount,$genderSplit,$employeeTypeSplit,$ageDistribution);
 
         return view('reports.show',
         compact('assessment',
@@ -32,6 +33,8 @@ class SystemReports extends Component
         'genderSplit',
         'employeeTypeSplit',
         'ageDistribution',
+        'assessmentProgress',
+        'skillGap'
         ));
     }
 
