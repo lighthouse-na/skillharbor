@@ -70,9 +70,10 @@ Route::middleware([
     Route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
     Route::get('/directories/skills/create', [SkillController::class, 'create'])->name('directories.skills.create');
     Route::post('/directories/skills', [SkillController::class, 'store'])->name('directories.skills.store');
-    Route::get('/directories/skills/{id}', [SkillController::class, 'show'])->name('directories.skills.show');
-    Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
-    Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+    Route::get('/directories/skills/{encrypted_id}', [SkillController::class, 'show'])->name('directories.skills.show');
+    Route::put('/directories/skills/{encrypted_id}', [SkillController::class, 'update'])->name('directories.skills.update');
+    Route::delete('/directories/skills/{encrypted_id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+
 
     // Organisations routes
 

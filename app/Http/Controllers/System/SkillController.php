@@ -58,7 +58,8 @@ class SkillController extends Controller
     public function show(string $id)
     {
         //
-        $skill = skill::findOrFail($id);
+
+        $skill = skill::findOrFail(Crypt::decrypt($id));
 
         return view('summaries.skills.show', compact('skill'));
     }
@@ -66,15 +67,13 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $encrypted_id)
     {
-        //
-        $skill = skill::findOrFail($id);
-        $categories = category::all();
+        $id = Crypt::decrypt($encrypted_id);
+        $skill = Skill::findOrFail($id);
+        $categories = Category::all();
 
         return view('directories.skills.edit', compact('skill', 'categories'));
-
-
     }
 
     /**
