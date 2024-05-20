@@ -20,41 +20,51 @@ class Organisation extends Model
 
     public function getGenderSplit()
     {
-        return User::select(DB::raw('gender, COUNT(*) as count'))
-                    ->groupBy('gender')
-                    ->get();
+        $genderCounts = User::select(DB::raw('gender, COUNT(*) as count'))
+                            ->groupBy('gender')
+                            ->get()
+                            ->pluck('count', 'gender')
+                            ->toArray();
+
+        return $genderCounts;
     }
 
     public function getEmployeeTypeSplit()
     {
         return User::select(DB::raw('role, COUNT(*) as count'))
                     ->groupBy('role')
-                    ->get();
+                    ->get()
+                    ->pluck('count' , 'role')
+                    ->toArray();
     }
 
     public function getAgeDistribution()
     {
-        return User::select(DB::raw('dob, COUNT(*) as count'))
-                    ->get()
-                    ->groupBy(function ($user) {
-                        return match (true) {
-                            $user->age < 20 => 'Under 20',
-                            $user->age < 30 => '20-29',
-                            $user->age < 40 => '30-39',
-                            $user->age < 50 => '40-49',
-                            $user->age < 60 => '50-59',
-                            default => '60+',
-                        };
-                    })
-                    ->map(function ($group) {
-                        return count($group);
-                    });
+        $ageGroups = User::select(DB::raw("
+            CASE
+                WHEN (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) < 20 THEN 'Under 20'
+                WHEN (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) BETWEEN 20 AND 29 THEN '20-29'
+                WHEN (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) BETWEEN 30 AND 39 THEN '30-39'
+                WHEN (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) BETWEEN 40 AND 49 THEN '40-49'
+                WHEN (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) BETWEEN 50 AND 59 THEN '50-59'
+                ELSE '60+'
+            END as age_range,
+            COUNT(*) as count
+        "))
+        ->groupBy('age_range')
+        ->pluck('count', 'age_range')
+        ->toArray();
+        return $ageGroups;
+
     }
 
-    public function getCompletedAssessments()
+    public function getCompletedAssessments($id)
     {
-        $totalAssessments = jcp::where('is_active' , 1)->count();
-        $completedAssessments = jcp::whereNotNull('completed_at')->count();
+        $totalAssessments = enrollment::where('assessment_id',$id)->count();
+        $completedAssessments = enrollment::where('assessment_id', $id)
+                                          ->where('user_status', 1)
+                                          ->where('supervisor_status', 1)
+                                          ->count();
 
         return [
             'total' => $totalAssessments,
@@ -65,9 +75,9 @@ class Organisation extends Model
 
     public function getCompanySkillGap()
     {
-        $requiredLevels = DB::table('jcp_skills')->sum('required_level');
-        $userLevels = DB::table('jcp_skills')->sum('user_rating');
-        $supervisorLevels = DB::table('jcp_skills')->sum('supervisor_rating');
+        $requiredLevels = DB::table('jcp_skill')->sum('required_level');
+        $userLevels = DB::table('jcp_skill')->sum('user_rating');
+        $supervisorLevels = DB::table('jcp_skill')->sum('supervisor_rating');
 
         return [
             'required_levels' => $requiredLevels,
