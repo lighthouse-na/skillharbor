@@ -4,6 +4,7 @@ namespace App\Livewire\Reports;
 
 use App\Models\Audit\assessment;
 use App\Models\Audit\Organisation;
+use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
@@ -14,8 +15,10 @@ class SystemReports extends Component
 
     public function __construct()
     {
+
         $this->organisation = new Organisation;
     }
+
 
     public function show($id){
         $assessment = assessment::find(Crypt::decrypt($id));
