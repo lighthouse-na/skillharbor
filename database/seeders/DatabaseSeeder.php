@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressStart(10);
 
         $this->command->info(' Creating Audit Assessments...');
-        assessment::factory(1)->create();
+        assessment::factory(10)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');

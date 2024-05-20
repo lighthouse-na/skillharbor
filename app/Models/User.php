@@ -8,6 +8,7 @@ use App\Models\Audit\assessment;
 use App\Models\Audit\jcp;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -101,5 +102,9 @@ class User extends Authenticatable
             ->orWhere('email', 'like', '%' . $val . '%')
             ->orWhere('last_name', 'like', '%' . $val . '%');
 
+    }
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->attributes['dob'])->age;
     }
 }
