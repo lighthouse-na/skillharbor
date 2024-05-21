@@ -48,9 +48,8 @@ class AssessmentController extends Controller
      */
     public function edit($id)
     {
-        $assessment = Assessment::findOrFail($id);
-        $encryptedId = Crypt::encryptString($id);
-        return view('directories.assessments.edit', compact('assessment', 'encryptedId'));
+        $assessment = Assessment::findOrFail(Crypt::decrypt($id));
+        return view('directories.assessments.edit', compact('assessment'));
     }
 
     /**
