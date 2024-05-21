@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="mt-6 max-w-lg mx-auto">
-        <form action="{{ route('directories.skills.update', $skill->id) }}" method="POST">
+        <form action="{{ route('directories.skills.update', ['id' => Crypt::encrypt($skill->id)]) }}" method="POST">
             @method('PUT')
             @csrf
 
