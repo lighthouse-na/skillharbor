@@ -5,10 +5,10 @@
             {{ __('Reports') }}
         </h2>
     </x-slot>
-    <div class="pt-6">
-        <div class="">
+    <div class="">
+        <div class="ml-4">
             <div class="bg-white dark:bg-gray-800 overflow-hidden">
-
+                @livewire('reports.select-reports')
             </div>
         </div>
     </div>
