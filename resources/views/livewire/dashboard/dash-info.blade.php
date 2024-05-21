@@ -270,10 +270,12 @@
 
                 const jcpRating = $wire.jcpRating;
                 const myRating = $wire.myRating;
+                const supervisorRating = $wire.supervisorRating;
 
                 const labels = jcpRating.map(item => item.category);
                 const values = jcpRating.map(item => item.value);
                 const values2 = myRating.map(item => item.value);
+                const values3 = supervisorRating.map(item => item.value);
 
                 console.log(labels, values);
                 new Chart(ctx, {
@@ -302,7 +304,20 @@
                             pointBorderColor: '#fff',
                             pointHoverBackgroundColor: '#fff',
                             pointHoverBorderColor: 'rgb(160, 32, 240)'
-                        }]
+                        },
+                        {
+                            label: 'Supervispr Rating',
+                            data: values3,
+                            fill: true,
+                            backgroundColor: 'rgba(260, 32, 240, 0.2)',
+                            borderColor: 'rgb(260, 32, 240)',
+                            pointBackgroundColor: 'rgb(260, 32, 240)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(260, 32, 240)'
+                        },
+
+                    ]
                     },
                     options: {
                         scales: {
@@ -319,7 +334,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            type: 'bar',
+                            type: 'line',
                             label: 'My Level',
                             data: values2,
                             backgroundColor: [
@@ -329,12 +344,29 @@
                                 'rgb(160, 32, 240)',
                                 ],
                                 borderWidth: 1
-                        }, {
+                        },{
                             type: 'line',
+                            label: 'Supervisor Rating',
+                            data: values3,
+                            backgroundColor: [
+                                'rgba(260, 32, 240, 0.2)',
+                                ],
+                                borderColor: [
+                                'rgb(260, 32, 240)',
+                                ],
+                                borderWidth: 1
+                        }, {
+                            type: 'bar',
                             label: 'JCP Requirement',
                             data: values,
                             fill: false,
-                            borderColor: 'rgb(255, 99, 132)'
+                            backgroundColor: [
+                            'rgba(255,99,132,0.2)',
+                            ],
+
+                            borderColor: 'rgb(255, 99, 132)',
+                            borderWidth: 1
+
                         }],
 
 
