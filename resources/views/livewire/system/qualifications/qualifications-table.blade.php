@@ -50,7 +50,7 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="{{ route('qualifications.edit', ['qualification' => $qualification->id]) }}">
+                                    <x-dropdown-link href="{{ route('qualifications.edit', ['qualification' => Crypt::encrypt($qualification->id)]) }}">
                                         Edit
                                     </x-dropdown-link>
                                     <x-dropdown-link href="#" wire:click.prevent="deleteQualification({{ $qualification->id }})" class="text-red-500" onclick="return confirm('Are you sure you want to delete this qualification?')">
