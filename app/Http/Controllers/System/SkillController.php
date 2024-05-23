@@ -69,7 +69,7 @@ class SkillController extends Controller
     public function edit(string $id)
     {
         //
-        $skill = skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
         $categories = category::all();
 
         return view('directories.skills.edit', compact('skill', 'categories'));
