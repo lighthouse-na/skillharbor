@@ -52,25 +52,25 @@
                                 <h1 class="px-6 py-0.5 uppercase font-medium text-xs text-gray-900 pb-2"> Organisation</h1>
 
                               </li>
-                            <li>
-                                <button  x-on:click.prevent="tab = 0" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg bg-gray-100 text-gray-900 active w-full dark:bg-fuchsia-600" aria-current="page">
+                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800' : tab === 0 }">
+                                <button  x-on:click.prevent="tab = 0"  class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white" >
 
                                     Organisational Report
                                 </button>
                             </li>
-                            <li>
-                                <button  x-on:click.prevent="tab = 1" class="inline-flex items-center px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 1 }">
+                                <button  x-on:click.prevent="tab = 1" x-bind:class="{ 'bg-gray-100': tab === '1' }" class="inline-flex items-center px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                                     Departmental Report
                                 </button>
                             </li>
-                            <li>
-                                <button  x-on:click.prevent="tab = 2"  class="inline-flex items-center  px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 2 }">
+                                <button  x-on:click.prevent="tab = 2" x-bind:class="{ 'bg-gray-100': tab === '2' }" class="inline-flex items-center  px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
 
                                     Individual Report
                                 </button>
                             </li>
-                            <li>
-                                <button  x-on:click.prevent="tab = 3"  class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 3 }">
+                                <button  x-on:click.prevent="tab = 3" x-bind:class="{ 'bg-gray-100': tab === '3' }" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
 
                                     My Report
                                 </button>
@@ -79,7 +79,8 @@
                         </ul>
                     </div>
 
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 0">
+                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 0"
+                    >
                         <div class="flex justify-between mb-1">
                             <span class="text-base font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["completed"]}}/{{$assessmentProgress["total"]}}</span>
                             <span class="text-sm font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["percentage"]}}%</span>
@@ -104,8 +105,18 @@
                         </div>
 
                     </div>
-                    <div class="flex" x-show="tab === 1">
+                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 1"
+                    >
                         Dep
+
+                    </div>
+                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full"  x-show="tab === 2"
+                    >
+                        Ind
+
+                    </div>
+                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 3">
+                        My
 
                     </div>
                 </div>
