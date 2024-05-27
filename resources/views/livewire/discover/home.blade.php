@@ -3,14 +3,14 @@
 
     @forelse ($assessments as $assessment)
 
-    <a href="#" class="group block w-full mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-gradient-to-b from-fuchsia-900 to-fuchsia-600  transition hover:duration-700 ease-in-out">
+    <a href="#" class="group block w-full mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 space-y-3 hover:bg-fuchsia-100  transition hover:duration-700 ease-in-out">
 
         <div class="flex items-center space-x-3">
-         <x-iconoir-doc-star class="h-6 w-6 text-fuchsia-500 group-hover:text-white" />
+         <x-iconoir-magic-wand class="h-6 w-6 text-fuchsia-500" />
 
-          <h3 class="text-slate-900 group-hover:text-white text-sm font-semibold">{{$assessment->assessment_title}}</h3>
+          <h3 class="text-slate-900  text-sm font-semibold">{{$assessment->assessment_title}}</h3>
         </div>
-        <p class="text-slate-500 group-hover:text-white text-sm">View insights from the {{$assessment->assessment_title}} assessment.</p>
+        <p class="text-slate-500 text-sm">View insights from the {{$assessment->assessment_title}} assessment.</p>
       </a>
 
 
