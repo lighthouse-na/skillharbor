@@ -51,8 +51,12 @@ class JCPController extends Controller
     }
 
     public function update(Request $request, string $id)
-    {
+    {  
+      
+
         $jcp = jcp::findOrFail(Crypt::decrypt($id));
+        
+
         $jcp->update($request->all());
 
         return redirect()->route('jcp.index');
