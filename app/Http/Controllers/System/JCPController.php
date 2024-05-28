@@ -53,11 +53,18 @@ class JCPController extends Controller
     public function update(Request $request, string $id)
     {  
       
-
+     
         $jcp = jcp::findOrFail(Crypt::decrypt($id));
-        
+        $jcp->update([
+            'position_title' => $request->position_title,
+            'duty_station' => $request->duty_station,
+            'user_id' => $request->user_id,
+            'job_grade' => $request->job_grade,
+            'job_purpose' => $request->job_purpose,
+            'is_active' => $request->has(key:'is_active') // make field selected if checked 
 
-        $jcp->update($request->all());
+
+        ]);
 
         return redirect()->route('jcp.index');
     }
