@@ -38,7 +38,7 @@ class JCPController extends Controller
 
     public function show(string $id)
     {
-        $jcp = jcp::findOrFail($id);
+        $jcp = jcp::findOrFail(Crypt::decrypt($id));
         return view('directories.jcp.show', compact('jcp'));
     }
 
@@ -52,7 +52,7 @@ class JCPController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $jcp = jcp::findOrFail($id);
+        $jcp = jcp::findOrFail(Crypt::decrypt($id));
         $jcp->update($request->all());
 
         return redirect()->route('jcp.index');
@@ -60,7 +60,7 @@ class JCPController extends Controller
 
     public function destroy(string $id)
     {
-        $jcp = jcp::findOrFail($id);
+        $jcp = jcp::findOrFail(Crypt::decrypt($id));
         $jcp->delete();
 
         return redirect()->route('jcp.index');

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="mt-6 max-w-lg mx-auto">
-        <form action="{{ route('jcp.update', $jcp->id) }}" method="POST">
+        <form action="{{ route('jcp.update', Crypt::encrypt($jcp->id)) }}" method="POST">
             @csrf
             @method('PUT')
 
