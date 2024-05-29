@@ -44,7 +44,7 @@
             </div>
            <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <button class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md" onclick="window.location.href = '{{ route('skills.create') }}'">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add skill
                 </button>
@@ -90,7 +90,7 @@
                                     </x-dropdown-link>
 
                                        <!-- Delete Form -->
-                                       <form action="{{ route('skills.destroy', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
+                                       <form action="{{ route('skills.destroy',['skill'=> Crypt::encrypt($skill->id)] ) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
 
                                         @csrf
                                         @method('DELETE')

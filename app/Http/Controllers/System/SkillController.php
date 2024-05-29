@@ -27,7 +27,8 @@ class SkillController extends Controller
     public function create()
     {
         //
-        return view('directories.skills.create');
+        $categories = Category::all(); 
+        return view('directories.skills.create', compact('categories')); 
     }
 
     /**
@@ -85,7 +86,7 @@ class SkillController extends Controller
     {
         // Validate the request data here if needed
 
-        $skill = Skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
 
         // Update the skill with the new data from the request
         $skill->update([
@@ -110,7 +111,7 @@ class SkillController extends Controller
     public function destroy($id)
     {
         //
-        $skill = skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
         $skill->delete();
 
         return redirect()->route('directories.skills.index')->with('success', 'Skill deleted successfully.');

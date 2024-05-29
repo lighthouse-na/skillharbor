@@ -58,7 +58,6 @@ class JCPController extends Controller
         $jcp->update([
             'position_title' => $request->position_title,
             'duty_station' => $request->duty_station,
-            'user_id' => $request->user_id,
             'job_grade' => $request->job_grade,
             'job_purpose' => $request->job_purpose,
             'is_active' => $request->has(key:'is_active') // make field selected if checked 
