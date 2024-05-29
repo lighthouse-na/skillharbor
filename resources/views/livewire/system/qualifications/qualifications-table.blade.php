@@ -49,16 +49,17 @@
 
                                 </x-slot>
                                 <x-slot name="content">
-                                    <!-- Directory Management -->
-                                    <x-dropdown-link href="{{ route('qualifications.edit', ['qualification' => Crypt::encrypt($qualification->id)]) }}">
-                                        Edit
-                                    </x-dropdown-link>
-                                    <x-dropdown-link href="#" wire:click.prevent="deleteQualification({{ $qualification->id }})" class="text-red-500" onclick="return confirm('Are you sure you want to delete this qualification?')">
-                                        Delete
-                                    </x-dropdown-link>
-
-
-
+                                    <form action="{{ route('qualifications.destroy', ['qualification' => $qualification->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <!-- Directory Management -->
+                                        <x-dropdown-link href="{{ route('qualifications.edit', ['qualification' => Crypt::encrypt($qualification->id)]) }}">
+                                            Edit
+                                        </x-dropdown-link>
+                                        <x-dropdown-link href="#" wire:click.prevent="deleteQualification({{ $qualification->id }})" class="text-red-500" onclick="return confirm('Are you sure you want to delete this qualification?')">
+                                            Delete
+                                        </x-dropdown-link>
+                                    </form>
 
                                     {{-- <div class="border-t border-gray-200 dark:border-gray-800"></div> --}}
 
