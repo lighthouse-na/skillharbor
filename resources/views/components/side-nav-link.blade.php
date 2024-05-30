@@ -1,7 +1,7 @@
 @props(['active', 'icon'])
 
 @php
-    $classes = $active ?? false ? ' bg-gray-500/50 text-white ' : 'hover:bg-gray-500/50 hover:text-white text-violet-200/75';
+    $classes = $active ?? false ? ' bg-fuchsia-500/20 text-white ' : 'hover:bg-fuchsia-500/10 hover:text-white text-violet-200/75';
 @endphp
 
 <a
@@ -9,5 +9,5 @@
     @if ($icon)
     {{ svg($icon) }}
     @endif
-    <span class="ml-3">{{ $slot }}</span>
+    <span class="ml-4">{{ $slot }}</span>
 </a>
