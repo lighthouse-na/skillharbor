@@ -29,6 +29,7 @@ class SkillController extends Controller
         $categories = category::all(); // Retrieve all skill categories from the database
 
         return view('directories.skills.create', compact('categories'));
+
     }
 
     /**
@@ -70,6 +71,7 @@ class SkillController extends Controller
      */
     public function edit(string $encrypted_id)
     {
+
         $id = Crypt::decrypt($encrypted_id);
         $skill = Skill::findOrFail($id);
         $categories = Category::all();
@@ -85,7 +87,7 @@ class SkillController extends Controller
     {
 
 
-        $skill = Skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
 
 
         $skill->update([
@@ -109,7 +111,7 @@ class SkillController extends Controller
     public function destroy($id)
     {
         //
-        $skill = skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
         $skill->delete();
 
         return redirect()->route('directories.skills.index')->with('success', 'Skill deleted successfully.');

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\System;
 
-use App\Http\Controllers\Controller;
-use App\Models\Audit\qualification;
 use Illuminate\Http\Request;
+use App\Models\Audit\qualification;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class QualificationController extends Controller
 {
@@ -48,7 +49,7 @@ class QualificationController extends Controller
      */
     public function edit(string $id)
     {
-        $qualification = qualification::findOrFail($id);
+        $qualification = qualification::findOrFail(Crypt::decrypt($id));
         return view('directories.qualifications.edit', compact('qualification'));
     }
 
