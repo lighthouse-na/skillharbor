@@ -44,6 +44,7 @@
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
                 <a href="{{ route('directories.skills.create') }}" class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add skill
                 </a>
@@ -84,20 +85,20 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="{{route('skills.edit', ['skill'=> $skill->id])}}">
+                                    <x-dropdown-link href="{{route('skills.edit', ['skill'=> Crypt::encrypt($skill->id)])}}">
                                         Edit
                                     </x-dropdown-link>
 
                                        <!-- Delete Form -->
-                                       <form action="{{ route('skills.destroy', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
+                                       <form action="{{ route('skills.destroy',['skill'=> Crypt::encrypt($skill->id)] ) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
 
-                                       @csrf
-                                       @method('DELETE')
-                                       <x-dropdown-link href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this skill?')) { this.closest('form').submit(); }" class="text-red-500">
-                                           Delete
-                                       </x-dropdown-link>
-                                   </form>
 
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-dropdown-link href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this skill?')) { this.closest('form').submit(); }" class="text-red-500">
+                                            Delete
+                                        </x-dropdown-link>
+                                    </form>
                                 </x-slot>
                             </x-dropdown>
 
