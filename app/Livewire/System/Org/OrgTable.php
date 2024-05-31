@@ -5,6 +5,7 @@ namespace App\Livewire\System\Org;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
@@ -65,7 +66,13 @@ class OrgTable extends Component
         }
     }
 
-
+    public function edit($id)
+    {
+        // Find user by ID
+        $user = User::findOrFail($id);
+        // Return view with user data
+        return view('directories.org.edit', compact('user'));
+    }
 
 
 }
