@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');
-        qualification::factory(10)->create();
+        qualification::factory(1)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Prerequisites...');
@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Users...');
-        User::factory(10)->create();
+        User::factory(20)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit jcp...');
-        jcp::factory(10)->create();
+        jcp::factory(20)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');

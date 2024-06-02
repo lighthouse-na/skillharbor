@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-6 px-6">
-        @livewire('supervise.select-assessment')
+        @livewire('supervise.completed-assessments-table')
 
     </div>
 </x-app-layout>

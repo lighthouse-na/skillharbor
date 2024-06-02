@@ -6,10 +6,9 @@
         </h2>
     </x-slot>
     <div class="">
-        <div class="ml-4">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden">
+            <div class="py-6 px-6">
                 @livewire('reports.select-reports')
             </div>
-        </div>
+
     </div>
 </x-app-layout>

@@ -78,6 +78,9 @@
 
         </tbody>
     </table>
+    <div class="mt-4 m-3">
+        {{ $completedAssessments->links() }}
+    </div>
 </div>
 </div>
 </div>

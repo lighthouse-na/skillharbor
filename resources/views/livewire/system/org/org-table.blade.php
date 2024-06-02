@@ -65,20 +65,19 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="#">
+                                    <x-dropdown-link href="{{ route('directories.org.edit', $user->id) }}">
                                         Edit
                                     </x-dropdown-link>
 
 
-                                    <x-dropdown-link class="text-red-900 hover:bg-red-200/50">
-                                            Delete
+                                    <x-dropdown-link class="text-red-500 hover:bg-red-500/50">
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this organization?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="background: none!important; border: none; padding: 0!important; color: #0694a2; cursor: pointer;">Delete</button>
+                                        </form>
                                     </x-dropdown-link>
 
-
-
-
-
-                                    {{-- <div class="border-t border-gray-200 dark:border-gray-800"></div> --}}
 
                                 </x-slot>
                             </x-dropdown>

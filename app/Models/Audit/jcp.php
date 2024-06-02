@@ -65,7 +65,7 @@ class jcp extends Model
             }
         }
 
-        return $sums;
+        return $sums ?? [];
     }
 
     public function sumMyLevels(){
@@ -86,7 +86,7 @@ class jcp extends Model
                 $sums[] = ['category' => $categoryTitle, 'value' => $sum];
             }
         }
-        return $sums;
+        return $sums ?? [];
     }
 
     public function sumSupervisorLevels(){
@@ -107,6 +107,6 @@ class jcp extends Model
                 $sums[] = ['category' => $categoryTitle, 'value' => $sum];
             }
         }
-        return $sums;
+        return $sums ?? [];
     }
 }
