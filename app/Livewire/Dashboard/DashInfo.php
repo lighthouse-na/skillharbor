@@ -16,6 +16,8 @@ class DashInfo extends Component
     public $jcp = '';
     public $jcpRating = [];
     public $myRating = [];
+    public $supervisorRating = [];
+
 
 
 
@@ -23,6 +25,7 @@ class DashInfo extends Component
     {
         $this->jcp = auth()->user()->jcp()->where('is_active',1)->first();
         $this->myRating = $this->jcp->sumMyLevels();
+        $this->supervisorRating = $this->jcp->sumSupervisorLevels();
         $this->jcpRating = $this->jcp->sumRequiredLevelsByCategory();
         $this->confirmingAddQualification  = false;
         $this->confirmingQualificationRemoval = false;
