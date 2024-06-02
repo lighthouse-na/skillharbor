@@ -26,8 +26,10 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
-        return view('directories.skills.create');
+        $categories = category::all(); // Retrieve all skill categories from the database
+
+        return view('directories.skills.create', compact('categories'));
+
     }
 
     /**
@@ -49,7 +51,7 @@ class SkillController extends Controller
 
         $skill->save();
 
-        return redirect()->route('skills.index')->with('success', 'Skill created successfully.');
+        return redirect()->route('directories.skills.index')->with('success', 'Skill created successfully.');
     }
 
     /**
@@ -69,6 +71,7 @@ class SkillController extends Controller
      */
     public function edit(string $encrypted_id)
     {
+
         $id = Crypt::decrypt($encrypted_id);
         $skill = Skill::findOrFail($id);
         $categories = Category::all();
@@ -82,18 +85,17 @@ class SkillController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate the request data here if needed
 
-        $skill = Skill::findOrFail($id);
 
-        // Update the skill with the new data from the request
+        $skill = skill::findOrFail(Crypt::decrypt($id));
+
+
         $skill->update([
             'skill_title' => $request->input('skill_title'),
             'skill_description' => $request->input('skill_description'),
-            // Add more fields as needed
+
         ]);
 
-        // Redirect the user to the skills.index route after successful update
         return redirect()->route('directories.skills.index')->with('success', 'Skill updated successfully');
     }
 
@@ -109,7 +111,7 @@ class SkillController extends Controller
     public function destroy($id)
     {
         //
-        $skill = skill::findOrFail($id);
+        $skill = skill::findOrFail(Crypt::decrypt($id));
         $skill->delete();
 
         return redirect()->route('directories.skills.index')->with('success', 'Skill deleted successfully.');

@@ -64,12 +64,12 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="#">
+                                    <x-dropdown-link href="{{ route('jcp.edit', ['jcp' =>Crypt::encrypt($jcp->id)]) }}">    
                                         Edit
                                     </x-dropdown-link>
 
 
-                                    <x-dropdown-link href="#" wire:click.prevent="deleteJCP({{ $jcp->id }})" onclick="return confirm('Are you sure you want to delete this jcp?')" class="text-red-900 hover:bg-red-200/50">
+                                    <x-dropdown-link href="#" wire:click.prevent="deleteJCP({{ $jcp->id }})" onclick="return confirm('Are you sure you want to delete this jcp?')" class="text-red-500 hover:bg-red-200/50">
                                             Delete
                                     </x-dropdown-link>
 
