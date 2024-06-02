@@ -12,6 +12,7 @@ use App\Livewire\Supervise\CompletedAssessmentsTable;
 use App\Http\Controllers\System\QualificationController;
 use App\Http\Controllers\Assessment\AssessmentController;
 use App\Http\Controllers\System\AssessmentController as SystemAssessmentController;
+use App\Livewire\Reports\SystemReports;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,10 +29,15 @@ Route::middleware([
 
 
     //Completing an Assessment Routes
-
+    Route::get('/user-assessment/submission/{user}/{assessment}', [AssessmentController::class, 'submission'])->name('user-assessment.submission');
+    Route::get('/user-assessment/results/{user}/{assessment}', [AssessmentController::class, 'results'])->name('user-assessment.results');
     Route::get('/user-assessment/{user}', [AssessmentController::class, 'index'])->name('user-assessment');
     Route::get('/user-assessment/{user}/{assessment}', [AssessmentController::class, 'show'])->name('user-assessment.show');
     Route::post('/user-assessment/{user}/{assessment}/{jcp}', [AssessmentController::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
+
+
+
+    //Assessment Routes
     Route::get('/directories/assessments', [AssessmentController::class, 'index'])->name('directories.assessments.index');
     Route::put('/directories/assessments/{id}', [AssessmentController::class, 'update'])->name('directories.assessments.update');
 
@@ -64,9 +70,10 @@ Route::middleware([
     Route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
     Route::get('/directories/skills/create', [SkillController::class, 'create'])->name('directories.skills.create');
     Route::post('/directories/skills', [SkillController::class, 'store'])->name('directories.skills.store');
-    Route::get('/directories/skills/{id}', [SkillController::class, 'show'])->name('directories.skills.show');
-    Route::put('/directories/skills/{id}', [SkillController::class, 'update'])->name('directories.skills.update');
-    Route::delete('/directories/skills/{id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+    Route::get('/directories/skills/{encrypted_id}', [SkillController::class, 'show'])->name('directories.skills.show');
+    Route::put('/directories/skills/{encrypted_id}', [SkillController::class, 'update'])->name('directories.skills.update');
+    Route::delete('/directories/skills/{encrypted_id}', [SkillController::class, 'destroy'])->name('directories.skills.destroy');
+
 
     // Organisations routes
 
@@ -82,6 +89,7 @@ Route::middleware([
 
     // Reports Routes
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/{id}', [SystemReports::class, 'show'])->name('reports.show');
 
 
 

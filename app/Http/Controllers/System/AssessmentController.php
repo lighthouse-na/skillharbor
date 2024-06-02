@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Models\Audit\assessment;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -52,6 +53,7 @@ class AssessmentController extends Controller
         $assessment = Assessment::findOrFail(Crypt::decrypt($id));
 
         // Pass the $assessment variable to the view
+
         return view('directories.assessments.edit', compact('assessment'));
     }
 
