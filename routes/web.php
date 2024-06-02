@@ -46,6 +46,7 @@ Route::middleware([
 
     //Audit Routes
     Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
+    Route::get('/supervise/{id}', [SuperviseController::class, 'list'])->name('supervise.list');
     Route::get('supervise/{id}/{assessment_id}', [CompletedAssessmentsTable::class, 'show'])->name('supervise.show');
     Route::post('supervise/{user}/{assessment}/{jcp}', [CompletedAssessmentsTable::class, 'store'])->name('supervise.store');
 
@@ -80,8 +81,10 @@ Route::middleware([
     Route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
     Route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
-
-
+    Route::get('/directories/org/{id}', [UserController::class, 'show'])->name('directories.org.show');
+    Route::get('/directories/org/{id}/edit', [UserController::class, 'edit'])->name('directories.org.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     // Discover Routes
     Route::get('/discover', [DiscoverController::class, 'index'])->name('discover.index');
 
