@@ -88,7 +88,7 @@ class CompletedAssessmentsTable extends Component
             $query->where('user_status', 1);
         })->with(['enrolled' => function ($query) {
             $query->select();
-        }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->get();
+        }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->paginate(10);
 
 
 

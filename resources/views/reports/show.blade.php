@@ -107,16 +107,16 @@
                     </div>
                     <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 1"
                     >
-                        Dep
+                        Departmental Reports
 
                     </div>
                     <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full"  x-show="tab === 2"
                     >
-                        Ind
+                        Individual Reports
 
                     </div>
                     <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 3">
-                        My
+                        My Report
 
                     </div>
                 </div>

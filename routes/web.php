@@ -46,6 +46,7 @@ Route::middleware([
 
     //Audit Routes
     Route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
+    Route::get('/supervise/{id}', [SuperviseController::class, 'list'])->name('supervise.list');
     Route::get('supervise/{id}/{assessment_id}', [CompletedAssessmentsTable::class, 'show'])->name('supervise.show');
     Route::post('supervise/{user}/{assessment}/{jcp}', [CompletedAssessmentsTable::class, 'store'])->name('supervise.store');
 
