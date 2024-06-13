@@ -131,8 +131,8 @@
     </div>
 
 </body>
-<footer class=" py-4 text-center text-slate-800">
-    <p class="text-sm">
+<footer class=" py-4 text-center text-slate-500 bg-gray-100">
+    <p class="text-sm ml-44">
         SkillHarbor developed by Lighthouse &copy; {{ date('Y') }}
     </p>
 </footer>
