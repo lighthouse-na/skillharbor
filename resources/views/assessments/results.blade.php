@@ -5,7 +5,7 @@
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 mb-3">
                     <li class="inline-flex items-center">
                         <a href="/"
-                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-sky-900 ">
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-fuchsia-900 ">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -24,33 +24,34 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <a href="{{ route('user-assessment',['user' => Crypt::encrypt($user->id)]) }}"
-                                class="ml-1 text-sm font-medium text-gray-700 hover:text-sky-900 md:ml-2 ">My Assessments</a>
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-fuchsia-900 md:ml-2 ">My Assessments</a>
                         </div>
                     </li>
 
                 </ol>
             </nav>
-            <div class="container text-gray-950  mx-auto px-4 py-3 rounded-3xl">
+            <div class="flex  rounded-3xl mx-auto">
+
 
                 <div class="mt-3 mx-4 flex flex-wrap">
 
                     <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10">
-                        <div class="grow-0 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
-                            <h4 class="text-dark mb-2 text-lg text-indigo-500 font-semibold">Job Competency Profile
+                        <div class="grow-1 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
+                            <h4 class="text-dark mb-2 text-lg text-fuchsia-500 font-semibold">Job Competency Profile
                                 Details
                             </h4>
                             <p>
-                                <strong class="text-indigo-500">Employee Name:
+                                <strong class="text-fuchsia-500">Employee Name:
                                 </strong>{{ $user->first_name . ' ' . $user->last_name }}
                             </p>
                             <p>
-                                <strong class="text-indigo-500">Job title: </strong>{{ $jcp->position_title }}
+                                <strong class="text-fuchsia-500">Job title: </strong>{{ $jcp->position_title }}
                             </p>
                             <p>
-                                <strong class="text-indigo-500">Job Purpose: </strong>{{ $jcp->job_purpose }}
+                                <strong class="text-fuchsia-500">Job Purpose: </strong>{{ $jcp->job_purpose }}
                             </p>
                             <p>
-                                <strong class="text-indigo-500">Job Grade: </strong>{{ $jcp->job_grade }}
+                                <strong class="text-fuchsia-500">Job Grade: </strong>{{ $jcp->job_grade }}
                             </p>
 
 
@@ -58,8 +59,8 @@
                     </div>
 
                     <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10">
-                        <div class="grow-0 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
-                            <h4 class="text-dark mb-2 text-lg text-indigo-500 font-semibold">Required Qualifications
+                        <div class="grow-1 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
+                            <h4 class="text-dark mb-2 text-lg text-fuchsia-500 font-semibold">Required Qualifications
                             </h4>
 
                             <div class="flex">
@@ -92,13 +93,14 @@
                         </div>
 
                     </div>
-                    <div>
-                        <a class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-fuchsia-600 hover:text-fuchsia-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('supervisor.result',['user_id' => Crypt::Encrypt($user->id), 'assessment_id' => Crypt::Encrypt($assessment->id)])}}">
-                            Download
-                            <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                          </a>
-                    </div>
 
+
+                </div>
+                <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10 mt-3">
+                    <a class="inline-flex items-center text-sm font-semibold rounded-lg border pb-3 pt-2 px-3 text-fuchsia-600 hover:bg-fuchsia-800 hover:text-white disabled:opacity-50 disabled:pointer-events-none " href="{{route('supervisor.result',['user_id' => Crypt::Encrypt($user->id), 'assessment_id' => Crypt::Encrypt($assessment->id)])}}">
+                        Download
+                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                      </a>
                 </div>
 
 
@@ -116,16 +118,16 @@
                 <table class="mt-6 w-full">
                     <thead >
                         <tr>
-                            <th class="py-3 px-5 text-left bg-indigo-800 text-white font-medium">Category</th>
-                            <th class="py-3 px-5 text-left bg-indigo-800 text-white font-medium">Skill</th>
-                            <th class="py-3 px-5 text-left bg-indigo-800 text-white font-medium">User Rating</th>
-                            <th class="py-3 px-5 text-left bg-indigo-800 text-white font-medium">Supervisor Rating</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Category</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Skill</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">User Rating</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Supervisor Rating</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($jcp->skills->groupBy('category.category_title') as $category => $skills)
                         <tr>
-                            <td colspan="4" class="py-3 px-5 border-b bg-indigo-500 text-white">{{ $category }}</td>
+                            <td colspan="4" class="py-3 px-5 border-b bg-fuchsia-500 text-white">{{ $category }}</td>
                         </tr>
                         @foreach ($skills as $index => $question)
                         <tr class="{{ $index % 2 === 0 ? 'bg-gray-100' : 'bg-white' }}">

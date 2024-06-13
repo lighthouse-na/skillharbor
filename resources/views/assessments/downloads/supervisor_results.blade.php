@@ -9,8 +9,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #ffffff;
             font-size: 8px; /* Reduced font size */
         }
         .container {
@@ -85,6 +84,12 @@
             margin-right: auto;
             width: 100%;
          }
+         .text-danger{
+            color: #dc3545;
+         }
+         .text-success{
+            color: #28a745;
+         }
     </style>
 </head>
 <body>
@@ -101,6 +106,8 @@
                 <p><strong>Job Grade:</strong> {{ $jcp->job_grade }}</p>
             </div>
             <div class="chart">
+                <h2 class="section-title">My Skill Gap Chart</h2>
+
                     <img src="https://quickchart.io/chart?width=500&height=300&c={{ $chartUrl }}"/>
             </div>
 
@@ -109,16 +116,13 @@
                 <h2 class="section-title">Required Qualifications</h2>
                 @foreach ($qualificationsData as $qualificationData)
                     <div class="qualification-item">
-                        <h3>{{ $qualificationData['name'] }}</h3>
-                        @if ($qualificationData['attained'])
-                            <svg class="qualification-icon text-green-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 11l3 3L22 4l-1.41-1.42L12 12.18l-2.59-2.59L9 11z"></path>
-                            </svg>
-                        @else
-                            <svg class="qualification-icon text-red-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.59 6l-4.59 4.59L7.41 6 6 7.41l4.59 4.59L6 16.59 7.41 18l4.59-4.59 4.59 4.59 1.41-1.41-4.59-4.59L18 7.41z"></path>
-                            </svg>
-                        @endif
+                        <h3>{{ $qualificationData['name'] }}
+                            @if ($qualificationData['attained'])
+                                <span class="text-success"> (Attained)</span>
+                            @else
+                                <span class="text-danger"> (Not Attained)</span>
+                            @endif
+                        </h3>
                     </div>
                 @endforeach
             </div>

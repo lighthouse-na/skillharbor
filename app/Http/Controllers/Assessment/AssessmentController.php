@@ -149,6 +149,16 @@ class AssessmentController extends Controller
          */
         $userQualifications = $user->qualifications()->get();
         $qualificationsData = [];
+        foreach ($jcp->qualifications()->get() as $qualification) {
+            // Check if the qualification exists in the user's acquired qualifications
+            $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
+
+            // Add qualification name and attained status to the data array
+            $qualificationsData[] = [
+                'name' => $qualification->qualification_title,
+                'attained' => $isAcquired,
+            ];
+        }
 
         $jcpRating = $jcp->sumRequiredLevelsByCategory(); // Convert single object to array or empty array
         $myRating = is_array($jcp->sumMyLevels()) ? $jcp->sumMyLevels() : [];
