@@ -1,11 +1,11 @@
 <x-app-layout>
     <div class="flex-1 justify-start pb-24 pt-6 mb-6 font-inter">
-        <div class="container mx-auto p-6">
+        <div class="container mx-auto p-12">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 mb-3">
                     <li class="inline-flex items-center">
                         <a href="/"
-                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-sky-900 ">
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-fuchsia-900 ">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -24,64 +24,43 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <a href="{{ route('user-assessment',['user' => Crypt::encrypt($user->id)]) }}"
-                                class="ml-1 text-sm font-medium text-gray-700 hover:text-sky-900 md:ml-2 ">My Assessments</a>
+                                class="ml-1 text-sm font-medium text-gray-700 hover:text-fuchsia-900 md:ml-2 ">My Assessments</a>
                         </div>
                     </li>
 
                 </ol>
             </nav>
-            <div class="container text-gray-950  mx-auto px-6 py-3 rounded-3xl">
-                <div class="container w-full">
-                    <div class="flex-inline">
-                        <div class="overview pb-3 border-b">
-                            <h3 class="flex justify-start text-grey-300 text-lg font-inter">Overview</h3>
-
-                            {{-- <h3 class="flex justify-start text-orange-500 font-bold font-inter">
-                                {{ $jcp }}</h3> --}}
-                        </div>
-                    </div>
+            <div class="flex  rounded-3xl mx-auto">
 
 
-                </div>
                 <div class="mt-3 mx-4 flex flex-wrap">
-                    <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
 
-                        <div class="mb-10 w-full">
-
-
-                            <div class="radial-progress text-orange-500 mt-6"
-                                style="--value:{{ $user->competency_rating }}; --size:12rem; --thickness: 2rem;">
-                                {{ $user->competency_rating }}</div>
-
-
-                        </div>
-                    </div>
-                    <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500">
-                        <div class="grow-0 shrink-0 basis-auto w-10/12 pl-4 md:pl-6 mt-6">
-                            <h4 class="text-dark mb-2 text-lg text-orange-500 font-semibold">Job Competency Profile
+                    <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10">
+                        <div class="grow-1 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
+                            <h4 class="text-dark mb-2 text-lg text-fuchsia-500 font-semibold">Job Competency Profile
                                 Details
                             </h4>
                             <p>
-                                <strong class="text-orange-500">Employee Name:
+                                <strong class="text-fuchsia-500">Employee Name:
                                 </strong>{{ $user->first_name . ' ' . $user->last_name }}
                             </p>
                             <p>
-                                <strong class="text-orange-500">Job title: </strong>{{ $jcp->position_title }}
+                                <strong class="text-fuchsia-500">Job title: </strong>{{ $jcp->position_title }}
                             </p>
                             <p>
-                                <strong class="text-orange-500">Job Purpose: </strong>{{ $jcp->job_purpose }}
+                                <strong class="text-fuchsia-500">Job Purpose: </strong>{{ $jcp->job_purpose }}
                             </p>
                             <p>
-                                <strong class="text-orange-500">Job Grade: </strong>{{ $jcp->job_grade }}
+                                <strong class="text-fuchsia-500">Job Grade: </strong>{{ $jcp->job_grade }}
                             </p>
 
 
                         </div>
                     </div>
 
-                    <div class="w-full px-4 mt-3">
-                        <div class="mb-6 w-full">
-                            <h4 class="text-dark mb-2 text-lg text-orange-500 font-semibold">Required Qualifications
+                    <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10">
+                        <div class="grow-1 shrink-0 basis-auto w-10/12 md:pl-6 mt-6">
+                            <h4 class="text-dark mb-2 text-lg text-fuchsia-500 font-semibold">Required Qualifications
                             </h4>
 
                             <div class="flex">
@@ -112,7 +91,16 @@
 
                             </div>
                         </div>
+
                     </div>
+
+
+                </div>
+                <div class="w-full px-4 sm:w-1/2 lg:w-6/12 text-grey-500 mb-10 mt-3">
+                    <a class="inline-flex items-center text-sm font-semibold rounded-lg border pb-3 pt-2 px-3 text-fuchsia-600 hover:bg-fuchsia-800 hover:text-white disabled:opacity-50 disabled:pointer-events-none " href="{{route('supervisor.result',['user_id' => Crypt::Encrypt($user->id), 'assessment_id' => Crypt::Encrypt($assessment->id)])}}">
+                        Download
+                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                      </a>
                 </div>
 
 
@@ -121,7 +109,7 @@
 
             {{--  --}}
 
-            <div class="flex bg-white border py-6 px-6 rounded-3xl grid mt-12">
+            <div class="flex bg-white border py-6 px-4 rounded-3xl grid mt-12">
                 <div class="header flex items-center justify-between my-3 text-2xl text-slate-800 font-medium">
                     <h1><span><i class="fas fa-file-contract"></i></span> {{ $user->first_name }}s' Assessment
                     </h1>
@@ -130,16 +118,16 @@
                 <table class="mt-6 w-full">
                     <thead >
                         <tr>
-                            <th class="py-3 px-5 text-left bg-orange-500 text-white font-medium">Category</th>
-                            <th class="py-3 px-5 text-left bg-orange-500 text-white font-medium">Skill</th>
-                            <th class="py-3 px-5 text-left bg-orange-500 text-white font-medium">User Rating</th>
-                            <th class="py-3 px-5 text-left bg-orange-500 text-white font-medium">Supervisor Rating</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Category</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Skill</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">User Rating</th>
+                            <th class="py-3 px-5 text-left bg-fuchsia-800 text-white font-medium">Supervisor Rating</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($jcp->skills->groupBy('category.category_title') as $category => $skills)
                         <tr>
-                            <td colspan="4" class="py-3 px-5 border-b bg-orange-500 text-white">{{ $category }}</td>
+                            <td colspan="4" class="py-3 px-5 border-b bg-fuchsia-500 text-white">{{ $category }}</td>
                         </tr>
                         @foreach ($skills as $index => $question)
                         <tr class="{{ $index % 2 === 0 ? 'bg-gray-100' : 'bg-white' }}">
