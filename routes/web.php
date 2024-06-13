@@ -92,6 +92,8 @@ Route::middleware([
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/{id}', [SystemReports::class, 'show'])->name('reports.show');
 
+    //Downloads Routes
+    Route::get('download/{user_id}/{assessment_id}', [AssessmentController::class, 'supervisorResults'])->name('supervisor.result');
 
 
 

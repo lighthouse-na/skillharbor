@@ -80,7 +80,7 @@
                                         <!-- Delete Button -->
                                         <div>
                                             <button class="text-red-500 text-xs hover:text-red-700"
-                                                wire:click="deleteQualification({{ $q->id }})"><x-iconoir-trash />
+                                                wire:click="deleteQualification({{ $q->id }})"><x-iconoir-xmark-circle />
                                             </button>
                                         </div>
 
