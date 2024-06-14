@@ -160,6 +160,9 @@ class AssessmentController extends Controller
             ];
         }
 
+
+
+        //jcp Skills chart Config
         $jcpRating = $jcp->sumRequiredLevelsByCategory(); // Convert single object to array or empty array
         $myRating = is_array($jcp->sumMyLevels()) ? $jcp->sumMyLevels() : [];
         $supervisorRating = is_array($jcp->sumSupervisorLevels()) ? $jcp->sumSupervisorLevels() : [];
@@ -186,6 +189,7 @@ class AssessmentController extends Controller
                     type: "line",
                     label: "My Level",
                     data: ' . json_encode($values2) . ',
+                    fill: false,
                     backgroundColor: [
                         "rgba(160, 32, 240, 0.2)"
                     ],
@@ -197,6 +201,7 @@ class AssessmentController extends Controller
                     type: "line",
                     label: "Supervisor Rating",
                     data: ' . json_encode($values3) . ',
+                    fill: false,
                     backgroundColor: [
                         "rgba(260, 32, 240, 0.2)"
                     ],
@@ -237,6 +242,103 @@ class AssessmentController extends Controller
 
         // Define the filename for download
         $filename = $user->first_name . '_' . $user->last_name . '_ECP.pdf';
+
+        // Download the PDF file
+        return $pdf->download($filename);
+    }
+
+    public function jcpPDF($user, $assessment)
+    {
+        $user = User::find(Crypt::decrypt($user));
+        $assessment = Assessment::find(Crypt::decrypt($assessment));
+        $jcp = $user->jcp()
+                    ->with('skills.category') // Eager load skills and their categories
+                    ->where('is_active', 1) // Only load jcp where is_active is 1
+                    ->first();
+
+        /**
+         * Loads Qualification data to assessment
+         */
+        $userQualifications = $user->qualifications()->get();
+        $qualificationsData = [];
+        foreach ($jcp->qualifications()->get() as $qualification) {
+            // Check if the qualification exists in the user's acquired qualifications
+            $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
+
+            // Add qualification name and attained status to the data array
+            $qualificationsData[] = [
+                'name' => $qualification->qualification_title,
+                'attained' => $isAcquired,
+            ];
+        }
+
+
+
+        //jcp Skills chart Config
+        $jcpRating = $jcp->sumRequiredLevelsByCategory(); // Convert single object to array or empty array
+        $myRating = is_array($jcp->sumMyLevels()) ? $jcp->sumMyLevels() : [];
+
+        // Extracting categories (labels)
+        $labels = array_column($jcpRating, 'category');
+
+        // Extracting values
+        $values = array_column($jcpRating, 'value');
+
+        // Extracting values from myRating
+        $values2 = array_column($myRating, 'value');
+
+
+
+        // Chart configuration for QuickChart.io
+        $chartConfig = '{
+            type: "bar",
+            data: {
+                labels: ' . json_encode($labels) . ',
+                datasets: [{
+                    type: "line",
+                    label: "My Level",
+                    data: ' . json_encode($values2) . ',
+                    fill: false,
+                    backgroundColor: [
+                        "rgba(160, 32, 240, 0.2)"
+                    ],
+                    borderColor: [
+                        "rgb(160, 32, 240)"
+                    ],
+                    borderWidth: 1
+                },{
+                    type: "bar",
+                    label: "JCP Requirement",
+                    data: ' . json_encode($values) . ',
+                    fill: false,
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)"
+                    ],
+                    borderColor: "rgb(255, 99, 132)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }';
+
+
+        // Encode chart configuration to JSON
+
+        // Generate chart image URL using QuickChart.io
+        $chartUrl = urlencode($chartConfig);
+
+
+        // Load PDF view with data
+        $pdf = Pdf::loadView('assessments.downloads.jcp', compact('user', 'jcp', 'qualificationsData', 'assessment', 'chartUrl'));
+
+        // Define the filename for download
+        $filename = $user->first_name . '_' . $user->last_name . '_JCP.pdf';
 
         // Download the PDF file
         return $pdf->download($filename);

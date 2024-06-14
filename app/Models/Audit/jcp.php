@@ -109,4 +109,6 @@ class jcp extends Model
         }
         return $sums ?? [];
     }
+
+
 }
