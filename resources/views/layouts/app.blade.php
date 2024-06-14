@@ -15,6 +15,8 @@
 
     <!--Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
     <style>
