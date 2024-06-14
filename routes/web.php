@@ -94,6 +94,8 @@ Route::middleware([
 
     //Downloads Routes
     Route::get('download/{user_id}/{assessment_id}', [AssessmentController::class, 'supervisorResults'])->name('supervisor.result');
+    Route::get('downloadjcp/{user_id}/{assessment_id}', [AssessmentController::class, 'jcpPDF'])->name('submission.jcp');
+
 
 
 
