@@ -95,7 +95,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Employee Competency Profile Details</h1>
+            <h1>Job Competency Profile Details</h1>
         </div>
 
         <div class="profile-section">
@@ -137,13 +137,12 @@
                         <th>Skill</th>
                         <th>Required Rating</th>
                         <th>User Rating</th>
-                        <th>Supervisor Rating</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($jcp->skills->groupBy('category.category_title') as $category => $skills)
                         <tr class="category-header">
-                            <td colspan="5">{{ $category }}</td>
+                            <td colspan="4">{{ $category }}</td>
                         </tr>
                         @foreach ($skills as $index => $question)
                             <tr class="{{ $index % 2 === 0 ? 'even-row' : '' }}">
@@ -175,19 +174,7 @@
                                         Expert
                                     @endif
                                 </td>
-                                <td>
-                                    @if ($jcp->skills->find($question->id)->pivot->supervisor_rating === 1)
-                                        Not Competent
-                                    @elseif ($jcp->skills->find($question->id)->pivot->supervisor_rating === 2)
-                                        Basic Skills
-                                    @elseif ($jcp->skills->find($question->id)->pivot->supervisor_rating === 3)
-                                        Competent
-                                    @elseif ($jcp->skills->find($question->id)->pivot->supervisor_rating === 4)
-                                        Developed Skills
-                                    @elseif ($jcp->skills->find($question->id)->pivot->supervisor_rating === 5)
-                                        Expert
-                                    @endif
-                                </td>
+
                             </tr>
                         @endforeach
                     @empty
