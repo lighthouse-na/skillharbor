@@ -90,18 +90,20 @@
                           </div>
                         <div class="relative w-full">
                             <div class="border bg-white rounded-md p-3 w-auto inline-flex items-center absolute top-3 right-3">
-                                <a href="#" class="inline-flex ">
+                                <a href="{{route('organisational.report', ["id" => $assessment->id])}}" class="inline-flex ">
                                     <x-iconoir-shield-download />
                                     <h1>Download Report</h1>
                                 </a>
                             </div>
+
                         </div>
 
                         <div class="mt-6">
                             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Report for {{$assessment->assessment_title}}</h3>
-                            <div>
-                                <canvas id="genderChart"></canvas>
-                              </div>
+
+                            <div class="mx-auto w-full px-6">
+                                <canvas id="myChart"></canvas>
+                            </div>
                         </div>
 
                     </div>
@@ -130,4 +132,32 @@
     </div>
 
 
+@push('scripts')
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+@endpush
+
 </x-app-layout>
+
+
