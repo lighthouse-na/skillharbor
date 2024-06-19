@@ -59,6 +59,9 @@
             padding: 4px;
             text-align: left;
             font-size: 8px; /* Reduced font size */
+            border: 1px solid  #000035; /* Added border to table */
+
+
         }
         .assessment-table th {
             background-color:  #000035;
@@ -93,8 +96,11 @@
          }
          .profile-details-table td{
             border-collapse: collapse;
-            border: 1px #000035;
-         }
+
+            border: 1px solid  #000035; /* Added border to table */
+
+        }
+
     </style>
 </head>
 <body>
@@ -173,7 +179,11 @@
                         </tr>
                         @foreach ($skills as $index => $question)
                             <tr class="{{ $index % 2 === 0 ? 'even-row' : '' }}">
-                                <td></td>
+                                <td>
+                                    @if ($jcp->skills->find($question->id)->pivot->required_level > $jcp->skills->find($question->id)->pivot->supervisor_rating)
+                                   <span class="text-danger">!</span>
+                                    @endif
+                                </td>
                                 <td>{{ $question->skill_title }}</td>
                                 <td>
                                     @if ($jcp->skills->find($question->id)->pivot->required_level === 1)
