@@ -28,23 +28,25 @@ class SystemReports extends Component
         $genderValues = array_values($genderSplit);
 
         $genderConfig = '{
-            type: "pie",
+            type: "doughnut",
             data: {
             labels: ' . json_encode($genderLabels) . ',
             datasets: [{
-                label: "My First Dataset",
+                label: "Gender Distribution",
                 data: ' . json_encode($genderValues) . ',
                 backgroundColor: [
-                "rgb(255, 99, 132)",
-                "rgb(260, 32, 240)",
-                "rgba(160, 32, 240)"
-                ],
+               "rgb(255, 99, 132)",
+                    "rgb(255, 159, 64)",
+                    "rgb(255, 205, 86)",
+                    "rgb(75, 192, 192)",
+                    "rgb(54, 162, 235)",
+                    ],
                 hoverOffset: 4
             }]
     }
             };';
 
-        $genderChartURL =  urlencode($genderConfig);
+        $genderUrl =  urlencode($genderConfig);
 
         //$employeeTypeSplitChart
         $employeeTypeSplit = $this->organisation->getEmployeeTypeSplit();
@@ -52,22 +54,24 @@ class SystemReports extends Component
         $typeValues = array_values($employeeTypeSplit);
 
         $typeConfig = '{
-            type: "pie",
+            type: "doughnut",
             data: {
             labels: ' . json_encode($typeLabels) . ',
             datasets: [{
-                label: "My First Dataset",
+                label: "Employee Types",
                 data: ' . json_encode($typeValues) . ',
                 backgroundColor: [
-                "rgb(255, 99, 132)",
-                "rgb(260, 32, 240)",
-                "rgba(160, 32, 240)"
-                ],
+               "rgb(255, 99, 132)",
+                    "rgb(255, 159, 64)",
+                    "rgb(255, 205, 86)",
+                    "rgb(75, 192, 192)",
+                    "rgb(54, 162, 235)",
+                    ],
                 hoverOffset: 4
             }]
     }
             };';
-            $typeChartURL =  urlencode($typeConfig);
+            $typeUrl =  urlencode($typeConfig);
 
            //$ageDistribution Chart
             $ageDistribution = $this->organisation->getAgeDistribution();
@@ -79,12 +83,15 @@ class SystemReports extends Component
             data: {
             labels: ' . json_encode($ageLabels) . ',
             datasets: [{
-                label: "My First Dataset",
+                label: "Age Distribution",
                 data: ' . json_encode($ageValues) . ',
                 backgroundColor: [
                 "rgb(255, 99, 132)",
-                "rgb(260, 32, 240)",
-                "rgba(160, 32, 240)"
+                    "rgb(255, 159, 64)",
+                    "rgb(255, 205, 86)",
+                    "rgb(75, 192, 192)",
+                    "rgb(54, 162, 235)",
+
                 ],
                 hoverOffset: 4
             }]
@@ -103,14 +110,17 @@ class SystemReports extends Component
                 data: {
                 labels: ' . json_encode($skillLabels) . ',
                 datasets: [{
-                    label: "My First Dataset",
+                    label: "Company Skill Gap",
                     data: ' . json_encode($skillValues) . ',
-                    backgroundColor: [
+                   backgroundColor: [
                     "rgb(255, 99, 132)",
-                    "rgb(260, 32, 240)",
-                    "rgba(160, 32, 240)"
+                    "rgb(255, 159, 64)",
+                    "rgb(255, 205, 86)",
+                    "rgb(75, 192, 192)",
+                    "rgb(54, 162, 235)",
                     ],
-                    hoverOffset: 4
+                    hoverOffset: 4,
+
                 }]
         }
                 };';
@@ -118,7 +128,7 @@ class SystemReports extends Component
                 $skillUrl = urlencode($skillConfig);
 
 
-                $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderChartURL','skillUrl','ageUrl','typeChartURL','employeeCount'));
+                $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderUrl','skillUrl','ageUrl','typeUrl','employeeCount'));
 
                 $filename =  'Telecom_Namibia_CCP.pdf';
                 return $pdf->download($filename);
