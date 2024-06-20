@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #ffffff;
-            font-size: 8px; /* Reduced font size */
+            font-size: 11px; /* Reduced font size */
         }
         .container {
             max-width: 800px;
@@ -100,6 +100,9 @@
             border: 1px solid  #000035; /* Added border to table */
 
         }
+        .intervention{
+            background-color: red;
+        }
 
     </style>
 </head>
@@ -111,7 +114,7 @@
 
         <div class="profile-section">
             <div class="profile-details">
-                <table class="profile-details-table">
+                <table class="profile-details-table" style="page-break-after: always;">
                     <tr>
                     <td>
                         <p><strong>Employee Name:</strong></p>
@@ -133,7 +136,20 @@
                         </td>
                         <td>{{ $jcp->job_grade }}</td>
                     </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Business Division</strong></p>
+                        </td>
+                        <td>{{ $user->deparment->division->division_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Department</strong></p>
+                        </td>
+                        <td>{{ $user->deparment->department_name }}</td>
+                    </tr>
                 </table>
+
 
 
             </div>
@@ -179,11 +195,12 @@
                         </tr>
                         @foreach ($skills as $index => $question)
                             <tr class="{{ $index % 2 === 0 ? 'even-row' : '' }}">
-                                <td>
                                     @if ($jcp->skills->find($question->id)->pivot->required_level > $jcp->skills->find($question->id)->pivot->supervisor_rating)
-                                   <span class="text-danger">!</span>
+                                    <td style="background-color: #A4031F; color: white;"></td>
+                                    @else
+                                    <td></td>
                                     @endif
-                                </td>
+
                                 <td>{{ $question->skill_title }}</td>
                                 <td>
                                     @if ($jcp->skills->find($question->id)->pivot->required_level === 1)
