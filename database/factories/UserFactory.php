@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
+use App\Models\Audit\Department;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -28,6 +30,7 @@ class UserFactory extends Factory
     {
         return [
             'salary_ref_number' => $this->faker->unique()->randomNumber(8),
+            'department_id' => Department::factory(),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'gender' => fake()->randomElement(['male', 'female']),

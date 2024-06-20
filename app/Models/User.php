@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Audit\Department;
 
 class User extends Authenticatable
 {
@@ -92,6 +93,9 @@ class User extends Authenticatable
         return $this->belongsToMany(assessment::class, 'enrollments')->withPivot('user_status','supervisor_status');
     }
 
+    public function deparment(){
+        return $this->belongsTo(Deparment::class, 'department_id');
+    }
 
 
     // Search Scope Function

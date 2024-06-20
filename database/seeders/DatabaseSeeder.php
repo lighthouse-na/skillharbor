@@ -10,6 +10,8 @@ use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
 use App\Models\User;
+use App\Models\Audit\Department;
+use App\Models\Audit\Division;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +22,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->command->getOutput()->progressStart(10);
+        $this->command->getOutput()->progressStart(12);
+
+        $this->command->info(' Creating Organisation...');
+        Division::factory(6)->create();
+        $this->command->getOutput()->progressAdvance();
+
+        Department::factory(10)->create();
+        $this->command->getOutput()->progressAdvance();
+
 
         $this->command->info(' Creating Audit Assessments...');
         assessment::factory(1)->create();
