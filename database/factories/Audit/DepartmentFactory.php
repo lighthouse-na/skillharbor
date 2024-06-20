@@ -3,6 +3,7 @@
 namespace Database\Factories\Audit;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Audit\Division;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Audit\Department>
@@ -18,6 +19,27 @@ class DepartmentFactory extends Factory
     {
         return [
             //
+            'department_name' => $this->faker->unique(true)->randomElement([
+                'Commercial General',
+                'Wholesales',
+                'Government',
+                'Sales Support',
+                'Customer Care Centre',
+                'Retail & Corporate',
+                'Tops General',
+                'DEPI',
+                'PMO',
+                'BIT',
+                'Network Operations',
+                'Field Services General',
+                'Field Services',
+                'CEO\'s Office General',
+                'Legal',
+                'Public Relations',
+                'Internal Audit & Risk',
+                'Company Secretary'
+            ]),
+            'division_id' => Division::factory(),
         ];
     }
 }
