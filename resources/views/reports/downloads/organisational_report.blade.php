@@ -19,7 +19,7 @@ body {
             margin: 0;
             padding: 0;
             background-color: #ffffff;
-            font-size: 8px; /* Reduced font size */
+            font-size: 11px; /* Reduced font size */
         }
         .container {
             max-width: 800px;
