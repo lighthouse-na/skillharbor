@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Audit\Division;
 
 class SystemReports extends Component
 {
@@ -126,9 +127,10 @@ class SystemReports extends Component
                 };';
 
                 $skillUrl = urlencode($skillConfig);
+                $divisions =  Division::all();
 
 
-                $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderUrl','skillUrl','ageUrl','typeUrl','employeeCount'));
+                $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderUrl','skillUrl','ageUrl','typeUrl','employeeCount','divisions'));
 
                 $filename =  'Telecom_Namibia_CCP.pdf';
                 return $pdf->download($filename);
@@ -144,6 +146,7 @@ class SystemReports extends Component
         $ageDistribution = $this->organisation->getAgeDistribution();
         $assessmentProgress = $this->organisation->getCompletedAssessments(Crypt::decrypt($id));
         $skillGap = $this->organisation->getCompanySkillGap();
+        $divisions =  Division::all();
 
         return view('reports.show',
         compact('assessment',
@@ -152,7 +155,8 @@ class SystemReports extends Component
         'employeeTypeSplit',
         'ageDistribution',
         'assessmentProgress',
-        'skillGap'
+        'skillGap',
+        'divisions'
         ));
     }
 
