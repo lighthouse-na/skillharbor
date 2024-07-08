@@ -39,7 +39,7 @@ class DepartmentFactory extends Factory
                 'Internal Audit & Risk',
                 'Company Secretary'
             ]),
-            'division_id' => Division::factory(),
+            'division_id' => $this->faker->randomELement(Division::all()),
         ];
     }
 }
