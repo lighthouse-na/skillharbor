@@ -101,9 +101,26 @@
                         <div class="mt-6">
                             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Report for {{$assessment->assessment_title}}</h3>
 
-                            <div class="mx-auto w-full px-6">
-                                <canvas id="myChart"></canvas>
+                            <div class="container p-4">
+        <div class="org-chart flex flex-col">
+            @foreach($divisions as $division)
+                <div class="division bg-gray-100 p-4 rounded-lg shadow-md my-4">
+                    <strong class="text-lg">{{ $division->division_name }}</strong>
+                    <div class="department-container flex mt-4">
+                        @foreach($division->departments as $department)
+                            <div class="department bg-white p-4 rounded-lg shadow-md mx-2">
+                                <strong class="text-md">{{ $department->department_name }}</strong> <br>
+                                <span class="text-sm text-gray-500">{{ $department->employees->count() }} Employees</span>
+                                
                             </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+            </div>
+    </div>
                         </div>
 
                     </div>

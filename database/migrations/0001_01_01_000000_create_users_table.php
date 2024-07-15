@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('division_id')->onDelete('cascade')->nullable();
+            $table->foreignId('department_id')->onDelete('cascade')->nullable();
             $table->foreignId('supervisor_id')->onDelete('cascade')->nullable()->default('1');
 
 

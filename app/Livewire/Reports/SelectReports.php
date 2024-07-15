@@ -4,6 +4,7 @@ namespace App\Livewire\Reports;
 
 use App\Models\Audit\assessment;
 use Livewire\Component;
+use App\Models\Audit\Division;
 
 class SelectReports extends Component
 {
