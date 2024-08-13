@@ -45,11 +45,11 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Users...');
-        User::factory(20)->create();
+        User::factory(200)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit jcp...');
-        jcp::factory(20)->create();
+        jcp::factory(200)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');
