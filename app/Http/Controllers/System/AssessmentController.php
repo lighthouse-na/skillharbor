@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Audit\assessment;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class AssessmentController extends Controller
 {
@@ -32,7 +31,9 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
+
         assessment::create($request->all());
+
         return redirect()->route('directories.assesment.index');    }
 
     /**

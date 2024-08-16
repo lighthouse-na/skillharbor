@@ -25,3 +25,9 @@ yarn-error.log
 /storage/logs/
 /storage/logs/*
 storage/logs/
+
+/caddy
+frankenphp
+frankenphp-worker.php
+rr
+.rr.yaml
