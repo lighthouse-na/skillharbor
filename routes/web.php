@@ -91,6 +91,6 @@ Route::middleware([
     route::get('downloadjcp/{user_id}/{assessment_id}', [assessmentcontroller::class, 'jcppdf'])->name('submission.jcp');
     route::get('orgreport/{id}', [systemreports::class, 'orgreport'])->name('organisational.report');
 
-    route::get('/report/employee_export', [reportcontroller::class, 'employee_csv'])->name('reports.export');
+    route::get('/report/employees/export', [reportcontroller::class, 'employee_csv'])->name('reports.employees.export');
     route::get('/report/roles/export', [ReportController::class, 'roles_csv'])->name('reports.roles.export');
 });

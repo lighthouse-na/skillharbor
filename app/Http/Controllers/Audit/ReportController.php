@@ -53,7 +53,7 @@ class ReportController extends Controller
 
     public function employee_csv()
     {
-        $filename = 'organsational-report.csv';
+        $filename = 'organizational_report.csv';
 
         $headers = [
             'Content-Type' => 'text/csv',
@@ -70,25 +70,30 @@ class ReportController extends Controller
             fputcsv($handle, [
                 'First Name',
                 'Last Name',
-                'Email',
-                'Date of Birth',
-                'Gender',
-                'Skills',
+                'Skills (with required ratings)',
             ]);
 
             // Fetch and process data in chunks
             User::chunk(25, function ($employees) use ($handle) {
                 foreach ($employees as $employee) {
+                    // Retrieve the active JCP based on the 'is_active' flag
+                    $activeJcp = $employee->jcp()->where('is_active', 1)->first();
+
+                    // If the employee has an active JCP, fetch their skills from the pivot table
+                    if ($activeJcp) {
+                        // Assuming the pivot table is named 'jcp_skill' with 'required_rating'
+                        $skills = $activeJcp->skills->map(function ($skill) {
+                            return $skill->skill_title.' (Required: '.$skill->pivot->required_level.')';
+                        })->implode(', ');
+                    } else {
+                        $skills = 'No active JCP';
+                    }
+
                     // Extract data from each employee.
                     $data = [
-                        isset($employee->first_name) ? $employee->first_name : '',
-                        isset($employee->last_name) ? $employee->last_name : '',
-                        isset($employee->email) ? $employee->email : '',
-                        isset($employee->date_of_birth) ? $employee->date_of_birth : '',
-                        isset($employee->gender) ? $employee->gender : '',
-                        isset($employee->basic_salary) ? $employee->basic_salary : '',
-                        isset($employee->jcp()->skills) ? implode(', ', json_decode($employee->skills)) : '',
-
+                        $employee->first_name ?? '',
+                        $employee->last_name ?? '',
+                        $skills,
                     ];
 
                     // Write data to a CSV file.
