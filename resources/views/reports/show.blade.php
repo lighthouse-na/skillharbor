@@ -16,165 +16,78 @@
                             <nav class="flex" aria-label="Breadcrumb">
                                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
 
-                                  <li class="inline-flex items-center">
-                                    <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-fuchsia-600 dark:text-gray-400 dark:hover:text-white">
-                                      <h1 class="mr-1">@svg('iconoir-reports')</h1>
-                                     Reports
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <div class="flex items-center">
-                                      <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                                      </svg>
-                                      <a href="#" class="ms-1 text-sm font-medium text-gray-700 hover:text-fuchsia-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"> Skills Audit 2024</a>
-                                    </div>
-                                  </li>
-                                  <li aria-current="page">
-                                    <div class="flex items-center">
-                                      <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                                      </svg>
-                                      <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Organisational Report</span>
-                                    </div>
-                                  </li>
+                                    <li class="inline-flex items-center">
+                                        <a href="#"
+                                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-fuchsia-600 dark:text-gray-400 dark:hover:text-white">
+                                            <h1 class="mr-1">@svg('iconoir-reports')</h1>
+                                            Reports
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                                            </svg>
+                                            <a href="#"
+                                                class="ms-1 text-sm font-medium text-gray-700 hover:text-fuchsia-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+                                                Skills Audit 2024</a>
+                                        </div>
+                                    </li>
+                                    <li aria-current="page">
+                                        <div class="flex items-center">
+                                            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                                            </svg>
+                                            <span
+                                                class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Organisational
+                                                Report</span>
+                                        </div>
+                                    </li>
                                 </ol>
-                              </nav>
+                            </nav>
 
                         </div>
                     </header>
 
-                <div class="md:flex" x-data="{tab: 0}">
-                    <div class="container h-screen w-1/6 border pt-6" >
-                        <ul class="flex-column text-sm font-normal text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
-                            <li class="inline-flex items-center">
+                        <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full">
 
-                                <h1 class="px-6 py-0.5 uppercase font-medium text-xs text-gray-900 pb-2"> Organisation</h1>
+                            <div class="mt-6 h-full">
+                                <h3 class="text-lg font-base text-gray-900 dark:text-white mb-2">Report for
+                                    {{$assessment->assessment_title}}</h3>
 
-                              </li>
-                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800' : tab === 0 }">
-                                <button  x-on:click.prevent="tab = 0"  class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white" >
+                                <div class="container p-4 overflow-auto">
 
-                                    Organisational Report
-                                </button>
-                            </li>
-                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 1 }">
-                                <button  x-on:click.prevent="tab = 1" x-bind:class="{ 'bg-gray-100': tab === '1' }" class="inline-flex items-center px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Departmental Report
-                                </button>
-                            </li>
-                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 2 }">
-                                <button  x-on:click.prevent="tab = 2" x-bind:class="{ 'bg-gray-100': tab === '2' }" class="inline-flex items-center  px-6 py-1 my-0.5 rounded-r-lg hover:bg-gray-100  w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                </div>
+                            </div>
 
-                                    Individual Report
-                                </button>
-                            </li>
-                            <li x-bind:class="{ 'bg-gray-100 rounded-r-lg text-gray-800': tab === 3 }">
-                                <button  x-on:click.prevent="tab = 3" x-bind:class="{ 'bg-gray-100': tab === '3' }" class="inline-flex items-center px-6 py-1 my-0.5  rounded-r-lg hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-
-                                    My Report
-                                </button>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 0"
-                    >
-                        <div class="flex justify-between mb-1">
-                            <span class="text-base font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["completed"]}}/{{$assessmentProgress["total"]}}</span>
-                            <span class="text-sm font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["percentage"]}}%</span>
-                          </div>
-                          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="bg-fuchsia-600 h-2.5 rounded-full" style="width: {{$assessmentProgress["percentage"]}}%"></div>
-                          </div>
-                        <div class="relative w-full">
-                            <div class="border bg-white rounded-md p-3 w-auto inline-flex items-center absolute top-3 right-3">
-                                <a href="{{route('organisational.report', ["id" => $assessment->id])}}" class="inline-flex ">
-                                    <x-iconoir-shield-download />
-                                    <h1>Download Report</h1>
-                                </a>
+                            <div class="flex justify-between mb-1">
+                                <span
+                                    class="text-base font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["completed"]}}/{{$assessmentProgress["total"]}}</span>
+                                <span
+                                    class="text-sm font-medium text-fuchsia-700 dark:text-white">{{$assessmentProgress["percentage"]}}%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-fuchsia-600 h-2.5 rounded-full"
+                                    style="width: {{$assessmentProgress["percentage"]}}%"></div>
                             </div>
 
                         </div>
-
-                        <div class="mt-6">
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Report for {{$assessment->assessment_title}}</h3>
-
-                            <div class="container p-4">
-        <div class="org-chart flex flex-col">
-            @foreach($divisions as $division)
-                <div class="division bg-gray-100 p-4 rounded-lg shadow-md my-4">
-                    <strong class="text-lg">{{ $division->division_name }}</strong>
-                    <div class="department-container flex mt-4">
-                        @foreach($division->departments as $department)
-                            <div class="department bg-white p-4 rounded-lg shadow-md mx-2">
-                                <strong class="text-md">{{ $department->department_name }}</strong> <br>
-                                <span class="text-sm text-gray-500">{{ $department->employees->count() }} Employees</span>
-                                
-                            </div>
-                        @endforeach
                     </div>
+
                 </div>
-            @endforeach
-        </div>
-    </div>
             </div>
-    </div>
-                        </div>
-
-                    </div>
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 1"
-                    >
-                        Departmental Reports
-
-                    </div>
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full"  x-show="tab === 2"
-                    >
-                        Individual Reports
-
-                    </div>
-                    <div class="p-6 bg-gray-50 border-t text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800  w-full" x-show="tab === 3">
-                        My Report
-
-                    </div>
-                </div>
 
 
-                </div>
-
-            </div>
         </div>
 
     </div>
+    </div>
 
+    </div>
 
-@push('scripts')
-<script>
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  </script>
-
-@endpush
 
 </x-app-layout>
-
-

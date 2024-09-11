@@ -30,7 +30,7 @@ class UserFactory extends Factory
     {
         return [
             'salary_ref_number' => $this->faker->unique()->randomNumber(8),
-            'department_id' => Department::factory(),
+            'department_id' => $this->faker->randomElement(Department::all()),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'gender' => fake()->randomElement(['male', 'female']),

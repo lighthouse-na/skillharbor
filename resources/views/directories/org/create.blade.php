@@ -5,13 +5,26 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8"> <!-- Add container with max width -->
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"> <!-- Add background, shadow, and rounded corners -->
-            <div class="p-6 bg-white border-b border-gray-200"> <!-- Add padding and border -->
+        <div class="bg-white border border-gray-200 overflow-hidden sm:rounded-lg"> <!-- Add background, shadow, and rounded corners -->
+            <div class="p-6 "> <!-- Add padding and border -->
                <form action="{{ route('users.store') }}" method="POST">
                     @csrf
 
+
+
                     <!-- Form fields -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
+                            <select name="department" id="department" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <option value="other" disabled selected>Select</option>
+                                @foreach ($departments as $department)
+                                <option value="{{$department->id}}">{{$department->department_name}}</option>
+
+                                @endforeach
+
+                            </select>
+                        </div>
                         <!-- First Name -->
                         <div>
                             <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
@@ -49,14 +62,15 @@
                         <!-- Role -->
                         <div>
                             <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
-                            <input type="text" name="role" id="role" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                            <select name="role" id="role" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <option value="n/a" disabled selected>Select</option>
+                                <option value="supervisor">Supervisor</option>
+                                <option value="employee">Employee</option>
+                            </select>
+
                         </div>
 
-                        <!-- Competency Rating -->
-                        <div>
-                            <label for="competency_rating" class="block text-sm font-medium text-gray-700">Competency Rating</label>
-                            <input type="number" name="competency_rating" id="competency_rating" value="0" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
+
 
                         <!-- Email -->
                         <div>
@@ -64,17 +78,13 @@
                             <input type="email" name="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
 
-                        <!-- Password -->
-                        <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <input type="password" name="password" id="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
-                        </div>
+
                     </div>
 
                     <!-- Add more fields as needed -->
 
                     <!-- Submit button -->
-                    <div class="mt-6 flex justify-center">
+                    <div class="mt-6 flex justify-end">
                         <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Add Employee
                         </button>
