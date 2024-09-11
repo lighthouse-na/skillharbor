@@ -2,12 +2,15 @@
 
 namespace App\Livewire\System\Org;
 
+use App\Models\Audit\Department;
+use App\Models\Audit\Division;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+
 
 
 class OrgTable extends Component
@@ -28,7 +31,9 @@ class OrgTable extends Component
     }
 
     public function create () {
-        return view('directories.org.create');
+        $departments = Department::all();
+
+        return view('directories.org.create' , compact('departments'));
     }
     public function store(Request $request): RedirectResponse
     {
