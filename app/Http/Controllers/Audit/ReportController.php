@@ -13,7 +13,45 @@ class ReportController extends Controller
         return view('reports.index');
     }
 
-    public function csv()
+    public function roles_csv()
+    {
+        $filename = 'organisation_roles.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0,pre-check=0',
+            'Expires' => 0,
+        ];
+
+        return response()->stream(function () {
+            $handle = fopen('php://output', 'w');
+
+            //add csv headers
+            fputcsv($handle, [
+                'first_name',
+                'last_name',
+                'role',
+            ]);
+
+            User::chunk(25, function ($employees) use ($handle) {
+                foreach ($employees as $employee) {
+                    $data = [
+                        isset($employee->first_name) ? $employee->first_name : '',
+                        isset($employee->last_name) ? $employee->last_name : '',
+                        isset($employee->role) ? $employee->role : '',
+
+                    ];
+                    fputcsv($handle, $data);
+                }
+            });
+            fclose($handle);
+        }, 200, $headers);
+
+    }
+
+    public function employee_csv()
     {
         $filename = 'organsational-report.csv';
 
@@ -49,7 +87,8 @@ class ReportController extends Controller
                         isset($employee->date_of_birth) ? $employee->date_of_birth : '',
                         isset($employee->gender) ? $employee->gender : '',
                         isset($employee->basic_salary) ? $employee->basic_salary : '',
-                        isset($employee->skills) ? implode(', ', json_decode($employee->skills)) : '',
+                        isset($employee->jcp()->skills) ? implode(', ', json_decode($employee->skills)) : '',
+
                     ];
 
                     // Write data to a CSV file.
