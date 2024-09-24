@@ -26,8 +26,19 @@
                     </div>
                 </div>
                 <div class="flex flex-grow border rounded-lg h-24 mt-3">
-                        {{-- Container for my status --}}
-                </div>
+                    {{-- Container for my status --}}
+                    <div class="w-full h-full flex justify-center items-center">
+                      @foreach ($user->enrolled as $enrollment)
+                        @if ($enrollment->pivot->user_status === 1 && $enrollment->pivot->supervisor_status === 1)
+                          <span class="text-green-500 font-bold">Assessment Complete</span>
+                        @elseif ($enrollment->pivot->user_status === 1 && $enrollment->pivot->supervisor_status === 0)
+                          <span class="text-orange-500 font-bold">In Progress</span>
+                        @else
+                          <span class="text-red-500 font-bold">Not Started</span>
+                        @endif
+                      @endforeach
+                    </div>
+                  </div>
             </div>
             <div class="flex flex-col border rounded-lg dark:bg-gray-800">
                 <div class="flex flex-row justify-between items-center px-6 py-3">
@@ -188,13 +199,18 @@
                         <div class="mt-4" x-data="{}"
                             x-on:confirming-add-qualification.window="setTimeout(() => $refs.qualification_title.focus(), 250)">
                             <select class="appearance-none rounded-lg shadow w-full" type="text"
-                                class="mt-1 block w-3/4" placeholder="{{ __('Qualification Title') }}"
-                                x-ref="qualification_title" wire:model="qualification_title"
-                                wire:keydown.enter="addQualificationToUser">
-                                @foreach ($dbQual as $q)
-                                    <option value="{{ $q->id }}">{{ $q->qualification_title }}</option>
-                                @endforeach
-                            </select>
+
+    class="mt-1 block w-3/4" placeholder="{{ __('Qualification Title') }}"
+
+    x-ref="qualification_title" wire:model="qualification_id" wire:change="updateQualificationId"
+
+    wire:keydown.enter="addQualificationToUser">
+
+    @foreach ($dbQual as $q)
+        <option value="{{ $q->id }}">{{ $q->id }}</option>
+    @endforeach
+
+</select>
                             {{-- <x-input-error for="role_title" class="mt-2" /> --}}
                         </div>
                     </x-slot>
@@ -205,9 +221,9 @@
                             {{ __('Cancel') }}
                         </x-secondary-button>
 
-                        <x-danger-button class="ms-3" wire:click="addQualificationToUser" wire:loading.attr="disabled">
+                        <x-button class="ms-3" wire:click="addQualificationToUser" wire:loading.attr="enabled">
                             {{ __('Submit') }}
-                        </x-danger-button>
+                        </x-button>
                     </x-slot>
                 </x-dialog-modal>
 
