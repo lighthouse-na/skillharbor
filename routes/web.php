@@ -54,6 +54,9 @@ Route::middleware([
     route::resource('/skills', skillcontroller::class);
     route::resource('/qualifications', qualificationcontroller::class);
     route::get('/org', [orgtable::class, 'index'])->name('org.index');
+    route::get('/jcp/create', [JCPController::class, 'create'])->name('jcp.create');
+    route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
+
 
     // qualifications routes
     route::get('/directories/qualifications', [qualificationcontroller::class, 'index'])->name('directories.qualifications.index');

@@ -21,16 +21,17 @@
                     <x-slot name="content">
                         <!-- Category dropdown  -->
                         @forelse ($categories as $category)
-                        <x-dropdown-link href="#">
-                            <h1 class="text-gray-900 dark:text-gray-200 text-sm">
-                                {{ $category->category_title }}
-                            </h1>
-                        </x-dropdown-link>
-                        @empty
-                        <x-dropdown-link href="#">
-                            No categories found
-                        </x-dropdown-link>
-
+                          <x-dropdown-link wire:click.prevent="updateCategory({{ $category->id }})">
+                           <h1 class="text-gray-900 dark:text-gray-200 text-sm">
+                          {{ $category->category_title }}
+                          </h1>
+                         </x-dropdown-link>
+                         @empty
+                         <x-dropdown-link>
+                          <h1 class="text-gray-900 dark:text-gray-200 text-sm">
+                          No categories found
+                          </h1>
+                          </x-dropdown-link>
                         @endforelse
 
 
