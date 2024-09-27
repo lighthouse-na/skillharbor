@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Audit;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\audit\qualification;
+use App\Models\audit\skill;
+use App\Models\audit\assessment;
+
 
 class ReportController extends Controller
 {
@@ -105,4 +109,118 @@ class ReportController extends Controller
             fclose($handle);
         }, 200, $headers);
     }
+
+    //Added exportQualifications Method -> Shaun
+    public function exportQualifications() 
+    {
+        $filename = 'qualifications.csv';
+    
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => 0,
+        ];
+    
+        return response()->stream(function () 
+        {
+            // Correcting the typo here
+            $handle = fopen('php://output', 'w');
+    
+            fputcsv($handle, ['Qualification Name']);
+    
+            Qualification::chunk(25, function ($qualifications) use ($handle)
+            {
+                foreach ($qualifications as $qualification) {
+                    fputcsv($handle, [$qualification->qualification_title ?? '']);
+                }
+            });
+    
+            fclose($handle);
+        }, 200, $headers);
+    }
+    
+        //Added exportSkills Method -> Shaun
+    public function exportSkills()
+    {
+    $filename = 'skills.csv';
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => "attachment; filename=\"$filename\"",
+        'Pragma' => 'no-cache',
+        'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires' => 0,
+    ];
+
+    return response()->stream(function () {
+        $handle = fopen('php://output', 'w');
+
+        // Add CSV headers
+        fputcsv($handle, ['Skill Name', 'JCP Count', 'Skill Required Rating Average']);
+
+        // Fetch skills from the database
+        Skill::chunk(25, function ($skills) use ($handle) {
+            foreach ($skills as $skill) {
+                $jcpCount = $skill->jobCompetencyProfiles()->count(); // Count of how many times the skill appears in job profiles
+                $requiredRatingAvg = $skill->jobCompetencyProfiles()->avg('required_rating'); // Average required rating
+
+                fputcsv($handle, [
+                    $skill->name ?? '',
+                    $jcpCount ?? 0,
+                    number_format($requiredRatingAvg, 2) ?? '0.00'
+                ]);
+            }
+        });
+
+        fclose($handle);
+    }, 200, $headers);
+    }
+
+    //Added exportAssessments Method -> Shaun
+    public function exportAssessments()
+{
+    $filename = 'assessments.csv';
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => "attachment; filename=\"$filename\"",
+        'Pragma' => 'no-cache',
+        'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires' => 0,
+    ];
+
+    return response()->stream(function () {
+        $handle = fopen('php://output', 'w');
+
+        // Add CSV headers
+        fputcsv($handle, [
+            'Employee Name',
+            'JCP Title',
+            'Skill Category',
+            'Skill Required Level',
+            'Skill User Rating',
+            'Skill Supervisor Rating'
+        ]);
+
+        Assessment::chunk(25, function ($assessments) use ($handle) {
+            foreach ($assessments as $assessment) {
+                $data = [
+                    $assessment->employee->full_name ?? '',
+                    $assessment->jcp->title ?? '',
+                    $assessment->skill->category ?? '',
+                    $assessment->skill->pivot->required_level ?? '',
+                    $assessment->user_rating ?? '',
+                    $assessment->supervisor_rating ?? '',
+                ];
+
+                fputcsv($handle, $data);
+            }
+        });
+
+        fclose($handle);
+    }, 200, $headers);
+}
+
 }
