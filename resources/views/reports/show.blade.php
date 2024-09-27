@@ -74,6 +74,8 @@
         </div>
     </div>
 
+    <!-- Added Export Buttons in a list and descriptions -> Shaun-->
+
     <div class="h-screen flex flex-col p-4">
         <div class="flex items-center gap-4 p-2 border-b border-slate-200">
             <a href="{{ route('reports.employees.export') }}" class="text-initial flex-none w-52">
