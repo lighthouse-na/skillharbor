@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
+    use PasswordValidationRules;
 
     public function store(Request $request)
     {
+        /**
+         * This is the default password for new users
+         **/
+        $password = 'password';
+        /**
+         * Default competency rating for new users set to 0 as they have not completed any assessment.
+         **/
+        $competencyRating = 0;
         // Validate request data
-        $validatedData = $request->validate([
+        $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'salary_ref_number' => 'required|numeric|unique:users',
@@ -19,12 +31,23 @@ class UserController extends Controller
             'role' => 'required|string|max:255',
             'competency_rating' => 'nullable|numeric',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
         ]);
 
         try {
             // Create user
-            User::create($validatedData);
+            User::create(
+                [
+                    'first_name' => $request['first_name'],
+                    'last_name' => $request['last_name'],
+                    'salary_ref_number' => $request['salary_ref_number'],
+                    'gender' => $request['gender'],
+                    'dob' => $request['dob'],
+                    'role' => $request['role'],
+                    'competency_rating' => $competencyRating,
+                    'email' => $request['email'],
+                    'password' => Hash::make($password)
+                ]
+            );
 
             // Redirect user after creation
             return redirect()->route('directories.org.index')->with('success', 'User created successfully!');
@@ -56,7 +79,7 @@ class UserController extends Controller
         // Return view with user data
         return view('directories.org.edit', compact('user'));
     }
- 
+
 
     public function update(Request $request, $id)
     {
@@ -94,6 +117,6 @@ class UserController extends Controller
         // Redirect user after deletion
         return redirect()->route('directories.org.index')->with('success', 'User deleted successfully!');
     }
-    
-    
+
+
 }
