@@ -2,6 +2,7 @@
 
 namespace App\Livewire\System\Jcps;
 
+use App\Models\Audit\assessment;
 use Livewire\Component;
 use App\Models\Audit\Jcp;
 use App\Models\Audit\Prerequisite;
@@ -88,13 +89,15 @@ class JCPCreateForm extends Component
 
         // Create a new JCP
         $jcp = Jcp::create([
+
             'position_title' => $this->position_title,
             'duty_station' => $this->duty_station,
             'job_grade' => $this->job_grade,
             'job_purpose' => $this->job_purpose,
-            'is_active' => $this->is_active,
+
+            'is_active' => is_null($this->is_active) ? null : 0,            //Add Frontend for these elements
             'user_id' => $this->user_id,
-            'assessment_id' => 1
+            'assessment_id' => assessment::find(1)->id,//testing
         ]);
 
         // Attach qualifications
