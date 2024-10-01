@@ -33,11 +33,13 @@ Route::middleware([
     route::get('/user-assessment/results/{user}/{assessment}', [assessmentcontroller::class, 'results'])->name('user-assessment.results');
     route::get('/user-assessment/{user}', [assessmentcontroller::class, 'index'])->name('user-assessment');
     route::get('/user-assessment/{user}/{assessment}', [assessmentcontroller::class, 'show'])->name('user-assessment.show');
-    route::post('/user-assessment/{user}/{assessment}/{jcp}', [assessmentcontroller::class, 'storeEmployee'])->name('user-assessment.storeEmployee');
+    route::post('/user-assessment/{user}/{assessment}/{jcp}', [assessmentcontroller::class, 'storeemployee'])->name('user-assessment.storeEmployee');
+   
 
     //assessment routes
     route::get('/directories/assessments', [assessmentcontroller::class, 'index'])->name('directories.assessments.index');
     route::put('/directories/assessments/{id}', [assessmentcontroller::class, 'update'])->name('directories.assessments.update');
+    route::post('/directories/assessments', [assessmentcontroller::class, 'store'])->name('directories.assessments.store');
 
     route::delete('/directories/assessments/{id}', [assessmentcontroller::class, 'destroy'])->name('directories.assessments.destroy');
 
@@ -54,6 +56,9 @@ Route::middleware([
     route::resource('/skills', skillcontroller::class);
     route::resource('/qualifications', qualificationcontroller::class);
     route::get('/org', [orgtable::class, 'index'])->name('org.index');
+    route::get('/jcp/create', [JCPController::class, 'create'])->name('jcp.create');
+    route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
+
 
     // qualifications routes
     route::get('/directories/qualifications', [qualificationcontroller::class, 'index'])->name('directories.qualifications.index');

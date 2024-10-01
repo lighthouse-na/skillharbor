@@ -9,9 +9,24 @@ use Livewire\Component;
 class SkillTable extends Component
 {
     public $search = '';
+    public $category = '';
 
     public function render()
     {
-        return view('livewire.system.skills.skill-table', ['skills' => skill::search($this->search)->paginate(10), 'categories' => category::all()]);
+        $skills = skill::when($this->search, function ($query) {
+            $query->where('skill_title', 'like', '%'.$this->search.'%')
+                ->orWhere('skill_description', 'like', '%'.$this->search.'%');
+        })
+        ->when($this->category, function ($query) {
+            $query->where('skill_category', '=', $this->category);
+        })
+        ->paginate(10);
+
+        return view('livewire.system.skills.skill-table', ['skills' => $skills, 'categories' => category::all()]);
+    }
+
+    public function updateCategory($categoryId)
+    {
+        $this->category = $categoryId;
     }
 }
