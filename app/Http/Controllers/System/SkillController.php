@@ -33,6 +33,7 @@ class SkillController extends Controller
     public function create()
     {
         $categories = Category::all(); // Retrieve all skill categories from the database
+
         return view('directories.skills.create', compact('categories'));
     }
 
@@ -65,6 +66,7 @@ class SkillController extends Controller
     public function show(string $id)
     {
         $skill = Skill::findOrFail(Crypt::decrypt($id));
+
         return view('summaries.skills.show', compact('skill'));
     }
 
@@ -107,5 +109,3 @@ class SkillController extends Controller
         return redirect()->route('directories.skills.index')->with('success', 'Skill deleted successfully.');
     }
 }
-
-

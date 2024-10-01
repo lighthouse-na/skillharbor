@@ -17,7 +17,6 @@ class DivisionFactory extends Factory
     public function definition(): array
     {
 
-
         return [
             //
             'division_name' => $this->faker->unique()->randomElement([
@@ -26,8 +25,8 @@ class DivisionFactory extends Factory
                 'CEO\'s Office',
                 'Human Resources',
                 'Finance Division',
-                'Marketing Division'
-            ])
+                'Marketing Division',
+            ]),
         ];
     }
 }

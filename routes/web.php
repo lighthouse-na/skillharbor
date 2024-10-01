@@ -12,7 +12,6 @@ use App\Http\Controllers\UserController;
 use App\Livewire\Reports\SystemReports;
 use App\Livewire\Supervise\CompletedAssessmentsTable;
 use App\Livewire\System\Org\OrgTable;
-use App\Livewire\System\Qualifications\QualificationsCreateForm;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,7 +33,6 @@ Route::middleware([
     route::get('/user-assessment/{user}', [assessmentcontroller::class, 'index'])->name('user-assessment');
     route::get('/user-assessment/{user}/{assessment}', [assessmentcontroller::class, 'show'])->name('user-assessment.show');
     route::post('/user-assessment/{user}/{assessment}/{jcp}', [assessmentcontroller::class, 'storeemployee'])->name('user-assessment.storeEmployee');
-   
 
     //assessment routes
     route::get('/directories/assessments', [assessmentcontroller::class, 'index'])->name('directories.assessments.index');
@@ -58,7 +56,6 @@ Route::middleware([
     route::get('/org', [orgtable::class, 'index'])->name('org.index');
     route::get('/jcp/create', [JCPController::class, 'create'])->name('jcp.create');
     route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
-
 
     // qualifications routes
     route::get('/directories/qualifications', [qualificationcontroller::class, 'index'])->name('directories.qualifications.index');

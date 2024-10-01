@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Audit;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Audit\Division;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Audit\Department>
@@ -37,7 +37,7 @@ class DepartmentFactory extends Factory
                 'Legal',
                 'Public Relations',
                 'Internal Audit & Risk',
-                'Company Secretary'
+                'Company Secretary',
             ]),
             'division_id' => $this->faker->randomELement(Division::all()),
         ];

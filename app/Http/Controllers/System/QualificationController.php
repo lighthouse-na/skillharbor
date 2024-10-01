@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\System;
 
-use Illuminate\Http\Request;
-use App\Models\Audit\qualification;
 use App\Http\Controllers\Controller;
+use App\Models\Audit\qualification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 class QualificationController extends Controller
@@ -15,6 +15,7 @@ class QualificationController extends Controller
     public function index()
     {
         $qualifications = qualification::all();
+
         return view('directories.qualifications.index', compact('qualifications'));
     }
 
@@ -32,6 +33,7 @@ class QualificationController extends Controller
     public function store(Request $request)
     {
         $qualification = qualification::create($request->all());
+
         return redirect()->route('directories.qualifications.index');
     }
 
@@ -41,6 +43,7 @@ class QualificationController extends Controller
     public function show(string $id)
     {
         $qualification = qualification::findOrFail($id);
+
         return view('summaries.qualifications.show', compact('qualification'));
     }
 
@@ -50,6 +53,7 @@ class QualificationController extends Controller
     public function edit(string $id)
     {
         $qualification = qualification::findOrFail(Crypt::decrypt($id));
+
         return view('directories.qualifications.edit', compact('qualification'));
     }
 
@@ -60,6 +64,7 @@ class QualificationController extends Controller
     {
         $qualification = qualification::findOrFail($id);
         $qualification->update($request->all());
+
         return redirect()->route('directories.qualifications.index');
     }
 
@@ -70,6 +75,7 @@ class QualificationController extends Controller
     {
         $qualification = qualification::findOrFail($id);
         $qualification->delete();
+
         return redirect()->route('directories.qualifications.index');
     }
 }
