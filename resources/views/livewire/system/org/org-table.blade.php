@@ -70,11 +70,11 @@
                                     </x-dropdown-link>
 
 
-                                    <x-dropdown-link class="text-red-500 hover:bg-red-500/50">
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this organization?')">
+                                    <x-dropdown-link class="text-red-500 hover:bg-red-200/50">
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this employee?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" style="background: none!important; border: none; padding: 0!important; color: #0694a2; cursor: pointer;">Delete</button>
+                                            <button type="submit">Delete</button>
                                         </form>
                                     </x-dropdown-link>
 

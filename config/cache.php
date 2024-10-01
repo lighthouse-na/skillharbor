@@ -85,8 +85,6 @@ return [
             'endpoint' => env('DYNAMODB_ENDPOINT'),
         ],
 
-
-
     ],
 
     /*

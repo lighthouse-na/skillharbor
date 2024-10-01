@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Audit\Department;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
-use App\Models\Audit\Department;
-
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -35,7 +34,7 @@ class UserFactory extends Factory
             'last_name' => fake()->lastName(),
             'gender' => fake()->randomElement(['male', 'female']),
             'dob' => fake()->date(),
-            'role' => fake()->randomElement(['supevisor','admin','employee']),
+            'role' => fake()->randomElement(['supevisor', 'admin', 'employee']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -60,7 +59,7 @@ class UserFactory extends Factory
     /**
      * Indicate that the user should have a personal team.
      */
-    public function withPersonalTeam(callable $callback = null): static
+    public function withPersonalTeam(?callable $callback = null): static
     {
         if (! Features::hasTeamFeatures()) {
             return $this->state([]);

@@ -18,15 +18,14 @@ class assessment extends Model
 
     }
 
-    public function enrolled(){
+    public function enrolled()
+    {
         return $this->belongsToMany(User::class, 'enrollments', 'assessment_id', 'user_id')
             ->withPivot('user_status', 'supervisor_status');
     }
 
     public function scopeSearch($query, $search)
     {
-        return $query->where('assessment_title', 'like', '%' . $search . '%');
+        return $query->where('assessment_title', 'like', '%'.$search.'%');
     }
-
-
 }

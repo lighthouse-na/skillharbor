@@ -3,16 +3,14 @@
 namespace App\Livewire\Reports;
 
 use App\Models\Audit\assessment;
+use App\Models\Audit\Division;
 use App\Models\Audit\Organisation;
-use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
-use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\Audit\Division;
 
 class SystemReports extends Component
 {
-
     protected $organisation;
 
     public function __construct()
@@ -21,7 +19,8 @@ class SystemReports extends Component
         $this->organisation = new Organisation;
     }
 
-    public function orgReport($id){
+    public function orgReport($id)
+    {
         $employeeCount = $this->organisation->getEmployeeCount();
 
         $genderSplit = $this->organisation->getGenderSplit();
@@ -31,10 +30,10 @@ class SystemReports extends Component
         $genderConfig = '{
             type: "doughnut",
             data: {
-            labels: ' . json_encode($genderLabels) . ',
+            labels: '.json_encode($genderLabels).',
             datasets: [{
                 label: "Gender Distribution",
-                data: ' . json_encode($genderValues) . ',
+                data: '.json_encode($genderValues).',
                 backgroundColor: [
                "rgb(255, 99, 132)",
                     "rgb(255, 159, 64)",
@@ -47,7 +46,7 @@ class SystemReports extends Component
     }
             };';
 
-        $genderUrl =  urlencode($genderConfig);
+        $genderUrl = urlencode($genderConfig);
 
         //$employeeTypeSplitChart
         $employeeTypeSplit = $this->organisation->getEmployeeTypeSplit();
@@ -57,10 +56,10 @@ class SystemReports extends Component
         $typeConfig = '{
             type: "doughnut",
             data: {
-            labels: ' . json_encode($typeLabels) . ',
+            labels: '.json_encode($typeLabels).',
             datasets: [{
                 label: "Employee Types",
-                data: ' . json_encode($typeValues) . ',
+                data: '.json_encode($typeValues).',
                 backgroundColor: [
                "rgb(255, 99, 132)",
                     "rgb(255, 159, 64)",
@@ -72,20 +71,20 @@ class SystemReports extends Component
             }]
     }
             };';
-            $typeUrl =  urlencode($typeConfig);
+        $typeUrl = urlencode($typeConfig);
 
-           //$ageDistribution Chart
-            $ageDistribution = $this->organisation->getAgeDistribution();
-            $ageLabels = array_keys($ageDistribution);
-            $ageValues = array_values($ageDistribution);
+        //$ageDistribution Chart
+        $ageDistribution = $this->organisation->getAgeDistribution();
+        $ageLabels = array_keys($ageDistribution);
+        $ageValues = array_values($ageDistribution);
 
-            $ageConfig = '{
+        $ageConfig = '{
             type: "bar",
             data: {
-            labels: ' . json_encode($ageLabels) . ',
+            labels: '.json_encode($ageLabels).',
             datasets: [{
                 label: "Age Distribution",
-                data: ' . json_encode($ageValues) . ',
+                data: '.json_encode($ageValues).',
                 backgroundColor: [
                 "rgb(255, 99, 132)",
                     "rgb(255, 159, 64)",
@@ -99,20 +98,20 @@ class SystemReports extends Component
     }
             };';
 
-            $ageUrl = urlencode($ageConfig);
+        $ageUrl = urlencode($ageConfig);
 
-            //        $skillGap Chart
+        //        $skillGap Chart
 
-            $skillGap = $this->organisation->getCompanySkillGap();
-            $skillLabels = array_keys($skillGap);
-            $skillValues = array_values($skillGap);
-            $skillConfig = '{
+        $skillGap = $this->organisation->getCompanySkillGap();
+        $skillLabels = array_keys($skillGap);
+        $skillValues = array_values($skillGap);
+        $skillConfig = '{
                 type: "bar",
                 data: {
-                labels: ' . json_encode($skillLabels) . ',
+                labels: '.json_encode($skillLabels).',
                 datasets: [{
                     label: "Company Skill Gap",
-                    data: ' . json_encode($skillValues) . ',
+                    data: '.json_encode($skillValues).',
                    backgroundColor: [
                     "rgb(255, 99, 132)",
                     "rgb(255, 159, 64)",
@@ -126,19 +125,19 @@ class SystemReports extends Component
         }
                 };';
 
-                $skillUrl = urlencode($skillConfig);
-                $divisions =  Division::all();
+        $skillUrl = urlencode($skillConfig);
+        $divisions = Division::all();
 
+        $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderUrl', 'skillUrl', 'ageUrl', 'typeUrl', 'employeeCount', 'divisions'));
 
-                $pdf = Pdf::loadView('reports.downloads.organisational_report', compact('genderUrl','skillUrl','ageUrl','typeUrl','employeeCount','divisions'));
+        $filename = 'Telecom_Namibia_CCP.pdf';
 
-                $filename =  'Telecom_Namibia_CCP.pdf';
-                return $pdf->download($filename);
+        return $pdf->download($filename);
 
     }
 
-
-    public function show($id){
+    public function show($id)
+    {
         $assessment = assessment::find(Crypt::decrypt($id));
         $employeeCount = $this->organisation->getEmployeeCount();
         $genderSplit = $this->organisation->getGenderSplit();
@@ -146,19 +145,17 @@ class SystemReports extends Component
         $ageDistribution = $this->organisation->getAgeDistribution();
         $assessmentProgress = $this->organisation->getCompletedAssessments(Crypt::decrypt($id));
         $skillGap = $this->organisation->getCompanySkillGap();
-        $divisions =  Division::all();
+        $divisions = Division::all();
 
         return view('reports.show',
-        compact('assessment',
-        'employeeCount',
-        'genderSplit',
-        'employeeTypeSplit',
-        'ageDistribution',
-        'assessmentProgress',
-        'skillGap',
-        'divisions'
-        ));
+            compact('assessment',
+                'employeeCount',
+                'genderSplit',
+                'employeeTypeSplit',
+                'ageDistribution',
+                'assessmentProgress',
+                'skillGap',
+                'divisions'
+            ));
     }
-
-
 }

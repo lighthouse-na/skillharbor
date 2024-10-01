@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -45,7 +45,7 @@ class UserController extends Controller
                     'role' => $request['role'],
                     'competency_rating' => $competencyRating,
                     'email' => $request['email'],
-                    'password' => Hash::make($password)
+                    'password' => Hash::make($password),
                 ]
             );
 
@@ -56,10 +56,12 @@ class UserController extends Controller
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }
+
     public function index()
     {
         // Retrieve all users
         $users = User::all();
+
         // Return view with users data
         return view('directories.org.index', compact('users'));
     }
@@ -68,6 +70,7 @@ class UserController extends Controller
     {
         // Find user by ID
         $user = User::findOrFail($id);
+
         // Return view with user data
         return view('directories.org.show', compact('user'));
     }
@@ -76,10 +79,10 @@ class UserController extends Controller
     {
         // Find user by ID
         $user = User::findOrFail($id);
+
         // Return view with user data
         return view('directories.org.edit', compact('user'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -87,12 +90,12 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'salary_ref_number' => 'required|numeric|unique:users,salary_ref_number,' . $id,
+            'salary_ref_number' => 'required|numeric|unique:users,salary_ref_number,'.$id,
             'gender' => 'nullable|string|max:255',
             'dob' => 'nullable|date',
             'role' => 'required|string|max:255',
             'competency_rating' => 'nullable|numeric',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'password' => 'nullable|string|min:8',
         ]);
         try {
@@ -100,6 +103,7 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             // Update user data
             $user->update($validatedData);
+
             // Redirect user after update
             return redirect()->route('directories.org.show', $user->id)->with('success', 'User updated successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -114,9 +118,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // Delete user
         $user->delete();
+
         // Redirect user after deletion
         return redirect()->route('directories.org.index')->with('success', 'User deleted successfully!');
     }
-
-
 }
