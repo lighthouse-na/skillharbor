@@ -47,7 +47,11 @@ class CompletedAssessmentsTable extends Component
         $maxQualificationScore = $jcp->qualifications()->count() * 10;
 
         // Calculate the percentage score
-        $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
+        if ($maxQualificationScore > 0) {
+            $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
+        } else {
+            $qualificationPercentage = 0; // Or some default value you prefer
+        }
 
         return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage', 'assessment'));
     }

@@ -65,7 +65,8 @@ class AssessmentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $assessment = Assessment::find($id);
+        dd($request);
+        $assessment = Assessment::find(Crypt::decrypt($id));
 
         // Validate and update the assessment...
         $assessment->update($request->all());

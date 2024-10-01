@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
-use App\Models\Audit\Category;
-use App\Models\Audit\Skill;
+use App\Models\Audit\category;
+use App\Models\Audit\skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
