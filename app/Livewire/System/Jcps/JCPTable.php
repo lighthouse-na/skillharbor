@@ -15,6 +15,6 @@ class JCPTable extends Component
      }
     public function render()
     {
-        return view('livewire.system.jcps.j-c-p-table',['jcps' => jcp::search(request('search'))->paginate(10)]);
+        return view('livewire.system.jcps.j-c-p-table',['jcps' => jcp::search($this->search)->paginate(10)]);
     }
 }
