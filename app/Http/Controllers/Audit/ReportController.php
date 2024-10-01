@@ -142,41 +142,46 @@ class ReportController extends Controller
     }
     
         //Added exportSkills Method -> Shaun
-    public function exportSkills()
-    {
-    $filename = 'skills.csv';
-
-    $headers = [
-        'Content-Type' => 'text/csv',
-        'Content-Disposition' => "attachment; filename=\"$filename\"",
-        'Pragma' => 'no-cache',
-        'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-        'Expires' => 0,
-    ];
-
-    return response()->stream(function () {
-        $handle = fopen('php://output', 'w');
-
-        // Add CSV headers
-        fputcsv($handle, ['Skill Name', 'JCP Count', 'Skill Required Rating Average']);
-
-        // Fetch skills from the database
-        Skill::chunk(25, function ($skills) use ($handle) {
-            foreach ($skills as $skill) {
-                $jcpCount = $skill->jobCompetencyProfiles()->count(); // Count of how many times the skill appears in job profiles
-                $requiredRatingAvg = $skill->jobCompetencyProfiles()->avg('required_rating'); // Average required rating
-
-                fputcsv($handle, [
-                    $skill->name ?? '',
-                    $jcpCount ?? 0,
-                    number_format($requiredRatingAvg, 2) ?? '0.00'
-                ]);
-            }
-        });
-
-        fclose($handle);
-    }, 200, $headers);
-    }
+        public function exportSkills()
+        {
+            $filename = 'skills.csv';
+        
+            $headers = [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => "attachment; filename=\"$filename\"",
+                'Pragma' => 'no-cache',
+                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+                'Expires' => 0,
+            ];
+        
+            return response()->stream(function () {
+                $handle = fopen('php://output', 'w');
+        
+                // Add CSV headers
+                fputcsv($handle, ['Skill Name', 'JCP Count', 'Skill Required Rating Average']);
+        
+                // Process skills in chunks to handle large datasets efficiently
+                Skill::chunk(100, function ($skills) use ($handle) {
+                    foreach ($skills as $skill) {
+                        // Use Eloquent's eager loading to minimize queries and improve performance
+                        $skill->load('jcps');
+        
+                        // Calculate JCP count and required rating average for each skill
+                        $jcpCount = $skill->jcps->count();
+                        $requiredRatingAvg = $skill->jcps->avg('pivot.required_level');
+        
+                        // Write the data to CSV
+                        fputcsv($handle, [
+                            $skill->skill_title ?? '',
+                            $jcpCount ?? 0,
+                            number_format($requiredRatingAvg, 2) ?? '0.00'
+                        ]);
+                    }
+                });
+        
+                fclose($handle);
+            }, 200, $headers);
+        }        
 
     //Added exportAssessments Method -> Shaun
     public function exportAssessments()
