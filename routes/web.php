@@ -99,4 +99,7 @@ Route::middleware([
 
     route::get('/report/employees/export', [reportcontroller::class, 'employee_csv'])->name('reports.employees.export');
     route::get('/report/roles/export', [ReportController::class, 'roles_csv'])->name('reports.roles.export');
+
+    Route::get('/report/qualifications/export', [ReportController::class, 'exportQualifications'])->name('reports.qualifications.export');
+    Route::get('/report/skills/export', [ReportController::class, 'exportSkills'])->name('reports.skills.export');
 });
