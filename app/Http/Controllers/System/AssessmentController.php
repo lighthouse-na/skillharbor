@@ -78,5 +78,14 @@ class AssessmentController extends Controller
         $assessment->delete();
         return redirect()->route('assessments.index');
     }
+
+/**
+ * Create New Assesment 
+ */
+public function create()
+{
+    // Return the view to show the create assessment form
+    return view('assessments.create');
+}
 }
 // watch out for the spelling of assesment in other files
