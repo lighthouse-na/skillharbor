@@ -4,9 +4,9 @@ namespace App\Livewire\System\Jcps;
 
 use App\Models\Audit\assessment;
 use App\Models\Audit\Jcp;
-use App\Models\Audit\Prerequisite;
-use App\Models\Audit\Qualification;
-use App\Models\Audit\Skill;
+use App\Models\Audit\prerequisite;
+use App\Models\Audit\qualification;
+use App\Models\Audit\skill;
 use App\Models\User;
 use Livewire\Component;
 
@@ -84,7 +84,7 @@ class JCPCreateForm extends Component
 
     public function save()
     {
-        $this->validateForm();
+        dd($this->validateForm());
 
         // Check if a record already exists for the given user_id and assessment_id
         $existingJcp = Jcp::where('user_id', $this->user_id)

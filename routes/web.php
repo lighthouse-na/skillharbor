@@ -35,11 +35,7 @@ Route::middleware([
     route::post('/user-assessment/{user}/{assessment}/{jcp}', [assessmentcontroller::class, 'storeemployee'])->name('user-assessment.storeEmployee');
 
     //assessment routes
-    route::get('/directories/assessments', [assessmentcontroller::class, 'index'])->name('directories.assessments.index');
-    route::put('/directories/assessments/{id}', [assessmentcontroller::class, 'update'])->name('directories.assessments.update');
-    route::post('/directories/assessments', [assessmentcontroller::class, 'store'])->name('directories.assessments.store');
-
-    route::delete('/directories/assessments/{id}', [assessmentcontroller::class, 'destroy'])->name('directories.assessments.destroy');
+    route::resource('/directories/assessments', AssessmentController::class);
 
     //audit routes
     route::get('/supervise', [supervisecontroller::class, 'index'])->name('supervise.index');
@@ -50,7 +46,7 @@ Route::middleware([
     //skill internal api routes
 
     route::resource('/assessments', systemassessmentcontroller::class);
-    route::resource('/jcp', jcpcontroller::class);
+    route::resource('/jcp', JCPController::class);
     route::resource('/skills', skillcontroller::class);
     route::resource('/qualifications', qualificationcontroller::class);
     route::get('/org', [orgtable::class, 'index'])->name('org.index');
