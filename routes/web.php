@@ -37,8 +37,8 @@ Route::middleware([
     //audit routes
     route::get('/supervise', [SuperviseController::class, 'index'])->name('supervise.index');
     route::get('/supervise/{id}', [SuperviseController::class, 'list'])->name('supervise.list');
-    route::get('supervise/{id}/{assessment_id}', [completedassessmentstable::class, 'show'])->name('supervise.show');
-    route::post('supervise/{user}/{assessment}/{jcp}', [completedassessmentstable::class, 'store'])->name('supervise.store');
+    route::get('supervise/{id}/{assessment_id}', [CompletedAssessmentsTable::class, 'show'])->name('supervise.show');
+    route::post('supervise/{user}/{assessment}/{jcp}', [CompletedAssessmentsTable::class, 'store'])->name('supervise.store');
 
     //skill internal api routes
 
@@ -46,7 +46,7 @@ Route::middleware([
     route::resource('/jcp', JCPController::class);
     route::resource('/skills', SkillController::class);
     route::resource('/qualifications', QualificationController::class);
-    route::get('/org', [orgtable::class, 'index'])->name('org.index');
+    route::get('/org', [OrgTable::class, 'index'])->name('org.index');
     route::get('/jcp/create', [JCPController::class, 'create'])->name('jcp.create');
     route::get('/directories/skills', [SkillController::class, 'index'])->name('directories.skills.index');
 
@@ -68,8 +68,8 @@ Route::middleware([
 
     // organisations routes
 
-    route::get('/directories/org', [orgtable::class, 'index'])->name('directories.org.index');
-    route::get('/directories/org/create', [orgtable::class, 'create'])->name('directories.org.create');
+    route::get('/directories/org', [OrgTable::class, 'index'])->name('directories.org.index');
+    route::get('/directories/org/create', [OrgTable::class, 'create'])->name('directories.org.create');
     route::post('/users', [UserController::class, 'store'])->name('users.store');
     route::get('/directories/org/{id}', [UserController::class, 'show'])->name('directories.org.show');
     route::get('/directories/org/{id}/edit', [UserController::class, 'edit'])->name('directories.org.edit');
@@ -83,9 +83,9 @@ Route::middleware([
     route::get('/reports/{id}', [SystemReports::class, 'show'])->name('reports.show');
 
     //downloads routes
-    route::get('download/{user_id}/{assessment_id}', [AssessmentController::class, 'supervisorresults'])->name('supervisor.result');
-    route::get('downloadjcp/{user_id}/{assessment_id}', [AssessmentController::class, 'jcppdf'])->name('submission.jcp');
-    route::get('orgreport/{id}', [SystemReports::class, 'orgreport'])->name('organisational.report');
+    route::get('download/{user_id}/{assessment_id}', [AssessmentController::class, 'supervisorResults'])->name('supervisor.result');
+    route::get('downloadjcp/{user_id}/{assessment_id}', [AssessmentController::class, 'jcpPDF'])->name('submission.jcp');
+    route::get('orgreport/{id}', [SystemReports::class, 'orgReport'])->name('organisational.report');
 
     route::get('/report/employees/export', [ReportController::class, 'employee_csv'])->name('reports.employees.export');
     route::get('/report/roles/export', [ReportController::class, 'roles_csv'])->name('reports.roles.export');

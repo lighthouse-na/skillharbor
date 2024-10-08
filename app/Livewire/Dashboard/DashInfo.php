@@ -54,20 +54,18 @@ class DashInfo extends Component
 
     public function addQualificationToUser()
     {
-        dd($this->qualification_id);
         $this->validate([
             'qualification_id' => 'required|exists:qualifications,id',
         ]);
 
         $qualification = Qualification::find($this->qualification_id);
 
-        $user = Auth::user();
-        $user->qualifications()->attach($qualification->id);
+        Auth::user()->qualifications()->attach($qualification->id);
 
         $this->confirmingAddQualification = false;
         $this->qualification_id = ''; // Clear the input after successful submission
+        session()->flash('message', 'Qualification added successfully!');
     }
-
     public function confirmQualficationRemoval($id)
     {
         $role = qualification::find($id);
