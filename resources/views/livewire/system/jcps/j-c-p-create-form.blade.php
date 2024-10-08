@@ -162,7 +162,7 @@
         @endif
 
         @if($currentPage === count($pages))
-            <x-button wire:click='createJCPInformations'>
+            <x-button wire:click='createJCPInformation'>
                 {{ __('Register JCP') }}
             </x-button>
         @else
