@@ -9,7 +9,7 @@
                         <div class="flex flex-row items-center justify-center">
                             <div><img src="{{asset('assets/logo/mainlogo.png')}}" alt="" class="rounded-full w-12 mr-2 hover:shadow-md"></div>
                             <div>
-                                <h1 class="block text-3xl w-auto">skillHarbor</h1>
+                                <h1 class="block text-3xl w-auto">SkillHarbor</h1>
                             </div>
                         </div>
 
