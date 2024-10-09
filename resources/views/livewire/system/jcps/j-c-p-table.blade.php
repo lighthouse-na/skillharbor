@@ -11,7 +11,7 @@
 
                 <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
                     <x-gmdi-add-o class="w-6 h-6" />
-                    Add jcp
+                    Add JCP
                 </a>
 
             </div>

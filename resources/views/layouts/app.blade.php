@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SkillHarbor') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/logo/mainlogo.png') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
