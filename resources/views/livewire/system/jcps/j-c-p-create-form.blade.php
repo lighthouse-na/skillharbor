@@ -15,13 +15,13 @@
             <x-input id="position_title" type="text" class="mt-1 block w-full" wire:model.defer="position_title" required autocomplete="position_title" />
             <x-input-error for="position_title" class="mt-2" />
         </div>
-        
+
         <div class="col-span-6 sm:col-span-4">
             <x-label for="duty_station" value="{{ __('Duty Station') }}" />
             <x-input id="duty_station" type="text" class="mt-1 block w-full" wire:model.defer="duty_station" required autocomplete="duty_station" />
             <x-input-error for="duty_station" class="mt-2" />
         </div>
-        
+
         <div class="col-span-6 sm:col-span-4">
             <x-label for="user" value="{{ __('Employee') }}" />
             <select id="user" wire:model.defer="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:border-fuchsia-500">
@@ -34,7 +34,7 @@
             </select>
             <x-input-error for="user_id" class="mt-2" />
         </div>
-        
+
         <div class="col-span-6 sm:col-span-4">
             <x-label for="job_grade" value="{{ __('Job Grade') }}" />
             <select id="job_grade" wire:model.defer="job_grade" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:border-fuchsia-500">
@@ -112,7 +112,7 @@
         @elseif ($currentPage === 3 )
         <div>
             <table>
-                <thead>
+                <thead class="text-base">
                     <th>Skill Title</th>
                     <th>Required Rating</th>
                 </thead>
@@ -162,7 +162,7 @@
         @endif
 
         @if($currentPage === count($pages))
-            <x-button wire:click='save'>
+            <x-button wire:click='createJCPInformation'>
                 {{ __('Register JCP') }}
             </x-button>
         @else

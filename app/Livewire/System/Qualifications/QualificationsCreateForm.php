@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class QualificationsCreateForm extends Component
 {
-
     public $qualification_title = '';
+
     public function save()
     {
         Qualification::create([
@@ -20,6 +20,7 @@ class QualificationsCreateForm extends Component
 
         return $this->redirect('/qualifications');
     }
+
     public function render()
     {
         return view('livewire.system.qualifications.qualifications-create-form');

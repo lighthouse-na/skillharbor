@@ -11,7 +11,8 @@ class Division extends Model
 
     protected $guarded = [];
 
-    public function departments(){
+    public function departments()
+    {
         return $this->hasMany(Department::class, 'division_id');
     }
 }

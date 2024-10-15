@@ -19,7 +19,6 @@ class jcpFactory extends Factory
         $assessment_ids = \App\Models\Audit\assessment::select('id')->get();
         $user_ids = \App\Models\User::select('id')->get();
 
-
         return [
             //This populates the jcp model fields
             'assessment_id' => $this->faker->randomElement($assessment_ids),

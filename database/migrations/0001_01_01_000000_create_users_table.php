@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('department_id')->onDelete('cascade')->nullable();
             $table->foreignId('supervisor_id')->onDelete('cascade')->nullable()->default('1');
 
-
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('salary_ref_number')->nullable();

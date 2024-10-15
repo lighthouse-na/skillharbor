@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\User;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
 
 test('registration screen can be rendered', function () {
-    $response = $this->get('/register');
+    $this->actingAs($user = User::factory()->create());
+
+    $response = $this->get('/directories/org/create');
 
     $response->assertStatus(200);
 })->skip(function () {

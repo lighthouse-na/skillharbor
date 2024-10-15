@@ -3,30 +3,39 @@
 namespace App\Livewire\System\Jcps;
 
 use App\Models\Audit\assessment;
-use Livewire\Component;
 use App\Models\Audit\Jcp;
-use App\Models\Audit\Prerequisite;
-use App\Models\Audit\Qualification;
-use App\Models\Audit\Skill;
+use App\Models\Audit\prerequisite;
+use App\Models\Audit\qualification;
+use App\Models\Audit\skill;
 use App\Models\User;
+use Livewire\Component;
 
 class JCPCreateForm extends Component
 {
     public $currentPage = 1;
+
     public $user_id = '';
+
     public $position_title = '';
+
     public $duty_station = '';
+
     public $job_grade = '';
+
     public $job_purpose = '';
+
     public $is_active = '';
+
     public $jcp_qualifications = [];
+
     public $jcp_skills = [];
+
     public $jcp_prerequisites = [];
 
     public function mount()
     {
         $this->jcp_skills = [
-            ['skill_id' => '', 'required_rating' => 1]
+            ['skill_id' => '', 'required_rating' => 1],
         ];
     }
 
@@ -75,15 +84,16 @@ class JCPCreateForm extends Component
 
     public function save()
     {
-        $this->validateForm();
+        dd($this->validateForm());
 
         // Check if a record already exists for the given user_id and assessment_id
         $existingJcp = Jcp::where('user_id', $this->user_id)
-                          ->where('assessment_id', 1)
-                          ->first();
+            ->where('assessment_id', 1)
+            ->first();
 
         if ($existingJcp) {
             session()->flash('error', 'A JCP for this user and assessment already exists.');
+
             return redirect()->route('jcp.index'); // redirect back with an error message
         }
 
@@ -97,7 +107,7 @@ class JCPCreateForm extends Component
 
             'is_active' => is_null($this->is_active) ? null : 0,            //Add Frontend for these elements
             'user_id' => $this->user_id,
-            'assessment_id' => assessment::find(1)->id,//testing
+            'assessment_id' => assessment::find(1)->id, //testing
         ]);
 
         // Attach qualifications
@@ -112,7 +122,7 @@ class JCPCreateForm extends Component
 
         // Attach skills with required rating
         foreach ($this->jcp_skills as $skill) {
-            if (!empty($skill['skill_id'])) {
+            if (! empty($skill['skill_id'])) {
                 $jcp->skills()->attach($skill['skill_id'], ['required_level' => $skill['required_rating']]);
             }
         }
@@ -154,7 +164,7 @@ class JCPCreateForm extends Component
             'qualifications' => Qualification::all(),
             'skills' => Skill::all(),
             'users' => User::get(['id', 'first_name', 'last_name']),
-            'prerequisites' => Prerequisite::all()
+            'prerequisites' => Prerequisite::all(),
         ]);
     }
 }

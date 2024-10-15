@@ -11,7 +11,6 @@ class Organisation extends Model
 {
     use HasFactory;
 
-
     public function getEmployeeCount()
     {
         return User::count();
@@ -21,10 +20,10 @@ class Organisation extends Model
     public function getGenderSplit()
     {
         $genderCounts = User::select(DB::raw('gender, COUNT(*) as count'))
-                            ->groupBy('gender')
-                            ->get()
-                            ->pluck('count', 'gender')
-                            ->toArray();
+            ->groupBy('gender')
+            ->get()
+            ->pluck('count', 'gender')
+            ->toArray();
 
         return $genderCounts;
     }
@@ -32,10 +31,10 @@ class Organisation extends Model
     public function getEmployeeTypeSplit()
     {
         return User::select(DB::raw('role, COUNT(*) as count'))
-                    ->groupBy('role')
-                    ->get()
-                    ->pluck('count' , 'role')
-                    ->toArray();
+            ->groupBy('role')
+            ->get()
+            ->pluck('count', 'role')
+            ->toArray();
     }
 
     public function getAgeDistribution()
@@ -51,20 +50,21 @@ class Organisation extends Model
             END as age_range,
             COUNT(*) as count
         "))
-        ->groupBy('age_range')
-        ->pluck('count', 'age_range')
-        ->toArray();
+            ->groupBy('age_range')
+            ->pluck('count', 'age_range')
+            ->toArray();
+
         return $ageGroups;
 
     }
 
     public function getCompletedAssessments($id)
     {
-        $totalAssessments = enrollment::where('assessment_id',$id)->count();
+        $totalAssessments = enrollment::where('assessment_id', $id)->count();
         $completedAssessments = enrollment::where('assessment_id', $id)
-                                          ->where('user_status', 1)
-                                          ->where('supervisor_status', 1)
-                                          ->count();
+            ->where('user_status', 1)
+            ->where('supervisor_status', 1)
+            ->count();
 
         return [
             'total' => $totalAssessments,
@@ -89,25 +89,24 @@ class Organisation extends Model
     public function getTopPerformers($limit = 10)
     {
         return User::with('skills')
-                   ->get()
-                   ->sortByDesc(function ($user) {
-                       return $user->skills->sum(function ($skill) {
-                           return max($skill->user_rating, $skill->supervisor_rating);
-                       });
-                   })
-                   ->take($limit);
+            ->get()
+            ->sortByDesc(function ($user) {
+                return $user->skills->sum(function ($skill) {
+                    return max($skill->user_rating, $skill->supervisor_rating);
+                });
+            })
+            ->take($limit);
     }
 
     public function getLowPerformers($limit = 10)
     {
         return User::with('skills')
-                   ->get()
-                   ->sortBy(function ($user) {
-                       return $user->skills->sum(function ($skill) {
-                           return max($skill->user_rating, $skill->supervisor_rating);
-                       });
-                   })
-                   ->take($limit);
+            ->get()
+            ->sortBy(function ($user) {
+                return $user->skills->sum(function ($skill) {
+                    return max($skill->user_rating, $skill->supervisor_rating);
+                });
+            })
+            ->take($limit);
     }
-
 }

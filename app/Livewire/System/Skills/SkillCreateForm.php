@@ -2,15 +2,18 @@
 
 namespace App\Livewire\System\Skills;
 
-use Livewire\Component;
 use App\Models\Audit\Category;
 use App\Models\Audit\Skill;
+use Livewire\Component;
 
 class SkillCreateForm extends Component
 {
     public $skill_title;
+
     public $skill_description;
+
     public $skill_category_id;
+
     public $categories;
 
     protected $rules = [
