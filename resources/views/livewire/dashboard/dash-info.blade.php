@@ -49,7 +49,7 @@
                 </div>
                 <ul class="flex-grow divide-y divide-gray-200 overflow-auto">
                     @forelse ($qualifications as $qualification)
-                        <li class="p-3 sm:py-4 dark:hover:bg-gray-700">
+                        <li class="p-3 sm:py-4 px-6 dark:hover:bg-gray-700">
                             <div class="flex items-center justify-between">
                                 <p class="text-sm text-gray-900 dark:text-white truncate">
                                     {{ $qualification->qualification_title }}
@@ -214,11 +214,11 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-secondary-button wire:click="$set('confirmingAddQualification', false)">
+        <x-secondary-button  class="m-2"  wire:click="$set('confirmingAddQualification', false)">
             {{ __('Cancel') }}
         </x-secondary-button>
 
-        <x-button wire:click="addQualificationToUser" wire:loading.attr="disabled">
+        <x-button class="m-2" wire:click="addQualificationToUser" wire:loading.attr="disabled">
             {{ __('Add Qualification') }}
         </x-button>
     </x-slot>
