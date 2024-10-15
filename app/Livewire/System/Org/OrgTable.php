@@ -3,38 +3,39 @@
 namespace App\Livewire\System\Org;
 
 use App\Models\Audit\Department;
-use App\Models\Audit\Division;
 use App\Models\User;
-use Livewire\Component;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
-
-
+use Livewire\Component;
 
 class OrgTable extends Component
 {
     public $search = '';
 
-    public function index(){
+    public function index()
+    {
 
         return view('directories.org.index');
 
     }
+
     public function render()
     {
         $users = User::with(['jcp' => function ($query) {
             $query->where('is_active', 1);
         }])->search($this->search)->paginate(10);
+
         return view('livewire.system.org.org-table', ['users' => $users]);
     }
 
-    public function create () {
+    public function create()
+    {
         $departments = Department::all();
 
-        return view('directories.org.create' , compact('departments'));
+        return view('directories.org.create', compact('departments'));
     }
+
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
@@ -75,10 +76,8 @@ class OrgTable extends Component
     {
         // Find user by ID
         $user = User::findOrFail($id);
+
         // Return view with user data
         return view('directories.org.edit', compact('user'));
     }
-
-
-
 }

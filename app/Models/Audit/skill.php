@@ -18,19 +18,18 @@ class skill extends Model
 
     public function jcps()
     {
-        return $this->belongsToMany(jcp::class)->withPivot('user_rating', 'supervisor_rating','required_level');
+        return $this->belongsToMany(jcp::class)->withPivot('user_rating', 'supervisor_rating', 'required_level');
     }
 
-    public function scopeSearch ($query, $val, $category = null) {
+    public function scopeSearch($query, $val, $category = null)
+    {
         $query->where(function ($query) use ($val) {
             $query->where('skill_title', 'like', '%'.$val.'%')
                 ->orWhere('skill_description', 'like', '%'.$val.'%');
         });
-    
+
         if ($category) {
             $query->where('skill_category', '=', $category);
         }
     }
-
-    
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\System;
 
-use App\Models\User;
-use App\Models\Audit\jcp;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Audit\jcp;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 class JCPController extends Controller
@@ -17,6 +17,7 @@ class JCPController extends Controller
     {
         //
         $jcp = jcp::all();
+
         return view('directories.jcp.index', compact('jcp'));
     }
 
@@ -39,29 +40,28 @@ class JCPController extends Controller
     public function show(string $id)
     {
         $jcp = jcp::findOrFail(Crypt::decrypt($id));
+
         return view('directories.jcp.show', compact('jcp'));
     }
 
     public function edit(string $id)
     {
-        $jcp = jcp::findOrFail(Crypt::decrypt($id)); 
-        $user = User::all();   
+        $jcp = jcp::findOrFail(Crypt::decrypt($id));
+        $user = User::all();
 
         return view('directories.jcp.edit', compact('jcp', 'user'));
     }
 
     public function update(Request $request, string $id)
-    {  
-      
-     
+    {
+
         $jcp = jcp::findOrFail(Crypt::decrypt($id));
         $jcp->update([
             'position_title' => $request->position_title,
             'duty_station' => $request->duty_station,
             'job_grade' => $request->job_grade,
             'job_purpose' => $request->job_purpose,
-            'is_active' => $request->has(key:'is_active') // make field selected if checked 
-
+            'is_active' => $request->has(key: 'is_active'), // make field selected if checked
 
         ]);
 

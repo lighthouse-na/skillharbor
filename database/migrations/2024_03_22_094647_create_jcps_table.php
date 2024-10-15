@@ -25,7 +25,6 @@ return new class extends Migration
             // Add a unique constraint
             $table->unique(['user_id', 'assessment_id']);
 
-
             $table->timestamps();
         });
     }

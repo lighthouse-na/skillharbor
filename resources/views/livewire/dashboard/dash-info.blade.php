@@ -49,7 +49,7 @@
                 </div>
                 <ul class="flex-grow divide-y divide-gray-200 overflow-auto">
                     @forelse ($qualifications as $qualification)
-                        <li class="p-3 sm:py-4 dark:hover:bg-gray-700">
+                        <li class="p-3 sm:py-4 px-6 dark:hover:bg-gray-700">
                             <div class="flex items-center justify-between">
                                 <p class="text-sm text-gray-900 dark:text-white truncate">
                                     {{ $qualification->qualification_title }}
@@ -190,42 +190,40 @@
                 </div>
             </div>
             <div>
-                <x-dialog-modal wire:model.live="confirmingAddQualification">
-                    <x-slot name="title">
-                        {{ __('New Qualification') }}
-                    </x-slot>
+                <!-- Add Qualification Modal -->
+<x-dialog-modal wire:model="confirmingAddQualification">
+    <x-slot name="title">
+        {{ __('New Qualification') }}
+    </x-slot>
 
-                    <x-slot name="content">
-                        <div class="mt-4" x-data="{}"
-                            x-on:confirming-add-qualification.window="setTimeout(() => $refs.qualification_title.focus(), 250)">
-                            <select class="appearance-none rounded-lg shadow w-full" type="text"
+    <x-slot name="content">
+        <!-- Dropdown for Selecting Qualification -->
+        <div class="mt-4">
+            <label for="qualification" class="block text-sm font-medium text-gray-700">Select Qualification</label>
+            <select id="qualification" wire:model="qualification_id" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option value="">-- Select Qualification --</option>
+                @foreach ($dbQual as $qual)
+                    <option value="{{ $qual->id }}">{{ $qual->qualification_title }}</option>
+                @endforeach
+            </select>
 
-    class="mt-1 block w-3/4" placeholder="{{ __('Qualification Title') }}"
+            @error('qualification_id')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+    </x-slot>
 
-    x-ref="qualification_title" wire:model="qualification_id" wire:change="updateQualificationId"
+    <x-slot name="footer">
+        <x-secondary-button  class="m-2"  wire:click="$set('confirmingAddQualification', false)">
+            {{ __('Cancel') }}
+        </x-secondary-button>
 
-    wire:keydown.enter="addQualificationToUser">
+        <x-button class="m-2" wire:click="addQualificationToUser" wire:loading.attr="disabled">
+            {{ __('Add Qualification') }}
+        </x-button>
+    </x-slot>
+</x-dialog-modal>
 
-    @foreach ($dbQual as $q)
-        <option value="{{ $q->id }}">{{ $q->id }}</option>
-    @endforeach
-
-</select>
-                            {{-- <x-input-error for="role_title" class="mt-2" /> --}}
-                        </div>
-                    </x-slot>
-
-                    <x-slot name="footer">
-                        <x-secondary-button wire:click="$toggle('confirmingAddQualification')"
-                            wire:loading.attr="disabled">
-                            {{ __('Cancel') }}
-                        </x-secondary-button>
-
-                        <x-button class="ms-3" wire:click="addQualificationToUser" wire:loading.attr="enabled">
-                            {{ __('Submit') }}
-                        </x-button>
-                    </x-slot>
-                </x-dialog-modal>
 
             </div>
 

@@ -17,12 +17,13 @@ class categoryFactory extends Factory
     public function definition(): array
     {
         $categories = [
-            "Behavioral",
-            "Knowledge",
-            "Basic Digital",
-            "Advanced Digital",
-            "Soft Skills"
+            'Behavioral',
+            'Knowledge',
+            'Basic Digital',
+            'Advanced Digital',
+            'Soft Skills',
         ];
+
         return [
             //
             'category_title' => $this->faker->unique()->randomElement($categories),

@@ -2,9 +2,9 @@
 
 namespace App\Models\Audit;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Department extends Model
 {
@@ -12,11 +12,13 @@ class Department extends Model
 
     protected $guarded = [];
 
-    public function employees(){
+    public function employees()
+    {
         return $this->hasMany(User::class, 'department_id');
     }
 
-    public function division(){
+    public function division()
+    {
         return $this->belongsTo(Division::class, 'division_id');
     }
 }

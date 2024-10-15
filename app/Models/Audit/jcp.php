@@ -2,10 +2,9 @@
 
 namespace App\Models\Audit;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Models\User;
 
 class jcp extends Model
 {
@@ -22,12 +21,14 @@ class jcp extends Model
     {
         return $this->belongsTo(assessment::class, 'assessment_id');
     }
+
     public function skills()
     {
-        return $this->belongsToMany(skill::class)->withPivot('user_rating', 'supervisor_rating','required_level');
+        return $this->belongsToMany(skill::class)->withPivot('user_rating', 'supervisor_rating', 'required_level');
     }
 
-    public function qualifications(){
+    public function qualifications()
+    {
         return $this->belongsToMany(qualification::class, 'jcp_qualification');
     }
 
@@ -43,21 +44,23 @@ class jcp extends Model
         return $this->belongsToMany(prerequisite::class, 'jcp_prerequisites');
     }
 
-    public function skill_category(){
+    public function skill_category()
+    {
         return $this->skills()->with('category')->get()->pluck('category')->flatten()->pluck('category_title')->unique()->values()->toArray();
     }
+
     public function sumRequiredLevelsByCategory()
     {
         $categoryTitles = $this->skill_category();
         $sums = [];
 
-        foreach($categoryTitles as $categoryTitle) {
+        foreach ($categoryTitles as $categoryTitle) {
             $category = Category::where('category_title', $categoryTitle)->first();
-            if($category) {
+            if ($category) {
                 $sum = 0;
-                foreach($category->skills as $skill) {
+                foreach ($category->skills as $skill) {
                     // Check if the skill belongs to the jcp
-                    if($this->skills->contains($skill)) {
+                    if ($this->skills->contains($skill)) {
                         $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
                         $sum += $pivot->required_level;
                     }
@@ -69,17 +72,18 @@ class jcp extends Model
         return $sums ?? [];
     }
 
-    public function sumMyLevels(){
+    public function sumMyLevels()
+    {
         $categoryTitles = $this->skill_category();
 
         $sums = [];
-        foreach($categoryTitles as $categoryTitle) {
+        foreach ($categoryTitles as $categoryTitle) {
             $category = Category::where('category_title', $categoryTitle)->first();
-            if($category) {
+            if ($category) {
                 $sum = 0;
-                foreach($category->skills as $skill) {
+                foreach ($category->skills as $skill) {
                     // Check if the skill belongs to the jcp
-                    if($this->skills->contains($skill)) {
+                    if ($this->skills->contains($skill)) {
                         $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
                         $sum += $pivot->user_rating;
                     }
@@ -87,20 +91,22 @@ class jcp extends Model
                 $sums[] = ['category' => $categoryTitle, 'value' => $sum];
             }
         }
+
         return $sums ?? [];
     }
 
-    public function sumSupervisorLevels(){
+    public function sumSupervisorLevels()
+    {
         $categoryTitles = $this->skill_category();
 
         $sums = [];
-        foreach($categoryTitles as $categoryTitle) {
+        foreach ($categoryTitles as $categoryTitle) {
             $category = Category::where('category_title', $categoryTitle)->first();
-            if($category) {
+            if ($category) {
                 $sum = 0;
-                foreach($category->skills as $skill) {
+                foreach ($category->skills as $skill) {
                     // Check if the skill belongs to the jcp
-                    if($this->skills->contains($skill)) {
+                    if ($this->skills->contains($skill)) {
                         $pivot = $this->skills()->where('skill_id', $skill->id)->first()->pivot;
                         $sum += $pivot->supervisor_rating;
                     }
@@ -108,8 +114,7 @@ class jcp extends Model
                 $sums[] = ['category' => $categoryTitle, 'value' => $sum];
             }
         }
+
         return $sums ?? [];
     }
-
-
 }

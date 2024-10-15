@@ -4,8 +4,8 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Models\Audit\assessment;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class AssessmentController extends Controller
 {
@@ -15,16 +15,17 @@ class AssessmentController extends Controller
     public function index()
     {
         $assesment = assessment::all();
+
         return view('directories.assessments.index', compact('assesment'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('directories.assesment.create');
-    }
+    // public function create()
+    // {
+    //     return view('directories.assesment.create');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +35,8 @@ class AssessmentController extends Controller
 
         assessment::create($request->all());
 
-        return redirect()->route('directories.assesment.index');    }
+        return redirect()->route('directories.assesment.index');
+    }
 
     /**
      * Display the specified resource.
@@ -42,6 +44,7 @@ class AssessmentController extends Controller
     public function show(string $id)
     {
         $assesment = assessment::findOrFail($id);
+
         return view('summaries.assesment.show', compact('assesment'));
     }
 
@@ -65,6 +68,7 @@ class AssessmentController extends Controller
     {
         $assessment = assessment::findOrFail($id);
         $assessment->update($request->all());
+
         return redirect()->route('directories.assessments.index');
     }
 
@@ -76,16 +80,17 @@ class AssessmentController extends Controller
         $assessment = assessment::findOrFail($id);
 
         $assessment->delete();
+
         return redirect()->route('assessments.index');
     }
 
-/**
- * Create New Assesment 
- */
-public function create()
-{
-    // Return the view to show the create assessment form
-    return view('assessments.create');
-}
+    /**
+     * Create New Assesment
+     */
+    public function create()
+    {
+        // Return the view to show the create assessment form
+        return view('assessments.create');
+    }
 }
 // watch out for the spelling of assesment in other files

@@ -10,54 +10,54 @@ use Livewire\Component;
 
 class CompletedAssessmentsTable extends Component
 {
+    //Show assessment filled in by user to be assessed
+    public function show($id, $assessment_id)
+    {
 
-     //Show assessment filled in by user to be assessed
-     public function show($id, $assessment_id)
-     {
-
-         $user = User::find(Crypt::decrypt($id));
+        $user = User::find(Crypt::decrypt($id));
         $assessment = assessment::find(Crypt::decrypt($assessment_id));
-         $jcp = $user->jcp()
-             ->with('skills.category') // Eager load skills and their categories
-             ->where('is_active', 1) // Only load jcp where is_active is 1
-             ->first();
-             $skills = $jcp->skills()->with('category')->get();
+        $jcp = $user->jcp()
+            ->with('skills.category') // Eager load skills and their categories
+            ->where('is_active', 1) // Only load jcp where is_active is 1
+            ->first();
+        $skills = $jcp->skills()->with('category')->get();
 
+        /**
+         * Loads Qualification data to assessment
+         */
+        $userQualifications = $user->qualifications()->get();
 
+        $qualificationsData = [];
+        $qualificationScore = 0;
 
-             /**
-              * Loads Qualification data to assessment
-              */
-             $userQualifications = $user->qualifications()->get();
+        foreach ($jcp->qualifications()->get() as $qualification) {
+            // Check if the qualification exists in the user's acquired qualifications
+            $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
 
-             $qualificationsData = [];
-             $qualificationScore = 0;
+            // Add qualification name and attained status to the data array
+            $qualificationsData[] = [
+                'name' => $qualification->qualification_title,
+                'attained' => $isAcquired,
+            ];
 
-             foreach ($jcp->qualifications()->get() as $qualification) {
-                 // Check if the qualification exists in the user's acquired qualifications
-                 $isAcquired = $userQualifications->contains('qualification_title', $qualification->qualification_title);
+            // Calculate qualification score
+            $qualificationScore += $isAcquired ? 10 : 0;
+        }
+        // Calculate the maximum possible score
+        $maxQualificationScore = $jcp->qualifications()->count() * 10;
 
-                 // Add qualification name and attained status to the data array
-                 $qualificationsData[] = [
-                     'name' => $qualification->qualification_title,
-                     'attained' => $isAcquired,
-                 ];
+        // Calculate the percentage score
+        if ($maxQualificationScore > 0) {
+            $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
+        } else {
+            $qualificationPercentage = 0; // Or some default value you prefer
+        }
 
-                 // Calculate qualification score
-                 $qualificationScore += $isAcquired ? 10 : 0;
-             }
-             // Calculate the maximum possible score
-             $maxQualificationScore = $jcp->qualifications()->count() * 10;
+        return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage', 'assessment'));
+    }
 
-             // Calculate the percentage score
-             $qualificationPercentage = round(($qualificationScore / $maxQualificationScore) * 100);
-
-
-
-         return view('supervise.submission', compact('user', 'jcp', 'qualificationsData', 'qualificationScore', 'qualificationPercentage', 'assessment'));
-     }
-
-     public function store(User $user, assessment $assessment,jcp $jcp){
+    public function store(User $user, assessment $assessment, jcp $jcp)
+    {
 
         $data = request()->validate([
             'supervisor_score.*' => 'required', // Add any validation rules as needed
@@ -79,8 +79,7 @@ class CompletedAssessmentsTable extends Component
 
         return redirect()->route('supervise.index')
             ->with('success', 'Answers submitted successfully!');
-     }
-
+    }
 
     public function render()
     {
@@ -89,10 +88,6 @@ class CompletedAssessmentsTable extends Component
         })->with(['enrolled' => function ($query) {
             $query->select();
         }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->paginate(10);
-
-
-
-
 
         return view('livewire.supervise.completed-assessments-table', compact('completedAssessments'));
     }

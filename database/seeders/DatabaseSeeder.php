@@ -4,14 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\Audit\assessment;
 use App\Models\Audit\category;
+use App\Models\Audit\Department;
+use App\Models\Audit\Division;
 use App\Models\Audit\enrollment;
 use App\Models\Audit\jcp;
 use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
 use App\Models\User;
-use App\Models\Audit\Department;
-use App\Models\Audit\Division;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
 
         Department::factory(10)->create();
         $this->command->getOutput()->progressAdvance();
-
 
         $this->command->info(' Creating Audit Assessments...');
         assessment::factory(1)->create();
@@ -63,7 +62,6 @@ class DatabaseSeeder extends Seeder
         });
         $this->command->getOutput()->progressAdvance();
 
-
         $this->command->info(' Assigning Prerequisites to jcps...');
         $prerequisites = prerequisite::all();
         foreach ($jcps as $jcp) {
@@ -80,11 +78,11 @@ class DatabaseSeeder extends Seeder
 
             // Check if the user is already enrolled in the assessment
             $existingEnrollment = enrollment::where('user_id', $user->id)
-                                            ->where('assessment_id', $assessment_id)
-                                            ->first();
+                ->where('assessment_id', $assessment_id)
+                ->first();
 
             // If the user is not already enrolled, create the enrollment
-            if (!$existingEnrollment) {
+            if (! $existingEnrollment) {
                 enrollment::factory()->create([
                     'user_id' => $user->id,
                     'assessment_id' => $assessment_id,
@@ -92,7 +90,6 @@ class DatabaseSeeder extends Seeder
             }
         }
         $this->command->getOutput()->progressAdvance();
-
 
         $this->command->info(' Assigning Qualifications to Users...');
         $qualifications = qualification::all();
@@ -110,11 +107,7 @@ class DatabaseSeeder extends Seeder
             $jcp->qualifications()->saveMany($qualifications);
         }
 
-
-
-
         $this->command->getOutput()->progressFinish();
-
 
     }
 }

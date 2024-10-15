@@ -16,7 +16,7 @@ class assessmentFactory extends Factory
      */
     public function definition(): array
     {
-        $assessmentName = 'Skills Audit - ' . date('Y');
+        $assessmentName = 'Skills Audit - '.date('Y');
 
         return [
             //
