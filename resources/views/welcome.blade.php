@@ -42,7 +42,7 @@
             <div class="relative h-full w-full bg-white"><div class="absolute h-full w-full [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
             <div class="container mx-auto text-center p-24">
                 <h1 class="text-7xl font-bold text-gray-800">Empower Your Workforce</h1>
-                <h1 class="text-7xl font-bold bg-gradient-to-r from-slate-900 to-slate-400 bg-clip-text text-transparent">with Tailored Training Plans</h1>
+                <h1 class="text-7xl font-bold pb-3 bg-gradient-to-r from-slate-900 to-slate-400 bg-clip-text text-transparent">with Tailored Training Plans</h1>
                 <p class="mt-6 text-gray-600">Skillharbor analyzes job descriptions and qualifications to create personalized training plans for every employee.</p>
             </div>
             </div>
