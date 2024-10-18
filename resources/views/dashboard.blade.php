@@ -5,9 +5,9 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="pt-6">
+    <div class="pt-6 mt-0">
         <div class="">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden">
+            <div class="bg-gray-100 overflow-hidden">
                 @livewire('dashboard.dash-info')
 
             </div>

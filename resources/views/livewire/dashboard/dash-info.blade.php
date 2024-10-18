@@ -1,17 +1,17 @@
 <!-- User Profile Section -->
 <div class="">
-    <div class="p-4 rounded-lg dark:border-gray-700">
+    <div class="p-4 rounded-3xl dark:shadow-xl-gray-700">
 
         <div class="grid grid-cols-3 gap-4 mx-3 mb-4">
             <div class="flex flex-col w-full text-gray-900">
                 <!-- Profile Header Image -->
                 <div class="w-full text-gray-900">
                     <!-- Profile Header Image -->
-                    <div class="h-32 overflow-hidden rounded-t-lg">
+                    <div class="h-32 overflow-hidden border rounded-t-3xl">
                         <img class="object-cover w-full h-full" src="{{ asset('assets/images/bg.png') }}" alt="Mountain">
                     </div>
                     <!-- User Profile Card -->
-                    <div class="bg-white rounded-b-lg border p-4 -mt-16">
+                    <div class="bg-white rounded-b-3xl shadow-xl border p-4 -mt-16">
                         <!-- User Competency Rating -->
                         <div class="flex justify-center mb-4">
                             <div class="bg-purple-700 text-white rounded-full p-4 border-4 border-white">
@@ -19,13 +19,13 @@
                             </div>
                         </div>
                         <!-- User Information -->
-                        <div class="text-center">
+                        <div class="text-center bg-white">
                             <h2 class="text-2xl font-semibold">{{ $user->first_name }} {{ $user->last_name }}</h2>
                             <p class="text-gray-500">{{ $user->email }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-grow border rounded-lg h-24 mt-3">
+                <div class="flex flex-grow shadow-xl border bg-white rounded-3xl h-24 mt-3">
                     {{-- Container for my status --}}
                     <div class="w-full h-full flex justify-center items-center">
                       @foreach ($user->enrolled as $enrollment)
@@ -40,11 +40,11 @@
                     </div>
                   </div>
             </div>
-            <div class="flex flex-col border rounded-lg dark:bg-gray-800">
+            <div class="flex flex-col shadow-xl border bg-white rounded-3xl dark:bg-gray-800">
                 <div class="flex flex-row justify-between items-center px-6 py-3">
                     <h3 class="leading-none text-gray-900 dark:text-white">My Qualifications</h3>
-                    <button wire:click="addQualification" wire:loading.attr="disabled" class="ml-auto hover:bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline-fuchsia">
-                        <x-iconoir-plus-circle class="text-gray-900 hover:bg-gray-100 rounded-lg" />
+                    <button wire:click="addQualification" wire:loading.attr="disabled" class="ml-auto hover:bg-gray-200 rounded-3xl focus:outline-none focus:shadow-outline-fuchsia">
+                        <x-iconoir-plus-circle class="text-gray-900 hover:bg-gray-100 rounded-3xl" />
                     </button>
                 </div>
                 <ul class="flex-grow divide-y divide-gray-200 overflow-auto">
@@ -70,14 +70,14 @@
                 </ul>
             </div>
 
-            <div class="border  w-auto rounded-lg dark:bg-gray-800 overflow-auto">
+            <div class="shadow-xl bg-white border w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
                 <div class="flex flex-row justify-between items-center px-6 pt-3">
                     <div class="title">
                         <h3 class="leading-none text-gray-900 dark:text-white">Top Skills</h3>
                     </div>
                 </div>
                 <div class="flow-root">
-                    <div class="overflow-y-auto sm:rounded-lg">
+                    <div class="overflow-y-auto sm:rounded-3xl">
                         <table class="w-full text-sm mt-3 text-gray-500 dark:text-gray-400">
                             <thead class="text-xs font-light text-gray-900/50 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -97,20 +97,20 @@
                                     <tbody>
                                         @forelse ($skills as $skill)
                                             <tr
-                                                class="border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                class="shadow-xl-b dark:bg-gray-800 dark:shadow-xl-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                 <td scope="row"
                                                     class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white text-left">
                                                     {{ Str::limit($skill->skill_title, 30) }}
                                                 </td>
                                                 <td class="px-6 py-4 text-center">
                                                     <div
-                                                        class="text-xs text-center inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-300 text-fuchsia-900 rounded-lg">
+                                                        class="text-xs text-center inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-300 text-fuchsia-900 rounded-3xl">
                                                         {{ $skill->pivot->user_rating }}.00
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 text-center">
                                                     <div
-                                                        class="text-xs inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-300 text-fuchsia-900 rounded-lg">
+                                                        class="text-xs inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-fuchsia-300 text-fuchsia-900 rounded-3xl">
                                                         {{ $skill->pivot->supervisor_rating }}.00
                                                     </div>
                                                 </td>
@@ -135,52 +135,49 @@
 
 
                 </div>
-                 {{-- Certifications Section
-            <div class="container bg-fuchsia-950 rounded-lg my-3 p-3 mx-auto">
-                <div class="header flex flex-row items-center justify-between text-2xl text-white font-medium mb-3">
-                    <div>
-                        <x-iconoir-doc-star />
-                    </div>
-                    <div>
-                        <h1> Prerequisites/Certifications</h1>
-                    </div>
-                    <div>
-                    <a href="#"
-                        class="text-white font-light text-sm ml-9 hover:text-orange-300 underline">View All</a>
-                    </div>
-                </div>
 
-                <div class="flex space-x-4 overflow-x-auto scrollbar-hide scrollable-container">
-                    @foreach (range(1,3) as $certificate)
-                        <div class="bg-white rounded-lg p-4 shadow cursor-pointer">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-lg font-semibold">Certification {{ $certificate }}</h3>
-                                @if ($certificate % 2 == 0)
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                @else
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                @endif
-                            </div>
-                            <p class="text-gray-600">Description of Certification {{ $certificate }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div> --}}
-
-
-            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ml-4 md:ml-6">
-                <div class="bg-white dark:bg-gray-800 rounded-lg border overflow-hidden">
+                <div class="container bg-white shadow-lg border rounded-3xl p-3 mx-auto">
+                    <div class="header flex flex-row items-center justify-between text-xl text-black font-medium mb-3">
+                        <div>
+                            <h1> Prerequisites/Certifications</h1>
+                        </div>
+                        <div>
+                        <a href="#"
+                            class="text-black font-light text-sm ml-9 hover:text-orange-300 underline">View All</a>
+                        </div>
+                    </div>
+
+                    {{-- <div class="flex space-x-4 overflow-x-auto p-11 scrollbar-hide scrollable-container">
+                        @foreach (range(1,3) as $certificate)
+                            <div class="bg-white border rounded-3xl p-4 shadow-lg cursor-pointer">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-lg font-semibold">Certification {{ $certificate }}</h3>
+                                    @if ($certificate % 2 == 0)
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    @endif
+                                </div>
+                                <p class="text-gray-600">Description of Certification {{ $certificate }}</p>
+                            </div>
+                        @endforeach
+                    </div> --}}
+                </div>
+
+
+
+                <div class="bg-white dark:bg-gray-800 border rounded-3xl shadow-xl overflow-hidden">
                     <div class="flex flex-col h-full">
-                        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <div class="px-6 py-4 shadow-xl-b shadow-xl-gray-200 dark:shadow-xl-gray-700">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">My Skill Gap</h3>
                         </div>
                         <div class="flex-grow p-6">
@@ -200,7 +197,7 @@
         <!-- Dropdown for Selecting Qualification -->
         <div class="mt-4">
             <label for="qualification" class="block text-sm font-medium text-gray-700">Select Qualification</label>
-            <select id="qualification" wire:model="qualification_id" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+            <select id="qualification" wire:model="qualification_id" class="block w-full pl-3 pr-10 py-2 text-base shadow-xl-gray-300 focus:outline-none focus:ring-indigo-500 focus:shadow-xl-indigo-500 sm:text-sm rounded-md">
                 <option value="">-- Select Qualification --</option>
                 @foreach ($dbQual as $qual)
                     <option value="{{ $qual->id }}">{{ $qual->qualification_title }}</option>
