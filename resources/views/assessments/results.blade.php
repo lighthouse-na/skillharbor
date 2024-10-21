@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex-1 justify-start pb-24 pt-6 mb-6 font-inter">
-        <div class="container mx-auto p-12">
-            <nav class="flex" aria-label="Breadcrumb">
+        <div class="container mx-auto p-12 ">
+            <nav class="flex " aria-label="Breadcrumb ">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 mb-3">
                     <li class="inline-flex items-center">
                         <a href="/"
