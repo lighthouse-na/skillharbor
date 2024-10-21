@@ -36,7 +36,7 @@
 
                         </div>
                         <div class="flex flex-col shadow-md border bg-white rounded-3xl dark:bg-gray-800">
-                            <div class="flex flex-row justify-between items-center px-6 py-6">
+                            <div class="flex flex-row  justify-between items-center px-6 py-6">
                                 <h3 class="leading-none text-gray-900 dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
                                     class="ml-auto hover:bg-sky-100  rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
@@ -47,7 +47,7 @@
                                     </div>
                                 </button>
                             </div>
-                            <ul class="flex-grow divide-y divide-gray-200 overflow-auto">
+                            <ul class="divide-y divide-gray-200 overflow-auto">
                                 @forelse ($qualifications as $qualification)
                                     <li class="p-3 sm:py-4 px-6 dark:hover:bg-gray-700">
                                         <div class="flex items-center justify-between">
@@ -62,9 +62,9 @@
                                         </div>
                                     </li>
                                 @empty
-                                    <div class="text-base items-center flex justify-center text-red-200">
+                                    <div class="text-base items-center flex justify-center text-sky-900">
                                         <div class="self-center">
-                                            <h1 class="">You have not qualifications added
+                                            <h1 class="">You have not added any qualifications
                                             </h1>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
             </div>
 
             <!-- Right Section -->
-            <div class="bg-white p-6 mt-4 rounded-3xl shadow-md space-y-6 h-auto overflow-auto flex-grow">
+            <div class="bg-white p-6 mt-4 rounded-3xl shadow-md space-y-6 h-auto overflow-auto grow-0 border">
                 <div>
                     <h2 class="leading-none text-gray-900">My Development Plans</h2>
                     <div class="flex flex-col divide-y divide-gray-200 items-start mt-4">
