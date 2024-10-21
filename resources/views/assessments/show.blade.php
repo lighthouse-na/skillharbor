@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
 
-            <div class=" border text-black px-6 py-3 rounded-3xl">
+            <div class=" border text-white px-6 py-3 rounded-3xl bg-sky-950">
                 <div class="container w-full">
                     <div class="flex-inline">
                         <div class="overview pb-3 border-b">

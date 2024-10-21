@@ -10,34 +10,29 @@
 
         <div class="grid grid-cols-3 gap-4 rounded-lg mb-4 p-4 sm:p-6 h-full dark:bg-gray-800">
             @forelse ($assessments as $a)
-            <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-                <div class="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-slate-900 dark:border-gray-700">
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-500 flex items-center">
-                    <span>
-                            <x-iconoir-podcast class="w-6 mr-3" />
-                    </span>
-                    Telecom Skills Audit
-                </p>
-                </div>
+            <div class="group block w-full mx-auto rounded-xl h-48 p-6 bg-gradient-to-br from-sky-950 to-sky-500 ring-1 ring-slate-900/5 space-y-3  transition hover:duration-700 ease-in-out shadow-md"">
                 <div class="p-4 md:p-5">
-                  <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                  <h3 class="text-white text-2xl">
 
 
                     {{$a->assessment_title}}
                   </h3>
+                  <div class="bg-orange-400 w-12 h-1 rounded-xl mt-3 ">
+
+                  </div>
                   @if ($a->pivot->user_status === 0 && $a->pivot->supervisor_status === 0)
-                  <a class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-fuchsia-600 hover:text-fuchsia-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('user.assessment.show', ['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
+                  <a class="mt-3 inline-flex items-center gap-x-1 ttext-white text-sm" href="{{route('user.assessment.show', ['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
                     Get Started
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                   </a>
                     @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
-                    <a class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-fuchsia-600 hover:text-fuchsia-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('user.assessment.submission',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
+                    <a class="mt-3 inline-flex items-center gap-x-1 text-white text-sm" href="{{route('user.assessment.submission',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
                         View Submission
                         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                       </a>
 
                     @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
-                    <a class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-fuchsia-600 hover:text-fuchsia-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="{{route('user.assessment.results',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
+                    <a class="mt-3 inline-flex items-center gap-x-1 text-white text-sm" href="{{route('user.assessment.results',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
                         View Supervisor Results
                         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                     </a>
@@ -59,7 +54,7 @@
                     <line x1="10" x2="10.01" y1="16" y2="16"/>
                   </svg>
                   <p class="mt-5 text-sm text-gray-800 dark:text-gray-300">
-                    You are not currently assigned to any assessments.
+                    You are not currently enrolled to any assessments.
                   </p>
                 </div>
             </div>

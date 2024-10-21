@@ -16,6 +16,7 @@
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.0",
         "laravel/octane": "^2.5",
+        "laravel/pail": "*",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0"
@@ -58,6 +59,10 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -k -c \"#93c5fd,#c4b5fd,#d4d4d8,#fdba74,#86efac\" \"php artisan serve\"  \"php artisan pail\" \"npm run dev\"  --names=server,logs,vite,ws"
         ]
     },
     "extra": {
@@ -74,6 +79,7 @@
             "php-http/discovery": true
         }
     },
+
     "minimum-stability": "stable",
     "prefer-stable": true
 }
