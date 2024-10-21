@@ -44,7 +44,7 @@
         <main class="flex-1 bg-gray-50 min-h-screen">
 
             @livewire('navigation-menu')
-            <div class="px-0 mx-32">
+            <div class=" mx-32">
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">

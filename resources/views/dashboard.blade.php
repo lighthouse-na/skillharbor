@@ -5,7 +5,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="pt-3 mt-0">
+    <div class="py-3 mt-0">
         <div class="">
             <div class="overflow-hidden">
                 @livewire('dashboard.dash-info')

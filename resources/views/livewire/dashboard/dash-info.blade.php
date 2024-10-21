@@ -1,7 +1,7 @@
 <!-- User Profile Section -->
 <div class="">
-    <div class="p-4 rounded-3xl">
-        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="rounded-3xl">
+        <div class="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Left Section -->
             <div class="lg:col-span-2 space-y-6">
 
@@ -94,7 +94,7 @@
                         <div class="overflow-y-auto sm:rounded-3xl">
                             <table class="w-full text-sm mt-3 text-gray-500 dark:text-gray-400">
                                 <thead
-                                    class="text-xs font-light text-gray-900/50 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    class="text-xs text-gray-900/50 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left">
                                             Skill Title
@@ -112,7 +112,7 @@
                                 <tbody>
                                     @forelse ($skills as $skill)
                                         <tr
-                                            class="shadow-md-b dark:bg-gray-800 dark:shadow-md-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            class="shadow-md-b dark:bg-gray-800 dark:shadow-md-gray-700 ">
                                             <td scope="row"
                                                 class="px-6 py-6 text-gray-900 whitespace-nowrap dark:text-white text-left">
                                                 {{ Str::limit($skill->skill_title, 30) }}
