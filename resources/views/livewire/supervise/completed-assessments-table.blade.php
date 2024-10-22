@@ -5,7 +5,7 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search completed assessments..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search completed assessments..." class="mb-4 py-2 px-6 w-full border border-gray-300 rounded-3xl shadow-md">
 
             </div>
 
@@ -13,9 +13,9 @@
           </div>
 
 
-<div class="rounded-lg border ">
+<div class="rounded-3xl border bg-white shadow-md">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-        <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+        <thead class="text-left text-xs text-sky-800">
             <tr>
                 <th class="px-6 py-3  uppercase ">Salary Ref:</th>
                 <th class="px-6 py-3 uppercase ">Name</th>
@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             @forelse ($completedAssessments as $assessment)
-            <tr class="text-xs text-purple-950/50">
+            <tr class="text-xs text-sky-950/50">
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-900">{{$assessment->salary_ref_number}}</div>
                 </td>
@@ -68,7 +68,7 @@
             </tr>
 
             @empty
-            <tr class="text-xs text-purple-950/50">
+            <tr class="text-xs text-sky-950/50">
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-900">No completed assessments found</div>
                 </td>

@@ -48,7 +48,7 @@
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">
-                        <div class="font-medium p-6 bg-gray-50 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
+                        <div class="font-medium p-3 pt-6 bg-gray-50 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>

@@ -185,35 +185,25 @@ class AssessmentController extends Controller
                     type: "line",
                     label: "My Level",
                     data: '.json_encode($values2).',
+                    backgroundColor: "rgba(139, 135, 244, 0.2)",
+                    borderColor: "rgb(139, 135, 244)",
+                    borderWidth: 1,
                     fill: false,
-                    backgroundColor: [
-                        "rgba(160, 32, 240, 0.2)"
-                    ],
-                    borderColor: [
-                        "rgb(160, 32, 240)"
-                    ],
-                    borderWidth: 1
                 }, {
                     type: "line",
                     label: "Supervisor Rating",
                     data: '.json_encode($values3).',
+                    backgroundColor: "rgba(0, 102, 204, 0.2)",
+                    borderColor: "rgb(0, 102, 204)",
+                    borderWidth: 1,
                     fill: false,
-                    backgroundColor: [
-                        "rgba(260, 32, 240, 0.2)"
-                    ],
-                    borderColor: [
-                        "rgb(260, 32, 240)"
-                    ],
-                    borderWidth: 1
                 }, {
                     type: "bar",
                     label: "JCP Requirement",
                     data: '.json_encode($values).',
                     fill: false,
-                    backgroundColor: [
-                        "rgba(255, 99, 132, 0.2)"
-                    ],
-                    borderColor: "rgb(255, 99, 132)",
+                    backgroundColor: "rgba(86, 203, 249, 0.2)",
+                    borderColor: "rgb(86, 203, 249)",
                     borderWidth: 1
                 }]
             },
@@ -225,6 +215,7 @@ class AssessmentController extends Controller
                 }
             }
         }';
+
 
         // Encode chart configuration to JSON
 
