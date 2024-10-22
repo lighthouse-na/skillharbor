@@ -153,29 +153,44 @@
             </div>
 
             <!-- Right Section -->
-            <div class="bg-white p-6 mt-4 rounded-3xl shadow-md space-y-6 h-auto overflow-auto grow-0 border">
-                <div>
-                    <h2 class="leading-none text-gray-900">My Development Plans</h2>
-                    <div class="flex flex-col divide-y divide-gray-200 items-start mt-4">
-                        @foreach ($developmentPlans as $plan)
-                <div class="flex flex-row items-center  justify-between w-full mb-4 p-2 bg-sky-50 rounded-lg border">
-                    <div>
-                        <h2 class="text-sm text-sky-800">{{ $plan['name'] }}</h2>
-                    </div>
-                    <div>
-                        <a href="#" class="text-xs bg-sky-200 text-sky-700 rounded-full">
-                            <x-iconoir-google-docs class="h-4 w-4" />
+            <div>
 
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-                    </div>
-                </div>
+            <div class="flex justify-center items-center">
 
+    <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-gray-200">
+
+        <h2 class="text-2xl font-bold text-white text-center">Coming Soon</h2>
+        <p class="text-gray-50 text-center">
+            We're working on something amazing! Stay tuned for the <span class="font-semibold text-sky-800 shadow-md-sky-200">My Development Plans</span> feature.
+        </p>
+
+        <div  class="bg-white bg-opacity-60 backdrop-filter backdrop-blur-3xl p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">
+            <h2 class="leading-none text-gray-900">My Development Plans</h2>
+            <div class="flex flex-col divide-y divide-gray-200 items-start mt-4">
+                @foreach ($developmentPlans as $plan)
+        <div class="flex flex-row items-center  justify-between w-full p-2 divide-y  rounded-l">
+            <div>
+                <h2 class="text-sm text-sky-950">{{ $plan['name'] }}</h2>
+            </div>
+            <div>
+                <a href="#" class="text-xs text-sky-950 rounded-full">
+                    <x-iconoir-google-docs class="h-4 w-4" />
+
+                </a>
+            </div>
+        </div>
+    @endforeach
+            </div>
+
+
+
+                </div>
 
 
             </div>
+
+
+
         </div>
 
 
