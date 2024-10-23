@@ -7,9 +7,9 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="text-black dark:text-gray-200">
                         <div class="flex flex-row items-center justify-center">
-                            <div><img src="{{asset('assets/logo/mainlogo.png')}}" alt="" class="rounded-full w-12 mr-2 hover:shadow-md"></div>
+
                             <div>
-                                <h1 class="block text-3xl w-auto">skillHarbor</h1>
+                                <h1 class="block text-xl w-auto">Skillharbor.</h1>
                             </div>
                         </div>
 
@@ -18,18 +18,69 @@
                 <!-- Navigation Links -->
 
             </div>
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6  px-2 ">
                 <!-- Settings Dropdown -->
-                <div class="ms-3 mx-auto absolute right-6">
+                <div class="-ms-3 mx-auto absolute right-3 top-3">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
 
-                            <span class="inline-flex rounded-md">
-                                <button type="button" class="inline-flex !text-md items-center px-3 py-3 border text-sm leading-4 font-medium rounded-md text-gray-900 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-                                    DIRECTORIES
-                                    <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.5l-7.5 7.5-7.5-7.5" />
-                                    </svg>
+                            <div class="container mb-6 rounded-lg">
+                                <div class="flex justify-between items-center px-3 py-2 cursor-pointer">
+                                    <div class="icon">
+                                        <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
+                                    </div>
+
+                                    <div class="overflow-hidden ">
+                                        <h1 class="text-slate-800 pl-3 truncate ...">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
+                                        <p class="text-black text-xs pl-3 truncate ...">{{Auth()->user()->email}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+
+                            <x-dropdown-link href="{{ route('profile.show') }}">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+
+                            <div class="border-t border-gray-200 dark:border-gray-800"></div>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+
+
+
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:ms-6 items-center mx-auto justify-between bg-sky-50 w-full rounded-xl p-2">
+                    <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" >
+                        Dashboard
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('user.assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user.assessment')">
+                        My Assessments
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')">
+                        Supervise
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" >
+                        Discover
+                    </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')" >
+                        Reports
+                    </x-side-nav-link>
+
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+
+                            <span class="inline-flex rounded-xl mx-auto">
+                                <button type="button" class="inline-flex flex items-center align-center px-2 py-2 m-1   text-sm rounded-xl text-white dark:text-gray-400 bg-slate-800 dark:bg-gray-800  active:bg-gray-800 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                    Directories
                                 </button>
                             </span>
                         </x-slot>
@@ -55,7 +106,6 @@
 
                         </x-slot>
                     </x-dropdown>
-
                 </div>
 
             </div>

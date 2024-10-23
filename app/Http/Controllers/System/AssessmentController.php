@@ -54,7 +54,7 @@ class AssessmentController extends Controller
     public function edit($id)
     {
         // Retrieve the assessment based on the ID
-        $assessment = Assessment::findOrFail(Crypt::decrypt($id));
+        $assessment = assessment::findOrFail(Crypt::decrypt($id));
 
         // Pass the $assessment variable to the view
 
@@ -69,7 +69,7 @@ class AssessmentController extends Controller
         $assessment = assessment::findOrFail($id);
         $assessment->update($request->all());
 
-        return redirect()->route('directories.assessments.index');
+        return redirect()->route('assessments.index');
     }
 
     /**
