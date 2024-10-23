@@ -4,7 +4,7 @@
             {{ __('Supervise') }}
         </h2>
     </x-slot>
-    <div class="py-6 px-6">
+    <div class="py-6">
         @livewire('supervise.select-assessment')
 
     </div>

@@ -7,7 +7,7 @@
     </x-slot>
     <div class="pt-6">
         <div class="">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden">
+            <div class="">
                 @livewire('discover.home')
 
             </div>

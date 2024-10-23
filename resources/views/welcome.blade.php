@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <div class="absolute top-0 -z-10 h-full w-full bg-white"><div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
+    <div class="absolute top-0 -z-10 h-full w-full bg-white"><div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(14,165,233,0.6)] opacity-50 blur-[80px]"></div>
         <header class="sticky top-0 z-10 bg-white">
             <nav class="container mx-auto p-6 flex justify-between items-center py-3">
-                <div class="text-2xl font-medium bg-gradient-to-br from-slate-900 to-fuchsia-600 bg-clip-text text-transparent">Skillharbor.</div>
+                <div class="text-2xl font-medium bg-gradient-to-br from-slate-900 to-sky-600 bg-clip-text text-transparent">Skillharbor.</div>
                 <ul class="flex space-x-6">
 
                     @if (Route::has('login'))
@@ -10,14 +10,14 @@
                         @auth
                             <a
                                 href="{{ url('/dashboard') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-fuchsia-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-sky-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Dashboard
                             </a>
                         @else
                             <a
                                 href="{{ route('login') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-fuchsia-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-sky-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Log in
                             </a>
@@ -25,7 +25,7 @@
                             @if (Route::has('register'))
                                 <a
                                     href="{{ route('register') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-fuchsia-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-sky-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                                 >
                                     Register
                                 </a>
@@ -42,41 +42,46 @@
 
             <div class="container mx-auto text-center p-24">
                 <h1 class="text-7xl font-light text-gray-800">Empower Your Workforce</h1>
-                <h1 class="text-7xl font-light pb-3 bg-gradient-to-r from-slate-900 to-slate-400 bg-clip-text text-transparent">with Tailored Training Plans</h1>
+                <h1 class="text-7xl font-light pb-3 bg-gradient-to-r from-slate-900 to-sky-900 bg-clip-text text-transparent">with Tailored Training Plans</h1>
                 <p class="mt-6 text-gray-600">Skillharbor analyzes job descriptions and qualifications to create personalized training plans for every employee.</p>
 
             </div>
         </section>
 
         <!-- Key Features Section -->
-        <section class="p-12">
+        <section class="p-12 px-64">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl font-light bg-gradient-to-r from-slate-900 to-fuchsia-600 bg-clip-text text-transparent">Why Choose Skillharbor?</h2>
+                <h2 class="text-3xl font-light bg-gradient-to-r from-slate-900 to-sky-600 bg-clip-text text-transparent">Why Choose Skillharbor?</h2>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="border p-8 rounded-lg">
-                        <div class="text-fuchsia-600">
-                            <x-iconoir-running class="h-12 w-12 mx-auto" />
+                    <div class="border p-8 rounded-3xl shadow-xl bg-white">
+                        <div class="flex justify-center align-center">
+                            <div class="flex text-sky-800 rounded-full bg-sky-200 h-12 w-12 justify-items-center items-center">
+                                <x-iconoir-running class="h-6 w-6 mx-auto " />
 
 
+                            </div>
                         </div>
+
                         <h3 class="mt-6 text-xl font-light">Personalized Training Plans</h3>
                         <p class="mt-4 text-gray-600">Tailor each employee's learning experience based on their job role.</p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-lg border ">
-                        <div class="text-fuchsia-600">
-                            <x-iconoir-reports  class="h-12 w-12 mx-auto"  />
+                    <div class="bg-white p-8 rounded-3xl border shadow-xl bg-white">
+                        <div class="flex justify-center align-center">
+                            <div class="flex text-sky-800 rounded-full bg-sky-200 h-12 w-12 justify-items-center items-center">
+                                <x-iconoir-flash class="h-6 w-6 mx-auto"  />
+                        </div>
                         </div>
 
                         <h3 class="mt-6 text-xl font-light">Progress Tracking</h3>
                         <p class="mt-4 text-gray-600">Gain insights into skill development with real-time data analytics.</p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-lg  border">
-                        <div class="text-fuchsia-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l4 4 4-4M7 8l4-4 4 4" />
-                            </svg>
+                    <div class="bg-white p-8 rounded-3xl  border shadow-xl bg-white">
+                        <div class="flex justify-center align-center">
+                            <div class="flex text-sky-800 rounded-full bg-sky-200 h-12 w-12 justify-items-center items-center">
+                                <x-iconoir-bright-star class="h-6 w-6 mx-auto"/>
+                        </div>
                         </div>
                         <h3 class="mt-6 text-xl font-light">Adaptive Learning Paths</h3>
                         <p class="mt-4 text-gray-600">Empower employees with personalized learning paths that adjust dynamically based on their performance and progress.</p>

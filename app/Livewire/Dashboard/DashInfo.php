@@ -86,6 +86,12 @@ class DashInfo extends Component
 
     public function render()
     {
+        $developmentPlans = [
+            ['id' => 1, 'name' => 'DevOps Training Plan'],
+            ['id' => 2, 'name' => 'UI/UX Design Roadmap'],
+            ['id' => 3, 'name' => 'Blockchain Development Strategy'],
+
+        ];
         $user = auth()->user();
         $skills = $this->jcp->skills()
             ->where('user_rating', '>', 1)
@@ -96,6 +102,6 @@ class DashInfo extends Component
         $qualifications = $user->qualifications()->get();
         $dbQual = qualification::all();
 
-        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual'));
+        return view('livewire.dashboard.dash-info', compact('user', 'skills', 'qualifications', 'dbQual', 'developmentPlans'));
     }
 }
