@@ -9,7 +9,7 @@
                         <div class="flex flex-row items-center justify-center">
 
                             <div>
-                                <h1 class="block text-xl w-auto">Skillharbor.</h1>
+                                <h1 class="block text-3xl w-auto">SkillHarbor</h1>
                             </div>
                         </div>
 
