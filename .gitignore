@@ -26,7 +26,7 @@ yarn-error.log
 /storage/logs/
 /storage/logs/*
 storage/logs/
-
+/bootstrap/cache/*
 /caddy
 frankenphp
 frankenphp-worker.php
