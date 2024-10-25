@@ -21,11 +21,8 @@ yarn-error.log
 /.vscode
 /.zed
 /bootstrap/cache/*
-/storage/app/*
-/storage/framework/cache/*.php
-/storage/framework/sessions/*.php
-/storage/framework/views/*.php
-/storage/logs/*
+/storage
+
 
 /caddy
 frankenphp
