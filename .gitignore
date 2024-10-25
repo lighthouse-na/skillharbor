@@ -20,7 +20,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
-/bootstrap/cache/*
+/bootstrap/cache/
 /storage
 
 /caddy
@@ -29,3 +29,4 @@ frankenphp-worker.php
 rr
 .rr.yaml
 public/C:\Users\skame\Desktop\skillharbor\storage\logs/
+public/C:\Users\user\OneDrive\Desktop\Telecom Repos\skillharbor\storage\logs/laravel.log

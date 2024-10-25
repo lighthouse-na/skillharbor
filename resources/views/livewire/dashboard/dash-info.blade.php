@@ -20,7 +20,7 @@
                                 <div class="bg-white rounded-b-3xl shadow-md border p-6 -mt-16">
                                     <!-- User Competency Rating -->
                                     <div class="flex justify-center mb-4">
-                                        <div class="bg-sky-200 text-sky-700 rounded-full px-4 py-2 border-4 border-white">
+                                        <div class="bg-sky-200 text-sky-700 rounded-full p-4 border-4 border-white">
                                             <h1 class="text-3xl font-bold">{{ $user->competency_rating }}</h1>
                                         </div>
                                     </div>
