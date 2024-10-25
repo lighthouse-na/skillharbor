@@ -20,11 +20,12 @@ yarn-error.log
 /.vscode
 /storage/framework/views/*.php
 ```
-/storage/*
-/storage/*/*/*
+/storage/app/*
+/storage/framework/cache/*.php
+/storage/framework/sessions/*.php
+/storage/framework/views/*.php
 /storage/logs/*
 
-/bootstrap/cache/*
 /caddy
 frankenphp
 frankenphp-worker.php
