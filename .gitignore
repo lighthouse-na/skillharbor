@@ -23,7 +23,7 @@ yarn-error.log
 /bootstrap/cache/*
 /storage
 
-
+public/C:\Users\skame\Desktop\skillharbor\storage\ logs/laravel.log
 /caddy
 frankenphp
 frankenphp-worker.php
