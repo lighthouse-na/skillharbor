@@ -6,22 +6,22 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 px-4 shadow-sm w-full border border-gray-300 rounded-l-3xl">
     </div>
     <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                    <button class="flex flex-row p-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                    <a class="flex flex-row p-2 px-4 bg-sky-400 hover:bg-sky-500 text-white transition ease-in-out duration-300 rounded-r-3xl shadow-sm" href={{ route('assessments.create')}}>
                         <x-gmdi-add-o class="w-6 h-6" />
                         Assessment
-                    </button>
+                    </a>
 
             </div>
     </div>
 
-    <div class="rounded-lg border">
+    <div class="rounded-3xl border bg-white shadow-md">
         <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-            <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+            <thead class="text-left text-xs text-sky-800">
                 <tr>
                     <th class="px-6 py-3 uppercase">Assessment Name</th>
                     <th class="px-6 py-3 uppercase">Date Created</th>
@@ -32,7 +32,7 @@
             <tbody>
 
             @forelse ($assessments as $assessment)
-                <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
+                <tr class="text-xs text-sky-950" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->assessment_title }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $assessment->updated_at }}</td>

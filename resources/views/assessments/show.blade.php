@@ -146,7 +146,7 @@
                 @else
 
                 <div class="container flex-auto justify-center text-center">
-                    <p class="text-gray-700 text-base mb-4">Your JCP Is not complete. Please Consult your Supevisor.</p>
+                    <p class="text-sky-200 text-base mb-4">Your JCP Is not complete. Please Consult your Supevisor.</p>
                 </div>
 
                 @endif

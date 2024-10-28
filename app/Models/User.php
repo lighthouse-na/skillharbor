@@ -93,7 +93,7 @@ class User extends Authenticatable
         return $this->belongsToMany(assessment::class, 'enrollments')->withPivot('user_status', 'supervisor_status');
     }
 
-    public function deparment()
+    public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
