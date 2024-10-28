@@ -82,10 +82,10 @@ class AssessmentController extends Controller
     {
         // Retrieve the assessment based on the ID
         $assessment = assessment::findOrFail(Crypt::decrypt($id));
-
+        $divisions = Division::all();
         // Pass the $assessment variable to the view
-
-        return view('directories.assessments.edit', compact('assessment'));
+        $enrolledDepartmentIds = $assessment->getEnrolledDepartmentIds();
+        return view('directories.assessments.edit', compact('assessment','divisions', 'enrolledDepartmentIds'));
     }
 
     /**
