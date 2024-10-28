@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Audit\assessment;
@@ -12,7 +11,6 @@ use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -57,8 +55,10 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
-        $jcps = jcp::All()->each(function ($jcp) use ($skills) {
-            $jcp->skills()->saveMany($skills);
+        $jcps = jcp::all()->each(function ($jcp) use ($skills) {
+            $skills->each(function ($skill) use ($jcp) {
+                $jcp->skills()->attach($skill->id, ['required_level' => rand(1, 5)]);
+            });
         });
         $this->command->getOutput()->progressAdvance();
 
@@ -108,6 +108,5 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->getOutput()->progressFinish();
-
     }
 }

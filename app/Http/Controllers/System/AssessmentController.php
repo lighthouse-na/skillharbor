@@ -4,6 +4,10 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Models\Audit\assessment;
+use App\Models\Audit\Department;
+use App\Models\Audit\Division;
+use App\Models\Audit\enrollment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -32,11 +36,34 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'assessment_title' => 'required|string|max:255',
+            'department_ids' => 'required|array',
+            'department_ids.*' => 'exists:departments,id',
+        ]);
 
-        assessment::create($request->all());
+        // Create the assessment
+        $assessment = assessment::create([
+            'assessment_title' => $request->input('assessment_title'),
+        ]);
 
-        return redirect()->route('directories.assesment.index');
+        // Get the users in the selected departments
+        $departmentIds = $request->input('department_ids');
+        $users = User::whereIn('department_id', $departmentIds)->get();
+
+        // Create enrollments for each user in the selected departments
+        foreach ($users as $user) {
+            enrollment::create([
+                'user_id' => $user->id,
+                'assessment_id' => $assessment->id,
+                'user_status' => 0,
+                'supervisor_status' => 0,
+            ]);
+        }
+
+        return redirect()->route('assessments.index')->with('success', 'Assessment created and users enrolled successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -66,7 +93,7 @@ class AssessmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $assessment = assessment::findOrFail($id);
+        $assessment = assessment::findOrFail(Crypt::decrypt($id));
         $assessment->update($request->all());
 
         return redirect()->route('assessments.index');
@@ -89,8 +116,8 @@ class AssessmentController extends Controller
      */
     public function create()
     {
+        $divisions = Division::all();
         // Return the view to show the create assessment form
-        return view('assessments.create');
+        return view('directories.assessments.create', compact('divisions'));
     }
 }
-// watch out for the spelling of assesment in other files

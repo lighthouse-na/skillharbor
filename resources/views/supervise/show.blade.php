@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <div class="py-6 px-6">
-        @livewire('supervise.completed-assessments-table')
-
+        <livewire:supervise.completed-assessments-table :assessment_id="$assessment->id" />
     </div>
 </x-app-layout>
