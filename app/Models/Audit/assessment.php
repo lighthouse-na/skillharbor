@@ -12,11 +12,6 @@ class assessment extends Model
 
     protected $guarded = [];
 
-    public function jcp()
-    {
-        return $this->hasMany(jcp::class, 'assessment_id');
-
-    }
 
     public function enrolled()
     {

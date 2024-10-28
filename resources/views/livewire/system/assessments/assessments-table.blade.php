@@ -6,12 +6,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 px-4 shadow-sm w-full border border-gray-300 rounded-l-3xl">
+        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 px-4 shadow-sm w-full border border-gray-300 rounded-r-md rounded-l-3xl">
     </div>
     <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                    <a class="flex flex-row p-2 px-4 bg-sky-400 hover:bg-sky-500 text-white transition ease-in-out duration-300 rounded-r-3xl shadow-sm" href={{ route('assessments.create')}}>
+                    <a class="flex flex-row p-2 px-4 bg-sky-200 border hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-r-3xl rounded-l-md shadow-sm" href={{ route('assessments.create')}}>
                         <x-gmdi-add-o class="w-6 h-6" />
                         Assessment
                     </a>
