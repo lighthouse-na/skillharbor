@@ -10,6 +10,7 @@ use App\Models\Audit\enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class AssessmentController extends Controller
 {
@@ -102,13 +103,15 @@ class AssessmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $assessment = assessment::findOrFail($id);
+            $assessment = Assessment::findOrFail($id);
+            // Delete the enrollments associated with the assessment
+            // Delete the assessment itself
+            $assessment->delete();
 
-        $assessment->delete();
-
-        return redirect()->route('assessments.index');
+        // Redirect or return a response
+        return redirect()->route('assessments.index')->with('success', 'Assessment and its enrollments deleted successfully.');
     }
 
     /**
