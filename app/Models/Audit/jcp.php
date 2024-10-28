@@ -17,10 +17,6 @@ class jcp extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function assessment()
-    {
-        return $this->belongsTo(assessment::class, 'assessment_id');
-    }
 
     public function skills()
     {
