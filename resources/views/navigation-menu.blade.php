@@ -65,12 +65,15 @@
                     <x-side-nav-link href="{{ route('user.assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user.assessment')">
                         My Assessments
                     </x-side-nav-link>
+                    @if (Auth::user()->role === "supervisor")
                     <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')">
                         Supervise
                     </x-side-nav-link>
-                    <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" >
+                    @endif
+
+                    {{-- <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" >
                         Discover
-                    </x-side-nav-link>
+                    </x-side-nav-link> --}}
                     <x-side-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')" >
                         Reports
                     </x-side-nav-link>
