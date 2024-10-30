@@ -70,50 +70,12 @@
         </div>
     </div>
 
-    <!-- Export Buttons with Descriptions -->
     <div class="h-screen flex flex-col p-4">
-        <!-- Export Employees Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
-            <div class="w-48">
-                @livewire('reports.loading-button-animation', [
-                    'label' => 'Export Employees',
-                    'route' => 'reports.employees.export'
-                ])
-            </div>
-            <div class="flex-1 text-slate-600">
-                Export a detailed report of employee data, including names, roles, and other relevant information.
-            </div>
-        </div>
-
-        <!-- Export Qualifications Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
-            <div class="w-48">
-                @livewire('reports.loading-button-animation', [
-                    'label' => 'Export Qualifications',
-                    'route' => 'reports.qualifications.export'
-                ])
-            </div>
-            <div class="flex-1 text-slate-600">
-                Export a detailed report of employee qualification information.
-            </div>
-        </div>
-
-        <!-- Export Skills Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
-            <div class="w-48">
-                @livewire('reports.loading-button-animation', [
-                    'label' => 'Export Skills',
-                    'route' => 'reports.skills.export'
-                ])
-            </div>
-            <div class="flex-1 text-slate-600">
-                Export a comprehensive report of skills assessments, detailing individual performance and skill levels.
-            </div>
-        </div>
+        @livewire('export-dropdown')
     </div>
+
 </x-app-layout>
 
-<!-- JavaScript for Redirect Handling -->
 <script>
     document.addEventListener('livewire:load', function () {
         Livewire.on('redirect', function (url) {
