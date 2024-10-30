@@ -6,7 +6,7 @@
 
                 <x-dropdown align="left" width="48" class="">
                     <x-slot name="trigger">
-                            <button type="button" class="h-10 justify-items-center items-center inline-flex px-3 py-1 border text-sm font-medium rounded-md hover:bg-gray-100 transition ease-in-out duration-150">
+                            <button type="button" class="h-10 justify-items-center items-center inline-flex px-3 py-1 border text-sm font-medium rounded-md  bg-sky-200 hover:bg-sky-300 text-sky-800  transition ease-in-out duration-150  rounded-l-3xl">
                                 <span class="mr-2">
                                     <x-iconoir-drawer />
 
@@ -40,11 +40,11 @@
                 </x-dropdown>
             </div>
             <div class="flex-initial w-full ...">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md focus:ring-sky-400 active:ring-sky-900">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
-                <a href="{{ route('directories.skills.create') }}" class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <a href="{{ route('directories.skills.create') }}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl">
 
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add skill
@@ -56,9 +56,9 @@
           </div>
 
 
-<div class="rounded-lg border ">
+<div class="rounded-3xl border bg-white shadow-md">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-        <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+        <thead class="text-left text-xs text-sky-950">
             <tr>
                 <th class="px-6 py-3  uppercase ">Skill Title</th>
                 <th class="px-6 py-3  uppercase ">Description</th>
@@ -68,9 +68,9 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-200">
             @foreach ($skills as $skill)
-                <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
+                <tr class="cursor-pointer hover:bg-gray-50 " onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             {{ $skill->skill_title }}
                     </td>

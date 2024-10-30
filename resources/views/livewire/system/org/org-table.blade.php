@@ -5,12 +5,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search company directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search company directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-md rounded-l-3xl">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 px-2 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md" onclick="window.location.href = '{{ route('directories.org.create') }}'">
+                <button class="flex flex-row p-2 px-2 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md rounded-r-3xl" onclick="window.location.href = '{{ route('directories.org.create') }}'">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Employee
                 </button>
@@ -20,9 +20,9 @@
           </div>
 
 
-<div class="rounded-lg border ">
+<div class="rounded-3xl bg-white shadow-md border ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-        <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+        <thead class="text-left text-xs text-sky-950">
             <tr>
                 <th class="px-6 py-3  uppercase ">Salary Ref:</th>
                 <th class="px-6 py-3 uppercase ">Name</th>
@@ -37,7 +37,7 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-200">
 
             @foreach ($users as $user)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
