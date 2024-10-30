@@ -38,6 +38,7 @@ class OrgTable extends Component
 
     public function store(Request $request): RedirectResponse
     {
+        dd($request);
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -48,6 +49,7 @@ class OrgTable extends Component
             'competency_rating' => 'nullable|numeric',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'department_id' => 'required'
         ]);
 
         try {

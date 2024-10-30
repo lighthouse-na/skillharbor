@@ -36,7 +36,7 @@
 
                         </div>
                         <div class="flex flex-col shadow-md border bg-white rounded-3xl dark:bg-gray-800">
-                            <div class="flex flex-row  justify-between items-center px-6 py-6">
+                            <div class="flex flex-row  justify-between items-center px-6 py-6 border-b">
                                 <h3 class="leading-none text-gray-900 dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
                                     class="ml-auto hover:bg-sky-100  rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
@@ -75,17 +75,26 @@
                 </div>
                 <div class="bg-white dark:bg-gray-800 border rounded-3xl shadow-md overflow-hidden">
                     <div class="flex flex-col h-full">
-                        <div class="px-6 py-6 shadow-md-b shadow-md-gray-200 dark:shadow-md-gray-700">
+                        <div class="px-6 py-6 shadow-md-b shadow-md-gray-200 dark:shadow-md-gray-700 border-b">
                             <h3 class="text-gray-900 dark:text-white">My Skill Gap</h3>
                         </div>
                         <div class="flex-grow p-6">
+                            @if ($jcpRating == 0)
+                            <div class="text-base items-center flex justify-center text-red-700 ">
+                                <div class="self-center  max-w-md bg-red-200 rounded-3xl  p-4">
+                                    <h1 class="">You have no JCP. Please Contact Your Supervisor.</h1>
+                                </div>
+                            </div>
+                            @else
                             <canvas id="myChart" class="w-full h-full"></canvas>
+
+                            @endif
                         </div>
                     </div>
                 </div>
                 <!-- Cart Section -->
                 <div class="shadow-md bg-white border w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
-                    <div class="flex flex-row justify-between items-center px-6 py-6">
+                    <div class="flex flex-row justify-between items-center px-6 py-6 border-b">
                         <div class="title">
                             <h3 class="leading-none text-gray-900 dark:text-white">Top Skills</h3>
                         </div>
@@ -132,8 +141,8 @@
 
                                         </tr>
                                     @empty
-                                        <div class="container flex-auto justify-center text-center">
-                                            <p class="text-gray-400 text-base m-4">
+                                        <div class="container flex-auto justify-center text-center text-base items-center flex justify-center text-red-700">
+                                            <p class="text-red-700 max-w-md bg-red-200 rounded-3xl  p-4 m-4">
                                                 You have not completed any assessment.
                                             </p>
                                         </div>

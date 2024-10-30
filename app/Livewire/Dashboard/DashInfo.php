@@ -29,9 +29,9 @@ class DashInfo extends Component
     public function mount()
     {
         $this->jcp = Auth::user()->jcp()->where('is_active', 1)->first();
-        $this->myRating = $this->jcp->sumMyLevels();
-        $this->supervisorRating = $this->jcp->sumSupervisorLevels();
-        $this->jcpRating = $this->jcp->sumRequiredLevelsByCategory();
+        $this->myRating = $this->jcp ? $this->jcp->sumMyLevels() ?? 0 : 0;
+        $this->supervisorRating = $this->jcp ? $this->jcp->sumSupervisorLevels() ?? 0 : 0;
+        $this->jcpRating = $this->jcp ? $this->jcp->sumRequiredLevelsByCategory() ?? 0 : 0;
         $this->confirmingAddQualification = false;
         $this->confirmingQualificationRemoval = false;
         $this->search = '';
@@ -93,11 +93,17 @@ class DashInfo extends Component
 
         ];
         $user = auth()->user();
-        $skills = $this->jcp->skills()
+
+        if($this->jcp == null){
+            $skills = [];
+        }else{
+            $skills = $this->jcp->skills()
             ->where('user_rating', '>', 1)
             ->orderByDesc('user_rating')
             ->take(5)
             ->get();
+        }
+
 
         $qualifications = $user->qualifications()->get();
         $dbQual = qualification::all();

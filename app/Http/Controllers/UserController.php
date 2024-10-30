@@ -31,6 +31,7 @@ class UserController extends Controller
             'role' => 'required|string|max:255',
             'competency_rating' => 'nullable|numeric',
             'email' => 'required|string|email|max:255|unique:users',
+            'department' => 'required'
         ]);
 
         try {
@@ -46,6 +47,7 @@ class UserController extends Controller
                     'competency_rating' => $competencyRating,
                     'email' => $request['email'],
                     'password' => Hash::make($password),
+                    'department_id' => $request['department'],
                 ]
             );
 
