@@ -77,6 +77,7 @@
                     <x-side-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')" >
                         Reports
                     </x-side-nav-link>
+                    @if (Auth::user()->role === "supervisor" |  Auth::user()->role === "admin")
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -89,9 +90,12 @@
                         </x-slot>
                         <x-slot name="content">
                             <!-- Directory Management -->
+                            @if (Auth::user()->role === "admin")
                             <x-dropdown-link href="{{route('assessments.index')}}">
                                 Assessments
                             </x-dropdown-link>
+                            @endif
+
                             <x-dropdown-link href="{{route('jcp.index')}}">
                                 JCPs
                             </x-dropdown-link>
@@ -109,6 +113,7 @@
 
                         </x-slot>
                     </x-dropdown>
+                    @endif
                 </div>
 
             </div>

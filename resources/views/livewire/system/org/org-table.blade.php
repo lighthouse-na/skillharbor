@@ -39,7 +39,7 @@
         </thead>
         <tbody class="divide-y divide-gray-200">
 
-            @foreach ($users as $user)
+            @forelse ($users as $user)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             {{ $user->salary_ref_number }}
@@ -88,7 +88,17 @@
 
                     <!-- Add more table cells as needed -->
                 </tr>
-            @endforeach
+            @empty
+            <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+                <div class="self-center  max-w-md ">
+                    <h1 class=""><x-iconoir-warning-circle class="mr-2" />
+                    </h1>
+                </div>
+                <div class="self-center  max-w-md ">
+                    <h1 class="">You are not supervising anyone.</h1>
+                </div>
+            </div>
+            @endforelse
         </tbody>
     </table>
 

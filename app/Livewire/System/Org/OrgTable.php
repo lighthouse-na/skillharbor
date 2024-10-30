@@ -6,6 +6,7 @@ use App\Models\Audit\Department;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -20,14 +21,7 @@ class OrgTable extends Component
 
     }
 
-    public function render()
-    {
-        $users = User::with(['jcp' => function ($query) {
-            $query->where('is_active', 1);
-        }])->search($this->search)->paginate(10);
 
-        return view('livewire.system.org.org-table', ['users' => $users]);
-    }
 
     public function create()
     {
@@ -81,5 +75,20 @@ class OrgTable extends Component
 
         // Return view with user data
         return view('directories.org.edit', compact('user'));
+    }
+    public function render()
+    {
+        if (Auth::user()->role === "admin") {
+            $users = User::with(['jcp' => function ($query) {
+                $query->where('is_active', 1);
+            }])->search($this->search)->paginate(10);
+        }elseif (Auth::user()->role === "supervisor") {
+            $users = User::where('supervisor_id', Auth::user()->id)->with(['jcp' => function ($query) {
+                $query->where('is_active', 1);
+            }])->search($this->search)->paginate(10);
+        }
+
+
+        return view('livewire.system.org.org-table', ['users' => $users]);
     }
 }

@@ -38,7 +38,7 @@
                                                 stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                                         </svg>
                                         <span class="ms-1 text-sm font-medium text-white md:ms-2 dark:text-gray-400">
-                                            Organisational Report
+                                            Skills Audit Report
                                         </span>
                                     </div>
                                 </li>
@@ -71,6 +71,7 @@
     </div>
 
     <!-- Export Buttons with Descriptions -->
+    @if (Auth::user()->role === "admin")
     <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
         <header>
             <div class="bg-orange-200 py-4 px-6 rounded-t-3xl">
@@ -116,6 +117,27 @@
             </div>
         </div>
     </div>
+    @elseif (Auth::user()->role === "supervisor")
+    <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
+        <header>
+            <div class="bg-orange-200 py-4 px-6 rounded-3xl">
+                <h2 class="text-lg font-medium text-orange-700 dark:text-white mb-2">Your Exports</h2>
+            </div>
+        </header>
+    </div>
+
+    @elseif (Auth::user()->role === 'employee')
+    <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
+        <header>
+            <div class="bg-orange-200 py-4 px-6 rounded-3xl">
+                <h2 class="text-lg font-medium text-orange-700 dark:text-white mb-2">Your Exports</h2>
+            </div>
+        </header>
+    </div>
+    @endif
+
+
+
 </x-app-layout>
 
 <!-- JavaScript for Redirect Handling -->
