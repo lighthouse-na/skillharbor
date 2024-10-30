@@ -41,11 +41,13 @@ class AssessmentController extends Controller
             'assessment_title' => 'required|string|max:255',
             'department_ids' => 'required|array',
             'department_ids.*' => 'exists:departments,id',
+            'closing_date' => 'required|date|after:today',
         ]);
 
         // Create the assessment
         $assessment = assessment::create([
             'assessment_title' => $request->input('assessment_title'),
+            'closing_date' => $request->input('closing_date'),
         ]);
 
         // Get the users in the selected departments
@@ -93,12 +95,45 @@ class AssessmentController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $assessment = assessment::findOrFail(Crypt::decrypt($id));
-        $assessment->update($request->all());
+{
+    // Decrypt the ID and find the assessment or fail
+    $assessment = Assessment::findOrFail(Crypt::decrypt($id));
 
-        return redirect()->route('assessments.index');
+    // Define validation rules
+    $validatedData = $request->validate([
+        'assessment_title' => 'required|string|max:255',
+        'department_ids' => 'required|array',
+        'department_ids.*' => 'exists:departments,id',
+        'closing_date' => 'required|date|after:today',
+    ]);
+
+    // Update assessment fields
+    $assessment->update([
+        'assessment_title' => $validatedData['assessment_title'],
+        'closing_date' => $validatedData['closing_date'],
+    ]);
+
+    // Update department enrollments
+    $departmentIds = $validatedData['department_ids'];
+    $users = User::whereIn('department_id', $departmentIds)->get();
+
+    // Ensure existing enrollments are updated or add new ones
+    $existingEnrollments = Enrollment::where('assessment_id', $assessment->id)->pluck('user_id')->toArray();
+
+    foreach ($users as $user) {
+        if (!in_array($user->id, $existingEnrollments)) {
+            Enrollment::create([
+                'user_id' => $user->id,
+                'assessment_id' => $assessment->id,
+                'user_status' => 0,
+                'supervisor_status' => 0,
+            ]);
+        }
     }
+
+    return redirect()->route('assessments.index')->with('success', 'Assessment updated and enrollments adjusted successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
