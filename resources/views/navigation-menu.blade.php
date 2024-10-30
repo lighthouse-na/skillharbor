@@ -65,7 +65,7 @@
                     <x-side-nav-link href="{{ route('user.assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user.assessment')">
                         My Assessments
                     </x-side-nav-link>
-                    @if (Auth::user()->role === "supervisor")
+                    @if (Auth::user()->role === "supervisor" |  Auth::user()->role === "admin")
                     <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')">
                         Supervise
                     </x-side-nav-link>

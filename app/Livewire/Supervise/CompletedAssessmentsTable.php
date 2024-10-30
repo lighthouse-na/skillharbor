@@ -5,6 +5,7 @@ namespace App\Livewire\Supervise;
 use App\Models\Audit\assessment;
 use App\Models\Audit\jcp;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
@@ -91,15 +92,16 @@ class CompletedAssessmentsTable extends Component
 
     {
 
-        $completedAssessments = User::whereHas('enrolled', function ($query) {
-            $query->where('assessment_id', $this->assessment_id)
-                ->where('user_status', 1);
-        })
-            ->with(['enrolled' => function ($query) {
-                $query->where('assessment_id', $this->assessment_id);
-            }])
-            ->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')
-            ->paginate(10);
+        $completedAssessments = User::where('supervisor_id', Auth::user()->id)->whereHas('enrolled', function ($query) {
+        $query->where('assessment_id', $this->assessment_id)
+              ->where('user_status', 1);
+    })
+    ->with(['enrolled' => function ($query) {
+        $query->where('assessment_id', $this->assessment_id);
+    }])
+    ->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')
+    ->paginate(10);
+
 
 
 
