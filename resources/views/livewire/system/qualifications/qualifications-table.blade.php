@@ -11,9 +11,10 @@
             <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl w-auto">
                     <x-gmdi-add-o class="w-6 h-6" />
-                    Add Qualification
+
+                    Qualification
                 </a>
 
             </div>
@@ -21,9 +22,9 @@
           </div>
 
 
-<div class="rounded-lg border ">
+<div class="rounded-3xl border shadow-md bg-white">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-        <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+        <thead class="text-left text-xs text-sky-950">
             <tr>
                 <th class="px-6 py-3  uppercase ">qualification Title</th>
                 <th class="px-6 py-3 text-center uppercase ">Actions</th>
@@ -32,7 +33,7 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class=" divide-y divide-gray-200">
             @foreach ($qualifications as $qualification)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">

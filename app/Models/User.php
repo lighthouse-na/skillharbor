@@ -108,6 +108,14 @@ class User extends Authenticatable
 
     }
 
+    public function supervising(){
+        return $this->hasMany(User::class, 'supervisor_id');
+    }
+
+    public function supervisor(){
+        return $this->belongsTo(User::class, 'supervisor_id');
+    }
+
     public function getAgeAttribute()
     {
         return Carbon::parse($this->attributes['dob'])->age;

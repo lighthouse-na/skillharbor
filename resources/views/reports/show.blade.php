@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="ml-4">
+    <div class="">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md rounded-3xl border">
             <div>
                 <header class="">
@@ -38,7 +38,7 @@
                                                 stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                                         </svg>
                                         <span class="ms-1 text-sm font-medium text-white md:ms-2 dark:text-gray-400">
-                                            Organisational Report
+                                            Skills Audit Report
                                         </span>
                                     </div>
                                 </li>
@@ -58,11 +58,11 @@
                         <span class="text-base font-medium text-sky-700 dark:text-white">
                             {{$assessmentProgress["completed"]}}/{{$assessmentProgress["total"]}}
                         </span>
-                        <span class="text-sm font-medium text-sky-700 dark:text-white">
-                            {{$assessmentProgress["percentage"]}}%
+                        <span class="text-sm font-medium text-orange-700 dark:text-white bg-orange-200 px-4 py-2 rounded-3xl">
+                            {{number_format((float)$assessmentProgress["percentage"],2, '.', '')}}% Complete
                         </span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 my-4">
                         <div class="bg-sky-600 h-2.5 rounded-full" style="width: {{$assessmentProgress["percentage"]}}%"></div>
                     </div>
                 </div>
@@ -71,9 +71,15 @@
     </div>
 
     <!-- Export Buttons with Descriptions -->
-    <div class="h-screen flex flex-col p-4">
+    @if (Auth::user()->role === "admin")
+    <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
+        <header>
+            <div class="bg-orange-200 py-4 px-6 rounded-t-3xl">
+                <h2 class="text-lg font-medium text-orange-700 dark:text-white mb-2">Organisational Exports</h2>
+            </div>
+        </header>
         <!-- Export Employees Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+        <div class="flex items-center gap-4 p-4 border-b border-slate-200">
             <div class="w-48">
                 @livewire('reports.loading-button-animation', [
                     'label' => 'Export Employees',
@@ -86,7 +92,7 @@
         </div>
 
         <!-- Export Qualifications Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+        <div class="flex items-center gap-4 p-4 border-b border-slate-200">
             <div class="w-48">
                 @livewire('reports.loading-button-animation', [
                     'label' => 'Export Qualifications',
@@ -99,7 +105,7 @@
         </div>
 
         <!-- Export Skills Button -->
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+        <div class="flex items-center gap-4 p-4 ">
             <div class="w-48">
                 @livewire('reports.loading-button-animation', [
                     'label' => 'Export Skills',
@@ -111,6 +117,27 @@
             </div>
         </div>
     </div>
+    @elseif (Auth::user()->role === "supervisor")
+    <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
+        <header>
+            <div class="bg-orange-200 py-4 px-6 rounded-3xl">
+                <h2 class="text-lg font-medium text-orange-700 dark:text-white mb-2">Your Exports</h2>
+            </div>
+        </header>
+    </div>
+
+    @elseif (Auth::user()->role === 'employee')
+    <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
+        <header>
+            <div class="bg-orange-200 py-4 px-6 rounded-3xl">
+                <h2 class="text-lg font-medium text-orange-700 dark:text-white mb-2">Your Exports</h2>
+            </div>
+        </header>
+    </div>
+    @endif
+
+
+
 </x-app-layout>
 
 <!-- JavaScript for Redirect Handling -->

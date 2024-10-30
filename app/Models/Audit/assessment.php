@@ -12,6 +12,8 @@ class assessment extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['created_at', 'updated_at', 'closing_date'];
+
 
     public function enrolled()
     {
