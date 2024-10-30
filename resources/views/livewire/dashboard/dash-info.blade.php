@@ -80,8 +80,12 @@
                         </div>
                         <div class="flex-grow p-6">
                             @if ($jcpRating == 0)
-                            <div class="text-base items-center flex justify-center text-red-700 ">
-                                <div class="self-center  max-w-md bg-red-200 rounded-3xl  p-4">
+                            <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+                                <div class="self-center  max-w-md ">
+                                    <h1 class=""><x-iconoir-warning-circle class="mr-2" />
+                                    </h1>
+                                </div>
+                                <div class="self-center  max-w-md ">
                                     <h1 class="">You have no JCP. Please Contact Your Supervisor.</h1>
                                 </div>
                             </div>
@@ -99,7 +103,7 @@
                             <h3 class="leading-none text-gray-900 dark:text-white">Top Skills</h3>
                         </div>
                     </div>
-                    <div class="flow-root">
+                    <div class="flow-root p-4">
                         <div class="overflow-y-auto sm:rounded-3xl">
                             <table class="w-full text-sm mt-3 text-gray-500 dark:text-gray-400">
                                 <thead
@@ -141,11 +145,15 @@
 
                                         </tr>
                                     @empty
-                                        <div class="container flex-auto justify-center text-center text-base items-center flex justify-center text-red-700">
-                                            <p class="text-red-700 max-w-md bg-red-200 rounded-3xl  p-4 m-4">
-                                                You have not completed any assessment.
-                                            </p>
+                                    <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+                                        <div class="self-center  max-w-md ">
+                                            <h1 class=""><x-iconoir-warning-circle class="mr-2" />
+                                            </h1>
                                         </div>
+                                        <div class="self-center  max-w-md ">
+                                            <h1 class="">You have not completed an assessment.</h1>
+                                        </div>
+                                    </div>
                                     @endforelse
 
 
