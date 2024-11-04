@@ -23,6 +23,13 @@
         [x-cloak] {
             display: none !important;
         }
+        .custom-bg {
+            background-color: #E0F7FA;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none"><path fill="%23E0F7FA" d="M0 0h200v200H0z"/><path d="M50 50c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M150 50c-10 10-50 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M50 150c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M150 150c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M0 100c50-50 100-50 150 0s100 50 150 0" stroke="%23B2EBF2" stroke-width="20"/><path d="M0 200c50-50 100-50 150 0s100 50 150 0" stroke="%23B2EBF2" stroke-width="20"/></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
     </style>
 
     <!-- Scripts -->
@@ -63,7 +70,7 @@
     </div>
 
 </body>
-<footer class=" py-4 text-center text-slate-500 bg-gray-50">
+<footer class=" py-4 text-center text-white bg-sky-950">
     <p class="text-sm">
         SkillHarbor developed by Lighthouse &copy; {{ date('Y') }}
     </p>

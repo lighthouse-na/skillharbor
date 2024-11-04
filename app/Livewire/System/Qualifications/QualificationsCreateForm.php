@@ -7,18 +7,24 @@ use Livewire\Component;
 
 class QualificationsCreateForm extends Component
 {
-    public $qualification_title = '';
+    public $qualification_title;
+
+    protected $rules = [
+        'qualification_title' => 'required|string|max:255',
+    ];
 
     public function save()
     {
+        $this->validate();
+
+        // Create a new qualification
         Qualification::create([
             'qualification_title' => $this->qualification_title,
-
         ]);
 
-        session()->flash('status', 'Qualification successfully created.');
+        session()->flash('success', 'Qualification added successfully.');
 
-        return $this->redirect('/qualifications');
+        return redirect()->route('directories.qualifications.index');
     }
 
     public function render()

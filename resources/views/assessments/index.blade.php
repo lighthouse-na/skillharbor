@@ -18,11 +18,22 @@
         <div class="">
 
 
-        <div class="grid grid-cols-3 gap-4 rounded-lg mb-4 p-4 sm:p-6 h-full dark:bg-gray-800">
+        <div class="flex-col rounded-3xl  mb-4 p-4 sm:p-6 h-full dark:bg-gray-800 ">
             @forelse ($assessments as $a)
-            <div class="group block w-full mx-auto rounded-xl h-48 p-6 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7dd3fc_100%)]">
+            <div class="group block w-full mx-auto rounded-3xl shadow-sm border h-auto p-6 bg-white mb-4 bg-sky-200">
+                <div class="flex items-center mb-4">
+                    <span class="bg-pink-200 text-pink-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                     Assessment
+                    </span>
+                    <span class="text-gray-400 text-sm">
+                        Closing {{ Carbon\Carbon::parse($a->closing_date)->diffForHumans() }}!
+                    </span>
+                   </div>
+
+
                 <div class="p-4 md:p-5">
-                  <h3 class="text-sky-900 text-2xl">
+
+                  <h3 class="text-sky-900 text-2xl font-bold mb-2">
 
                     {{$a->assessment_title}}
                   </h3>
@@ -46,6 +57,18 @@
                         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                     </a>
                   @endif
+
+                  <div class="flex items-center mt-3">
+                    <img alt="" class="w-10 h-10 rounded-full mr-2 shadow-sm" height="40" src="{{ Auth::user()->supervisor->profile_photo_url }}" width="40"/>
+                    <span class="text-sky-950">
+                     Supervisor:
+                     <span class="text-sky-950">
+                      {{Auth::user()->supervisor->first_name}} {{Auth::user()->supervisor->last_name}}
+                     </span>
+                    </span>
+                   </div>
+
+
 
 
 
