@@ -24,12 +24,12 @@
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
-                <th class="px-6 py-3  uppercase ">Salary Ref:</th>
-                <th class="px-6 py-3 uppercase ">Name</th>
-                <th class="px-6 py-3  uppercase ">Email</th>
-                <th class="px-6 py-3 uppercase ">Job Title</th>
-                <th class="px-6 py-3 text-center uppercase ">Skill Points</th>
-                <th class="px-6 py-3 text-center uppercase ">Actions</th>
+                <th class="px-6 py-3">Salary Ref:</th>
+                <th class="px-6 py-3">Name</th>
+                <th class="px-6 py-3">Email</th>
+                <th class="px-6 py-3text-center ">Job Title</th>
+                <th class="px-6 py-3 text-center">Skill Points</th>
+                <th class="px-6 py-3 text-center">Actions</th>
 
 
 
@@ -44,13 +44,23 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                             {{ $user->salary_ref_number }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $user->first_name }} {{$user->last_name}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap"><div class="flex items-center gap-3">
+                        <div class="avatar">
+                          <div class="mask mask-squircle h-8 w-8">
+                            <img class="rounded-xl object-cover" src="{{ $user->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
+                          </div>
+                        </div>
+                        <div>
+                          <div class="font-md">{{ $user->first_name }} {{$user->last_name}}</div>
+                          <div class="text-xs opacity-50">{{$user->department->department_name}}</div>
+                        </div>
+                      </div></td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-4 whitespace-nowrap text-xs text-center max-w">
                         @forelse($user->jcp as $jcp)
-                            {{ $jcp->position_title }}
+                            <h1 class="bg-sky-200 rounded-xl p-1 text-sky-900">{{ $jcp->position_title }}</h1>
                         @empty
-                            <h1 class="text-red-500 flex flex-row "><x-iconoir-warning-triangle class="mr-3"/> No active JCP...</h1>
+                            <h1 class="bg-red-200 rounded-xl p-1 text-red-900 "> No active JCP...</h1>
                         @endforelse
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap">{{ $user->competency_rating }}</td>
@@ -89,13 +99,13 @@
                     <!-- Add more table cells as needed -->
                 </tr>
             @empty
-            <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+            <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4 m-6">
                 <div class="self-center  max-w-md ">
                     <h1 class=""><x-iconoir-warning-circle class="mr-2" />
                     </h1>
                 </div>
-                <div class="self-center  max-w-md ">
-                    <h1 class="">You are not supervising anyone.</h1>
+                <div class="self-center w-48">
+                    <h1 class="">No Employees Found!</h1>
                 </div>
             </div>
             @endforelse

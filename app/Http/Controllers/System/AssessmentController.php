@@ -64,7 +64,7 @@ class AssessmentController extends Controller
             ]);
         }
 
-        return redirect()->route('assessments.index')->with('success', 'Assessment created and users enrolled successfully.');
+        return redirect()->route('assessments.index')->banner('Assessment successfully created!');
     }
 
 
@@ -130,8 +130,7 @@ class AssessmentController extends Controller
             ]);
         }
     }
-
-    return redirect()->route('assessments.index')->with('success', 'Assessment updated and enrollments adjusted successfully.');
+    return redirect()->route('assessments.index')->banner('Assessment Updated!');
 }
 
 
@@ -146,7 +145,7 @@ class AssessmentController extends Controller
             $assessment->delete();
 
         // Redirect or return a response
-        return redirect()->route('assessments.index')->with('success', 'Assessment and its enrollments deleted successfully.');
+        return redirect()->route('assessments.index');
     }
 
     /**

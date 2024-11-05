@@ -21,7 +21,7 @@ class AssessmentController extends Controller
         $assessments = $user
             ->assessments()
             ->withPivot('user_status', 'supervisor_status') // Include user_status and supervisor_status from enrolled table
-            ->get();
+            ->paginate(4);
 
         return view('assessments.index', compact('assessments', 'user'));
     }

@@ -1,83 +1,112 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="">
+        <h2 class="text-lg font-semibold text-gray-900">
             {{ __('Your Assessments') }}
         </h2>
     </x-slot>
     <div class="py-6 px-6">
-
-        {{-- <div class="relative max-w h-48 rounded-3xl overflow-hidden shadow-lg">
-
-            <div class="absolute inset-0 bg-sky-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-            <div class="absolute bottom-0 left-0 p-4 text-white">
-                <h2 class="text-2xl font-bold">My Assessments</h2>
-                <p class="text-sm">Track your progress with ease</p>
-            </div>
-        </div> --}}
-
-        <div class="">
-
-
-        <div class="grid grid-cols-3 gap-4 rounded-lg mb-4 p-4 sm:p-6 h-full dark:bg-gray-800">
+        <div class="flex grid grid-cols-2 gap-6">
             @forelse ($assessments as $a)
-            <div class="group block w-full mx-auto rounded-xl h-48 p-6 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7dd3fc_100%)]">
-                <div class="p-4 md:p-5">
-                  <h3 class="text-sky-900 text-2xl">
+                <div class="flex flex-col flex-1 items-stretch h-100">
+                    <div class="flex flex-col items-stretch flex-1 mx-auto h-100  w-full">
+                        <div class="relative flex-3 w-full h-100">
 
-                    {{$a->assessment_title}}
-                  </h3>
-                  <div class="bg-orange-400 w-12 h-1 rounded-xl mt-6 ">
+                            <div class="flex flex-col justify-between items-center w-full h-auto bg-pink overflow-hidden border border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px] shadow-md">
 
-                  </div>
-                  @if ($a->pivot->user_status === 0 && $a->pivot->supervisor_status === 0)
-                  <a class="mt-3 inline-flex items-center gap-x-1 text-sky-900 text-sm hover:bg-sky-200 rounded-xl p-2 hover:text-sky-800" href="{{route('user.assessment.show', ['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
-                    Get Started
-                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                  </a>
-                    @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
-                    <a class="mt-3 inline-flex items-center gap-x-1 text-sky-900 text-sm hover:bg-sky-200 rounded-xl p-2 hover:text-sky-800" href="{{route('user.assessment.submission',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
-                        View Submission
-                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                      </a>
+                                <!-- Header Image Section -->
+                                <div class="w-full">
+                                    <img src="https://cdn.dribbble.com/userupload/16856641/file/original-110696f7ab00d52e44c7e0d371352751.jpg?resize=752x" alt="Dashboard" class="object-cover w-full h-32 rounded-t-3xl" />
+                                </div>
 
-                    @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
-                    <a class="mt-3 inline-flex items-center gap-x-1 text-sky-900 text-sm hover:bg-sky-200 rounded-xl p-2 hover:text-sky-800" href="{{route('user.assessment.results',['user' => Crypt::Encrypt(Auth::user()->id), 'assessment' => Crypt::Encrypt($a->id)])}}">
-                        View Supervisor Results
-                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                    </a>
-                  @endif
+                                <!-- Left Section: Title, Date, Supervisor Info -->
+                                <div class="flex relative flex-col p-6 w-full">
+                                    <div class="flex items-start mb-5 border-b pb-2">
 
 
+                                        <div class="flex-grow ml-4">
+                                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $a->assessment_title }}</h2>
+                                            <div class="mt-1">
+                                                <p class="text-sm text-zinc-500 dark:text-gray-400">Opened {{ Carbon\Carbon::parse($a->created_at)->diffForHumans() }}</p>
+                                                <p class="text-sm text-red-500 dark:text-red-400">Closing: {{ Carbon\Carbon::parse($a->closing_date)->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
 
+                                        <!-- Add any additional controls or icons here, if needed -->
+
+                                    </div>
+
+
+
+
+                                    <!-- Supervisor Info -->
+                                    <div class="flex items-center space-x-2 border border-dashed rounded-3xl p-2">
+                                        @if (Auth::check() && Auth::user()->supervisor)
+                                            <img alt="Supervisor Photo" class="w-10 h-10 rounded-full shadow-sm" src="{{ Auth::user()->supervisor->profile_photo_url }}" />
+                                            <span class="text-sky-400 text-xs">Supervisor: <span class="text-sky-950">{{ Auth::user()->supervisor->first_name }} {{ Auth::user()->supervisor->last_name }}</span></span>
+                                        @else
+                                            <span class="text-sky-950">Supervisor information not available</span>
+                                        @endif
+                                    </div>
+
+                                    <!-- Action Button -->
+                                    <div class="mt-6">
+                                        @php
+                                            // Assuming the closing date is stored in $a->closing_date
+                                            $isClosed = now()->greaterThan(\Carbon\Carbon::parse($a->closing_date));
+                                        @endphp
+                                        @if ($a->pivot->user_status === 0 && $a->pivot->supervisor_status === 0)
+                                            @if ($isClosed)
+                                                <!-- Disabled Get Started Button -->
+                                                <span class="inline-flex items-center gap-x-1 text-red-900 text-sm bg-red-200 rounded-xl p-2 px-3 shadow-sm cursor-not-allowed opacity-50">
+                                                    Get Started
+                                                </span>
+                                                <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">The assessment closed unfortunately!</p>
+                                            @else
+                                                <!-- Enabled Get Started Button -->
+                                                <a class="inline-flex items-center gap-x-1 text-sky-900 text-sm bg-sky-200 rounded-xl p-2 px-3 shadow-sm" href="{{ route('user.assessment.show', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                    Get Started
+                                                </a>
+                                            @endif
+                                        @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
+                                            <a class="inline-flex items-center gap-x-1 text-orange-900 text-sm bg-orange-200 rounded-xl p-2 px-3 shadow-sm" href="{{ route('user.assessment.submission', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                View Submission
+                                            </a>
+                                            <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">Thank you for participating!</p>
+                                        @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
+                                            <a class="inline-flex items-center gap-x-1 text-green-900 text-sm bg-green-200 rounded-xl p-2 shadow-sm" href="{{ route('user.assessment.results', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                View Supervisor Results
+                                            </a>
+                                            <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">Thank you for participating!</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-
             @empty
-            <div class="min-h-60 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-                <div class="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
-                  <svg class="size-10 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" x2="2" y1="12" y2="12"/>
-                    <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
-                    <line x1="6" x2="6.01" y1="16" y2="16"/>
-                    <line x1="10" x2="10.01" y1="16" y2="16"/>
-                  </svg>
-                  <p class="mt-5 text-sm text-gray-800 dark:text-gray-300">
-                    You are not currently enrolled to any assessments.
-                  </p>
+                <div
+                    class="min-h-60 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                    <div class="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+                        <svg class="size-10 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="22" x2="2" y1="12" y2="12" />
+                            <path
+                                d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+                            <line x1="6" x2="6.01" y1="16" y2="16" />
+                            <line x1="10" x2="10.01" y1="16" y2="16" />
+                        </svg>
+                        <p class="mt-5 text-sm text-gray-800 dark:text-gray-300">You are not currently enrolled in any
+                            assessments.</p>
+                    </div>
                 </div>
-            </div>
-
             @endforelse
-
-
-
-
-
-
         </div>
 
     </div>
-
-
+    <div class="my-4 m-3 p-3 border  border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px] shadow-md">
+        {{ $assessments->links() }}
+    </div>
 </x-app-layout>
