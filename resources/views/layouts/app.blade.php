@@ -38,20 +38,14 @@
     @livewireScripts
     @stack('scripts')
 </head>
+<x-banner />
 
 <body class="font-rubik antialiased bg-white">
-    <div class="relative min-h-screen md:flex " x-data="{ open: false }">
-        <!--Sidebar -->
-
-
-
-
-
-        <!-- Page Content -->
+    <div class="relative min-h-screen md:flex">
         <main class="flex-1 bg-gray-50 min-h-screen">
 
             @livewire('navigation-menu')
-            <div class=" mx-32">
+            <div class="mx-32">
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">
