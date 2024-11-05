@@ -34,4 +34,11 @@ class assessment extends Model
     {
         return $query->where('assessment_title', 'like', '%'.$search.'%');
     }
+    public function countSubmittedForReview($userStatus = 1)
+    {
+        // Count the number of users who have submitted assessments for review
+        return $this->enrolled()
+            ->wherePivot('user_status', $userStatus)
+            ->count();
+    }
 }
