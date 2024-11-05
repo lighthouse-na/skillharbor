@@ -13,7 +13,7 @@
                             <div class="w-full text-gray-900">
                                 <!-- Profile Header Image -->
                                 <div class="h-32 overflow-hidden border rounded-t-3xl">
-                                    <img class="object-cover w-full h-full" src="{{ asset('assets/images/bg.png') }}"
+                                    <img class="object-cover w-full h-full" src="https://cdn.dribbble.com/userupload/16856828/file/original-03ce868951c6e8c5bcce40f17c029597.jpg?resize=752x"
                                         alt="Mountain">
                                 </div>
                                 <!-- User Profile Card -->
@@ -177,9 +177,9 @@
 
     <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-gray-200">
 
-        <h2 class="text-2xl font-bold text-white text-center">Coming Soon</h2>
+        <h2 class="text-2xl font-bold text-yellow-200 text-center">Coming Soon</h2>
         <p class="text-gray-50 text-center">
-            We're working on something amazing! Stay tuned for the <span class="font-semibold text-sky-800 shadow-md-sky-200">My Development Plans</span> feature.
+            We're working on something amazing! Stay tuned for the <span class="font-semibold text-yellow-200 shadow-md-yellow-200">My Development Plans</span> feature.
         </p>
 
         <div  class="bg-white bg-opacity-60 backdrop-filter backdrop-blur-3xl p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">
