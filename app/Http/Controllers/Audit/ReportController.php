@@ -7,6 +7,9 @@ use App\Models\audit\assessment;
 use App\Models\audit\qualification;
 use App\Models\audit\skill;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -31,7 +34,6 @@ class ReportController extends Controller
         return response()->stream(function () {
             $handle = fopen('php://output', 'w');
 
-            //add csv headers
             fputcsv($handle, [
                 'first_name',
                 'last_name',
@@ -54,10 +56,9 @@ class ReportController extends Controller
 
     }
 
-    //Added employee_csv Method -> Shaun
     public function employee_csv()
     {
-        $filename = 'organizational_report.csv';
+        $filename = 'organizational_employee_report.csv';
 
         $headers = [
             'Content-Type' => 'text/csv',
@@ -80,17 +81,13 @@ class ReportController extends Controller
 
             User::with(['jcp.skills'])->chunk(25, function ($employees) use ($handle) {
                 foreach ($employees as $employee) {
-                    // Combine first_name and last_name for the username
                     $fullName = $employee->first_name.' '.$employee->last_name;
 
-                    // Check if user has an active JCP (Job Description)
                     $activeJcp = $employee->jcp()->where('is_active', 1)->first();
 
-                    // If the user has an active JCP, fetch their job description
                     if ($activeJcp) {
                         $jobDescription = $activeJcp->position_title ?? 'No Job Description';
 
-                        // Fetch skills, user ratings, and supervisor ratings
                         $skills = $activeJcp->skills->map(function ($skill) {
                             return $skill->skill_title.' (Required: '.$skill->pivot->required_level.')';
                         })->implode(', ');
@@ -109,7 +106,6 @@ class ReportController extends Controller
                         $supervisorRatings = 'No Supervisor Ratings';
                     }
 
-                    // Extract data for each employee
                     $data = [
                         $fullName,
                         $jobDescription,
@@ -126,38 +122,54 @@ class ReportController extends Controller
         }, 200, $headers);
     }
 
-    //Added exportQualifications Method -> Shaun
     public function exportQualifications()
     {
-        $filename = 'qualifications.csv';
-
+        $filename = 'organisational_employee_qualifications_report.csv';
+    
         $headers = [
-            'Content-Type' => 'text/csv',
+            'Content-Type'        => 'text/csv',
             'Content-Disposition' => "attachment; filename=\"$filename\"",
-            'Pragma' => 'no-cache',
-            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-            'Expires' => 0,
+            'Pragma'              => 'no-cache',
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires'             => '0',
         ];
-
+    
         return response()->stream(function () {
             $handle = fopen('php://output', 'w');
-
-            fputcsv($handle, ['Qualification Name']);
-
-            Qualification::chunk(25, function ($qualifications) use ($handle) {
-                foreach ($qualifications as $qualification) {
-                    fputcsv($handle, [$qualification->qualification_title ?? '']);
+    
+            fputcsv($handle, ['Employee Name', 'Gender', 'Age', 'Qualifications']);
+    
+            User::chunk(25, function ($users) use ($handle) {
+                foreach ($users as $user) {
+                    $userId = $user->id;
+    
+                    $employeeName = $user->first_name . ' ' . $user->last_name;
+                    $gender = $user->gender;
+                    $age = $user->dob ? Carbon::parse($user->dob)->age : 'Unknown';
+    
+                    $qualificationIds = \DB::table('qualification_user')
+                        ->where('user_id', $userId)
+                        ->pluck('qualification_id');
+    
+                    if ($qualificationIds->isEmpty()) {
+                        fputcsv($handle, [$employeeName, $gender, $age, 'None']);
+                    } else {
+                        $qualifications = \App\Models\Audit\qualification::whereIn('id', $qualificationIds)
+                            ->pluck('qualification_title');
+    
+                        $qualificationsString = $qualifications->implode(', ');
+    
+                        fputcsv($handle, [$employeeName, $gender, $age, $qualificationsString]);
+                    }
                 }
             });
-
+    
             fclose($handle);
         }, 200, $headers);
     }
-
-    //Added exportSkills Method -> Shaun
     public function exportSkills()
     {
-        $filename = 'skills.csv';
+        $filename = 'organisational_skills_report.csv';
 
         $headers = [
             'Content-Type' => 'text/csv',
@@ -170,20 +182,15 @@ class ReportController extends Controller
         return response()->stream(function () {
             $handle = fopen('php://output', 'w');
 
-            // Add CSV headers
             fputcsv($handle, ['Skill Name', 'JCP Count', 'Skill Required Rating Average']);
 
-            // Process skills in chunks to handle large datasets efficiently
             Skill::chunk(100, function ($skills) use ($handle) {
                 foreach ($skills as $skill) {
-                    // Use Eloquent's eager loading to minimize queries and improve performance
                     $skill->load('jcps');
 
-                    // Calculate JCP count and required rating average for each skill
                     $jcpCount = $skill->jcps->count();
                     $requiredRatingAvg = $skill->jcps->avg('pivot.required_level');
 
-                    // Write the data to CSV
                     fputcsv($handle, [
                         $skill->skill_title ?? '',
                         $jcpCount ?? 0,
@@ -196,7 +203,6 @@ class ReportController extends Controller
         }, 200, $headers);
     }
 
-    //Added exportAssessments Method -> Shaun
     public function exportAssessments()
     {
         $filename = 'assessments.csv';
@@ -212,7 +218,6 @@ class ReportController extends Controller
         return response()->stream(function () {
             $handle = fopen('php://output', 'w');
 
-            // Add CSV headers
             fputcsv($handle, [
                 'Employee Name',
                 'JCP Title',
@@ -236,6 +241,78 @@ class ReportController extends Controller
                     fputcsv($handle, $data);
                 }
             });
+
+            fclose($handle);
+        }, 200, $headers);
+    }
+
+    public function exportDivisionEmployees(Request $request)
+    {
+        $divisionName = $request->query('divisionName');
+
+        if (!$divisionName) {
+            return redirect()->back()->with('error', 'Division name is required.');
+        }
+
+        $filename = Str::slug($divisionName, '_') . '_employee_report.csv';
+
+        $headers = [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+            'Pragma'              => 'no-cache',
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires'             => '0',
+        ];
+
+        return response()->stream(function () use ($divisionName) {
+            $handle = fopen('php://output', 'w');
+
+            fputcsv($handle, [
+                'Employee Name',
+                'Job Description',
+                'Skills (with required ratings)',
+                'User Rating',
+                'Supervisor Rating',
+            ]);
+
+            User::with(['jcp.skills', 'deparment.division'])
+                ->whereHas('deparment.division', function ($query) use ($divisionName) {
+                    $query->where('division_name', $divisionName);
+                })
+                ->chunk(25, function ($employees) use ($handle) {
+                    foreach ($employees as $employee) {
+                        $fullName = $employee->first_name . ' ' . $employee->last_name;
+
+                        $activeJcp = $employee->jcp()->where('is_active', 1)->first();
+
+                        if ($activeJcp) {
+                            $jobDescription = $activeJcp->position_title ?? 'No Job Description';
+
+                            $skills = $activeJcp->skills->map(function ($skill) {
+                                return $skill->skill_title . ' (Required: ' . $skill->pivot->required_level . ')';
+                            })->implode(', ');
+
+                            $userRatings = $activeJcp->skills->pluck('pivot.user_rating')->implode(', ');
+
+                            $supervisorRatings = $activeJcp->skills->pluck('pivot.supervisor_rating')->implode(', ');
+                        } else {
+                            $jobDescription     = 'No active JCP';
+                            $skills             = 'No Skills';
+                            $userRatings        = 'No Ratings';
+                            $supervisorRatings  = 'No Supervisor Ratings';
+                        }
+
+                        $data = [
+                            $fullName,
+                            $jobDescription,
+                            $skills,
+                            $userRatings,
+                            $supervisorRatings,
+                        ];
+
+                        fputcsv($handle, $data);
+                    }
+                });
 
             fclose($handle);
         }, 200, $headers);

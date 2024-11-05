@@ -46,24 +46,137 @@
         </div>
 
     @elseif ($selectedOption === 'divisional')
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
-            <div class="w-48">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">Export Divisional Report</button>
+    <div class="space-y-6">
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                CEO's Office
+            </summary>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Employees',
+                        'route' => 'reports.employees.export-division',
+                        'divisionName' => "CEO's Office"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
             </div>
-            <div class="flex-1 text-slate-600">
-                Export divisional reports with relevant statistics and data.
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Business Division
+            </summary>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Employees',
+                        'route' => 'reports.employees.export-division',
+                        'divisionName' => "Business Division"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
             </div>
-        </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Finance Division
+            </summary>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Employees',
+                        'route' => 'reports.employees.export-division',
+                        'divisionName' => "Finance Division"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Human Resources
+            </summary>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Employees',
+                        'route' => 'reports.employees.export-division',
+                        'divisionName' => "Human Resources"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
+        </details>
+    </div>
 
     @elseif ($selectedOption === 'departmental')
-        <div class="flex items-center gap-4 p-2 border-b border-slate-200">
-            <div class="w-48">
-                <button class="bg-green-500 text-white px-4 py-2 rounded">Export Departmental Report</button>
-            </div>
-            <div class="flex-1 text-slate-600">
-                Export departmental performance and activity reports.
-            </div>
-        </div>
 
+    <div class="space-y-6">
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Government
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Government
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Wholesales
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Wholesales
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Field Services General
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Field Services General
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Network Operations
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Network Operations
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Commercial General
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Commercial General
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Legal
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Legal
+            </div>
+        </details>
+        <details class="rounded-md shadow-md bg-white border border-gray-200">
+            <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
+                Retail & Corporate
+            </summary>
+            <div class="bg-white p-4 border-t border-gray-200 text-gray-800">
+                Content for Retail & Corporate
+            </div>
+        </details>
+    </div>
+        
     @endif
 </div>
