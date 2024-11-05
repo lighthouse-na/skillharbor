@@ -9,6 +9,7 @@ use App\Models\audit\skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class ReportController extends Controller
@@ -121,7 +122,7 @@ class ReportController extends Controller
             fclose($handle);
         }, 200, $headers);
     }
-
+    
     public function exportQualifications()
     {
         $filename = 'organisational_employee_qualifications_report.csv';
@@ -134,39 +135,53 @@ class ReportController extends Controller
             'Expires'             => '0',
         ];
     
-        return response()->stream(function () {
+        $users = User::all();
+        $qualificationUserMappings = \DB::table('qualification_user')->get();
+    
+        $maxQualifications = $qualificationUserMappings->groupBy('user_id')->max(function ($qualifications) {
+            return $qualifications->count();
+        });
+    
+        return response()->stream(function () use ($users, $qualificationUserMappings, $maxQualifications) {
             $handle = fopen('php://output', 'w');
     
-            fputcsv($handle, ['Employee Name', 'Gender', 'Age', 'Qualifications']);
+            $csvHeaders = ['Employee Name', 'Gender', 'Age'];
+            for ($i = 1; $i <= $maxQualifications; $i++) {
+                $csvHeaders[] = 'Qualification ' . $i;
+            }
+            fputcsv($handle, $csvHeaders);
     
-            User::chunk(25, function ($users) use ($handle) {
-                foreach ($users as $user) {
-                    $userId = $user->id;
+            foreach ($users as $user) {
+                $employeeName = $user->first_name . ' ' . $user->last_name;
+                $gender = $user->gender;
+                $age = $user->dob ? Carbon::parse($user->dob)->age : 'Unknown';
     
-                    $employeeName = $user->first_name . ' ' . $user->last_name;
-                    $gender = $user->gender;
-                    $age = $user->dob ? Carbon::parse($user->dob)->age : 'Unknown';
+                $qualificationsForUser = [];
     
-                    $qualificationIds = \DB::table('qualification_user')
-                        ->where('user_id', $userId)
-                        ->pluck('qualification_id');
-    
-                    if ($qualificationIds->isEmpty()) {
-                        fputcsv($handle, [$employeeName, $gender, $age, 'None']);
-                    } else {
-                        $qualifications = \App\Models\Audit\qualification::whereIn('id', $qualificationIds)
-                            ->pluck('qualification_title');
-    
-                        $qualificationsString = $qualifications->implode(', ');
-    
-                        fputcsv($handle, [$employeeName, $gender, $age, $qualificationsString]);
+                foreach ($qualificationUserMappings as $mapping) {
+                    if ($mapping->user_id == $user->id) {
+                        $qualificationTitle = qualification::find($mapping->qualification_id)->qualification_title ?? 'Unknown';
+                        $qualificationsForUser[] = $qualificationTitle;
                     }
                 }
-            });
+    
+                $row = [$employeeName, $gender, $age];
+    
+                for ($i = 0; $i < $maxQualifications; $i++) {
+                    if (isset($qualificationsForUser[$i])) {
+                        $row[] = $qualificationsForUser[$i];
+                    } else {
+                        $row[] = '';
+                    }
+                }
+    
+                fputcsv($handle, $row);
+            }
     
             fclose($handle);
         }, 200, $headers);
     }
+    
     public function exportSkills()
     {
         $filename = 'organisational_skills_report.csv';
