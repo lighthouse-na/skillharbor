@@ -20,10 +20,10 @@
 
                                 <!-- Left Section: Title, Date, Supervisor Info -->
                                 <div class="flex relative flex-col p-6 w-full">
-                                    <div class="flex items-start mb-5 border-b pb-2">
+                                    <div class="flex items-center mb-5 border-b pb-2">
 
 
-                                        <div class="flex-grow ml-4">
+                                        <div class="flex-grow flex-row ml-4">
                                             <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $a->assessment_title }}</h2>
                                             <div class="mt-1">
                                                 <p class="text-sm text-zinc-500 dark:text-gray-400">Opened {{ Carbon\Carbon::parse($a->created_at)->diffForHumans() }}</p>
@@ -39,46 +39,47 @@
 
 
                                     <!-- Supervisor Info -->
-                                    <div class="flex items-center space-x-2 border border-dashed rounded-3xl p-2">
+                                    <div class="flex relative items-center space-x-2 border border-dashed rounded-3xl p-2">
                                         @if (Auth::check() && Auth::user()->supervisor)
                                             <img alt="Supervisor Photo" class="w-10 h-10 rounded-full shadow-sm" src="{{ Auth::user()->supervisor->profile_photo_url }}" />
                                             <span class="text-sky-400 text-xs">Supervisor: <span class="text-sky-950">{{ Auth::user()->supervisor->first_name }} {{ Auth::user()->supervisor->last_name }}</span></span>
                                         @else
                                             <span class="text-sky-950">Supervisor information not available</span>
                                         @endif
+                                        <div class="absolute   right-2">
+                                            @php
+                                                // Assuming the closing date is stored in $a->closing_date
+                                                $isClosed = now()->greaterThan(\Carbon\Carbon::parse($a->closing_date));
+                                            @endphp
+                                            @if ($a->pivot->user_status === 0 && $a->pivot->supervisor_status === 0)
+                                                @if ($isClosed)
+                                                    <!-- Disabled Get Started Button -->
+                                                    <span class="inline-flex items-center gap-x-1 text-red-900 text-sm bg-red-200 rounded-3xl p-2 px-3 shadow-sm cursor-not-allowed opacity-50">
+                                                        Get Started
+                                                    </span>
+                                                    {{-- <p class="text-sm text-zinc-600 dark:text-gray-300 mt-3">The assessment closed unfortunately!</p> --}}
+                                                @else
+                                                    <!-- Enabled Get Started Button -->
+                                                    <a class="inline-flex items-center gap-x-1 text-sky-900 text-sm bg-sky-200 rounded-xl p-2 px-3 shadow-sm hover:bg-sky-700 hover:text-sky-100 transition ease-in-out delay-75 duration-300" href="{{ route('user.assessment.show', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                        Get Started
+                                                    </a>
+                                                @endif
+                                            @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
+                                                <a class="inline-flex items-center gap-x-1 text-orange-900 text-sm bg-orange-200 rounded-xl p-2 px-3 shadow-sm hover:bg-orange-700 hover:text-orange-100 transition ease-in-out delay-75 duration-300" href="{{ route('user.assessment.submission', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                    View Submission
+                                                </a>
+                                                {{-- <p class="text-sm text-zinc-600 dark:text-gray-300 mt-3">Thank you for participating!</p> --}}
+                                            @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
+                                                <a class="inline-flex items-center gap-x-1 text-green-900 text-sm bg-green-200 rounded-xl p-2 shadow-sm hover:bg-green-700 hover:text-green-100 transition ease-in-out delay-75 duration-300" href="{{ route('user.assessment.results', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
+                                                    View Supervisor Results
+                                                </a>
+                                                {{-- <p class="text-sm text-zinc-600 dark:text-gray-300 mt-3">Thank you for participating!</p> --}}
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <!-- Action Button -->
-                                    <div class="mt-6">
-                                        @php
-                                            // Assuming the closing date is stored in $a->closing_date
-                                            $isClosed = now()->greaterThan(\Carbon\Carbon::parse($a->closing_date));
-                                        @endphp
-                                        @if ($a->pivot->user_status === 0 && $a->pivot->supervisor_status === 0)
-                                            @if ($isClosed)
-                                                <!-- Disabled Get Started Button -->
-                                                <span class="inline-flex items-center gap-x-1 text-red-900 text-sm bg-red-200 rounded-xl p-2 px-3 shadow-sm cursor-not-allowed opacity-50">
-                                                    Get Started
-                                                </span>
-                                                <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">The assessment closed unfortunately!</p>
-                                            @else
-                                                <!-- Enabled Get Started Button -->
-                                                <a class="inline-flex items-center gap-x-1 text-sky-900 text-sm bg-sky-200 rounded-xl p-2 px-3 shadow-sm" href="{{ route('user.assessment.show', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
-                                                    Get Started
-                                                </a>
-                                            @endif
-                                        @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
-                                            <a class="inline-flex items-center gap-x-1 text-orange-900 text-sm bg-orange-200 rounded-xl p-2 px-3 shadow-sm" href="{{ route('user.assessment.submission', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
-                                                View Submission
-                                            </a>
-                                            <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">Thank you for participating!</p>
-                                        @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
-                                            <a class="inline-flex items-center gap-x-1 text-green-900 text-sm bg-green-200 rounded-xl p-2 shadow-sm" href="{{ route('user.assessment.results', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
-                                                View Supervisor Results
-                                            </a>
-                                            <p class="text-sm text-zinc-600 dark:text-gray-300 mt-6">Thank you for participating!</p>
-                                        @endif
-                                    </div>
+
                                 </div>
                             </div>
 
