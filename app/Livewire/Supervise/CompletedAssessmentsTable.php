@@ -88,7 +88,7 @@ class CompletedAssessmentsTable extends Component
         })->with(['enrolled' => function ($query) {
             $query->select();
         }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->paginate(10);
-
+        dd($completedAssessments);
         return view('livewire.supervise.completed-assessments-table', compact('completedAssessments'));
     }
 }

@@ -10,6 +10,7 @@ class ExportDropdown extends Component
 
     public function render()
     {
+       
         return view('livewire.reports.export-dropdown');
     }
 

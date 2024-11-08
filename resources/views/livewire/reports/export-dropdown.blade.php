@@ -63,6 +63,18 @@
                     Export a detailed report of employee qualification information.
                 </div>
             </div>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Qualifications',
+                        'route' => 'reports.qualifications.export-division',
+                        'divisionName' => "CEO's Office"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
         </details>
         <details class="rounded-md shadow-md bg-white border border-gray-200">
             <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
@@ -73,6 +85,18 @@
                     @livewire('reports.loading-button-animation', [
                         'label' => 'Export Employees',
                         'route' => 'reports.employees.export-division',
+                        'divisionName' => "Business Division"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Qualifications',
+                        'route' => 'reports.qualifications.export-division',
                         'divisionName' => "Business Division"
                     ])
                 </div>
@@ -97,6 +121,18 @@
                     Export a detailed report of employee qualification information.
                 </div>
             </div>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Qualifications',
+                        'route' => 'reports.qualifications.export-division',
+                        'divisionName' => "Finance Division"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
         </details>
         <details class="rounded-md shadow-md bg-white border border-gray-200">
             <summary class="bg-gray-100 p-4 rounded-t-md cursor-pointer font-semibold">
@@ -114,6 +150,19 @@
                     Export a detailed report of employee qualification information.
                 </div>
             </div>
+            <div class="flex items-center gap-4 p-2 border-b border-slate-200">
+                <div class="w-52">
+                    @livewire('reports.loading-button-animation', [
+                        'label' => 'Export Qualifications',
+                        'route' => 'reports.qualifications.export-division',
+                        'divisionName' => "Human Resources"
+                    ])
+                </div>
+                <div class="flex-1 text-slate-600">
+                    Export a detailed report of employee qualification information.
+                </div>
+            </div>
+
         </details>
     </div>
 
