@@ -48,7 +48,7 @@
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
-                                <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                <x-dropdown-link href="{{ route('logout') }}"  class="text-red-500 hover:bg-red-100" @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -65,15 +65,19 @@
                     <x-side-nav-link href="{{ route('user.assessment',['user' => Crypt::encrypt(Auth::user()->id)]) }}" :active="request()->routeIs('user.assessment')">
                         My Assessments
                     </x-side-nav-link>
+                    @if (Auth::user()->role === "supervisor" |  Auth::user()->role === "admin")
                     <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')">
                         Supervise
                     </x-side-nav-link>
-                    <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" >
+                    @endif
+
+                    {{-- <x-side-nav-link href="{{ route('discover.index') }}" :active="request()->routeIs('discover.index')" >
                         Discover
-                    </x-side-nav-link>
+                    </x-side-nav-link> --}}
                     <x-side-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')" >
                         Reports
                     </x-side-nav-link>
+                    @if (Auth::user()->role === "supervisor" |  Auth::user()->role === "admin")
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -86,9 +90,12 @@
                         </x-slot>
                         <x-slot name="content">
                             <!-- Directory Management -->
+                            @if (Auth::user()->role === "admin")
                             <x-dropdown-link href="{{route('assessments.index')}}">
                                 Assessments
                             </x-dropdown-link>
+                            @endif
+
                             <x-dropdown-link href="{{route('jcp.index')}}">
                                 JCPs
                             </x-dropdown-link>
@@ -106,6 +113,7 @@
 
                         </x-slot>
                     </x-dropdown>
+                    @endif
                 </div>
 
             </div>

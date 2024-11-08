@@ -6,6 +6,7 @@ use App\Models\Audit\Department;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -20,14 +21,7 @@ class OrgTable extends Component
 
     }
 
-    public function render()
-    {
-        $users = User::with(['jcp' => function ($query) {
-            $query->where('is_active', 1);
-        }])->search($this->search)->paginate(10);
 
-        return view('livewire.system.org.org-table', ['users' => $users]);
-    }
 
     public function create()
     {
@@ -38,6 +32,7 @@ class OrgTable extends Component
 
     public function store(Request $request): RedirectResponse
     {
+        dd($request);
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -48,6 +43,7 @@ class OrgTable extends Component
             'competency_rating' => 'nullable|numeric',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'department_id' => 'required'
         ]);
 
         try {
@@ -79,5 +75,20 @@ class OrgTable extends Component
 
         // Return view with user data
         return view('directories.org.edit', compact('user'));
+    }
+    public function render()
+    {
+        if (Auth::user()->role === "admin") {
+            $users = User::with(['jcp' => function ($query) {
+                $query->where('is_active', 1);
+            }])->search($this->search)->paginate(10);
+        }elseif (Auth::user()->role === "supervisor") {
+            $users = User::where('supervisor_id', Auth::user()->id)->with(['jcp' => function ($query) {
+                $query->where('is_active', 1);
+            }])->search($this->search)->paginate(10);
+        }
+
+
+        return view('livewire.system.org.org-table', ['users' => $users]);
     }
 }

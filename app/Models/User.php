@@ -93,7 +93,7 @@ class User extends Authenticatable
         return $this->belongsToMany(assessment::class, 'enrollments')->withPivot('user_status', 'supervisor_status');
     }
 
-    public function deparment()
+    public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
@@ -106,6 +106,14 @@ class User extends Authenticatable
             ->orWhere('email', 'like', '%'.$val.'%')
             ->orWhere('last_name', 'like', '%'.$val.'%');
 
+    }
+
+    public function supervising(){
+        return $this->hasMany(User::class, 'supervisor_id');
+    }
+
+    public function supervisor(){
+        return $this->belongsTo(User::class, 'supervisor_id');
     }
 
     public function getAgeAttribute()

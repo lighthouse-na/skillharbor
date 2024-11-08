@@ -138,6 +138,7 @@ class SystemReports extends Component
 
     public function show($id)
     {
+
         $assessment = assessment::find(Crypt::decrypt($id));
         $employeeCount = $this->organisation->getEmployeeCount();
         $genderSplit = $this->organisation->getGenderSplit();

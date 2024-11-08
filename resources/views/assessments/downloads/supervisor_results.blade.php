@@ -140,13 +140,13 @@
                         <td>
                             <p><strong>Business Division</strong></p>
                         </td>
-                        <td>{{ $user->deparment->division->division_name }}</td>
+                        <td>{{ $user->department->division->division_name }}</td>
                     </tr>
                     <tr>
                         <td>
                             <p><strong>Department</strong></p>
                         </td>
-                        <td>{{ $user->deparment->department_name }}</td>
+                        <td>{{ $user->department->department_name }}</td>
                     </tr>
                 </table>
 

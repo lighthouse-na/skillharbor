@@ -5,11 +5,17 @@ namespace App\Livewire\Supervise;
 use App\Models\Audit\assessment;
 use App\Models\Audit\jcp;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
 class CompletedAssessmentsTable extends Component
 {
+    public $assessment_id;
+    public function mount($assessment_id)
+    {
+        $this->assessment_id = $assessment_id;
+    }
     //Show assessment filled in by user to be assessed
     public function show($id, $assessment_id)
     {
@@ -62,6 +68,7 @@ class CompletedAssessmentsTable extends Component
         $data = request()->validate([
             'supervisor_score.*' => 'required', // Add any validation rules as needed
         ]);
+
         foreach ($data['supervisor_score'] as $skillId => $supervisorRating) {
             // Attach the answer to the assessment-question pivot table
             $jcp->skills()->updateExistingPivot($skillId, ['supervisor_rating' => $supervisorRating]);
@@ -82,13 +89,22 @@ class CompletedAssessmentsTable extends Component
     }
 
     public function render()
+
     {
-        $completedAssessments = User::whereHas('enrolled', function ($query) {
-            $query->where('user_status', 1);
-        })->with(['enrolled' => function ($query) {
-            $query->select();
-        }])->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')->paginate(10);
-        dd($completedAssessments);
+
+
+        $completedAssessments = User::where('supervisor_id', Auth::user()->id)->whereHas('enrolled', function ($query) {
+        $query->where('assessment_id', $this->assessment_id)
+              ->where('user_status', 1);
+    })
+    ->with(['enrolled' => function ($query) {
+        $query->where('assessment_id', $this->assessment_id);
+    }])
+    ->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')
+    ->paginate(10);
+
+
+
         return view('livewire.supervise.completed-assessments-table', compact('completedAssessments'));
     }
 }

@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
     <!--Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/logo/mainlogo.png') }}">
@@ -23,6 +23,13 @@
         [x-cloak] {
             display: none !important;
         }
+        .custom-bg {
+            background-color: #E0F7FA;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none"><path fill="%23E0F7FA" d="M0 0h200v200H0z"/><path d="M50 50c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M150 50c-10 10-50 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M50 150c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M150 150c-10 10-20 20-30 30s-20 20-30 30" stroke="%23B2EBF2" stroke-width="20"/><path d="M0 100c50-50 100-50 150 0s100 50 150 0" stroke="%23B2EBF2" stroke-width="20"/><path d="M0 200c50-50 100-50 150 0s100 50 150 0" stroke="%23B2EBF2" stroke-width="20"/></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
     </style>
 
     <!-- Scripts -->
@@ -31,20 +38,14 @@
     @livewireScripts
     @stack('scripts')
 </head>
+<x-banner />
 
-<body class="font-rubik antialiased bg-white">
-    <div class="relative min-h-screen md:flex " x-data="{ open: false }">
-        <!--Sidebar -->
-
-
-
-
-
-        <!-- Page Content -->
+<body class="font-sf-mono-webfont antialiased bg-white">
+    <div class="relative min-h-screen md:flex">
         <main class="flex-1 bg-gray-50 min-h-screen">
 
             @livewire('navigation-menu')
-            <div class=" mx-32">
+            <div class="mx-32">
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">
@@ -63,7 +64,7 @@
     </div>
 
 </body>
-<footer class=" py-4 text-center text-slate-500 bg-gray-50">
+<footer class=" py-4 text-center text-white bg-sky-950">
     <p class="text-sm">
         SkillHarbor developed by Lighthouse &copy; {{ date('Y') }}
     </p>

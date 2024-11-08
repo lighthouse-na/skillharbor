@@ -54,19 +54,34 @@ class JCPController extends Controller
 
     public function update(Request $request, string $id)
     {
-
+        // Find the JCP record by decrypted ID
         $jcp = jcp::findOrFail(Crypt::decrypt($id));
+
+        // Update the JCP fields
         $jcp->update([
             'position_title' => $request->position_title,
             'duty_station' => $request->duty_station,
             'job_grade' => $request->job_grade,
             'job_purpose' => $request->job_purpose,
-            'is_active' => $request->has(key: 'is_active'), // make field selected if checked
-
+            'is_active' => $request->has('is_active'),
         ]);
+
+        // Reset user_status and supervisor_status for all enrollments related to this JCP
+        $user = $jcp->employee; // This gets the User instance related to the JCP
+
+    if ($user) {
+        // Update enrollments related to this JCP
+        $user->enrolled()->updateExistingPivot($jcp->id, [
+            'user_status' => 0,
+            'supervisor_status' => 0,
+        ]);
+
+    }
 
         return redirect()->route('jcp.index');
     }
+
+
 
     public function destroy(string $id)
     {

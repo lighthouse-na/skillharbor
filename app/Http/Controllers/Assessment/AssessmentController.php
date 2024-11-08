@@ -21,7 +21,7 @@ class AssessmentController extends Controller
         $assessments = $user
             ->assessments()
             ->withPivot('user_status', 'supervisor_status') // Include user_status and supervisor_status from enrolled table
-            ->get();
+            ->paginate(4);
 
         return view('assessments.index', compact('assessments', 'user'));
     }
@@ -32,9 +32,9 @@ class AssessmentController extends Controller
         $assessment = assessment::find(decrypt($assessment));
         $jcp = $user->jcp()
             ->with('skills.category') // Eager load skills and their categories
-            ->where('assessment_id', $assessment->id)
             ->where('is_active', 1) // Only load jcp where is_active is 1
             ->first();
+
 
         return view('assessments.show', compact('jcp', 'user', 'assessment'));
     }
@@ -65,7 +65,6 @@ class AssessmentController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request);
         $assessment = Assessment::find(Crypt::decrypt($id));
 
         // Validate and update the assessment...

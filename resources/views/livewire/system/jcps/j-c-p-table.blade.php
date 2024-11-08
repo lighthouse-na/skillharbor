@@ -4,12 +4,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full ...">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-r-md rounded-l-3xl">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-indigo-400 hover:bg-indigo-500 text-white transition ease-in-out duration-300 rounded-md">
+                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add JCP
                 </a>
@@ -19,24 +19,24 @@
           </div>
 
 
-<div class="rounded-lg border ">
+<div class="rounded-3xl border bg-white shadow-md ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
-        <thead class="bg-gray-50 text-left text-xs text-purple-950/50">
+        <thead class="text-left text-xs text-sky-800">
             <tr>
-                <th class="px-6 py-3  uppercase ">jcp Title</th>
-                <th class="px-6 py-3  uppercase ">Grade</th>
+                <th class="px-6 py-3 ">JCP Title</th>
+                <th class="px-6 py-3">Job Grade</th>
 
-                <th class="px-6 py-3  uppercase ">Description</th>
-                <th class="px-6 py-3 uppercase ">Is Active</th>
-                <th class="px-6 py-3 text-center uppercase ">Actions</th>
+                <th class="px-6 py-3">Description</th>
+                <th class="px-6 py-3">Is Active</th>
+                <th class="px-6 py-3 text-center">Actions</th>
 
 
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody>
             @foreach ($jcps as $jcp)
-                <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
+                <tr class="cursor-pointer hover:bg-gray-50 border-t" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
                             {{ $jcp->position_title }}
                     </td>
@@ -64,7 +64,7 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <!-- Directory Management -->
-                                    <x-dropdown-link href="{{ route('jcp.edit', ['jcp' =>Crypt::encrypt($jcp->id)]) }}">    
+                                    <x-dropdown-link href="{{ route('jcp.edit', ['jcp' =>Crypt::encrypt($jcp->id)]) }}">
                                         Edit
                                     </x-dropdown-link>
 

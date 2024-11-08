@@ -12,12 +12,12 @@
                             <!-- Profile Header Image -->
                             <div class="w-full text-gray-900">
                                 <!-- Profile Header Image -->
-                                <div class="h-32 overflow-hidden border rounded-t-3xl">
-                                    <img class="object-cover w-full h-full" src="{{ asset('assets/images/bg.png') }}"
+                                <div class="h-32 overflow-hidden border border-dashed rounded-t-3xl">
+                                    <img class="object-cover w-full h-full" src="https://cdn.dribbble.com/userupload/16856828/file/original-03ce868951c6e8c5bcce40f17c029597.jpg?resize=752x"
                                         alt="Mountain">
                                 </div>
                                 <!-- User Profile Card -->
-                                <div class="bg-white rounded-b-3xl shadow-md border p-6 -mt-16">
+                                <div class="bg-white rounded-b-3xl shadow-md border border-dashed p-6 -mt-16">
                                     <!-- User Competency Rating -->
                                     <div class="flex justify-center mb-4">
                                         <div class="bg-sky-200 text-sky-700 rounded-full p-4 border-4 border-white">
@@ -35,8 +35,8 @@
 
 
                         </div>
-                        <div class="flex flex-col shadow-md border bg-white rounded-3xl dark:bg-gray-800">
-                            <div class="flex flex-row  justify-between items-center px-6 py-6">
+                        <div class="flex flex-col shadow-md border border-dashed bg-white rounded-3xl dark:bg-gray-800">
+                            <div class="flex flex-row  justify-between items-center px-6 py-6 border-b">
                                 <h3 class="leading-none text-gray-900 dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
                                     class="ml-auto hover:bg-sky-100  rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
@@ -73,24 +73,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 border rounded-3xl shadow-md overflow-hidden">
+                <div class="bg-white dark:bg-gray-800 border border-dashed rounded-3xl shadow-md overflow-hidden">
                     <div class="flex flex-col h-full">
-                        <div class="px-6 py-6 shadow-md-b shadow-md-gray-200 dark:shadow-md-gray-700">
+                        <div class="px-6 py-6 shadow-md-b shadow-md-gray-200 dark:shadow-md-gray-700 border-b">
                             <h3 class="text-gray-900 dark:text-white">My Skill Gap</h3>
                         </div>
                         <div class="flex-grow p-6">
+                            @if ($jcpRating == 0)
+                            <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+                                <div class="self-center  max-w-md ">
+                                    <h1 class=""><x-iconoir-warning-circle class="mr-2" />
+                                    </h1>
+                                </div>
+                                <div class="self-center  max-w-md ">
+                                    <h1 class="">You have no JCP. Please Contact Your Supervisor.</h1>
+                                </div>
+                            </div>
+                            @else
                             <canvas id="myChart" class="w-full h-full"></canvas>
+
+                            @endif
                         </div>
                     </div>
                 </div>
                 <!-- Cart Section -->
-                <div class="shadow-md bg-white border w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
-                    <div class="flex flex-row justify-between items-center px-6 py-6">
+                <div class="shadow-md bg-white border border-dashed w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
+                    <div class="flex flex-row justify-between items-center px-6 py-6 border-b">
                         <div class="title">
                             <h3 class="leading-none text-gray-900 dark:text-white">Top Skills</h3>
                         </div>
                     </div>
-                    <div class="flow-root">
+                    <div class="flow-root p-4">
                         <div class="overflow-y-auto sm:rounded-3xl">
                             <table class="w-full text-sm mt-3 text-gray-500 dark:text-gray-400">
                                 <thead
@@ -132,11 +145,15 @@
 
                                         </tr>
                                     @empty
-                                        <div class="container flex-auto justify-center text-center">
-                                            <p class="text-gray-400 text-base m-4">
-                                                You have not completed any assessment.
-                                            </p>
+                                    <div class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
+                                        <div class="self-center  max-w-md ">
+                                            <h1 class=""><x-iconoir-warning-circle class="mr-2" />
+                                            </h1>
                                         </div>
+                                        <div class="self-center  max-w-md ">
+                                            <h1 class="">You have not completed an assessment.</h1>
+                                        </div>
+                                    </div>
                                     @endforelse
 
 
@@ -148,7 +165,8 @@
                 </div>
 
 
-                <!-- Add more items similarly as needed -->
+
+
 
             </div>
 
@@ -157,11 +175,11 @@
 
             <div class="flex justify-center items-center">
 
-    <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-gray-200">
+    <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-dashed border-gray-200">
 
-        <h2 class="text-2xl font-bold text-white text-center">Coming Soon</h2>
+        <h2 class="text-2xl font-bold text-yellow-200 text-center">Coming Soon</h2>
         <p class="text-gray-50 text-center">
-            We're working on something amazing! Stay tuned for the <span class="font-semibold text-sky-800 shadow-md-sky-200">My Development Plans</span> feature.
+            We're working on something amazing! Stay tuned for the <span class="font-semibold text-yellow-200 shadow-md-yellow-200">My Development Plans</span> feature.
         </p>
 
         <div  class="bg-white bg-opacity-60 backdrop-filter backdrop-blur-3xl p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">

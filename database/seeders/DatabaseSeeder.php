@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Audit\assessment;
@@ -12,8 +11,10 @@ use App\Models\Audit\prerequisite;
 use App\Models\Audit\qualification;
 use App\Models\Audit\skill;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,12 +44,29 @@ class DatabaseSeeder extends Seeder
         prerequisite::factory(19)->create();
         $this->command->getOutput()->progressAdvance();
 
+        User::factory()->create([
+            'first_name' => 'Groot',
+            'last_name' => 'Man',
+            'email' => 'grootman@skillharbor.com',
+            'salary_ref_number' => 000210,
+            'department_id' => 1,
+            'gender' => 'male',
+            'dob' => fake()->date(),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+            'remember_token' =>  Str::random(10),
+            'profile_photo_path' => null,
+            'current_team_id' => null,
+        ]);
         $this->command->info(' Creating Users...');
-        User::factory(200)->create();
+        User::factory(20)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit jcp...');
-        jcp::factory(200)->create();
+        jcp::factory(20)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Skill Categories...');
@@ -57,8 +75,10 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info(' Creating Audit Skills and associating with jcp...');
         $skills = skill::factory(20)->create();
-        $jcps = jcp::All()->each(function ($jcp) use ($skills) {
-            $jcp->skills()->saveMany($skills);
+        $jcps = jcp::all()->each(function ($jcp) use ($skills) {
+            $skills->each(function ($skill) use ($jcp) {
+                $jcp->skills()->attach($skill->id, ['required_level' => rand(1, 5)]);
+            });
         });
         $this->command->getOutput()->progressAdvance();
 
@@ -108,6 +128,5 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->getOutput()->progressFinish();
-
     }
 }
