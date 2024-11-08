@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\Reports;
 
 use Livewire\Component;
@@ -8,18 +7,22 @@ class LoadingButtonAnimation extends Component
 {
     public $label;
     public $route;
-    public $loading = false;
+    public $divisionName;
 
-    public function mount($label, $route)
+    public function mount($label, $route, $divisionName = null)
     {
         $this->label = $label;
         $this->route = $route;
+        $this->divisionName = $divisionName;
     }
 
     public function triggerExport()
     {
-        // Directly redirect to the export route
-        return redirect()->route($this->route);
+        if ($this->divisionName) {
+            return redirect()->route($this->route, ['divisionName' => $this->divisionName]);
+        } else {
+            return redirect()->route($this->route);
+        }
     }
 
     public function render()

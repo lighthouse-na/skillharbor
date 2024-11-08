@@ -70,6 +70,7 @@
         </div>
     </div>
 
+
     <!-- Export Buttons with Descriptions -->
     @if (Auth::user()->role === "admin")
     <div class="h-auto bg-white shadow-md w-auto flex flex-col border mt-6 rounded-3xl">
@@ -140,7 +141,6 @@
 
 </x-app-layout>
 
-<!-- JavaScript for Redirect Handling -->
 <script>
     document.addEventListener('livewire:load', function () {
         Livewire.on('redirect', function (url) {

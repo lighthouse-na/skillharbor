@@ -25,7 +25,7 @@
                             @if (Route::has('register'))
                                 <a
                                     href="{{ route('register') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-sky-700/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                    class="rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-sky-700 hover:text-white hover:bg-sky-700 hover:border-sky-700 focus:text-white focus:bg-sky-700 focus:border-sky-700 active:border-sky-700 active:text-white active:bg-sky-700 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button"
                                 >
                                     Register
                                 </a>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
 
-                        <h3 class="mt-6 text-xl font-light">Personalized Training Plans</h3>
+                        <h3 class="mt-6 text-xl text-gray-400">Personalized Training Plans</h3>
                         <p class="mt-4 text-gray-600">Tailor each employee's learning experience based on their job role.</p>
                     </div>
 
@@ -73,7 +73,7 @@
                         </div>
                         </div>
 
-                        <h3 class="mt-6 text-xl font-light">Progress Tracking</h3>
+                        <h3 class="mt-6 text-xl text-gray-400">Progress Tracking</h3>
                         <p class="mt-4 text-gray-600">Gain insights into skill development with real-time data analytics.</p>
                     </div>
 
@@ -83,7 +83,7 @@
                                 <x-iconoir-bright-star class="h-6 w-6 mx-auto"/>
                         </div>
                         </div>
-                        <h3 class="mt-6 text-xl font-light">Adaptive Learning Paths</h3>
+                        <h3 class="mt-6 text-xl text-gray-400">Adaptive Learning Paths</h3>
                         <p class="mt-4 text-gray-600">Empower employees with personalized learning paths that adjust dynamically based on their performance and progress.</p>
                     </div>
                 </div>

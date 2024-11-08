@@ -92,4 +92,9 @@ Route::middleware([
 
     Route::get('/report/qualifications/export', [ReportController::class, 'exportQualifications'])->name('reports.qualifications.export');
     Route::get('/report/skills/export', [ReportController::class, 'exportSkills'])->name('reports.skills.export');
+
+    //Divisional Exports
+    Route::get('/report/employees-division/export', [ReportController::class, 'exportDivisionEmployees'])->name('reports.employees.export-division');
+    Route::get('/report/qualifications-division/export', [ReportController::class, 'exportDivisionQualifications'])->name('reports.qualifications.export-division');
+
 });

@@ -92,6 +92,7 @@ class CompletedAssessmentsTable extends Component
 
     {
 
+
         $completedAssessments = User::where('supervisor_id', Auth::user()->id)->whereHas('enrolled', function ($query) {
         $query->where('assessment_id', $this->assessment_id)
               ->where('user_status', 1);
@@ -101,7 +102,6 @@ class CompletedAssessmentsTable extends Component
     }])
     ->select('first_name', 'last_name', 'email', 'id', 'salary_ref_number')
     ->paginate(10);
-
 
 
 
