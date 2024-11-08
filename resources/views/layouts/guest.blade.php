@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
 
         <!--Favicon-->
         <link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}">
@@ -28,7 +28,7 @@
     </head>
     <body>
 
-        <div class="font-rubik text-gray-900 dark:text-gray-100 antialiased">
+        <div class="font-sf-mono-webfont text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
 

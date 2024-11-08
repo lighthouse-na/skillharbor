@@ -12,12 +12,12 @@
                             <!-- Profile Header Image -->
                             <div class="w-full text-gray-900">
                                 <!-- Profile Header Image -->
-                                <div class="h-32 overflow-hidden border rounded-t-3xl">
+                                <div class="h-32 overflow-hidden border border-dashed rounded-t-3xl">
                                     <img class="object-cover w-full h-full" src="https://cdn.dribbble.com/userupload/16856828/file/original-03ce868951c6e8c5bcce40f17c029597.jpg?resize=752x"
                                         alt="Mountain">
                                 </div>
                                 <!-- User Profile Card -->
-                                <div class="bg-white rounded-b-3xl shadow-md border p-6 -mt-16">
+                                <div class="bg-white rounded-b-3xl shadow-md border border-dashed p-6 -mt-16">
                                     <!-- User Competency Rating -->
                                     <div class="flex justify-center mb-4">
                                         <div class="bg-sky-200 text-sky-700 rounded-full p-4 border-4 border-white">
@@ -35,7 +35,7 @@
 
 
                         </div>
-                        <div class="flex flex-col shadow-md border bg-white rounded-3xl dark:bg-gray-800">
+                        <div class="flex flex-col shadow-md border border-dashed bg-white rounded-3xl dark:bg-gray-800">
                             <div class="flex flex-row  justify-between items-center px-6 py-6 border-b">
                                 <h3 class="leading-none text-gray-900 dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 border rounded-3xl shadow-md overflow-hidden">
+                <div class="bg-white dark:bg-gray-800 border border-dashed rounded-3xl shadow-md overflow-hidden">
                     <div class="flex flex-col h-full">
                         <div class="px-6 py-6 shadow-md-b shadow-md-gray-200 dark:shadow-md-gray-700 border-b">
                             <h3 class="text-gray-900 dark:text-white">My Skill Gap</h3>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <!-- Cart Section -->
-                <div class="shadow-md bg-white border w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
+                <div class="shadow-md bg-white border border-dashed w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
                     <div class="flex flex-row justify-between items-center px-6 py-6 border-b">
                         <div class="title">
                             <h3 class="leading-none text-gray-900 dark:text-white">Top Skills</h3>
@@ -175,7 +175,7 @@
 
             <div class="flex justify-center items-center">
 
-    <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-gray-200">
+    <div class=" bg-sky-400 bg-[radial-gradient(#7dd3fc_1px,transparent_1px)] [background-size:16px_16px] p-6 mt-4 rounded-3xl shadow-md space-y-6 w-full max-w-md border border-dashed border-gray-200">
 
         <h2 class="text-2xl font-bold text-yellow-200 text-center">Coming Soon</h2>
         <p class="text-gray-50 text-center">
