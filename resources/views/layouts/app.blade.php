@@ -10,8 +10,8 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 
     <!--Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/logo/mainlogo.png') }}">
@@ -40,7 +40,7 @@
 </head>
 <x-banner />
 
-<body class="font-sf-mono-webfont antialiased bg-white">
+<body class="font-nunito antialiased bg-white">
     <div class="relative min-h-screen md:flex">
         <main class="flex-1 bg-gray-50 min-h-screen">
 

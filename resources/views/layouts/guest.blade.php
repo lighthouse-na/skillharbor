@@ -28,7 +28,7 @@
     </head>
     <body>
 
-        <div class="font-sf-mono-webfont text-gray-900 dark:text-gray-100 antialiased">
+        <div class="font-nunito text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
 
