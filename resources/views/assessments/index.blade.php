@@ -12,25 +12,22 @@
                         <div class="relative flex-3 w-full h-100">
 
                             <div
-                                class="flex flex-col justify-between items-center w-full h-auto bg-pink overflow-hidden border border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px] shadow-md">
+                                class="flex flex-row justify-between items-center w-full h-auto bg-pink overflow-hidden bg-gradient-to-br from-white to-zinc-50 rounded-3xl dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px]  ">
 
                                 <!-- Header Image Section -->
-                                <div class="w-full">
-                                    <img src="https://cdn.dribbble.com/userupload/16856641/file/original-110696f7ab00d52e44c7e0d371352751.jpg?resize=752x"
-                                        alt="Dashboard" class="object-cover w-full h-32 rounded-t-3xl" />
-                                </div>
+
 
                                 <!-- Left Section: Title, Date, Supervisor Info -->
                                 <div class="flex relative flex-col p-6 w-full">
                                     <div class="flex items-center justify-center">
 
 
-                                        <div class="flex-grow flex-row">
+                                        <div class="flex-grow flex-col">
 
                                             <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
                                                 {{ $a->assessment_title }}</h2>
 
-                                                <div class="mt-1 flex-row">
+                                                <div class="mt-1">
                                                     <p class="text-sm text-zinc-500 dark:text-gray-400">Opened
                                                         {{ Carbon\Carbon::parse($a->created_at)->diffForHumans() }}</p>
                                                     <p class="text-sm text-red-500 dark:text-red-400">Closing:
@@ -38,7 +35,7 @@
                                                 </div>
                                             <div
 
-                                                class="flex relative my-2 items-center space-x-2 border border-dashed rounded-3xl p-2">
+                                                class="flex relative my-3 items-center space-x-2 border rounded-3xl p-2">
                                                 @if (Auth::check() && Auth::user()->supervisor)
                                                     <img alt="Supervisor Photo" class="w-10 h-10 rounded-full shadow-sm"
                                                         src="{{ Auth::user()->supervisor->profile_photo_url }}" />
@@ -128,7 +125,7 @@
 
     </div>
     <div
-        class="my-4 m-3 p-3 border  border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px] shadow-md">
+        class="my-4 m-3 p-3 border  border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px]  ">
         {{ $assessments->links() }}
     </div>
 </x-app-layout>

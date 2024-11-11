@@ -21,7 +21,7 @@ class assessmentFactory extends Factory
         return [
             //
             'assessment_title' => $assessmentName,
-            'closing_date' => $this->faker->dateTimeThisYear('+3 months'),
+            'closing_date' => $this->faker->dateTimeBetween('-1 day', '+3 months'),
         ];
     }
 }

@@ -1,18 +1,12 @@
 <div class="">
-    <div class="h-auto flex flex-col bg-white border border-dashed border-zinc-400 rounded-3xl py-4 my-6 px-4 mx-4">
+    <div class="h-auto flex flex-col bg-white border border-dashed border-zinc-400 rounded-3xl py-4 my-6 px-6 mx-4">
 
         <!-- Text and Image Section -->
         <div class="flex-col w-full">
 
+                <div class="flex items-start justify-start  image w-full bg-white h-auto bg-clip-content bg-cover bg-center rounded-3xl bg-no-repeat">
 
-
-
-                <div class="flex items-center justify-center  image w-full bg-white h-72 bg-clip-content bg-cover bg-center rounded-3xl bg-no-repeat" style="background-image: url(https://cdn.dribbble.com/userupload/3678515/file/original-8d584235e3502ed80f614159f053eedc.gif)">
-
-                    <div class="p-6 backdrop-blur-xl bg-white/30 h-full w-full rounded-3xl flex items-center justify-center ...">
-                        <!-- ... -->
-                        <p class="m-6 text-6xl font-bold text-slate-950 drop-shadow-lg dark:text-gray-400 ">Here are the available assessments. <span class="text-indigo-500">Click </span> each to view and extract reports.</p>
-                      </div>
+                    <p class="m-6 text-sm text-zinc-500 dark:text-gray-400">Here are the available assessments. Click on each to view submissions and details.</p>
 
             </div>
 
@@ -25,7 +19,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 w-full max-h-[90vh] overflow-y-auto">
                 @forelse ($assessments as $assessment)
                     <!-- Each Card -->
-                    <div class="relative flex flex-col justify-between items-center p-6 bg-gradient-to-br from-white to-zinc-100 border border-zinc-400 rounded-3xl hover:border-zinc-800 hover:border-dashed  transition ease-in-out duration-300">
+                    <div class="relative flex flex-col justify-between items-center p-6 bg-gradient-to-br from-white to-zinc-100 rounded-3xl border hover:bg-gray-100 transition ease-in-out duration-300">
                         <a href="{{ route('reports.show', ['id' => Crypt::encrypt($assessment->id)]) }}" class="w-full h-full flex flex-col items-start">
                             <div class="flex items-center w-full mb-3">
                                 <!-- Icon Section -->
