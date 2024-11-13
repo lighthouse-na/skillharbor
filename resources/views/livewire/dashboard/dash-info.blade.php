@@ -47,7 +47,7 @@
 
                         </div>
                         <div class="flex flex-col bg-white rounded-3xl dark:bg-gray-800">
-                            <div class="flex flex-row  justify-between items-center px-6 py-6 ">
+                            <div class="flex flex-row  justify-between items-center px-6 py-4 border-b">
                                 <h3 class="leading-none text-gray-900 font-bold dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
                                     class="ml-auto hover:bg-sky-100 bg-sky-50 transition ease-in-out rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
