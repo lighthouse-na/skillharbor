@@ -61,14 +61,15 @@
                             <ul class="divide-y divide-gray-200 overflow-auto">
                                 @forelse ($qualifications as $qualification)
                                     <li class="p-3 sm:py-4 px-6 dark:hover:bg-gray-700">
-                                        <div class="flex items-center justify-between">
-                                            <p class="text-sm text-gray-900 dark:text-white truncate">
+                                        <div class="flex items-center justify-between ">
+                                            <p class="text-sm text-gray-900 dark:text-white truncate rounded-l-3xl rounded-md ">
                                                 {{ $qualification->qualification_title }}
                                             </p>
                                             <button
-                                                class="text-red-500 text-xs hover:text-red-700 focus:outline-none focus:shadow-outline-red"
+                                                class="text-red-500 rounded-full  hover:scale-110 hover:bg-red-50/50 transition ease-in-out  mx-3 p-1 text-xs hover:text-red-700 focus:outline-none focus:shadow-outline-red"
                                                 wire:click="deleteQualification({{ $qualification->id }})">
-                                                <x-iconoir-xmark-circle />
+                                                <x-iconoir-xmark-circle-solid />
+
                                             </button>
                                         </div>
                                     </li>
