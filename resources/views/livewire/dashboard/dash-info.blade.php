@@ -18,7 +18,7 @@
                                         alt="Mountain">
                                 </div>
                                 <!-- User Profile Card -->
-                                <div class="bg-white rounded-b-3xl p-6 -mt-16">
+                                <div class="bg-gradient-to-br from-white to-zinc-50 rounded-b-3xl p-6 -mt-16">
                                     <!-- User Competency Rating -->
                                     <div class="flex justify-center mb-4">
                                         <div
@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
                                     <!-- User Information -->
-                                    <div class="text-start bg-white">
+                                    <div class="text-start">
 
                                         <h2 class="text-2xl font-bold ">{{ $user->first_name }}
                                             {{ $user->last_name }}</h2>
@@ -61,15 +61,14 @@
                             <ul class="divide-y divide-gray-200 overflow-auto">
                                 @forelse ($qualifications as $qualification)
                                     <li class="p-3 sm:py-4 px-6 dark:hover:bg-gray-700">
-                                        <div class="flex items-center justify-between ">
-                                            <p class="text-sm text-gray-900 dark:text-white truncate rounded-l-3xl rounded-md ">
+                                        <div class="flex items-center justify-between rounded-3xl">
+                                            <p class="text-sm text-gray-900 dark:text-white truncate">
                                                 {{ $qualification->qualification_title }}
                                             </p>
                                             <button
-                                                class="text-red-500 rounded-full  hover:scale-110 hover:bg-red-50/50 transition ease-in-out  mx-3 p-1 text-xs hover:text-red-700 focus:outline-none focus:shadow-outline-red"
+                                                class="text-red-500 text-xs hover:text-red-700 focus:outline-none focus:shadow-outline-red"
                                                 wire:click="deleteQualification({{ $qualification->id }})">
-                                                <x-iconoir-xmark-circle-solid />
-
+                                                <x-iconoir-xmark-circle />
                                             </button>
                                         </div>
                                     </li>
@@ -118,50 +117,7 @@
             </div>
 
             <!-- Right Section -->
-            <div>
-
-                <div class="flex justify-center items-center my-4 ">
-
-                    <div class=" bg-cover p-6 rounded-3xl space-y-6 w-full " style="background-image: url(https://products.ls.graphics/mesh-gradients/images/96.-Lake.jpg)">
-
-                        <h2 class="text-2xl font-bold text-sky-900 text-center">Coming Soon</h2>
-                        <p class="text-gray-950 text-center">
-                            We're working on something amazing! Stay tuned for the <span
-                                class="font-semibold text-sky-800 ">My Development Plans</span> feature.
-                        </p>
-                        <div
-                            class="bg-white bg-opacity-40 backdrop-filter backdrop-blur-md p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">
-
-                            <h2 class="leading-none text-sky-950 font-bold">My Development Plans</h2>
-                            <div class="flex flex-col items-start mt-4">
-                                @foreach ($developmentPlans as $plan)
-                                    <div
-                                        class="flex flex-row items-center bg-white/50 my-2 px-3 rounded-3xl justify-between w-full p-2 shadow-md">
-                                        <div>
-                                            <h2 class="text-sm text-sky-950">{{ $plan['name'] }}</h2>
-                                        </div>
-                                        <div>
-                                            <a href="#" class="text-xs text-sky-950 rounded-full">
-                                                <x-iconoir-google-docs class="h-4 w-4" />
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-
+            <div class=" my-4 ">
                 <div class="bg-white  w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
                     <div class="flex flex-row justify-between items-center px-6 py-6 border-b">
                         <div class="title">
@@ -227,6 +183,49 @@
 
                     </div>
                 </div>
+                <div class="flex justify-center items-center my-8 ">
+
+                    <div class=" bg-cover p-6 rounded-3xl space-y-6 w-full " style="background-image: url(https://products.ls.graphics/mesh-gradients/images/96.-Lake.jpg)">
+
+                        <h2 class="text-2xl font-bold text-sky-900 text-center">Coming Soon</h2>
+                        <p class="text-gray-950 text-center">
+                            We're working on something amazing! Stay tuned for the <span
+                                class="font-semibold text-sky-800 ">My Development Plans</span> feature.
+                        </p>
+                        <div
+                            class="bg-white bg-opacity-40 backdrop-filter backdrop-blur-md p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">
+
+                            <h2 class="leading-none text-sky-950 font-bold">My Development Plans</h2>
+                            <div class="flex flex-col items-start mt-4">
+                                @foreach ($developmentPlans as $plan)
+                                    <div
+                                        class="flex flex-row items-center bg-white/50 my-2 px-3 rounded-3xl justify-between w-full p-2 shadow-md">
+                                        <div>
+                                            <h2 class="text-sm text-sky-950">{{ $plan['name'] }}</h2>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-xs text-sky-950 rounded-full">
+                                                <x-iconoir-google-docs class="h-4 w-4" />
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
             </div>
             <div>
                 <!-- Add Qualification Modal -->
