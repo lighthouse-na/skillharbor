@@ -5,13 +5,13 @@
 @endphp
 
 <a
-    {{ $attributes->class(['flex items-center align-center px-3 py-2 mx-3 my-1 text-sm w-36 rounded-lg text-gray-900 transition duration-150 ease-in-out'])->merge(['class' => $classes]) }}>
+    {{ $attributes->class(['flex items-center align-center px-3 py-2 mx-3 my-1 text-xs rounded-lg text-gray-900 transition duration-150 ease-in-out'])->merge(['class' => $classes]) }}>
 
-    @if (isset($icon))
+    {{-- @if (isset($icon))
         <span class="mr-2">
             {{ $icon }}
         </span>
-    @endif
+    @endif --}}
 
     <span>{{ $slot }}</span>
 </a>

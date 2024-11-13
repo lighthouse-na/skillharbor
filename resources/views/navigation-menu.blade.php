@@ -1,4 +1,4 @@
-<div class="bg-gray-100 sticky top-0  dark:bg-gray-800  dark:border-gray-700 relative z-10 ">
+<div class="bg-white sticky top-0  dark:bg-gray-800  dark:border-gray-700 relative z-10 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
@@ -27,7 +27,7 @@
                             <div class="container mb-6 rounded-lg">
                                 <div class="flex justify-between items-center px-3 py-2 cursor-pointer">
                                     <div class="icon">
-                                        <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
+                                        <img class="h-8 w-8 border border-sky-400 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->first_name }}" />
                                     </div>
 
                                     <div class="overflow-hidden ">
@@ -96,7 +96,7 @@
                         <x-slot name="trigger">
 
                             <span class="inline-flex  mx-3">
-                                <button type="button" class="inline-flex flex items-center align-center px-2 py-2 m-1   text-sm font-semibold rounded-lg text-white dark:text-gray-400 bg-slate-800 dark:bg-gray-800  active:bg-gray-800 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                <button type="button" class="inline-flex flex items-center align-center px-2 py-2 m-1   text-xs font-semibold rounded-lg text-white dark:text-gray-400 bg-slate-800 dark:bg-gray-800  active:bg-gray-800 dark:active:bg-gray-700 transition ease-in-out duration-150">
                                     Directories
                                 </button>
                             </span>

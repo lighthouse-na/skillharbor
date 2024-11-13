@@ -40,16 +40,16 @@
 </head>
 <x-banner />
 
-<body class="font-nunito antialiased bg-white">
+<body class="font-nunito antialiased bg-gray-100">
     <div class="relative min-h-screen md:flex">
-        <main class="flex-1 bg-gray-50 min-h-screen">
+        <main class="flex-1 bg-gray-100 min-h-screen">
 
             @livewire('navigation-menu')
             <div class="mx-32">
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">
-                        <div class="font-medium p-3 pt-6 bg-gray-50 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
+                        <div class="font-medium p-3 pt-6 bg-gray-100 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>
