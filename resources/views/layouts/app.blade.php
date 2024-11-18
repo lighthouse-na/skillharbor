@@ -10,8 +10,8 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/sf-mono-webfont@1.0.0/stylesheet.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 
     <!--Favicon-->
     <link rel="shortcut icon" href="{{ asset('assets/logo/mainlogo.png') }}">
@@ -40,16 +40,16 @@
 </head>
 <x-banner />
 
-<body class="font-sf-mono-webfont antialiased bg-white">
+<body class="font-nunito antialiased bg-gray-100">
     <div class="relative min-h-screen md:flex">
-        <main class="flex-1 bg-gray-50 min-h-screen">
+        <main class="flex-1 bg-gray-100 min-h-screen">
 
             @livewire('navigation-menu')
             <div class="mx-32">
                  <!-- Page Heading -->
                 @if (isset($header))
                     <header class="">
-                        <div class="font-medium p-3 pt-6 bg-gray-50 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
+                        <div class="font-medium p-3 pt-6 bg-gray-100 text-xl text-slate-800 leading-tight sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>

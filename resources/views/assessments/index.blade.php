@@ -125,7 +125,7 @@
 
     </div>
     <div
-        class="my-4 m-3 p-3 border  border-dashed bg-gradient-to-br from-white to-zinc-50 rounded-3xl border-zinc-200 dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px]  ">
+        class="my-4 m-3 p-3  ">
         {{ $assessments->links() }}
     </div>
 </x-app-layout>
