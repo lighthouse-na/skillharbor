@@ -4,12 +4,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full ...">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-r-md rounded-l-3xl">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-md">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl">
+                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add JCP
                 </a>
@@ -19,7 +19,7 @@
           </div>
 
 
-<div class="rounded-3xl border bg-white shadow-md ">
+<div class="rounded-3xl border bg-white  ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-800">
             <tr>
@@ -34,7 +34,7 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-xs">
             @foreach ($jcps as $jcp)
                 <tr class="cursor-pointer hover:bg-gray-50 border-t" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">

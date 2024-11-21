@@ -12,30 +12,42 @@
                         <div class="relative flex-3 w-full h-100">
 
                             <div
-                                class="flex flex-row justify-between items-center w-full h-auto bg-pink overflow-hidden bg-gradient-to-br from-white to-zinc-50 rounded-3xl dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px]  ">
+                                class="flex flex-row justify-between items-center w-full h-auto overflow-hidden bg-gradient-to-br from-white to-zinc-50 rounded-3xl dark:border-gray-700 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 max-h-[500px]  ">
 
                                 <!-- Header Image Section -->
 
 
                                 <!-- Left Section: Title, Date, Supervisor Info -->
+
                                 <div class="flex relative flex-col p-6 w-full">
+
                                     <div class="flex items-center justify-center">
 
 
                                         <div class="flex-grow flex-col">
 
-                                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                                                {{ $a->assessment_title }}</h2>
+                                            <div class="grid grid-cols-2 justify-items items-center">
+                                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                                    {{ $a->assessment_title }}</h2>
+                                                    <div class="justify-self-end">
+
+                                                        <p class="text-xs text-red-500 dark:text-red-400 bg-red-200  p-2 rounded-3xl">Closing:
+                                                            {{ Carbon\Carbon::parse($a->closing_date)->diffForHumans() }}</p>
+
+                                                    </div>
+
+                                            </div>
 
                                                 <div class="mt-1">
                                                     <p class="text-sm text-zinc-500 dark:text-gray-400">Opened
                                                         {{ Carbon\Carbon::parse($a->created_at)->diffForHumans() }}</p>
-                                                    <p class="text-sm text-red-500 dark:text-red-400">Closing:
-                                                        {{ Carbon\Carbon::parse($a->closing_date)->diffForHumans() }}</p>
+
                                                 </div>
+
                                             <div
 
                                                 class="flex relative my-3 items-center space-x-2 border rounded-3xl p-2">
+
                                                 @if (Auth::check() && Auth::user()->supervisor)
                                                     <img alt="Supervisor Photo" class="w-10 h-10 rounded-full shadow-sm"
                                                         src="{{ Auth::user()->supervisor->profile_photo_url }}" />
@@ -63,19 +75,19 @@
                                                             {{-- <p class="text-sm text-zinc-600 dark:text-gray-300 mt-3">The assessment closed unfortunately!</p> --}}
                                                         @else
                                                             <!-- Enabled Get Started Button -->
-                                                            <a class="inline-flex items-center gap-x-1 text-sky-900 text-sm bg-sky-200 rounded-xl p-2 px-3 shadow-sm hover:bg-sky-700 hover:text-sky-100 transition ease-in-out delay-75 duration-300"
+                                                            <a class="inline-flex items-center gap-x-1 text-sky-900 text-sm bg-sky-200 rounded-xl p-2 px-3 shadow-sm hover:bg-sky-100 transition ease-in-out delay-75 duration-300"
                                                                 href="{{ route('user.assessment.show', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
                                                                 Get Started
                                                             </a>
                                                         @endif
                                                     @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 0)
-                                                        <a class="inline-flex items-center gap-x-1 text-orange-900 text-sm bg-orange-200 rounded-xl p-2 px-3 shadow-sm hover:bg-orange-700 hover:text-orange-100 transition ease-in-out delay-75 duration-300"
+                                                        <a class="inline-flex items-center gap-x-1 text-orange-900 text-sm bg-orange-200 rounded-xl p-2 px-3 shadow-sm hover:bg-orange-100  transition ease-in-out delay-75 duration-300"
                                                             href="{{ route('user.assessment.submission', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
                                                             View Submission
                                                         </a>
                                                         {{-- <p class="text-sm text-zinc-600 dark:text-gray-300 mt-3">Thank you for participating!</p> --}}
                                                     @elseif ($a->pivot->user_status === 1 && $a->pivot->supervisor_status === 1)
-                                                        <a class="inline-flex items-center gap-x-1 text-green-900 text-sm bg-green-200 rounded-xl p-2 shadow-sm hover:bg-green-700 hover:text-green-100 transition ease-in-out delay-75 duration-300"
+                                                        <a class="inline-flex items-center gap-x-1 text-green-900 text-sm bg-green-200 rounded-xl p-2 shadow-sm hover:bg-green-100 transition ease-in-out delay-75 duration-300"
                                                             href="{{ route('user.assessment.results', ['user' => Crypt::encrypt(Auth::user()->id), 'assessment' => Crypt::encrypt($a->id)]) }}">
                                                             View Supervisor Results
                                                         </a>

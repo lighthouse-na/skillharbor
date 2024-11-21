@@ -14,7 +14,7 @@
                                 <!-- Profile Header Image -->
                                 <div class="h-32 overflow-hidden rounded-t-3xl">
                                     <img class="object-cover w-full h-full"
-                                        src="https://products.ls.graphics/mesh-gradients/images/87.-Spacy.jpg"
+                                        src="{{asset('assets/images/No Logo Art Dark.png')}}"
                                         alt="Mountain">
                                 </div>
                                 <!-- User Profile Card -->
@@ -50,7 +50,7 @@
                             <div class="flex flex-row  justify-between items-center px-6 py-4 border-b">
                                 <h3 class="leading-none text-gray-900 font-bold dark:text-white">My Qualifications</h3>
                                 <button wire:click="addQualification" wire:loading.attr="disabled"
-                                    class="ml-auto hover:bg-sky-100 bg-sky-50 transition ease-in-out rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
+                                    class="ml-auto hover:bg-sky-50 bg-sky-100 transition ease-in-out rounded-xl p-1 px-2 focus:outline-none focus:shadow-outline-sky">
                                     <div class="flex flex-row items-center justify-center bg ">
                                         <x-iconoir-plus class="text-sky-500 rounded-3xl" />
                                         <h1 class="text-sm font-bold text-sky-500">Add Qualification</h1>
@@ -183,50 +183,43 @@
 
                     </div>
                 </div>
-                <div class="flex justify-center items-center my-8 ">
+                <div class="flex justify-center items-center my-8">
+                    <div class="relative p-6 rounded-3xl space-y-6 w-full">
+                        <!-- Image as Background -->
+                        <img src="{{ asset('assets/images/No Logo Art.png') }}"
+                             alt="Background"
+                             class="absolute inset-0 w-full h-full object-cover rounded-3xl"
+                             aria-hidden="true" />
 
-                    <div class=" bg-cover p-6 rounded-3xl space-y-6 w-full " style="background-image: url(https://products.ls.graphics/mesh-gradients/images/96.-Lake.jpg)">
-
-                        <h2 class="text-2xl font-bold text-sky-900 text-center">Coming Soon</h2>
-                        <p class="text-gray-950 text-center">
-                            We're working on something amazing! Stay tuned for the <span
-                                class="font-semibold text-sky-800 ">My Development Plans</span> feature.
-                        </p>
-                        <div
-                            class="bg-white bg-opacity-40 backdrop-filter backdrop-blur-md p-6 mt-4 rounded-3xl  space-y-3 h-auto overflow-auto grow-0 ">
-
-                            <h2 class="leading-none text-sky-950 font-bold">My Development Plans</h2>
-                            <div class="flex flex-col items-start mt-4">
-                                @foreach ($developmentPlans as $plan)
-                                    <div
-                                        class="flex flex-row items-center bg-white/50 my-2 px-3 rounded-3xl justify-between w-full p-2 shadow-md">
-                                        <div>
-                                            <h2 class="text-sm text-sky-950">{{ $plan['name'] }}</h2>
+                        <!-- Content Above Background -->
+                        <div class="relative z-10">
+                            <h2 class="text-2xl font-bold text-sky-900 text-center">Coming Soon</h2>
+                            <p class="text-gray-950 text-center">
+                                We're working on something amazing! Stay tuned for the
+                                <span class="font-semibold text-sky-800">My Development Plans</span> feature.
+                            </p>
+                            <div class="bg-white bg-opacity-40 backdrop-filter backdrop-blur-md p-6 mt-4 rounded-3xl space-y-3 h-auto overflow-auto grow-0">
+                                <h2 class="leading-none text-sky-950 font-bold">My Development Plans</h2>
+                                <div class="flex flex-col items-start mt-4">
+                                    @foreach ($developmentPlans as $plan)
+                                        <div
+                                            class="flex flex-row items-center bg-white/50 my-2 px-3 rounded-3xl justify-between w-full p-2 shadow-md">
+                                            <div>
+                                                <h2 class="text-sm text-sky-950">{{ $plan['name'] }}</h2>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="text-xs text-sky-950 rounded-full">
+                                                    <x-iconoir-google-docs class="h-4 w-4" />
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="#" class="text-xs text-sky-950 rounded-full">
-                                                <x-iconoir-google-docs class="h-4 w-4" />
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-
-
-
-
                         </div>
-
-
                     </div>
-
-
-
                 </div>
 
-
-            </div>
             <div>
                 <!-- Add Qualification Modal -->
                 <x-dialog-modal wire:model="confirmingAddQualification">

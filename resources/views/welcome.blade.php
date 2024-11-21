@@ -2,7 +2,9 @@
     <div class="absolute top-0 -z-10 h-full w-full bg-white"><div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(14,165,233,0.6)] opacity-50 blur-[80px]"></div>
         <header class="sticky top-0 z-10 bg-white">
             <nav class="container mx-auto p-6 flex justify-between items-center py-3">
-                <div class="text-2xl font-medium bg-gradient-to-br from-slate-900 to-sky-600 bg-clip-text text-transparent">Skillharbor.</div>
+                <div class="px-12 w-64">
+                    <img src="{{asset('assets/images/Application_Logo (2).png')}}" />
+                </div>
                 <ul class="flex space-x-6">
 
                     @if (Route::has('login'))

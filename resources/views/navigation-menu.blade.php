@@ -1,4 +1,4 @@
-<div class="bg-white sticky top-0  dark:bg-gray-800  dark:border-gray-700 relative z-10 ">
+<div class="bg-gray-100 sticky top-0  dark:bg-gray-800  dark:border-gray-700 relative z-10 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
@@ -8,8 +8,8 @@
                     <a href="{{ route('dashboard') }}" class="text-black dark:text-gray-200">
                         <div class="flex flex-row items-center justify-center">
 
-                            <div>
-                                <h1 class="block text-3xl w-auto">SkillHarbor</h1>
+                            <div class="p-12 w-64">
+                                <img class="hover:drop-shadow-lg" src="{{asset('assets/images/Application_Logo (2).png')}}" />
                             </div>
                         </div>
 
@@ -31,7 +31,7 @@
                                     </div>
 
                                     <div class="overflow-hidden ">
-                                        <h1 class="text-slate-800 pl-3 truncate ...">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
+                                        <h1 class="text-slate-500 pl-3 truncate ...">{{Auth()->user()->first_name}} {{Auth()->user()->last_name}}</h1>
                                         <p class="text-black text-xs pl-3 truncate ...">{{Auth()->user()->email}}</p>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
 
 
                 </div>
-                <div class="hidden sm:flex sm:items-center sm:ms-6 items-center mx-auto justify-between bg-sky-50 w-full rounded-xl p-2">
+                <div class="hidden sm:flex sm:items-center sm:ms-6 items-center mx-auto justify-between bg-sky-200 w-full rounded-xl p-2">
                     <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <x-slot:icon>
                             <x-iconoir-dashboard-speed class="w-5 h-5" />
@@ -70,7 +70,7 @@
                         <x-iconoir-spark  class="w-5 h-5" />
                     </x-slot:icon>
 
-                        My Audits
+                        My Assessments
                     </x-side-nav-link>
                     @if (Auth::user()->role === "supervisor" |  Auth::user()->role === "admin")
                     <x-side-nav-link href="{{ route('supervise.index') }}" :active="request()->routeIs('supervise.index')">
@@ -132,7 +132,7 @@
             </div>
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
