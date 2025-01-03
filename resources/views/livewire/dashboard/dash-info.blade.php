@@ -109,80 +109,41 @@
                 </div>
                 <!-- Cart Section -->
 
-
-
-
-
-
             </div>
 
             <!-- Right Section -->
-            <div class=" my-4 ">
-                <div class="bg-white  w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
+            <div class="my-4">
+                <div class="bg-white w-auto rounded-3xl dark:bg-gray-800 overflow-auto">
                     <div class="flex flex-row justify-between items-center px-6 py-6 border-b">
                         <div class="title">
                             <h3 class="leading-none text-gray-900 dark:text-white font-bold">Top Skills</h3>
                         </div>
                     </div>
                     <div class="flow-root p-4">
-                        <div class="overflow-y-auto sm:rounded-3xl">
-                            <table class="w-full text-sm mt-3 text-gray-500 dark:text-gray-400">
-                                <thead class="text-xs text-gray-900/50 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left">
-                                            Skill Title
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-
-                                            User Rating
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Supervisor Rating
-                                        </th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($skills as $skill)
-                                        <tr class=" -b dark:bg-gray-800 dark: -gray-700 ">
-                                            <td scope="row"
-                                                class="px-6 py-6 text-gray-900 whitespace-nowrap dark:text-white text-left">
-                                                {{ Str::limit($skill->skill_title, 30) }}
-                                            </td>
-                                            <td class="px-6 py-4 text-center">
-                                                <div
-                                                    class="text-xs text-center inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-sky-300 text-sky-900 rounded-3xl">
-                                                    {{ $skill->pivot->user_rating }}.00
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 text-center">
-                                                <div
-                                                    class="text-xs inline-block py-1 px-2 my-auto leading-none text-center whitespace-nowrap align-baseline font-bold bg-sky-300 text-sky-900 rounded-3xl">
-                                                    {{ $skill->pivot->supervisor_rating }}.00
-                                                </div>
-                                            </td>
-
-                                        </tr>
-                                    @empty
-                                        <div
-                                            class="text-base items-center flex justify-center text-red-700 bg-red-200 rounded-3xl  p-4">
-                                            <div class="self-center  max-w-md ">
-                                                <h1 class=""><x-iconoir-warning-circle class="mr-2" />
-                                                </h1>
-                                            </div>
-                                            <div class="self-center  max-w-md ">
-                                                <h1 class="">You have not completed an assessment.</h1>
-                                            </div>
-                                        </div>
-                                    @endforelse
+                        <div class="overflow-y-auto ">
+                            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
 
 
-                                </tbody>
-                            </table>
+                                @forelse ($skills as $skill)
+                                    <li class="flex justify-between items-center py-4 px-6 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <span class="text-gray-900 dark:text-white">{{ Str::limit($skill->skill_title, 30) }}</span>
+                                        <span class="text-xs text-center py-1 px-2 bg-sky-300 text-sky-900 rounded-3xl font-bold">
+                                            {{ ($skill->pivot->user_rating + $skill->pivot->supervisor_rating) / 10 }}
+                                        </span>
+
+                                    </li>
+                                @empty
+                                    <li class="flex justify-center items-center py-4 px-6 text-red-700 bg-red-200 rounded-3xl">
+                                        <x-iconoir-warning-circle class="mr-2" />
+                                        <span>You have not completed an assessment.</span>
+                                    </li>
+                                @endforelse
+                            </ul>
                         </div>
-
                     </div>
                 </div>
+
+
                 <div class="flex justify-center items-center my-8">
                     <div class="relative p-6 rounded-3xl space-y-6 w-full">
                         <!-- Image as Background -->

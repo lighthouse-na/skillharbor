@@ -43,7 +43,7 @@
         <section class="p-16">
 
             <div class="container mx-auto text-center p-24">
-                <h1 class="text-7xl font-light text-gray-800">Empower Your Workforce</h1>
+                <h1 class="text-7xl font-light text-gray-800"><span class="text-sky-500 font-semibold"> Empower </span> Your Workforce</h1>
                 <h1 class="text-7xl font-light pb-3 bg-gradient-to-r from-slate-900 to-sky-900 bg-clip-text text-transparent">with Tailored Training Plans</h1>
                 <p class="mt-6 text-gray-600">Skillharbor analyzes job descriptions and qualifications to create personalized training plans for every employee.</p>
 
@@ -52,7 +52,7 @@
 
         <!-- Key Features Section -->
         <section class="p-12 px-64">
-            <div class="container mx-auto text-center">
+            <div class="container mx-auto text-center" style="background-image: url({{asset('assets/images/No Logo Art.png')}})">
                 <h2 class="text-3xl font-light bg-gradient-to-r from-slate-900 to-sky-600 bg-clip-text text-transparent">Why Choose Skillharbor?</h2>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="border p-8 rounded-3xl shadow-xl bg-white">
