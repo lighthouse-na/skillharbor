@@ -11,7 +11,7 @@
             <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl w-auto">
+                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md w-auto">
                     <x-gmdi-add-o class="w-6 h-6" />
 
                     Qualification
@@ -22,7 +22,7 @@
           </div>
 
 
-<div class="rounded-3xl border shadow-md bg-white">
+<div class="rounded-3xl text-xs border bg-white">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
@@ -37,7 +37,8 @@
             @foreach ($qualifications as $qualification)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
                     <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $qualification->qualification_title }}
+                        <h1 class="truncate ...">{{ $qualification->qualification_title }}</h1>
+
                     </td>
                     {{-- <td class="px-6 py-4 whitespace-nowrap">{{ $skill->skill_description }}</td> --}}
                     <td class="w-9 text-center">

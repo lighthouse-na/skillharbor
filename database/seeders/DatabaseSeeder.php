@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Adding System Qualifications...');
-        qualification::factory(1)->create();
+        qualification::factory(50)->create();
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Creating Audit Prerequisites...');
@@ -112,10 +112,10 @@ class DatabaseSeeder extends Seeder
         $this->command->getOutput()->progressAdvance();
 
         $this->command->info(' Assigning Qualifications to Users...');
-        $qualifications = qualification::all();
+        $qualifications = qualification::findOrFail(rand(1,5));
 
         foreach ($users as $user) {
-            $user->qualifications()->saveMany($qualifications);
+            $user->qualifications()->sync($qualifications);
         }
 
         $this->command->getOutput()->progressAdvance();
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder
         $jcps = jcp::all();
 
         foreach ($jcps as $jcp) {
-            $jcp->qualifications()->saveMany($qualifications);
+            $jcp->qualifications()->sync($qualifications);
         }
 
         $this->command->getOutput()->progressFinish();

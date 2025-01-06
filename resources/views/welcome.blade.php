@@ -2,7 +2,9 @@
     <div class="absolute top-0 -z-10 h-full w-full bg-white"><div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(14,165,233,0.6)] opacity-50 blur-[80px]"></div>
         <header class="sticky top-0 z-10 bg-white">
             <nav class="container mx-auto p-6 flex justify-between items-center py-3">
-                <div class="text-2xl font-medium bg-gradient-to-br from-slate-900 to-sky-600 bg-clip-text text-transparent">Skillharbor.</div>
+                <div class="px-12 w-64">
+                    <img src="{{asset('assets/images/Application_Logo (2).png')}}" />
+                </div>
                 <ul class="flex space-x-6">
 
                     @if (Route::has('login'))
@@ -41,7 +43,7 @@
         <section class="p-16">
 
             <div class="container mx-auto text-center p-24">
-                <h1 class="text-7xl font-light text-gray-800">Empower Your Workforce</h1>
+                <h1 class="text-7xl font-light text-gray-800"><span class="text-sky-500 font-semibold"> Empower </span> Your Workforce</h1>
                 <h1 class="text-7xl font-light pb-3 bg-gradient-to-r from-slate-900 to-sky-900 bg-clip-text text-transparent">with Tailored Training Plans</h1>
                 <p class="mt-6 text-gray-600">Skillharbor analyzes job descriptions and qualifications to create personalized training plans for every employee.</p>
 
@@ -50,7 +52,7 @@
 
         <!-- Key Features Section -->
         <section class="p-12 px-64">
-            <div class="container mx-auto text-center">
+            <div class="container mx-auto text-center" style="background-image: url({{asset('assets/images/No Logo Art.png')}})">
                 <h2 class="text-3xl font-light bg-gradient-to-r from-slate-900 to-sky-600 bg-clip-text text-transparent">Why Choose Skillharbor?</h2>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="border p-8 rounded-3xl shadow-xl bg-white">

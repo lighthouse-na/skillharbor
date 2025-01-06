@@ -20,7 +20,7 @@
           </div>
 
 
-<div class="rounded-3xl bg-white shadow-md border ">
+<div class="rounded-3xl bg-white border ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
@@ -37,7 +37,7 @@
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-200 text-xs">
 
             @forelse ($users as $user)
                 <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location.href = '#'">
@@ -56,7 +56,7 @@
                         </div>
                       </div></td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-center max-w">
+                    <td class="px-2 py-4 whitespace-nowrap text-xs text-center w-auto">
                         @forelse($user->jcp as $jcp)
                             <h1 class="bg-sky-200 rounded-xl p-1 text-sky-900">{{ $jcp->position_title }}</h1>
                         @empty
