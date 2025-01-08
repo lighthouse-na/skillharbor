@@ -23,7 +23,7 @@
 
                         <div class="col-span-6">
                             <label for="closing_date" class="block text-sm font-medium text-gray-700">Assessment Closing Date</label>
-                            <input type="datetime-local" value="{{ $assessment->closing_date }}" name="closing_date" id="closing_date" min="{{ Carbon\Carbon::today() }}"
+                            <input type="datetime-local" step="any" value="{{ $assessment->closing_date }}" name="closing_date" id="closing_date" min="{{ Carbon\Carbon::today() }}"
                                    class="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                    required>
                         </div>

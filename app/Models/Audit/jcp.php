@@ -31,7 +31,6 @@ class jcp extends Model
     public function scopeSearch($query, $val)
     {
         return $query->where('position_title', 'like', '%'.$val.'%')
-            ->orWhere('job_description', 'like', '%'.$val.'%')
             ->orWhere('job_grade', 'like', '%'.$val.'%');
     }
 

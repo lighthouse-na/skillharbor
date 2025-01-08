@@ -5,13 +5,13 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search qualifications directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search qualifications directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-xl">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md w-auto">
+                <a href="{{route('system.qualifications.create')}}" class="flex flex-row p-2 w-28 bg-sky-800 hover:bg-sky-700 text-white transition ease-in-out duration-300 rounded-xl text-xs font-bold justify-center items-center w-auto">
                     <x-gmdi-add-o class="w-6 h-6" />
 
                     Qualification
@@ -22,12 +22,12 @@
           </div>
 
 
-<div class="rounded-3xl text-xs border bg-white">
+<div class="rounded-xl text-xs border bg-white">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
-                <th class="px-6 py-3  uppercase ">qualification Title</th>
-                <th class="px-6 py-3 text-center uppercase ">Actions</th>
+                <th class="px-6 py-3 ">Qualification Title</th>
+                <th class="px-6 py-3 text-center ">Actions</th>
 
 
                 <!-- Add more table headers as needed -->
