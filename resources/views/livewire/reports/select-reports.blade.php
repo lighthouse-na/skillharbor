@@ -1,5 +1,5 @@
 <div class="">
-    <div class="h-auto flex flex-col bg-white border border-dashed border-zinc-400 rounded-3xl py-4 my-6 px-6 mx-4">
+    <div class="h-auto flex flex-col py-4 my-6 px-6 mx-4">
 
         <!-- Text and Image Section -->
         <div class="flex-col w-full">

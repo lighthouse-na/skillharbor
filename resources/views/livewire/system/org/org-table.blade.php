@@ -5,12 +5,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search company directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-md rounded-l-3xl">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search company directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-xl">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <button class="flex flex-row p-2 px-2 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md rounded-r-3xl" onclick="window.location.href = '{{ route('directories.org.create') }}'">
+                <button class="flex flex-row p-2 px-2 bg-sky-800 hover:bg-sky-700 text-white transition ease-in-out duration-300 text-xs font-bold justify-center items-center rounded-xl" onclick="window.location.href = '{{ route('directories.org.create') }}'">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Employee
                 </button>
@@ -20,14 +20,14 @@
           </div>
 
 
-<div class="rounded-3xl bg-white border ">
+<div class="rounded-xl bg-white border ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
                 <th class="px-6 py-3">Salary Ref:</th>
                 <th class="px-6 py-3">Name</th>
                 <th class="px-6 py-3">Email</th>
-                <th class="px-6 py-3text-center ">Job Title</th>
+                <th class="px-6 py-3 text-center ">Job Title</th>
                 <th class="px-6 py-3 text-center">Skill Points</th>
                 <th class="px-6 py-3 text-center">Actions</th>
 

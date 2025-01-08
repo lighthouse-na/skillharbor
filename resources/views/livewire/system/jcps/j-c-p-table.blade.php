@@ -4,12 +4,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full ...">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-md">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search JCP directory..." class="mb-4 p-2 px-4 w-full border border-gray-300 rounded-xl">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
 
-                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-md">
+                <a href="{{route('jcp.create')}}" class="flex flex-row p-2 w-28 bg-sky-800 hover:bg-sky-700 text-white transition ease-in-out duration-300 rounded-xl text-xs font-bold justify-center items-center shadow-sm">
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add JCP
                 </a>
@@ -19,7 +19,7 @@
           </div>
 
 
-<div class="rounded-3xl border bg-white  ">
+<div class="rounded-xl border bg-white  ">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-800">
             <tr>

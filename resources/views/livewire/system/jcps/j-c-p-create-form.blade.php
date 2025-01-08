@@ -16,6 +16,8 @@
             <x-input-error for="position_title" class="mt-2" />
         </div>
 
+
+
         <!-- Duty Station -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="duty_station" value="{{ __('Duty Station') }}" />
@@ -65,98 +67,119 @@
         <div class="col-span-6 sm:col-span-4">
             <label class="inline-flex items-center cursor-pointer">
                 <input type="checkbox" name="is_active" id="is_active" class="sr-only peer">
-                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-sky-300 dark:peer-focus:ring-sky-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-sky-600"></div>
+                <div
+                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-sky-300 dark:peer-focus:ring-sky-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-sky-600">
+                </div>
                 <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">JCP Active</span>
             </label>
         </div>
 
         <!-- Qualifications Section -->
-        <div class="col-span-full sm:col-span-4">
-            <x-label for="qualifications" value="{{ __('Qualifications') }}" />
-            @foreach ($qualifications as $qualification)
-                <div class="flex items-center mb-2">
-                    <input type="checkbox" value="{{ $qualification->id }}" wire:model.defer="jcp_qualifications"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                    <label
-                        class="ml-2 text-sm font-medium text-gray-900">{{ $qualification->qualification_title }}</label>
-                </div>
-            @endforeach
-            <x-input-error for="jcp_qualifications" class="mt-2" />
+        <div class="col-span-6 sm:col-span-4">
+            <label for="qualifications" value="{{ __('Qualifications') }}">Qualifications</label>
+            <select id="qualifications" name="qualifications" data-placeholder="Select Qualifications" multiple
+                data-multi-select>
+                @foreach ($qualifications as $qualification)
+                    <div class="flex items-center mb-2">
+                        <option wire:model.defer="jcp_qualifications"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                            value="{{ $qualification->id }}">{{ $qualification->qualification_title }}</option>
+
+                    </div>
+                @endforeach
+
+            </select>
         </div>
+
 
         <!-- Prerequisites Section -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="jcp_prerequisites[]" value="{{ __('Prerequisites') }}" />
-            @forelse ($prerequisites as $prerequisite)
-                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
-                    <input type="radio" value="{{ $prerequisite->id }}" wire:model.defer="jcp_prerequisites"
-                        name="jcp_prerequisites[]"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label
-                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $prerequisite->prerequisite_title }}</label>
-                </div>
-            @empty
-                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 mb-2">
-                    <input checked type="radio" value="" name="jcp_prerequisites[]"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No
-                        Prerequisites Loaded</label>
-                </div>
-            @endforelse
+            <x-label for="prerequisites" value="{{ __('Prerequisites') }}" />
+            <select id="prerequisites" name="jcp_prerequisites[]" data-placeholder="Select Prerequisites" multiple data-multi-select>
+                @forelse ($prerequisites as $prerequisite)
+                    <option
+                        wire:model.defer="jcp_prerequisites"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                        value="{{ $prerequisite->id }}">{{ $prerequisite->prerequisite_title }}
+                    </option>
+                @empty
+                    <option disabled>No Prerequisites Loaded</option>
+                @endforelse
+            </select>
             <x-input-error for="jcp_prerequisites" class="mt-2" />
         </div>
 
+
         <!-- Skills Section -->
-        <div class="col-span-full sm:col-span-4">
-            <x-label for="jcp_skills" value="{{ __('Skills') }}" />
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skill
-                            Title</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Required Rating</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($jcp_skills as $index => $skill)
+        <div class="col-span-full sm:col-span-full">
+            <x-label for="jcp_skills" value="{{ __('Skills') }}" class="block text-lg font-medium text-gray-700 mb-4" />
+
+            <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg bg-white">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <select wire:model.defer="jcp_skills.{{ $index }}.skill_id" class="rounded-lg">
-                                    <option selected>Choose a skill</option>
-                                    @foreach ($skills as $availableSkill)
-                                        <option value="{{ $availableSkill->id }}">{{ $availableSkill->skill_title }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <x-input-error for="jcp_skills.{{ $index }}.skill_id" class="mt-2" />
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <select wire:model.defer="jcp_skills.{{ $index }}.required_rating"
-                                    class="rounded-lg">
-                                    <option selected>Choose a required rating</option>
-                                    <option value="1">Not Competent</option>
-                                    <option value="2">Basic Skills</option>
-                                    <option value="3">Competent</option>
-                                    <option value="4">Developed Skills</option>
-                                    <option value="5">Expert</option>
-                                </select>
-                                <x-input-error for="jcp_skills.{{ $index }}.required_rating" class="mt-2" />
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="#" class="text-red-500"
-                                    wire:click.prevent="removeSkill({{ $index }})">Delete</a>
-                            </td>
+                            <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                Skill Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                Required Rating
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                Action
+                            </th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <x-button type="button" wire:click.prevent="addSkill" class="mt-4">
-                {{ __('Add Skill') }}
-            </x-button>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach ($jcp_skills as $index => $skill)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <select
+                                        wire:model.defer="jcp_skills.{{ $index }}.skill_id"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <option selected>Choose a skill</option>
+                                        @foreach ($skills as $availableSkill)
+                                            <option value="{{ $availableSkill->id }}">{{ $availableSkill->skill_title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <x-input-error for="jcp_skills.{{ $index }}.skill_id" class="mt-1 text-sm text-red-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <select
+                                        wire:model.defer="jcp_skills.{{ $index }}.required_rating"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <option selected>Choose a required rating</option>
+                                        <option value="1">Not Competent</option>
+                                        <option value="2">Basic Skills</option>
+                                        <option value="3">Competent</option>
+                                        <option value="4">Developed Skills</option>
+                                        <option value="5">Expert</option>
+                                    </select>
+                                    <x-input-error for="jcp_skills.{{ $index }}.required_rating" class="mt-1 text-sm text-red-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <button
+                                        type="button"
+                                        wire:click.prevent="removeSkill({{ $index }})"
+                                        class="text-red-600 hover:text-red-800 font-medium focus:outline-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <x-button
+                    type="button"
+                    wire:click.stop="addSkill"
+                    class="bg-blue-600 text-white font-medium px-4 py-2 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    {{ __('Add Skill') }}
+                </x-button>
+            </div>
         </div>
+
     </x-slot>
 
     <x-slot name="actions">

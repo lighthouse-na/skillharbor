@@ -6,12 +6,12 @@
         <div class="flex">
 
             <div class="flex-initial w-full">
-        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 px-4 shadow-sm w-full border border-gray-300 rounded-r-md rounded-l-3xl">
+        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search Assessments directory..." class="mb-4 p-2 px-4 shadow-sm w-full border border-gray-300 rounded-xl">
     </div>
     <div class="flex-initial w-auto ml-3 mb-4">
 
 
-                    <a class="flex flex-row p-2 px-4 bg-sky-200 border hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-r-3xl rounded-l-md shadow-sm" href={{ route('assessments.create')}}>
+                    <a class="flex flex-row p-2 px-4 border bg-sky-800 hover:bg-sky-700 text-white  transition ease-in-out duration-300 rounded-xl text-xs font-bold justify-center items-center shadow-sm" href={{ route('assessments.create')}}>
                         <x-gmdi-add-o class="w-6 h-6" />
                         Assessment
                     </a>
@@ -19,16 +19,16 @@
             </div>
     </div>
 
-    <div class="rounded-3xl border bg-white shadow-md">
+    <div class="rounded-xl border bg-white">
         <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
             <thead class="text-left text-xs text-sky-800">
                 <tr>
-                    <th class="px-6 py-3 uppercase">Assessment Name</th>
-                    <th class="px-6 py-3 uppercase">Date Created</th>
-                    <th class="px-6 py-3 text-center uppercase text-justify">Date Modified</th>
-                    <th class="px-6 py-3 text-center uppercase text-justify text-red-500">Closing Date</th>
+                    <th class="px-6 py-3">Assessment Name</th>
+                    <th class="px-6 py-3 ">Date Created</th>
+                    <th class="px-6 py-3 text-center text-justify">Date Modified</th>
+                    <th class="px-6 py-3 text-center text-justify text-red-500">Closing Date</th>
 
-                    <th class="px-6 py-3 text-center uppercase">Actions</th>
+                    <th class="px-6 py-3 text-center ">Actions</th>
                 </tr>
             </thead>
             <tbody>

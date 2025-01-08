@@ -94,44 +94,57 @@ class AssessmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-{
-    // Decrypt the ID and find the assessment or fail
-    $assessment = Assessment::findOrFail(Crypt::decrypt($id));
+    public function update(Request $request, $id)
+    {
+        // Decrypt the ID and find the assessment or fail
+        $assessment = Assessment::findOrFail(Crypt::decrypt($id));
 
-    // Define validation rules
-    $validatedData = $request->validate([
-        'assessment_title' => 'required|string|max:255',
-        'department_ids' => 'required|array',
-        'department_ids.*' => 'exists:departments,id',
-        'closing_date' => 'required|date|after:today',
-    ]);
+        // Define validation rules
+        $validatedData = $request->validate([
+            'assessment_title' => 'required|string|max:255',
+            'department_ids' => 'required|array',
+            'department_ids.*' => 'exists:departments,id',
+            'closing_date' => 'required|date|after:today',
+        ]);
 
-    // Update assessment fields
-    $assessment->update([
-        'assessment_title' => $validatedData['assessment_title'],
-        'closing_date' => $validatedData['closing_date'],
-    ]);
+        // Update assessment fields
+        $assessment->update([
+            'assessment_title' => $validatedData['assessment_title'],
+            'closing_date' => $validatedData['closing_date'],
+        ]);
 
-    // Update department enrollments
-    $departmentIds = $validatedData['department_ids'];
-    $users = User::whereIn('department_id', $departmentIds)->get();
+        // Update department enrollments
+        $departmentIds = $validatedData['department_ids'];
 
-    // Ensure existing enrollments are updated or add new ones
-    $existingEnrollments = Enrollment::where('assessment_id', $assessment->id)->pluck('user_id')->toArray();
+        // Get all users in the selected departments
+        $users = User::whereIn('department_id', $departmentIds)->pluck('id')->toArray();
 
-    foreach ($users as $user) {
-        if (!in_array($user->id, $existingEnrollments)) {
+        // Get all current enrollments for the assessment
+        $existingEnrollments = Enrollment::where('assessment_id', $assessment->id)->pluck('user_id')->toArray();
+
+        // Find users to enroll (in selected departments but not already enrolled)
+        $usersToEnroll = array_diff($users, $existingEnrollments);
+
+        // Find users to unenroll (enrolled but no longer in selected departments)
+        $usersToUnenroll = array_diff($existingEnrollments, $users);
+
+        // Enroll new users
+        foreach ($usersToEnroll as $userId) {
             Enrollment::create([
-                'user_id' => $user->id,
+                'user_id' => $userId,
                 'assessment_id' => $assessment->id,
                 'user_status' => 0,
                 'supervisor_status' => 0,
             ]);
         }
+
+        // Unenroll users no longer in selected departments
+        Enrollment::where('assessment_id', $assessment->id)
+            ->whereIn('user_id', $usersToUnenroll)
+            ->delete();
+
+        return redirect()->route('assessments.index')->banner('Assessment Updated!');
     }
-    return redirect()->route('assessments.index')->banner('Assessment Updated!');
-}
 
 
     /**

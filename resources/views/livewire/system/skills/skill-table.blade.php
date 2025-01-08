@@ -2,11 +2,11 @@
     {{-- Stop trying to control. --}}
     <div>
         <div class="flex">
-            <div class="flex-none w-auto mr-3 mb-4">
+            {{-- <div class="flex-none w-auto mr-3 mb-4">
 
                 <x-dropdown align="left" width="48" class="">
                     <x-slot name="trigger">
-                            <button type="button" class="h-10 justify-items-center items-center inline-flex px-3 py-1 border text-sm font-medium rounded-md  bg-sky-200 hover:bg-sky-300 text-sky-800  transition ease-in-out duration-150  rounded-l-3xl">
+                            <button type="button" class="h-10 justify-items-center items-center inline-flex px-3 py-1 border text-sm font-medium  bg-sky-200 hover:bg-sky-300 text-sky-800  transition ease-in-out duration-150  rounded-xl">
                                 <span class="mr-2">
                                     <x-iconoir-drawer />
 
@@ -38,13 +38,13 @@
 
                     </x-slot>
                 </x-dropdown>
-            </div>
+            </div> --}}
             <div class="flex-initial w-full ...">
-                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-md focus:ring-sky-400 active:ring-sky-900">
+                <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search skills directory..." class="mb-4 p-2 w-full border border-gray-300 rounded-xl focus:ring-sky-400 active:ring-sky-900">
 
             </div>
             <div class="flex-initial w-auto ml-3 mb-4">
-                <a href="{{ route('directories.skills.create') }}" class="flex flex-row p-2 w-28 bg-sky-200 hover:bg-sky-300 text-sky-800 transition ease-in-out duration-300 rounded-l-md rounded-r-3xl">
+                <a href="{{ route('directories.skills.create') }}" class="flex flex-row p-2 w-28 bg-sky-800 hover:bg-sky-700 text-white transition ease-in-out duration-300 rounded-xl text-xs font-bold justify-center items-center">
 
                     <x-gmdi-add-o class="w-6 h-6" />
                     Add skill
@@ -56,13 +56,13 @@
           </div>
 
 
-<div class="rounded-3xl border bg-white shadow-md">
+<div class="rounded-xl border bg-white">
     <table class="table-auto min-w-full divide-y divide-gray-200 overflow-y-auto">
         <thead class="text-left text-xs text-sky-950">
             <tr>
-                <th class="px-6 py-3  uppercase ">Skill Title</th>
-                <th class="px-6 py-3  uppercase ">Description</th>
-                <th class="px-6 py-3 text-center uppercase ">Actions</th>
+                <th class="px-6 py-3 ">Skill Title</th>
+                <th class="px-6 py-3 ">Description</th>
+                <th class="px-6 py-3 text-center">Actions</th>
 
 
                 <!-- Add more table headers as needed -->
@@ -71,10 +71,10 @@
         <tbody class="divide-y divide-gray-200">
             @foreach ($skills as $skill)
                 <tr class="cursor-pointer hover:bg-gray-50 " onclick="window.location.href = '#'">
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-4 whitespace-nowrap text-xs">
                             {{ $skill->skill_title }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap truncate">{{ Str::limit($skill->skill_description, 50, $end='...') }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-xs truncate">{{ Str::limit($skill->skill_description, 50, $end='...') }}</td>
                     <td class="w-9 text-center">
                         <div class="ms-3 mx-auto">
                             <x-dropdown align="center" width="48">
